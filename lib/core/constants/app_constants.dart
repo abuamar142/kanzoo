@@ -37,6 +37,8 @@ class AppConstants {
   static const String loginSuccessMessage = 'Selamat datang';
   static const String successTitle = 'Berhasil';
   static const String errorTitle = 'Error';
+  static const String infoTitle = 'Info';
+  static const String warningTitle = 'Peringatan';
 
   // Available Classes
   static const List<String> availableClasses = [

@@ -5,6 +5,7 @@ import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/utils/app_snackbar.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../shared/services/storage_service.dart';
 
@@ -184,11 +185,7 @@ class HomePage extends StatelessWidget {
                 color: AppColors.primary,
                 onTap: () {
                   // TODO: Navigate to materials
-                  Get.snackbar(
-                    'Info',
-                    '${AppConstants.materialsTitle} ${AppConstants.comingSoonMessage}',
-                    snackPosition: SnackPosition.BOTTOM,
-                  );
+                  AppSnackbar.showComingSoon(AppConstants.materialsTitle);
                 },
               ),
             ),
@@ -201,11 +198,7 @@ class HomePage extends StatelessWidget {
                 color: AppColors.arabicGreen,
                 onTap: () {
                   // TODO: Navigate to exercises
-                  Get.snackbar(
-                    'Info',
-                    '${AppConstants.exerciseTitle} ${AppConstants.comingSoonMessage}',
-                    snackPosition: SnackPosition.BOTTOM,
-                  );
+                  AppSnackbar.showComingSoon(AppConstants.exerciseTitle);
                 },
               ),
             ),

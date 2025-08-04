@@ -5,6 +5,7 @@ import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/utils/app_snackbar.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../shared/services/storage_service.dart';
 
@@ -123,14 +124,7 @@ class LoginController extends GetxController {
     }
 
     if (validateClass() != null) {
-      Get.snackbar(
-        AppConstants.errorTitle,
-        AppConstants.classEmptyError,
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: AppColors.error,
-        colorText: AppColors.secondary,
-        margin: const EdgeInsets.all(AppDimensions.marginM),
-      );
+      AppSnackbar.showError(message: AppConstants.classEmptyError);
       return;
     }
 
@@ -143,13 +137,9 @@ class LoginController extends GetxController {
       );
 
       if (success) {
-        Get.snackbar(
-          AppConstants.successTitle,
-          '${AppConstants.loginSuccessMessage}, ${nameController.text.trim()}!',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: AppColors.success,
-          colorText: AppColors.secondary,
-          margin: const EdgeInsets.all(AppDimensions.marginM),
+        AppSnackbar.showSuccess(
+          message:
+              '${AppConstants.loginSuccessMessage}, ${nameController.text.trim()}!',
         );
 
         // Navigate to home
@@ -158,14 +148,7 @@ class LoginController extends GetxController {
         throw Exception(AppConstants.saveDataError);
       }
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        '${AppConstants.generalError}: $e',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: AppColors.error,
-        colorText: AppColors.secondary,
-        margin: const EdgeInsets.all(AppDimensions.marginM),
-      );
+      AppSnackbar.showError(message: '${AppConstants.generalError}: $e');
     } finally {
       isLoading.value = false;
     }
