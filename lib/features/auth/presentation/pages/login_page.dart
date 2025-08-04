@@ -110,6 +110,9 @@ class LoginPage extends StatelessWidget {
             ),
           ),
           textCapitalization: TextCapitalization.words,
+          onTapOutside: (_) {
+            FocusScope.of(Get.context!).unfocus();
+          },
         ),
         const SizedBox(height: AppDimensions.spaceL),
         const Text(AppConstants.classLabel, style: AppTextStyles.label),
