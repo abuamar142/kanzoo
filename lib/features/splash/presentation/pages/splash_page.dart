@@ -59,7 +59,6 @@ class SplashPage extends StatelessWidget {
             Text(
               AppConstants.schoolName,
               style: AppTextStyles.splashSubtitle.copyWith(
-                fontSize: 14,
                 fontWeight: FontWeight.w300,
               ),
               textAlign: TextAlign.center,

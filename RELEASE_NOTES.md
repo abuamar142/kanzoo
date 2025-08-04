@@ -7,8 +7,8 @@
 - **Description**: Aplikasi pembelajaran bahasa Arab untuk siswa SMP. Menggantikan LKS tradisional
   dengan materi digital dan latihan soal interaktif.
 - **Platform**: Android only
-- **School**: MTsN 12 Jombang
-- **Teacher**: Moch. Fikri Jauhar Maulana S. Ag., M. Ag.
+- **School**: MTsN 14 Jombang
+- **Teacher**: Moch. Fikri Jauhar Maulana S. Ag.
 
 ## 📦 **Release Files (Split per ABI)**
 

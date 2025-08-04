@@ -6,28 +6,8 @@ class AppConstants {
       'Aplikasi Pembelajaran Bahasa Arab untuk MTs';
 
   // School Information
-  static const String schoolName = 'MTsN 12 Jombang';
-  static const String teacherName = 'Moch. Fikri Jauhar Maulana S. Ag., M. Ag.';
-
-  // Timing
-  static const int splashDuration = 2000; // 2 seconds in milliseconds
-  static const int animationDuration =
-      300; // Animation duration in milliseconds
-
-  // UI Constants
-  static const double defaultPadding = 16.0;
-  static const double smallPadding = 8.0;
-  static const double largePadding = 24.0;
-  static const double extraLargePadding = 32.0;
-
-  static const double defaultRadius = 8.0;
-  static const double smallRadius = 4.0;
-  static const double largeRadius = 16.0;
-
-  // Exercise Constants
-  static const int defaultTimeLimit = 300; // 5 minutes in seconds
-  static const int maxAttempts = 3;
-  static const double passingScore = 70.0;
+  static const String schoolName = 'MTsN 14 Jombang';
+  static const String teacherName = 'Moch. Fikri Jauhar Maulana S. Ag.';
 
   // Storage Keys
   static const String userProgressKey = 'user_progress';
@@ -37,8 +17,54 @@ class AppConstants {
   // Asset Paths
   static const String logoPath = 'assets/images/logos/app_logo.svg';
 
+  // Login Page Text
+  static const String welcomeText = 'Selamat Datang di';
+  static const String appDescriptionLogin = 'Aplikasi Pembelajaran Bahasa Arab';
+  static const String nameLabel = 'Nama';
+  static const String namePlaceholder = 'Masukkan nama';
+  static const String classLabel = 'Kelas';
+  static const String classPlaceholder = 'Pilih kelas';
+  static const String classPickerTitle = 'Pilih Kelas';
+  static const String loginButtonText = 'Masuk';
+
+  // Validation Messages
+  static const String nameEmptyError = 'Nama tidak boleh kosong';
+  static const String nameMinLengthError = 'Nama minimal 2 karakter';
+  static const String classEmptyError = 'Pilih kelas terlebih dahulu';
+  static const int nameMinLength = 2;
+
+  // Success Messages
+  static const String loginSuccessMessage = 'Selamat datang';
+  static const String successTitle = 'Berhasil';
+  static const String errorTitle = 'Error';
+
+  // Available Classes
+  static const List<String> availableClasses = [
+    '7A',
+    '7B',
+    '7C',
+    '7D',
+    '7E',
+    '7F',
+  ];
+
+  // Home Page Text
+  static const String greetingArabic = 'Assalamu\'alaikum';
+  static const String welcomeHomeMessage =
+      'Selamat datang di aplikasi pembelajaran bahasa Arab. Mari mulai belajar hari ini!';
+  static const String mainMenuTitle = 'Menu Utama';
+  static const String materialsTitle = 'Materi';
+  static const String materialsSubtitle = 'Pelajari bahasa Arab';
+  static const String exerciseTitle = 'Latihan';
+  static const String exerciseSubtitle = 'Kerjakan soal';
+  static const String comingSoonMessage = 'akan segera hadir!';
+  static const String logoutMenuText = 'Keluar';
+  static const String classPrefix = 'Kelas';
+  static const String defaultUserName = 'Siswa';
+
   // Error Messages
   static const String networkError = 'Tidak ada koneksi internet';
   static const String generalError = 'Terjadi kesalahan, silakan coba lagi';
   static const String dataNotFound = 'Data tidak ditemukan';
+  static const String saveDataError = 'Gagal menyimpan data';
 }

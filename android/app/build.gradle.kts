@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.abuamar.kanzoo.kanzoo"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -30,17 +30,23 @@ android {
         versionName = flutter.versionName
     }
 
-    // Split APK per ABI untuk mengurangi ukuran
+    // Split APK per ABI untuk mengurangi ukuran (disabled untuk development)
     splits {
         abi {
-            isEnable = true
+            isEnable = false  // Disabled agar flutter run bisa menemukan APK
             reset()
             include("arm64-v8a", "armeabi-v7a", "x86_64")
-            isUniversalApk = false
+            isUniversalApk = true  // Enable universal APK untuk development
         }
     }
 
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("debug")
+            isMinifyEnabled = false
+            isShrinkResources = false
+            isDebuggable = true
+        }
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
@@ -53,4 +59,19 @@ android {
 
 flutter {
     source = "../.."
+}
+
+// Custom tasks untuk build management
+tasks.register("buildUniversalDebug") {
+    description = "Build universal debug APK for development"
+    dependsOn("assembleDebug")
+}
+
+tasks.register("buildSplitRelease") {
+    description = "Build split APKs for release distribution"
+    doFirst {
+        android.splits.abi.isEnable = true
+        android.splits.abi.isUniversalApk = false
+    }
+    dependsOn("assembleRelease")
 }

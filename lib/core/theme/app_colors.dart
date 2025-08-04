@@ -32,8 +32,17 @@ class AppColors {
   static const Color cardBackground = Color(0xFFFFFFFF);
   static const Color borderLight = Color(0xFFE0E0E0);
   static const Color borderDark = Color(0xFFBDBDBD);
+  static const Color shadowColor = Color(0xFF000000);
 
   // Splash Screen Colors
   static const Color splashBackground = Color(0xFF2196F3);
   static const Color splashText = Color(0xFFFFFFFF);
+
+  // Alpha Values for Opacity
+  static const double alphaVeryLow = 0.05;
+  static const double alphaLow = 0.1;
+  static const double alphaLight = 0.2;
+  static const double alphaMedium = 0.3;
+  static const double alphaHigh = 0.8;
+  static const double alphaVeryHigh = 0.9;
 }

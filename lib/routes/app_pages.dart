@@ -1,11 +1,14 @@
 import 'package:get/get.dart';
-import '../features/splash/presentation/pages/splash_page.dart';
+
+import '../features/auth/presentation/pages/login_page.dart';
 import '../features/home/presentation/pages/home_page.dart';
+import '../features/splash/presentation/pages/splash_page.dart';
 import 'app_routes.dart';
 
 class AppPages {
   static final routes = [
     GetPage(name: AppRoutes.splash, page: () => const SplashPage()),
+    GetPage(name: AppRoutes.login, page: () => const LoginPage()),
     GetPage(name: AppRoutes.home, page: () => const HomePage()),
     // TODO: Add more routes as features are implemented
     // GetPage(

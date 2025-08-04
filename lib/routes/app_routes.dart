@@ -1,6 +1,7 @@
 abstract class AppRoutes {
   // Route Names
   static const String splash = '/';
+  static const String login = '/login';
   static const String home = '/home';
   static const String materials = '/materials';
   static const String exercises = '/exercises';

@@ -50,6 +50,14 @@ class AppDimensions {
   // Card Dimensions
   static const double cardElevation = 4.0;
   static const double cardRadius = 12.0;
+  static const double cardElevationHigh = 8.0;
+
+  // Shadow
+  static const double shadowBlurRadius = 20.0;
+  static const double shadowOffset = 10.0;
+
+  // Stroke Width
+  static const double strokeWidthThin = 2.0;
 
   // AppBar
   static const double appBarHeight = 56.0;
