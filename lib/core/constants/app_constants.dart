@@ -66,6 +66,25 @@ class AppConstants {
   static const String classPrefix = 'Kelas';
   static const String defaultUserName = 'Siswa';
 
+  // Drawer Text
+  static const String drawerHeaderTitle = appName;
+  static const String drawerMaterials = 'Daftar Materi';
+  static const String drawerExercises = 'Daftar Soal';
+  static const String drawerDictionary = 'Kamus';
+  static const String drawerAbout = 'Tentang Aplikasi';
+  static const String aboutDialogTitle = 'Tentang';
+  static const String dictionaryDialogTitle = 'Kamus';
+
+  // Dictionary
+  static const String dictionarySearchHint = 'Cari kata (IDN/Arab)';
+  static const String dictionaryNoResults = 'Tidak ada hasil';
+  static const String dictionarySortLabel = 'Urutkan';
+  static const String dictionarySortDefault = 'Default';
+  static const String dictionarySortByIndonesian = 'Abjad Indonesia';
+  static const String dictionarySortByArabic = 'Abjad Arab';
+  static const String dictionarySectionIntroduction = 'Perkenalan';
+  static const String dictionarySectionDemonstratives = 'Kata Tunjuk';
+
   // Error Messages
   static const String networkError = 'Tidak ada koneksi internet';
   static const String generalError = 'Terjadi kesalahan, silakan coba lagi';

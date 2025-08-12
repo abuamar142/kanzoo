@@ -1,0 +1,85 @@
+import 'package:flutter/material.dart';
+
+import '../constants/app_constants.dart';
+import '../constants/app_exercise.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_dimensions.dart';
+import '../theme/app_text_styles.dart';
+import '../utils/app_snackbar.dart';
+import 'app_dialogs.dart';
+import 'drawer/base_drawer_header.dart';
+import 'drawer/base_drawer_item.dart';
+
+class AppDrawer extends StatelessWidget {
+  const AppDrawer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: SafeArea(
+        child: Column(
+          children: [
+            const BaseDrawerHeader(),
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  BaseDrawerItem(
+                    icon: Icons.menu_book,
+                    title: AppConstants.drawerMaterials,
+                    subtitle: AppConstants.materialsSubtitle,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      AppSnackbar.showComingSoon(AppConstants.materialsTitle);
+                    },
+                  ),
+                  BaseDrawerItem(
+                    icon: Icons.quiz,
+                    title: AppConstants.drawerExercises,
+                    subtitle:
+                        'Lulus: ${AppExercise.passingScore.toInt()}%  |  Maks: ${AppExercise.maxAttempts}x',
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      AppSnackbar.showComingSoon(AppConstants.exerciseTitle);
+                    },
+                  ),
+                  BaseDrawerItem(
+                    icon: Icons.translate,
+                    title: AppConstants.drawerDictionary,
+                    subtitle: 'Popup akses cepat',
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      AppDialogs.showDictionary(context);
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(AppDimensions.paddingM),
+              child: SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  icon: const Icon(Icons.info, color: AppColors.primary),
+                  label: Text(AppConstants.drawerAbout),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    AppDialogs.showAboutApp(context);
+                  },
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: AppColors.primary),
+                    foregroundColor: AppColors.primary,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: AppDimensions.paddingS,
+                      horizontal: AppDimensions.paddingM,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

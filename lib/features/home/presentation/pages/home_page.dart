@@ -8,6 +8,7 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/utils/app_snackbar.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../shared/services/storage_service.dart';
+import '../../../../core/widgets/app_drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -30,7 +31,11 @@ class HomePage extends StatelessWidget {
                 value: AppConstants.logoutMenuText,
                 child: Row(
                   children: [
-                    Icon(Icons.logout, size: AppDimensions.iconS),
+                    Icon(
+                      Icons.logout,
+                      size: AppDimensions.iconM,
+                      color: AppColors.error,
+                    ),
                     SizedBox(width: AppDimensions.spaceS),
                     Text(AppConstants.logoutMenuText),
                   ],
@@ -40,6 +45,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const AppDrawer(),
       body: FutureBuilder<Map<String, String?>>(
         future: StorageService.getUserData(),
         builder: (context, snapshot) {
