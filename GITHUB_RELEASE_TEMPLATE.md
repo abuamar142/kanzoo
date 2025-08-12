@@ -22,7 +22,7 @@ materi digital dan latihan soal interaktif.
 ### 🏫 Informasi Sekolah
 
 - **Sekolah**: MTsN 14 Jombang
-- **Guru Pembimbing**: Moch. Fikri Jauhar Maulana S. Ag.
+- **Guru Pembimbing**: Moch. Fikri Jauhar Maulana S. Pd.
 - **Target**: Siswa SMP
 
 ## ✨ Fitur Utama v1.0.0

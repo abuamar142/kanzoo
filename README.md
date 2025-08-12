@@ -22,7 +22,7 @@ diakses secara offline.
 **Dikembangkan untuk:**
 
 - **Sekolah**: MTsN 14 Jombang
-- **Guru Pembimbing**: Moch. Fikri Jauhar Maulana S. Ag.
+- **Guru Pembimbing**: Moch. Fikri Jauhar Maulana S. Pd.
 
 ## 🛠️ Teknologi
 

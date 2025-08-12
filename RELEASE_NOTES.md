@@ -8,7 +8,7 @@
   dengan materi digital dan latihan soal interaktif.
 - **Platform**: Android only
 - **School**: MTsN 14 Jombang
-- **Teacher**: Moch. Fikri Jauhar Maulana S. Ag.
+- **Teacher**: Moch. Fikri Jauhar Maulana S. Pd.
 
 ## 📦 **Release Files (Split per ABI)**
 

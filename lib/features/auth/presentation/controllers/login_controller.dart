@@ -48,46 +48,123 @@ class LoginController extends GetxController {
   void showClassPicker() {
     Get.bottomSheet(
       Container(
-        padding: const EdgeInsets.all(AppDimensions.paddingL),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
+        constraints: BoxConstraints(
+          maxHeight: Get.height * 0.6, // Maksimal 60% dari tinggi layar
+        ),
+        decoration: BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(AppDimensions.radiusL),
             topRight: Radius.circular(AppDimensions.radiusL),
           ),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.shadowColor.withValues(
+                alpha: AppColors.alphaLow,
+              ),
+              blurRadius: AppDimensions.shadowBlurRadius,
+              offset: const Offset(0, -AppDimensions.paddingXS),
+            ),
+          ],
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Handle bar
-            Center(
-              child: Container(
-                width: AppDimensions.spaceXXL,
-                height: AppDimensions.spaceXS,
-                decoration: BoxDecoration(
-                  color: AppColors.borderLight,
-                  borderRadius: BorderRadius.circular(AppDimensions.radiusXS),
-                ),
+            Container(
+              margin: const EdgeInsets.only(top: AppDimensions.spaceM),
+              width: AppDimensions.spaceXXL,
+              height: AppDimensions.spaceXS,
+              decoration: BoxDecoration(
+                color: AppColors.borderLight,
+                borderRadius: BorderRadius.circular(AppDimensions.radiusXS),
               ),
             ),
-            const SizedBox(height: AppDimensions.spaceL),
 
-            // Title
-            const Text(AppConstants.classPickerTitle, style: AppTextStyles.h4),
-            const SizedBox(height: AppDimensions.spaceM),
+            // Header
+            Padding(
+              padding: const EdgeInsets.all(AppDimensions.paddingL),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(AppDimensions.paddingS),
+                    decoration: BoxDecoration(
+                      color: AppColors.primary.withValues(
+                        alpha: AppColors.alphaVeryLow,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        AppDimensions.radiusS,
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.class_,
+                      size: AppDimensions.iconM,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                  const SizedBox(width: AppDimensions.spaceM),
+                  Text(
+                    AppConstants.classPickerTitle,
+                    style: AppTextStyles.h4.copyWith(
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
-            // Class options
-            ...availableClasses.map(
-              (className) => ListTile(
-                title: Text(
-                  '${AppConstants.classPrefix} $className',
-                  style: AppTextStyles.bodyLarge,
+            // Class grid - lebih compact
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimensions.paddingL,
                 ),
-                leading: const Icon(Icons.class_),
-                onTap: () => selectClass(className),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppDimensions.radiusS),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 2,
+                    crossAxisSpacing: AppDimensions.spaceM,
+                    mainAxisSpacing: AppDimensions.spaceM,
+                  ),
+                  itemCount: availableClasses.length,
+                  itemBuilder: (context, index) {
+                    final className = availableClasses[index];
+                    return Material(
+                      borderRadius: BorderRadius.circular(
+                        AppDimensions.radiusM,
+                      ),
+                      color: AppColors.primary.withValues(
+                        alpha: AppColors.alphaVeryLow,
+                      ),
+                      child: InkWell(
+                        onTap: () => selectClass(className),
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.radiusM,
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              AppDimensions.radiusM,
+                            ),
+                            border: Border.all(
+                              color: AppColors.borderLight,
+                              width: 1,
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '${AppConstants.classPrefix} $className',
+                              style: AppTextStyles.bodyMedium.copyWith(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

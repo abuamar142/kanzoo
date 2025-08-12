@@ -7,7 +7,7 @@ class AppConstants {
 
   // School Information
   static const String schoolName = 'MTsN 14 Jombang';
-  static const String teacherName = 'Moch. Fikri Jauhar Maulana S. Ag.';
+  static const String teacherName = 'Moch. Fikri Jauhar Maulana S. Pd.';
 
   // Storage Keys
   static const String userProgressKey = 'user_progress';
@@ -21,8 +21,10 @@ class AppConstants {
   static const String welcomeText = 'Selamat Datang di';
   static const String appDescriptionLogin = 'Aplikasi Pembelajaran Bahasa Arab';
   static const String nameLabel = 'Nama';
+  static const String nameKey = 'name';
   static const String namePlaceholder = 'Masukkan nama';
   static const String classLabel = 'Kelas';
+  static const String classKey = 'class';
   static const String classPlaceholder = 'Pilih kelas';
   static const String classPickerTitle = 'Pilih Kelas';
   static const String loginButtonText = 'Masuk';

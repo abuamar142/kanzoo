@@ -50,9 +50,11 @@ class HomePage extends StatelessWidget {
           final userData =
               snapshot.data ??
               {AppConstants.nameLabel: null, AppConstants.classLabel: null};
+
           final userName =
-              userData[AppConstants.nameLabel] ?? AppConstants.defaultUserName;
-          final userClass = userData[AppConstants.classLabel] ?? '';
+              userData[AppConstants.nameKey] ?? AppConstants.defaultUserName;
+
+          final userClass = userData[AppConstants.classKey] ?? '';
 
           return SingleChildScrollView(
             padding: const EdgeInsets.all(AppDimensions.paddingM),
