@@ -61,6 +61,10 @@ class AppConstants {
   static const String materialsSubtitle = 'Pelajari bahasa Arab';
   static const String exerciseTitle = 'Latihan';
   static const String exerciseSubtitle = 'Kerjakan soal';
+  static const String exercisesListTitle = 'Daftar Soal';
+  static const String exercisesAllLabel = 'Lihat Semua Soal';
+  static const String exerciseStartLabel = 'Mulai';
+  static const String exerciseDetailPending = 'Detail soal akan segera hadir';
   static const String comingSoonMessage = 'akan segera hadir!';
   static const String logoutMenuText = 'Keluar';
   static const String classPrefix = 'Kelas';
@@ -84,6 +88,12 @@ class AppConstants {
   static const String dictionarySortByArabic = 'Abjad Arab';
   static const String dictionarySectionIntroduction = 'Perkenalan';
   static const String dictionarySectionDemonstratives = 'Kata Tunjuk';
+
+  // Materials Sections
+  static const String materialsSectionIntro = 'Pengantar';
+  static const String materialsSectionVocabulary = 'Kosakata';
+  static const String materialsSectionExamples = 'Contoh Kalimat';
+  static const String materialsSectionNotes = 'Catatan';
 
   // Error Messages
   static const String networkError = 'Tidak ada koneksi internet';

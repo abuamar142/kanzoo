@@ -192,8 +192,9 @@ class HomePage extends StatelessWidget {
                 subtitle: AppConstants.materialsSubtitle,
                 color: AppColors.primary,
                 onTap: () {
-                  // TODO: Navigate to materials
-                  AppSnackbar.showComingSoon(AppConstants.materialsTitle);
+                  if (Get.currentRoute != AppRoutes.materials) {
+                    Get.offNamed(AppRoutes.materials);
+                  }
                 },
               ),
             ),
@@ -205,8 +206,9 @@ class HomePage extends StatelessWidget {
                 subtitle: AppConstants.exerciseSubtitle,
                 color: AppColors.arabicGreen,
                 onTap: () {
-                  // TODO: Navigate to exercises
-                  AppSnackbar.showComingSoon(AppConstants.exerciseTitle);
+                  if (Get.currentRoute != AppRoutes.exercises) {
+                    Get.offNamed(AppRoutes.exercises);
+                  }
                 },
               ),
             ),

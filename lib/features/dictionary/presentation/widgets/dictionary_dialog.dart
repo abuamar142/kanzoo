@@ -27,7 +27,8 @@ class _DictionaryDialogState extends State<DictionaryDialog> {
     List<DictionaryEntry> filtered = entries.where((e) {
       if (_query.isEmpty) return true;
       final q = _query.toLowerCase();
-      return e.indonesian.toLowerCase().contains(q) || e.arabic.contains(_query);
+      return e.indonesian.toLowerCase().contains(q) ||
+          e.arabic.contains(_query);
     }).toList();
 
     // Group by section while preserving insertion order for default
@@ -75,7 +76,9 @@ class _DictionaryDialogState extends State<DictionaryDialog> {
         );
 
         for (final it in items) {
-          children.add(BaseDictionaryItem(arabic: it.arabic, indonesian: it.indonesian));
+          children.add(
+            BaseDictionaryItem(arabic: it.arabic, indonesian: it.indonesian),
+          );
         }
       }
 
@@ -108,11 +111,12 @@ class _DictionaryDialogState extends State<DictionaryDialog> {
             border: Border.all(color: AppColors.borderLight),
             boxShadow: [
               BoxShadow(
-                color: AppColors.shadowColor
-                    .withValues(alpha: AppColors.alphaMedium),
+                color: AppColors.shadowColor.withValues(
+                  alpha: AppColors.alphaMedium,
+                ),
                 blurRadius: AppDimensions.shadowBlurRadius,
                 offset: const Offset(0, AppDimensions.spaceS),
-              )
+              ),
             ],
           ),
           constraints: const BoxConstraints(maxWidth: 560, maxHeight: 640),
@@ -123,13 +127,16 @@ class _DictionaryDialogState extends State<DictionaryDialog> {
                 children: [
                   const Icon(Icons.translate, color: AppColors.primary),
                   const SizedBox(width: AppDimensions.spaceS),
-                  Text(AppConstants.dictionaryDialogTitle, style: AppTextStyles.h4),
+                  Text(
+                    AppConstants.dictionaryDialogTitle,
+                    style: AppTextStyles.h4,
+                  ),
                   const Spacer(),
                   IconButton(
                     onPressed: () => Navigator.of(context).pop(),
                     icon: const Icon(Icons.close),
                     tooltip: 'Tutup',
-                  )
+                  ),
                 ],
               ),
               const SizedBox(height: AppDimensions.spaceM),
@@ -154,7 +161,9 @@ class _DictionaryDialogState extends State<DictionaryDialog> {
                       ),
                       decoration: BoxDecoration(
                         border: Border.all(color: AppColors.borderLight),
-                        borderRadius: BorderRadius.circular(AppDimensions.radiusS),
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.radiusS,
+                        ),
                         color: AppColors.surface,
                       ),
                       child: DropdownButton<DictionarySort>(
@@ -162,36 +171,41 @@ class _DictionaryDialogState extends State<DictionaryDialog> {
                         items: [
                           DropdownMenuItem(
                             value: DictionarySort.defaultOrder,
-                            child: Text(AppConstants.dictionarySortDefault,
-                                style: AppTextStyles.bodyMedium),
+                            child: Text(
+                              AppConstants.dictionarySortDefault,
+                              style: AppTextStyles.bodyMedium,
+                            ),
                           ),
                           DropdownMenuItem(
                             value: DictionarySort.indonesian,
-                            child: Text(AppConstants.dictionarySortByIndonesian,
-                                style: AppTextStyles.bodyMedium),
+                            child: Text(
+                              AppConstants.dictionarySortByIndonesian,
+                              style: AppTextStyles.bodyMedium,
+                            ),
                           ),
                           DropdownMenuItem(
                             value: DictionarySort.arabic,
-                            child: Text(AppConstants.dictionarySortByArabic,
-                                style: AppTextStyles.bodyMedium),
+                            child: Text(
+                              AppConstants.dictionarySortByArabic,
+                              style: AppTextStyles.bodyMedium,
+                            ),
                           ),
                         ],
                         onChanged: (val) {
                           if (val != null) setState(() => _sort = val);
                         },
-                        icon: const Icon(Icons.sort, color: AppColors.textSecondary),
+                        icon: const Icon(
+                          Icons.sort,
+                          color: AppColors.textSecondary,
+                        ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               const SizedBox(height: AppDimensions.spaceM),
               Expanded(
-                child: Scrollbar(
-                  child: ListView(
-                    children: buildList(),
-                  ),
-                ),
+                child: Scrollbar(child: ListView(children: buildList())),
               ),
             ],
           ),
@@ -200,4 +214,3 @@ class _DictionaryDialogState extends State<DictionaryDialog> {
     );
   }
 }
-
