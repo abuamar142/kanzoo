@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../features/dictionary/presentation/widgets/dictionary_dialog.dart' as dict;
 import '../constants/app_constants.dart';
 import '../constants/app_timing.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_dimensions.dart';
 import '../theme/app_text_styles.dart';
-import '../utils/app_snackbar.dart';
-import '../../features/dictionary/presentation/widgets/dictionary_dialog.dart' as dict;
 
 class AppDialogs {
   static Future<void> showDictionary(BuildContext context) {

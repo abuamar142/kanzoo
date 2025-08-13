@@ -1,14 +1,13 @@
 import 'package:get/get.dart';
 
 import '../features/auth/presentation/pages/login_page.dart';
+import '../features/exercises/presentation/pages/exercise_detail_placeholder_page.dart';
+import '../features/exercises/presentation/pages/exercises_page.dart';
 import '../features/home/presentation/pages/home_page.dart';
 import '../features/materials/presentation/pages/material_detail_page.dart';
-import '../features/materials/presentation/pages/materials_page.dart';
-import '../features/materials/presentation/pages/materials_chapters_page.dart';
-import '../features/materials/presentation/pages/materials_chapter_topics_page.dart';
 import '../features/materials/presentation/pages/material_kind_detail_page.dart';
-import '../features/exercises/presentation/pages/exercises_page.dart';
-import '../features/exercises/presentation/pages/exercise_detail_placeholder_page.dart';
+import '../features/materials/presentation/pages/materials_chapter_topics_page.dart';
+import '../features/materials/presentation/pages/materials_chapters_page.dart';
 import '../features/splash/presentation/pages/splash_page.dart';
 import 'app_routes.dart';
 
