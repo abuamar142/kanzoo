@@ -95,6 +95,9 @@ class AppConstants {
   static const String materialsSectionExamples = 'Contoh Kalimat';
   static const String materialsSectionNotes = 'Catatan';
 
+  // Splash
+  static const String mufrodatTodayTitle = 'Mufrodat Hari Ini';
+
   // Error Messages
   static const String networkError = 'Tidak ada koneksi internet';
   static const String generalError = 'Terjadi kesalahan, silakan coba lagi';

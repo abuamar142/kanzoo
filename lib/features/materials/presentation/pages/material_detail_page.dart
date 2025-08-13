@@ -78,18 +78,31 @@ class MaterialDetailPage extends StatelessWidget {
             AppConstants.dataNotFound,
             style: AppTextStyles.bodyMedium,
           ),
-        )
+        ),
       ];
     }
 
     final widgets = <Widget>[];
     for (final section in content.sections) {
       widgets.add(BaseSectionTitle(title: section.title));
+      final isTask = _isTaskSection(section.title);
       for (final p in section.paragraphs) {
-        widgets.addAll([
-          Text(p, style: AppTextStyles.bodyMedium),
-          const SizedBox(height: AppDimensions.spaceS),
-        ]);
+        if (isTask) {
+          widgets.addAll(_buildTaskParagraphPieces(p));
+        } else {
+          final isArabic = _isArabic(p);
+          widgets.addAll([
+            Text(
+              p,
+              style:
+                  isArabic ? AppTextStyles.arabicText : AppTextStyles.bodyMedium,
+              textDirection:
+                  isArabic ? TextDirection.rtl : TextDirection.ltr,
+              textAlign: isArabic ? TextAlign.right : TextAlign.left,
+            ),
+            const SizedBox(height: AppDimensions.spaceS),
+          ]);
+        }
       }
       if (section.vocab.isNotEmpty) {
         widgets.add(
@@ -132,10 +145,7 @@ class MaterialDetailPage extends StatelessWidget {
     final List<ExerciseSet> sets = ExercisesData.byMaterial(topicId);
 
     if (sets.isEmpty) {
-      return Text(
-        AppConstants.dataNotFound,
-        style: AppTextStyles.bodyMedium,
-      );
+      return Text(AppConstants.dataNotFound, style: AppTextStyles.bodyMedium);
     }
 
     return Column(
@@ -148,11 +158,91 @@ class MaterialDetailPage extends StatelessWidget {
             for (final s in sets)
               BaseExerciseButton(
                 label: s.title,
-                onPressed: () => Get.toNamed('${AppRoutes.exerciseDetail}/${s.id}'),
+                onPressed: () =>
+                    Get.toNamed('${AppRoutes.exerciseDetail}/${s.id}'),
               ),
           ],
         ),
       ],
     );
+  }
+
+  bool _isArabic(String s) {
+    for (final cp in s.runes) {
+      if ((cp >= 0x0600 && cp <= 0x06FF) ||
+          (cp >= 0x0750 && cp <= 0x077F) ||
+          (cp >= 0x08A0 && cp <= 0x08FF) ||
+          (cp >= 0xFB50 && cp <= 0xFDFF) ||
+          (cp >= 0xFE70 && cp <= 0xFEFF)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool _isTaskSection(String title) {
+    final t = title.toLowerCase();
+    return t.contains('tugas individu');
+  }
+
+  List<Widget> _buildTaskParagraphPieces(String paragraph) {
+    final widgets = <Widget>[];
+    final text = paragraph.trim();
+
+    // Try to extract numbered questions like: "1. ... 2. ..." or "۱. ... 2. ..."
+    final numberRegex = RegExp(r'(?:^|\s)([0-9\u0660-\u0669]+)\s*[\.)]?\s*');
+    final matches = numberRegex.allMatches(text).toList();
+
+    if (matches.isNotEmpty) {
+      for (var i = 0; i < matches.length; i++) {
+        final m = matches[i];
+        final numStr = m.group(1) ?? '';
+        final start = m.end;
+        final end = i + 1 < matches.length ? matches[i + 1].start : text.length;
+        final q = text.substring(start, end).trim();
+        if (q.isEmpty) continue;
+
+        widgets.add(
+          Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(text: '$numStr. '),
+                TextSpan(text: q),
+              ],
+              style: AppTextStyles.arabicText,
+            ),
+            textDirection: TextDirection.rtl,
+            textAlign: TextAlign.center,
+          ),
+        );
+        widgets.add(const SizedBox(height: AppDimensions.spaceS));
+      }
+      return widgets;
+    }
+
+    // Fallback: split by sentence punctuation and align per script
+    final parts = text
+        .replaceAll('؟', '؟\n')
+        .replaceAll('!', '!\n')
+        .replaceAll('.', '.\n')
+        .split('\n')
+        .map((e) => e.trim())
+        .where((e) => e.isNotEmpty)
+        .toList();
+
+    for (final part in parts) {
+      final isArabic = _isArabic(part);
+      widgets.add(
+        Text(
+          part,
+          style: isArabic ? AppTextStyles.arabicText : AppTextStyles.bodyMedium,
+          textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
+          textAlign: isArabic ? TextAlign.center : TextAlign.left,
+        ),
+      );
+      widgets.add(const SizedBox(height: AppDimensions.spaceS));
+    }
+
+    return widgets;
   }
 }

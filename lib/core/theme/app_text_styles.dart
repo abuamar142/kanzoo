@@ -65,14 +65,14 @@ class AppTextStyles {
     fontSize: 18,
     fontWeight: FontWeight.w500,
     color: AppColors.textPrimary,
-    fontFamily: 'Noto Sans Arabic', // Will need to add this font
+    fontFamily: 'Noto Naskh Arabic',
   );
 
   static const TextStyle arabicLarge = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
-    fontFamily: 'Noto Sans Arabic',
+    fontFamily: 'Noto Naskh Arabic',
   );
 
   // Caption and Label Styles

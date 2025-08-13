@@ -4,6 +4,8 @@ abstract class AppRoutes {
   static const String login = '/login';
   static const String home = '/home';
   static const String materials = '/materials';
+  static const String materialsChapter = '/materials/chapter';
+  static const String materialsKindDetail = '/materials/kind';
   static const String exercises = '/exercises';
   static const String assessment = '/assessment';
   static const String profile = '/profile';

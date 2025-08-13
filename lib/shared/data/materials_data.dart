@@ -25,6 +25,11 @@ class MaterialsData {
       title: 'Keluarga',
       description: 'Kosakata keluarga dan contoh kalimat yang sering digunakan.',
     ),
+    MaterialTopic(
+      id: 'qiroah',
+      title: "Qiro'ah",
+      description: 'Materi bacaan berbahasa Arab beserta latihan pemahaman.',
+    ),
   ];
 
   static MaterialTopic? byId(String id) {
@@ -35,4 +40,3 @@ class MaterialsData {
     }
   }
 }
-
