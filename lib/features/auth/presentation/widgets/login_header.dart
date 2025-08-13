@@ -25,9 +25,7 @@ class LoginHeader extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: AppColors.primary.withValues(
-                  alpha: AppColors.alphaMedium,
-                ),
+                color: AppColors.primary.withValues(alpha: AppColors.alpha30),
                 blurRadius: AppDimensions.shadowBlurRadius,
                 offset: const Offset(0, AppDimensions.shadowOffset),
               ),
@@ -43,7 +41,7 @@ class LoginHeader extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.secondary.withValues(
-                    alpha: AppColors.alphaLight,
+                    alpha: AppColors.alpha20,
                   ),
                 ),
               ),
@@ -77,7 +75,7 @@ class LoginHeader extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppDimensions.radiusL),
-            color: AppColors.primary.withValues(alpha: AppColors.alphaVeryLow),
+            color: AppColors.primary.withValues(alpha: AppColors.alpha05),
           ),
           child: Text(
             AppConstants.appName,

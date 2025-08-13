@@ -59,9 +59,7 @@ class LoginController extends GetxController {
           ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.shadowColor.withValues(
-                alpha: AppColors.alphaLow,
-              ),
+              color: AppColors.shadowColor.withValues(alpha: AppColors.alpha30),
               blurRadius: AppDimensions.shadowBlurRadius,
               offset: const Offset(0, -AppDimensions.paddingXS),
             ),
@@ -90,7 +88,7 @@ class LoginController extends GetxController {
                     padding: const EdgeInsets.all(AppDimensions.paddingS),
                     decoration: BoxDecoration(
                       color: AppColors.primary.withValues(
-                        alpha: AppColors.alphaVeryLow,
+                        alpha: AppColors.alpha05,
                       ),
                       borderRadius: BorderRadius.circular(
                         AppDimensions.radiusS,
@@ -135,7 +133,7 @@ class LoginController extends GetxController {
                         AppDimensions.radiusM,
                       ),
                       color: AppColors.primary.withValues(
-                        alpha: AppColors.alphaVeryLow,
+                        alpha: AppColors.alpha05,
                       ),
                       child: InkWell(
                         onTap: () => selectClass(className),

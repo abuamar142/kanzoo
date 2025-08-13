@@ -18,9 +18,7 @@ class NameFormField extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppDimensions.radiusM),
         boxShadow: [
           BoxShadow(
-            color: AppColors.shadowColor.withValues(
-              alpha: AppColors.alphaVeryLow,
-            ),
+            color: AppColors.shadowColor.withValues(alpha: AppColors.alpha05),
             blurRadius: AppDimensions.spaceS,
             offset: const Offset(0, AppDimensions.paddingXS),
           ),
@@ -40,7 +38,7 @@ class NameFormField extends StatelessWidget {
             margin: const EdgeInsets.all(AppDimensions.paddingS),
             padding: const EdgeInsets.all(AppDimensions.paddingS),
             decoration: BoxDecoration(
-              color: AppColors.primary.withValues(alpha: AppColors.alphaLow),
+              color: AppColors.primary.withValues(alpha: AppColors.alpha10),
               borderRadius: BorderRadius.circular(AppDimensions.radiusS),
             ),
             child: const Icon(

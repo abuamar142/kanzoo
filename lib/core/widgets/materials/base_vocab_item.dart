@@ -25,7 +25,9 @@ class BaseVocabItem extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: AppColors.borderLight.withOpacity(0.6)),
+          bottom: BorderSide(
+            color: AppColors.borderLight.withValues(alpha: AppColors.alpha60),
+          ),
         ),
       ),
       child: Row(
@@ -35,11 +37,7 @@ class BaseVocabItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(indonesian, style: AppTextStyles.bodyLarge),
-                if (note != null)
-                  Text(
-                    note!,
-                    style: AppTextStyles.caption,
-                  ),
+                if (note != null) Text(note!, style: AppTextStyles.caption),
               ],
             ),
           ),
@@ -56,4 +54,3 @@ class BaseVocabItem extends StatelessWidget {
     );
   }
 }
-

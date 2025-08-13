@@ -6,11 +6,13 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_drawer.dart';
+import '../../../../core/widgets/materials/base_example_item.dart';
+import '../../../../core/widgets/materials/base_vocab_item.dart';
+import '../../../../core/widgets/materials/sections/section_one.dart';
+import '../../../../core/widgets/materials/sections/section_three.dart';
+import '../../../../core/widgets/materials/sections/section_two.dart';
 import '../../../../shared/data/materials_content.dart';
 import '../../../../shared/models/material_content.dart';
-import '../../../../core/widgets/materials/base_section_title.dart';
-import '../../../../core/widgets/materials/base_vocab_item.dart';
-import '../../../../core/widgets/materials/base_example_item.dart';
 
 class MaterialKindDetailPage extends StatelessWidget {
   const MaterialKindDetailPage({super.key});
@@ -97,12 +99,23 @@ class _ContentView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           for (final section in sections) ...[
-            BaseSectionTitle(title: section.title),
-            for (final p in section.paragraphs) ...[
-              _paragraph(p),
-              const SizedBox(height: AppDimensions.spaceS),
-            ],
-            if (section.vocab.isNotEmpty)
+            if ((section.subtitle ?? '').trim().isNotEmpty &&
+                (section.footer ?? '').trim().isEmpty)
+              SectionTwo(
+                title: section.title,
+                subtitle: section.subtitle!.trim(),
+                paragraphs: section.paragraphs,
+              )
+            else if ((section.footer ?? '').trim().isNotEmpty)
+              SectionThree(
+                title: section.title,
+                paragraphs: section.paragraphs,
+                footer: section.footer!.trim(),
+              )
+            else
+              SectionOne(title: section.title, paragraphs: section.paragraphs),
+
+            if (section.vocab.isNotEmpty) ...[
               Container(
                 decoration: BoxDecoration(
                   color: AppColors.surface,
@@ -120,8 +133,9 @@ class _ContentView extends StatelessWidget {
                   ],
                 ),
               ),
-            if (section.examples.isNotEmpty) ...[
               const SizedBox(height: AppDimensions.spaceM),
+            ],
+            if (section.examples.isNotEmpty) ...[
               for (final ex in section.examples)
                 BaseExampleItem(arabic: ex.arabic, translation: ex.translation),
             ],
@@ -130,28 +144,5 @@ class _ContentView extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Widget _paragraph(String p) {
-    final isArabic = _isArabic(p);
-    return Text(
-      p,
-      style: isArabic ? AppTextStyles.arabicText : AppTextStyles.bodyMedium,
-      textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-      textAlign: isArabic ? TextAlign.right : TextAlign.left,
-    );
-  }
-
-  bool _isArabic(String s) {
-    for (final cp in s.runes) {
-      if ((cp >= 0x0600 && cp <= 0x06FF) ||
-          (cp >= 0x0750 && cp <= 0x077F) ||
-          (cp >= 0x08A0 && cp <= 0x08FF) ||
-          (cp >= 0xFB50 && cp <= 0xFDFF) ||
-          (cp >= 0xFE70 && cp <= 0xFEFF)) {
-        return true;
-      }
-    }
-    return false;
   }
 }

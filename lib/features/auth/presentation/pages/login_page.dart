@@ -42,7 +42,7 @@ class LoginPage extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                         color: AppColors.shadowColor.withValues(
-                          alpha: AppColors.alphaVeryLow,
+                          alpha: AppColors.alpha05,
                         ),
                         blurRadius: AppDimensions.shadowBlurRadius,
                         offset: const Offset(0, AppDimensions.paddingS),

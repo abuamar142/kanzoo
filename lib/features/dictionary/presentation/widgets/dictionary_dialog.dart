@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_constants.dart';
-import '../../../../core/constants/app_timing.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/theme/app_text_styles.dart';
@@ -112,7 +111,7 @@ class _DictionaryDialogState extends State<DictionaryDialog> {
             boxShadow: [
               BoxShadow(
                 color: AppColors.shadowColor.withValues(
-                  alpha: AppColors.alphaMedium,
+                  alpha: AppColors.alpha30,
                 ),
                 blurRadius: AppDimensions.shadowBlurRadius,
                 offset: const Offset(0, AppDimensions.spaceS),

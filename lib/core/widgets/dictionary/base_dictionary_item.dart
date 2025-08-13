@@ -23,17 +23,14 @@ class BaseDictionaryItem extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: AppColors.borderLight.withOpacity(0.6)),
+          bottom: BorderSide(
+            color: AppColors.borderLight.withValues(alpha: AppColors.alpha60),
+          ),
         ),
       ),
       child: Row(
         children: [
-          Expanded(
-            child: Text(
-              indonesian,
-              style: AppTextStyles.bodyLarge,
-            ),
-          ),
+          Expanded(child: Text(indonesian, style: AppTextStyles.bodyLarge)),
           const SizedBox(width: AppDimensions.spaceM),
           Text(
             arabic,
@@ -48,4 +45,3 @@ class BaseDictionaryItem extends StatelessWidget {
     );
   }
 }
-

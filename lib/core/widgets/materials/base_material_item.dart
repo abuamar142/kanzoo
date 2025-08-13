@@ -31,7 +31,7 @@ class BaseMaterialItem extends StatelessWidget {
           border: Border.all(color: AppColors.borderLight),
           boxShadow: [
             BoxShadow(
-              color: AppColors.shadowColor.withValues(alpha: AppColors.alphaVeryLow),
+              color: AppColors.shadowColor.withValues(alpha: AppColors.alpha05),
               blurRadius: AppDimensions.spaceS,
               offset: const Offset(0, AppDimensions.spaceXS),
             ),
@@ -42,7 +42,7 @@ class BaseMaterialItem extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(AppDimensions.paddingS),
               decoration: BoxDecoration(
-                color: AppColors.primary.withValues(alpha: AppColors.alphaLow),
+                color: AppColors.primary.withValues(alpha: AppColors.alpha10),
                 shape: BoxShape.circle,
               ),
               child: Icon(icon, color: AppColors.primary),
@@ -52,7 +52,12 @@ class BaseMaterialItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: AppTextStyles.bodyLarge.copyWith(fontWeight: FontWeight.w600)),
+                  Text(
+                    title,
+                    style: AppTextStyles.bodyLarge.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                   const SizedBox(height: AppDimensions.spaceXS),
                   Text(subtitle, style: AppTextStyles.bodySmall),
                 ],
@@ -65,4 +70,3 @@ class BaseMaterialItem extends StatelessWidget {
     );
   }
 }
-

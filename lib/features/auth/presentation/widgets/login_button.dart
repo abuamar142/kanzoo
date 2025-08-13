@@ -18,7 +18,7 @@ class LoginButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppDimensions.radiusM),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withValues(alpha: AppColors.alphaMedium),
+            color: AppColors.primary.withValues(alpha: AppColors.alpha30),
             blurRadius: AppDimensions.shadowBlurRadius,
             offset: const Offset(0, AppDimensions.paddingXS),
           ),
@@ -70,7 +70,7 @@ class LoginButton extends StatelessWidget {
                     padding: const EdgeInsets.all(AppDimensions.paddingXS),
                     decoration: BoxDecoration(
                       color: AppColors.secondary.withValues(
-                        alpha: AppColors.alphaLight,
+                        alpha: AppColors.alpha20,
                       ),
                       borderRadius: BorderRadius.circular(
                         AppDimensions.radiusS,

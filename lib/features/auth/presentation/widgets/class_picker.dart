@@ -22,9 +22,7 @@ class ClassPicker extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppDimensions.radiusM),
         boxShadow: [
           BoxShadow(
-            color: AppColors.shadowColor.withValues(
-              alpha: AppColors.alphaVeryLow,
-            ),
+            color: AppColors.shadowColor.withValues(alpha: AppColors.alpha05),
             blurRadius: AppDimensions.spaceS,
             offset: const Offset(0, AppDimensions.paddingXS),
           ),
@@ -48,7 +46,7 @@ class ClassPicker extends StatelessWidget {
                   padding: const EdgeInsets.all(AppDimensions.paddingS),
                   decoration: BoxDecoration(
                     color: AppColors.primary.withValues(
-                      alpha: AppColors.alphaLow,
+                      alpha: AppColors.alpha10,
                     ),
                     borderRadius: BorderRadius.circular(AppDimensions.radiusS),
                   ),
@@ -74,7 +72,7 @@ class ClassPicker extends StatelessWidget {
                   padding: const EdgeInsets.all(AppDimensions.paddingXS),
                   decoration: BoxDecoration(
                     color: AppColors.borderLight.withValues(
-                      alpha: AppColors.alphaHigh,
+                      alpha: AppColors.alpha80,
                     ),
                     borderRadius: BorderRadius.circular(AppDimensions.radiusS),
                   ),

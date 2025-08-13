@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../routes/app_routes.dart';
 import '../constants/app_constants.dart';
 import '../constants/app_exercise.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_dimensions.dart';
-import '../theme/app_text_styles.dart';
-import '../utils/app_snackbar.dart';
-import '../../routes/app_routes.dart';
 import 'app_dialogs.dart';
 import 'drawer/base_drawer_header.dart';
 import 'drawer/base_drawer_item.dart';
@@ -32,7 +30,9 @@ class AppDrawer extends StatelessWidget {
                     subtitle: AppConstants.materialsSubtitle,
                     onTap: () {
                       Navigator.of(context).pop();
-                      if (Get.currentRoute != AppRoutes.materials) {
+                      if (Get.currentRoute == AppRoutes.home) {
+                        Get.toNamed(AppRoutes.materials);
+                      } else if (Get.currentRoute != AppRoutes.materials) {
                         Get.offNamed(AppRoutes.materials);
                       }
                     },
@@ -44,7 +44,9 @@ class AppDrawer extends StatelessWidget {
                         'Lulus: ${AppExercise.passingScore.toInt()}%  |  Maks: ${AppExercise.maxAttempts}x',
                     onTap: () {
                       Navigator.of(context).pop();
-                      if (Get.currentRoute != AppRoutes.exercises) {
+                      if (Get.currentRoute == AppRoutes.home) {
+                        Get.toNamed(AppRoutes.exercises);
+                      } else if (Get.currentRoute != AppRoutes.exercises) {
                         Get.offNamed(AppRoutes.exercises);
                       }
                     },

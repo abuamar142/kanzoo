@@ -16,7 +16,6 @@ class SplashPage extends StatelessWidget {
     // Initialize controller
     Get.put(SplashController());
 
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
@@ -66,12 +65,16 @@ class SplashPage extends StatelessWidget {
                           vertical: AppDimensions.paddingXS,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.secondary.withOpacity(0.15),
+                          color: AppColors.secondary.withValues(
+                            alpha: AppColors.alpha20,
+                          ),
                           borderRadius: BorderRadius.circular(
                             AppDimensions.radiusCircular,
                           ),
                           border: Border.all(
-                            color: AppColors.secondary.withOpacity(0.25),
+                            color: AppColors.secondary.withValues(
+                              alpha: AppColors.alpha20,
+                            ),
                           ),
                         ),
                         child: Text(
@@ -99,16 +102,22 @@ class SplashPage extends StatelessWidget {
                           width: double.infinity,
                           padding: const EdgeInsets.all(AppDimensions.paddingM),
                           decoration: BoxDecoration(
-                            color: AppColors.secondary.withOpacity(0.12),
+                            color: AppColors.secondary.withValues(
+                              alpha: AppColors.alpha10,
+                            ),
                             borderRadius: BorderRadius.circular(
                               AppDimensions.radiusL,
                             ),
                             border: Border.all(
-                              color: AppColors.secondary.withOpacity(0.25),
+                              color: AppColors.secondary.withValues(
+                                alpha: AppColors.alpha20,
+                              ),
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
+                                color: AppColors.shadowColor.withValues(
+                                  alpha: AppColors.alpha10,
+                                ),
                                 blurRadius: 16,
                                 offset: const Offset(0, 8),
                               ),
@@ -170,11 +179,16 @@ class SplashPage extends StatelessWidget {
                       vertical: AppDimensions.paddingXS,
                     ),
                     decoration: BoxDecoration(
-                      color: AppColors.secondary.withOpacity(0.2),
-                      borderRadius:
-                          BorderRadius.circular(AppDimensions.radiusCircular),
+                      color: AppColors.secondary.withValues(
+                        alpha: AppColors.alpha20,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        AppDimensions.radiusCircular,
+                      ),
                       border: Border.all(
-                        color: AppColors.secondary.withOpacity(0.35),
+                        color: AppColors.secondary.withValues(
+                          alpha: AppColors.alpha30,
+                        ),
                       ),
                     ),
                     child: Text(

@@ -5,10 +5,9 @@ import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/utils/app_snackbar.dart';
+import '../../../../core/widgets/app_drawer.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../shared/services/storage_service.dart';
-import '../../../../core/widgets/app_drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -100,7 +99,7 @@ class HomePage extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppDimensions.radiusL),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withValues(alpha: AppColors.alphaMedium),
+            color: AppColors.primary.withValues(alpha: AppColors.alpha30),
             blurRadius: AppDimensions.spaceL,
             offset: const Offset(0, AppDimensions.spaceS),
           ),
@@ -115,7 +114,7 @@ class HomePage extends StatelessWidget {
                 padding: const EdgeInsets.all(AppDimensions.paddingS),
                 decoration: BoxDecoration(
                   color: AppColors.secondary.withValues(
-                    alpha: AppColors.alphaLight,
+                    alpha: AppColors.alpha20,
                   ),
                   shape: BoxShape.circle,
                 ),
@@ -134,7 +133,7 @@ class HomePage extends StatelessWidget {
                       AppConstants.greetingArabic,
                       style: AppTextStyles.bodyMedium.copyWith(
                         color: AppColors.secondary.withValues(
-                          alpha: AppColors.alphaVeryHigh,
+                          alpha: AppColors.alpha90,
                         ),
                       ),
                     ),
@@ -151,7 +150,7 @@ class HomePage extends StatelessWidget {
                         '${AppConstants.classPrefix} $userClass',
                         style: AppTextStyles.bodyMedium.copyWith(
                           color: AppColors.secondary.withValues(
-                            alpha: AppColors.alphaHigh,
+                            alpha: AppColors.alpha80,
                           ),
                         ),
                       ),
@@ -164,9 +163,7 @@ class HomePage extends StatelessWidget {
           Text(
             AppConstants.welcomeHomeMessage,
             style: AppTextStyles.bodyMedium.copyWith(
-              color: AppColors.secondary.withValues(
-                alpha: AppColors.alphaVeryHigh,
-              ),
+              color: AppColors.secondary.withValues(alpha: AppColors.alpha90),
             ),
           ),
         ],
@@ -192,9 +189,7 @@ class HomePage extends StatelessWidget {
                 subtitle: AppConstants.materialsSubtitle,
                 color: AppColors.primary,
                 onTap: () {
-                  if (Get.currentRoute != AppRoutes.materials) {
-                    Get.offNamed(AppRoutes.materials);
-                  }
+                  Get.toNamed(AppRoutes.materials);
                 },
               ),
             ),
@@ -206,9 +201,7 @@ class HomePage extends StatelessWidget {
                 subtitle: AppConstants.exerciseSubtitle,
                 color: AppColors.arabicGreen,
                 onTap: () {
-                  if (Get.currentRoute != AppRoutes.exercises) {
-                    Get.offNamed(AppRoutes.exercises);
-                  }
+                  Get.toNamed(AppRoutes.exercises);
                 },
               ),
             ),
@@ -235,9 +228,7 @@ class HomePage extends StatelessWidget {
           border: Border.all(color: AppColors.borderLight),
           boxShadow: [
             BoxShadow(
-              color: AppColors.shadowColor.withValues(
-                alpha: AppColors.alphaVeryLow,
-              ),
+              color: AppColors.shadowColor.withValues(alpha: AppColors.alpha05),
               blurRadius: AppDimensions.spaceS,
               offset: const Offset(0, AppDimensions.spaceXS),
             ),
@@ -248,7 +239,7 @@ class HomePage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(AppDimensions.paddingM),
               decoration: BoxDecoration(
-                color: color.withValues(alpha: AppColors.alphaLow),
+                color: color.withValues(alpha: AppColors.alpha10),
                 shape: BoxShape.circle,
               ),
               child: Icon(icon, color: color, size: AppDimensions.iconL),

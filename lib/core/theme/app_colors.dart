@@ -38,11 +38,12 @@ class AppColors {
   static const Color splashBackground = Color(0xFF2196F3);
   static const Color splashText = Color(0xFFFFFFFF);
 
-  // Alpha Values for Opacity
-  static const double alphaVeryLow = 0.05;
-  static const double alphaLow = 0.1;
-  static const double alphaLight = 0.2;
-  static const double alphaMedium = 0.3;
-  static const double alphaHigh = 0.8;
-  static const double alphaVeryHigh = 0.9;
+  // Alpha values (standardized)
+  static const double alpha05 = 0.05;
+  static const double alpha10 = 0.10;
+  static const double alpha20 = 0.20;
+  static const double alpha30 = 0.30;
+  static const double alpha60 = 0.60;
+  static const double alpha80 = 0.80;
+  static const double alpha90 = 0.90;
 }

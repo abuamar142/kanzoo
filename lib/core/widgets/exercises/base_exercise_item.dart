@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/app_constants.dart';
 import '../../constants/app_exercise.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_dimensions.dart';
