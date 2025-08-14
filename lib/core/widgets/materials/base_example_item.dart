@@ -7,8 +7,14 @@ import '../../theme/app_text_styles.dart';
 class BaseExampleItem extends StatelessWidget {
   final String arabic;
   final String translation;
+  final double fontScale;
 
-  const BaseExampleItem({super.key, required this.arabic, required this.translation});
+  const BaseExampleItem({
+    super.key,
+    required this.arabic,
+    required this.translation,
+    this.fontScale = 1.0,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +31,20 @@ class BaseExampleItem extends StatelessWidget {
         children: [
           Text(
             arabic,
-            style: AppTextStyles.arabicLarge,
+            style: AppTextStyles.arabicLarge.copyWith(
+              fontSize: (AppTextStyles.arabicLarge.fontSize ?? 24) * fontScale,
+            ),
             textDirection: TextDirection.rtl,
           ),
           const SizedBox(height: AppDimensions.spaceXS),
-          Text(translation, style: AppTextStyles.bodyMedium),
+          Text(
+            translation,
+            style: AppTextStyles.bodyMedium.copyWith(
+              fontSize: (AppTextStyles.bodyMedium.fontSize ?? 14) * fontScale,
+            ),
+          ),
         ],
       ),
     );
   }
 }
-

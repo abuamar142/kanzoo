@@ -8,11 +8,13 @@ class SectionThree extends StatelessWidget {
   final String title;
   final List<String> paragraphs;
   final String footer;
+  final double fontScale;
   const SectionThree({
     super.key,
     required this.title,
     required this.paragraphs,
     required this.footer,
+    this.fontScale = 1.0,
   });
 
   @override
@@ -25,22 +27,35 @@ class SectionThree extends StatelessWidget {
           _paragraph(p),
           const SizedBox(height: AppDimensions.spaceS),
         ],
-        Text(footer, style: AppTextStyles.caption),
+        Text(
+          footer,
+          style: AppTextStyles.caption.copyWith(
+            fontSize: (AppTextStyles.caption.fontSize ?? 12) * fontScale,
+          ),
+        ),
       ],
     );
   }
 
   Widget _paragraph(String p) {
-    final isArabic = _isArabic(p);
+    final hasArabic = _hasArabic(p);
+    final hasLatinOrDigit = _hasLatinOrDigit(p);
+    final isPureArabic = hasArabic && !hasLatinOrDigit;
     return Text(
       p,
-      style: isArabic ? AppTextStyles.arabicText : AppTextStyles.bodyMedium,
-      textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-      textAlign: isArabic ? TextAlign.right : TextAlign.left,
+      style: isPureArabic
+          ? AppTextStyles.arabicText.copyWith(
+              fontSize: (AppTextStyles.arabicText.fontSize ?? 18) * fontScale,
+            )
+          : AppTextStyles.bodyMedium.copyWith(
+              fontSize: (AppTextStyles.bodyMedium.fontSize ?? 14) * fontScale,
+            ),
+      textDirection: isPureArabic ? TextDirection.rtl : TextDirection.ltr,
+      textAlign: isPureArabic ? TextAlign.right : TextAlign.left,
     );
   }
 
-  bool _isArabic(String s) {
+  bool _hasArabic(String s) {
     for (final cp in s.runes) {
       if ((cp >= 0x0600 && cp <= 0x06FF) ||
           (cp >= 0x0750 && cp <= 0x077F) ||
@@ -52,5 +67,8 @@ class SectionThree extends StatelessWidget {
     }
     return false;
   }
-}
 
+  bool _hasLatinOrDigit(String s) {
+    return RegExp(r'[A-Za-z0-9]').hasMatch(s);
+  }
+}

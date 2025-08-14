@@ -2,12 +2,15 @@ import '../models/material_content.dart';
 
 class MaterialsContentData {
   static final List<MaterialContent> contents = [
-    // Qiro'ah
+    // Qiro'ah Bab 1
     MaterialContent(
-      topicId: 'qiroah',
+      topicId: 'qiroah_bab1',
+      kind: 'qiroah',
+      chapter: 1,
       sections: [
         MaterialSection(
           title: "Qiro'ah Bab 1",
+          type: MaterialSectionType.one,
           paragraphs: [
             'اسْمِي فَارُوْقٌ ، أَنَا طَالِبٌ فِي هَذِهِ الْمَدْرَسَةِ . وَهَذَا أَخِي ، اِسْمُهُ صَالِحٌ ، هُوَ طَالِب . وَهَذِهِ صَدِيقَتِي ، اِسْمُهَا فِطْرِيَةُ ، هِيَ طَالِبَة . تِلْكَ مُدَرِّسَتِي ، اِسْمُهَا الْأُسْتَاذَةِ نَفِيسَةُ ، هِيَ مُدَرِّسَةُ اللُّغَةِ الْعَرَبِيَّة . وَذَلِكَ الْأُسْتَاذِ مَنْصُورٌ ، هُوَ نَاظِرُ الْمَدْرَسَةِ.',
             'انْظُرْ ! ذَلِكَ السَّيِّدُ عُمَرُ ، هُوَ أَمِينُ المَكْتَبَةِ فِي هَذِهِ الْمَدْرَسَةِ . وَتِلْكَ السَّيِّدَةُ حَفْصَةُ ، هِيَ مُوَظَّفَةٌ فِي الْمَكْتَبَةِ . وَهَذَا بَائِعٌ ، اِسْمُهُ السَّيِّدُ خَالِصٌ . وَهَذِهِ بَائِعَةٌ ، اِسْمُهَا السَّيِّدَةُ فَاطِمَةُ ، وذَلِكَ سَائِقُ ، السَّائِقُ اسْمُهُ السَّيِّدُ حَفِيظٌ . أَنْظُرْ أَيْضًا ! ذَلِكَ بَوَّابٌ ، اِسْمُهُ السَّيِّدُ مَسْعُودٌ ، هُوَ مِنْ سُوْرَابَايَا . وَتِلْكَ خَادِمَةٌ ، اِسْمُهَا نَبِيْلَةُ ، هِيَ مِنْ بَانْدُونْج.',
@@ -15,6 +18,7 @@ class MaterialsContentData {
         ),
         MaterialSection(
           title: 'Tugas Individu',
+          type: MaterialSectionType.one,
           paragraphs: [
             'Jawablah pertanyaan-pertanyaan di bawah ini dengan benar!',
             '١. مَا اسْمُ الطَّالِبِ ؟',
@@ -31,15 +35,25 @@ class MaterialsContentData {
         ),
         MaterialSection(
           title: 'Tugas Kelompok',
+          type: MaterialSectionType.one,
           paragraphs: [
             '1) Carilah dhamir munfashil pada bacaan di atas!',
             '2) Tulislah bersama teman di buku tulis masing-masing!',
             '3) Kumpulkan pada guru untuk dinilai!',
           ],
         ),
+      ],
+    ),
 
+    // Qiro'ah Bab 2
+    MaterialContent(
+      topicId: 'qiroah_bab2',
+      kind: 'qiroah',
+      chapter: 2,
+      sections: [
         MaterialSection(
           title: "Qiro'ah Bab 2",
+          type: MaterialSectionType.one,
           paragraphs: [
             'الْمَرَافِقُ الْمَدْرَسِيَّةِ',
             'اسْمِي عَابِدٌ، أَنَا طَالِبٌ فِي الْمَدْرَسَةِ الْمُتَوَسّطَةِ الْحُكُوْمِيَّةِ بِبَانْدُنغْ مَدْرَسَتِي وَاسِعَةٌ وَكَامِلَةٌ بِمَرَافِقِهَا الَّتِي تُسَاعِدُ أَعْضَاءُ الْمَدْرَسَةِ فِي عَمَلِيَّةِ التَّعَلُّمِ وَالتَّعْلِيمِ. يَشْعُرُ الطُّلاَّبُ بِسُرُورٍ . لِأَنَّهُمْ يَسْتَطِيعُوْنَ الدِّرَاسَةَ بِسُهُولَةٍ فِي السَّنَةِ الْمَاضِيَّةِ حِينَمَا سَجَّلَنِي أَبِي فِي هَذِهِ الْمَدْرَسَةِ الْتَقَيْنَا مَعَ رَئِيسِ الْمَدْرَسَةِ ، السَّيِّدُ مَرْوَانُ. دَعَانَا لِلتَّجَوُّلِ حَوْلَ الْمَدْرَسَةِ لِرُؤْيَةِ الْمَرَافِقِ الْمَدْرَسِيَّةِ. شَعَرْنَا بِسُرُوْرٍ لِأَنَّهُ اسْتَقْبَلْنَا بِمُهَذَّبٍ.',
@@ -49,6 +63,7 @@ class MaterialsContentData {
         ),
         MaterialSection(
           title: 'Tugas Individu',
+          type: MaterialSectionType.one,
           paragraphs: [
             'Jawablah pertanyaan-pertanyaan di bawah ini dengan benar!',
             '١. هَلْ وَقَعَتْ مَدْرَسَةُ عَابِدٍ فِي سُوْرَا كَرْتَا؟',
@@ -58,9 +73,18 @@ class MaterialsContentData {
             '٥. مَا الْغُرْفَةُ فِي الطَّابِقِ الثَّانِي؟',
           ],
         ),
+      ],
+    ),
 
+    // Qiro'ah Bab 3
+    MaterialContent(
+      topicId: 'qiroah_bab3',
+      kind: 'qiroah',
+      chapter: 3,
+      sections: [
         MaterialSection(
           title: "Qiro'ah Bab 3",
+          type: MaterialSectionType.one,
           paragraphs: [
             'الشَّرَاءُ فِي دُكَّانِ الْأَدَوَاتِ الْمَدْرَسِيَّةِ',
             'زَيْدٌ طَالِبٌ مَاهِرٌ فِي الْفَصْلِ السَّابِعِ بِالْمَدْرَسَةِ الْمُتَوَسِّطَةِ الْإِسْلَامِيَّةِ الْحُكُوْمِيَّةِ. فِي يَوْمٍ أَخِيْرٍ لِلْعُطْلَةِ الطَّوِيلَةِ. يُرِيدُ زَيْدٌ أَنْ يَشْتَرِيَ الْأَدَوَاتِ الْمَدْرَسِيَّةَ الْكَثِيرَةَ لِلتَّعَلُّمِ فِي الْمَدْرَسَةِ وَالْبَيْتِ فَيَذْهَبُ زَيْدٌ إِلَى دُكَّانِ الْأَدَوَاتِ الْمَدْرَسِيَّةِ مَعَ أَبِيْهِ وَأُمِّهِ بِالسَّيَّارَةِ. بَعْدَ الْوُصُولُ إِلَى دُكَّانِ الأَدَوَاتِ الْمَدْرَسِيَّةِ ، يَشْتَرِي زَيْدٌ الْمِقْلَمَةَ الْحَمْرَاءَ وَالْحِذَاءَ الْأَسْوَدَ وَالْجَوْرَبَ الْأَبْيَضَ وَالْحَقِيبَةَ الْزَرْقَاءَ. مَا اشْتَرَى زَيْدٌ الْمِبْرَاةَ وَالْمِمْحَاةَ الْبَيْضَاءَ وَالْمِسْطَرَةَ الخَضْرَاءَ وَالْقَلَمَ الْأَسْوَدَ وَالْكُرَّاسَةَ لِأَنَّ الْأَدَوَاتِ مَوْجُوْدَةٌ فِي الْبَيْتِ.',
@@ -69,6 +93,7 @@ class MaterialsContentData {
         ),
         MaterialSection(
           title: 'Tugas Individu',
+          type: MaterialSectionType.one,
           paragraphs: [
             'Jawablah pertanyaan-pertanyaan di bawah ini dengan benar!',
             '١. فِي أَيِّ فَصْلٍ يَدْرُسُ زَيْدٌ؟',
@@ -80,6 +105,7 @@ class MaterialsContentData {
         ),
         MaterialSection(
           title: 'Tugas Kelompok',
+          type: MaterialSectionType.one,
           paragraphs: [
             '1) Sebutkan macam-macam warna pada bacaan di atas!',
             '2) Tulislah beserta artinya bersama teman di buku tulis masing-masing!',
@@ -88,7 +114,228 @@ class MaterialsContentData {
         ),
       ],
     ),
+
+    // Kitabah Bab 1
+    MaterialContent(
+      topicId: 'kitabah_bab1',
+      kind: 'kitabah',
+      chapter: 1,
+      sections: [
+        MaterialSection(
+          title: 'Tugas Individu',
+          type: MaterialSectionType.four,
+          subtitle:
+              'Urutkan kalimat dimulai dari kata yang bergaris bawah (kata depan)!',
+          scrambleItems: [
+            MaterialScrambleItem(
+              tokens: [
+                'لَطِيفَة',
+                'مَنْ',
+                'هَذِهِ',
+                'هِيَ',
+                'هذِهِ',
+                'صَدِيقَتِي',
+                'طَالِبَة',
+                'هِيَ',
+                '؟',
+              ],
+              underlineIndex: 1,
+            ),
+            MaterialScrambleItem(
+              tokens: ['اسْمِي', 'أَنَا', 'طَالِب', 'شَفِيقٍ'],
+              underlineIndex: 1,
+            ),
+            MaterialScrambleItem(
+              tokens: [
+                'يَا',
+                'صَدِيقِي',
+                'مَحْمُود',
+                'أَنْتَ',
+                'وَ',
+                'أَنْتَ',
+                'فَوْزَان',
+                'يَا',
+              ],
+              underlineIndex: 3,
+            ),
+            MaterialScrambleItem(
+              tokens: [
+                'هُوَ',
+                'هذا',
+                'مَرْزُوقِى',
+                'مَنْ',
+                'طَالِب',
+                'هُوَ',
+                'صَدِيقِي',
+                'هَذَا',
+                '؟',
+              ],
+              underlineIndex: 3,
+            ),
+            MaterialScrambleItem(
+              tokens: [
+                'رَفِيدَة',
+                'أَنْتِ',
+                'يَا',
+                'وَأَنْتِ',
+                'صَدِيقَتِي',
+                'يَا',
+                'صَدِيقَتِي',
+                'قَانِتَة',
+              ],
+              underlineIndex: 1,
+            ),
+          ],
+        ),
+        MaterialSection(
+          title: 'Tugas Kelompok',
+          type: MaterialSectionType.one,
+          paragraphs: [
+            '1) Buatlah 3 kalimat yang mengandung kata Ganti (ضَمِيْرٌ) dan kata tunjuk (اِسْمُ الإِشَارَة)!',
+            '2) Kerjakan di buku tulis bersama temanmu!',
+            '3) Kumpulkan kepada guru untuk dinilai!',
+          ],
+        ),
+      ],
+    ),
+
+    // Kitabah Bab 2
+    MaterialContent(
+      topicId: 'kitabah_bab2',
+      kind: 'kitabah',
+      chapter: 2,
+      sections: [
+        MaterialSection(
+          title: 'Tugas Individu',
+          type: MaterialSectionType.four,
+          subtitle:
+              'Urutkan kalimat dimulai dari kata yang bergaris bawah (kata depan)!',
+          scrambleItems: [
+            // Underline the preposition token when present
+            MaterialScrambleItem(
+              tokens: [
+                'الْكَبِير',
+                'أَمَامَ',
+                'كَبِيرَة',
+                'هِيَ',
+                'الْمَدْرَسَة',
+                'الْمَسْجِد',
+              ],
+              underlineIndex: 4,
+            ),
+            MaterialScrambleItem(
+              tokens: [
+                'في',
+                'كَبِيرَة',
+                'عَلَى',
+                'فَصْلِى',
+                'السَبُّوْرَة',
+                'هي',
+                'الحَائِط',
+              ],
+              underlineIndex: 4,
+            ),
+            MaterialScrambleItem(
+              tokens: [
+                'المَخْزَنِ',
+                'بَيْنَ',
+                'مُنَظَّم',
+                'و',
+                'الْمُصَلَّى',
+                'فَصْلِي',
+                'هو',
+              ],
+              underlineIndex: 5,
+            ),
+            MaterialScrambleItem(
+              tokens: [
+                'هَذَا',
+                'وَرَاءَ',
+                'مَلْعَب',
+                'هُوَ',
+                'الْمَدْرَسَة',
+                'وَاسِع',
+              ],
+              underlineIndex: 0,
+            ),
+            MaterialScrambleItem(
+              tokens: [
+                'المَدْرَسَة',
+                'و',
+                'مَكْتَبَة',
+                'هِيَ',
+                'وَاسِعَة',
+                'المُصَلَّى',
+                'نَظِيفَة',
+                'وَرَاءَ',
+              ],
+              underlineIndex: 2,
+            ),
+          ],
+        ),
+        MaterialSection(
+          title: 'Tugas Kelompok',
+          type: MaterialSectionType.five,
+          subtitle: 'Kerjakan tugas berikut:',
+          groupQuestions: [
+            MaterialGroupQuestion(
+              question:
+                  'Buatlah 5 kalimat sederhana dengan kata keterangan tempat (ظَرْفُ المَكَان) berikut!',
+              subItems: ['وَرَاءَ', 'بَيْنَ', 'أَمَامَ', 'جَانِبَ', 'تَحْتَ'],
+            ),
+            MaterialGroupQuestion(
+              question: 'Kerjakan di buku tulis bersama temanmu!',
+            ),
+            MaterialGroupQuestion(
+              question: 'Kumpulkan kepada guru untuk dinilai!',
+            ),
+          ],
+        ),
+      ],
+    ),
+
+    // Kitabah Bab 3
+    MaterialContent(
+      topicId: 'kitabah_bab3',
+      kind: 'kitabah',
+      chapter: 3,
+      sections: [
+        MaterialSection(
+          title: 'Tugas Individu',
+          type: MaterialSectionType.one,
+          paragraphs: [
+            'Berilah harakat pada kalimat berikut dan tentukan dhamir muttashil yang tepat!',
+            '1. ما اسمـ ____ يا أخي ؟ اسمي محمد .',
+            '2. هذا أخي ، اسمـ ____ إبراهيم',
+            '3. هذه أختي ، اسمـ ____ فاطمة',
+            '4. أنا طالبة ، اسمـ ____ فائزة .',
+            '5. تلك موظفة ، اسمـ ____ سلمى',
+          ],
+        ),
+        MaterialSection(
+          title: 'Tugas Kelompok',
+          type: MaterialSectionType.one,
+          paragraphs: [
+            '1) Buatlah 3 kalimat yang mengandung kosakata tentang warna!',
+            '2) Kerjakan di buku tulis bersama temanmu!',
+            '3) Kumpulkan kepada guru untuk dinilai!',
+          ],
+        ),
+      ],
+    ),
   ];
+
+  static MaterialContent? byKindChapter(String kind, int chapter) {
+    try {
+      return contents.firstWhere(
+        (e) =>
+            (e.kind?.toLowerCase() == kind.toLowerCase()) &&
+            e.chapter == chapter,
+      );
+    } catch (_) {
+      return null;
+    }
+  }
 
   static MaterialContent? byTopicId(String id) {
     try {

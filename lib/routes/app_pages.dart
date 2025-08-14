@@ -4,7 +4,6 @@ import '../features/auth/presentation/pages/login_page.dart';
 import '../features/exercises/presentation/pages/exercise_detail_placeholder_page.dart';
 import '../features/exercises/presentation/pages/exercises_page.dart';
 import '../features/home/presentation/pages/home_page.dart';
-import '../features/materials/presentation/pages/material_detail_page.dart';
 import '../features/materials/presentation/pages/material_kind_detail_page.dart';
 import '../features/materials/presentation/pages/materials_chapter_topics_page.dart';
 import '../features/materials/presentation/pages/materials_chapters_page.dart';
@@ -20,11 +19,6 @@ class AppPages {
     GetPage(
       name: AppRoutes.materials,
       page: () => const MaterialsChaptersPage(),
-    ),
-    // Detail route supports both named parameter and argument id
-    GetPage(
-      name: '${AppRoutes.materialDetail}/:id',
-      page: () => const MaterialDetailPage(),
     ),
     GetPage(
       name: '${AppRoutes.materialsChapter}/:chapter',

@@ -8,11 +8,13 @@ class SectionTwo extends StatelessWidget {
   final String title;
   final String subtitle;
   final List<String> paragraphs;
+  final double fontScale;
   const SectionTwo({
     super.key,
     required this.title,
     required this.subtitle,
     required this.paragraphs,
+    this.fontScale = 1.0,
   });
 
   @override
@@ -21,7 +23,12 @@ class SectionTwo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BaseSectionTitle(title: title),
-        Text(subtitle, style: AppTextStyles.bodySmall),
+        Text(
+          subtitle,
+          style: AppTextStyles.bodySmall.copyWith(
+            fontSize: (AppTextStyles.bodySmall.fontSize ?? 12) * fontScale,
+          ),
+        ),
         const SizedBox(height: AppDimensions.spaceS),
         for (final p in paragraphs) ...[
           _paragraph(p),
@@ -32,16 +39,24 @@ class SectionTwo extends StatelessWidget {
   }
 
   Widget _paragraph(String p) {
-    final isArabic = _isArabic(p);
+    final hasArabic = _hasArabic(p);
+    final hasLatinOrDigit = _hasLatinOrDigit(p);
+    final isPureArabic = hasArabic && !hasLatinOrDigit;
     return Text(
       p,
-      style: isArabic ? AppTextStyles.arabicText : AppTextStyles.bodyMedium,
-      textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-      textAlign: isArabic ? TextAlign.right : TextAlign.left,
+      style: isPureArabic
+          ? AppTextStyles.arabicText.copyWith(
+              fontSize: (AppTextStyles.arabicText.fontSize ?? 18) * fontScale,
+            )
+          : AppTextStyles.bodyMedium.copyWith(
+              fontSize: (AppTextStyles.bodyMedium.fontSize ?? 14) * fontScale,
+            ),
+      textDirection: isPureArabic ? TextDirection.rtl : TextDirection.ltr,
+      textAlign: isPureArabic ? TextAlign.right : TextAlign.left,
     );
   }
 
-  bool _isArabic(String s) {
+  bool _hasArabic(String s) {
     for (final cp in s.runes) {
       if ((cp >= 0x0600 && cp <= 0x06FF) ||
           (cp >= 0x0750 && cp <= 0x077F) ||
@@ -52,5 +67,9 @@ class SectionTwo extends StatelessWidget {
       }
     }
     return false;
+  }
+
+  bool _hasLatinOrDigit(String s) {
+    return RegExp(r'[A-Za-z0-9]').hasMatch(s);
   }
 }

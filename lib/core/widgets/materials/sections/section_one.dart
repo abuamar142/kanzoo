@@ -7,7 +7,13 @@ import '../base_section_title.dart';
 class SectionOne extends StatelessWidget {
   final String title;
   final List<String> paragraphs;
-  const SectionOne({super.key, required this.title, required this.paragraphs});
+  final double fontScale;
+  const SectionOne({
+    super.key,
+    required this.title,
+    required this.paragraphs,
+    this.fontScale = 1.0,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +30,27 @@ class SectionOne extends StatelessWidget {
   }
 
   Widget _paragraph(String p) {
-    final isArabic = _isArabic(p);
+    final hasArabic = _hasArabic(p);
+    final hasLatinOrDigit = _hasLatinOrDigit(p);
+    final isPureArabic = hasArabic && !hasLatinOrDigit;
     return SizedBox(
       width: double.infinity,
       child: Text(
         p,
-        style: isArabic ? AppTextStyles.arabicText : AppTextStyles.bodyMedium,
-        textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-        textAlign: isArabic ? TextAlign.right : TextAlign.left,
+        style: isPureArabic
+            ? AppTextStyles.arabicText.copyWith(
+                fontSize: (AppTextStyles.arabicText.fontSize ?? 18) * fontScale,
+              )
+            : AppTextStyles.bodyMedium.copyWith(
+                fontSize: (AppTextStyles.bodyMedium.fontSize ?? 14) * fontScale,
+              ),
+        textDirection: isPureArabic ? TextDirection.rtl : TextDirection.ltr,
+        textAlign: isPureArabic ? TextAlign.right : TextAlign.left,
       ),
     );
   }
 
-  bool _isArabic(String s) {
+  bool _hasArabic(String s) {
     for (final cp in s.runes) {
       if ((cp >= 0x0600 && cp <= 0x06FF) ||
           (cp >= 0x0750 && cp <= 0x077F) ||
@@ -47,5 +61,10 @@ class SectionOne extends StatelessWidget {
       }
     }
     return false;
+  }
+
+  bool _hasLatinOrDigit(String s) {
+    // Simple check for ASCII letters or digits commonly used in Indonesian text
+    return RegExp(r'[A-Za-z0-9]').hasMatch(s);
   }
 }

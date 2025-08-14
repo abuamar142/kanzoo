@@ -13,6 +13,12 @@ class AppConstants {
   static const String userProgressKey = 'user_progress';
   static const String completedChaptersKey = 'completed_chapters';
   static const String userScoresKey = 'user_scores';
+  static const String materialFontSizeKey = 'material_font_size';
+
+  // Reading preferences
+  static const double materialFontSizeDefault = 14.0; // aligns with bodyMedium
+  static const double materialFontSizeMin = 8.0;
+  static const double materialFontSizeMax = 32.0;
 
   // Asset Paths
   static const String logoPath = 'assets/images/logos/app_logo.svg';
@@ -74,13 +80,14 @@ class AppConstants {
   static const String drawerHeaderTitle = appName;
   static const String drawerMaterials = 'Daftar Materi';
   static const String drawerExercises = 'Daftar Soal';
-  static const String drawerDictionary = 'Kamus';
   static const String drawerAbout = 'Tentang Aplikasi';
   static const String aboutDialogTitle = 'Tentang';
   static const String dictionaryDialogTitle = 'Kamus';
+  static const String mufrodatDialogTitle = 'Mufrodat';
+  static const String drawerMufrodat = 'Mufrodat';
 
   // Dictionary
-  static const String dictionarySearchHint = 'Cari kata (IDN/Arab)';
+  static const String dictionarySearchHint = 'Cari kata';
   static const String dictionaryNoResults = 'Tidak ada hasil';
   static const String dictionarySortLabel = 'Urutkan';
   static const String dictionarySortDefault = 'Default';
@@ -88,6 +95,7 @@ class AppConstants {
   static const String dictionarySortByArabic = 'Abjad Arab';
   static const String dictionarySectionIntroduction = 'Perkenalan';
   static const String dictionarySectionDemonstratives = 'Kata Tunjuk';
+  static const String dictionarySectionMufrodat = 'Mufrodat';
 
   // Materials Sections
   static const String materialsSectionIntro = 'Pengantar';

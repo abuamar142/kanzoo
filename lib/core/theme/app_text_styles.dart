@@ -63,7 +63,7 @@ class AppTextStyles {
   // Special Styles for Arabic Learning
   static const TextStyle arabicText = TextStyle(
     fontSize: 18,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
     fontFamily: 'Noto Naskh Arabic',
   );

@@ -7,12 +7,8 @@ abstract class AppRoutes {
   static const String materialsChapter = '/materials/chapter';
   static const String materialsKindDetail = '/materials/kind';
   static const String exercises = '/exercises';
-  static const String assessment = '/assessment';
-  static const String profile = '/profile';
-  static const String settings = '/settings';
+  // Unused placeholders removed: assessment, profile, settings
 
   // Nested Routes
-  static const String materialDetail = '/materials/detail';
   static const String exerciseDetail = '/exercises/detail';
-  static const String exerciseResult = '/exercises/result';
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../features/dictionary/presentation/widgets/dictionary_dialog.dart' as dict;
+import '../../features/mufrodat/presentation/widgets/mufrodat_dialog.dart' as mf;
 import '../constants/app_constants.dart';
 import '../constants/app_timing.dart';
 import '../theme/app_colors.dart';
@@ -8,14 +8,14 @@ import '../theme/app_dimensions.dart';
 import '../theme/app_text_styles.dart';
 
 class AppDialogs {
-  static Future<void> showDictionary(BuildContext context) {
+  static Future<void> showMufrodat(BuildContext context) {
     return showGeneralDialog(
       context: context,
       barrierDismissible: true,
-      barrierLabel: AppConstants.dictionaryDialogTitle,
+      barrierLabel: AppConstants.mufrodatDialogTitle,
       transitionDuration:
           Duration(milliseconds: AppTiming.animationDuration),
-      pageBuilder: (context, anim1, anim2) => const dict.DictionaryDialog(),
+      pageBuilder: (context, anim1, anim2) => const mf.MufrodatDialog(),
       transitionBuilder: (context, anim, secondary, child) {
         final curved = CurvedAnimation(
           parent: anim,

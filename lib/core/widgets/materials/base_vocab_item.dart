@@ -8,12 +8,14 @@ class BaseVocabItem extends StatelessWidget {
   final String arabic;
   final String indonesian;
   final String? note;
+  final double fontScale;
 
   const BaseVocabItem({
     super.key,
     required this.arabic,
     required this.indonesian,
     this.note,
+    this.fontScale = 1.0,
   });
 
   @override
@@ -36,8 +38,21 @@ class BaseVocabItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(indonesian, style: AppTextStyles.bodyLarge),
-                if (note != null) Text(note!, style: AppTextStyles.caption),
+                Text(
+                  indonesian,
+                  style: AppTextStyles.bodyLarge.copyWith(
+                    fontSize:
+                        (AppTextStyles.bodyLarge.fontSize ?? 16) * fontScale,
+                  ),
+                ),
+                if (note != null)
+                  Text(
+                    note!,
+                    style: AppTextStyles.caption.copyWith(
+                      fontSize:
+                          (AppTextStyles.caption.fontSize ?? 12) * fontScale,
+                    ),
+                  ),
               ],
             ),
           ),
@@ -46,6 +61,7 @@ class BaseVocabItem extends StatelessWidget {
             arabic,
             style: AppTextStyles.arabicText.copyWith(
               fontWeight: FontWeight.w600,
+              fontSize: (AppTextStyles.arabicText.fontSize ?? 18) * fontScale,
             ),
             textDirection: TextDirection.rtl,
           ),

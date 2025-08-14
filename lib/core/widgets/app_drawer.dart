@@ -53,11 +53,11 @@ class AppDrawer extends StatelessWidget {
                   ),
                   BaseDrawerItem(
                     icon: Icons.translate,
-                    title: AppConstants.drawerDictionary,
+                    title: AppConstants.drawerMufrodat,
                     subtitle: 'Popup akses cepat',
                     onTap: () {
                       Navigator.of(context).pop();
-                      AppDialogs.showDictionary(context);
+                      AppDialogs.showMufrodat(context);
                     },
                   ),
                 ],

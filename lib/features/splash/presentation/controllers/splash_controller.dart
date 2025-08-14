@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 
 import '../../../../core/constants/app_timing.dart';
 import '../../../../routes/app_routes.dart';
-import '../../../../shared/models/mufrodat_entry.dart';
+import '../../../../shared/models/mufrodat_models.dart';
 import '../../../../shared/services/mufrodat_service.dart';
 import '../../../../shared/services/storage_service.dart';
 
 class SplashController extends GetxController {
-  final words = <MufrodatEntry>[].obs;
+  final words = <ItemMufrodat>[].obs;
   final secondsLeft = (AppTiming.splashDuration ~/ 1000).obs;
   Timer? _timer;
 
