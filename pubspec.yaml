@@ -12,6 +12,7 @@ dependencies:
   flutter_svg: ^2.2.0
   get: ^4.6.6
   shared_preferences: ^2.2.2
+  audioplayers: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -24,6 +25,9 @@ flutter:
   assets:
     - assets/images/logos/
     - assets/materials/
+    - assets/materials/materi-istima/bab 1/
+    - assets/materials/materi-istima/bab 2/
+    - assets/materials/materi-istima/bab 3/
 
   fonts:
     - family: Noto Naskh Arabic

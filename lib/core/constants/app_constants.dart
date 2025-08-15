@@ -106,6 +106,27 @@ class AppConstants {
   // Splash
   static const String mufrodatTodayTitle = 'Mufrodat Hari Ini';
 
+  // Material Types Labels
+  static const String qiroahLabel = "Qiro'ah";
+  static const String kitabahLabel = 'Kitabah';
+  static const String mahfudzotLabel = 'Mahfudzot';
+  static const String qowaidLabel = "Qowa'id";
+  static const String istimaLabel = "Istima'";
+  static const String kalamLabel = 'Kalam';
+  static const String mufrodatLabel = 'Mufrodat';
+
+  // Material Instructions
+  static const String listenInstruction =
+      'Dengarkan bunyi kata/kalimat Arab berikut, kemudian cocokkan dengan jawaban yang tersedia dan tulis jawaban yang sesuai!';
+  static const String completeInstruction =
+      'Lengkapilah kalimat di bawah ini sesuai dengan audio yang didengar!';
+  static const String practiceInstruction =
+      'Praktikkanlah percakapan berikut di depan kelas dengan temanmu. Kemudian Ganti nama dengan namamu sendiri.';
+  static const String makeSentenceInstruction =
+      'Buatlah kalimat sederhana menggunakan kosakata di bawah ini!';
+  static const String audioNotAvailable =
+      'Audio akan tersedia dalam versi lengkap aplikasi';
+
   // Error Messages
   static const String networkError = 'Tidak ada koneksi internet';
   static const String generalError = 'Terjadi kesalahan, silakan coba lagi';

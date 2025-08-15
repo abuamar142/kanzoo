@@ -26,10 +26,16 @@ class BaseSectionTitle extends StatelessWidget {
             ),
           ),
           const SizedBox(width: AppDimensions.spaceS),
-          Text(title, style: AppTextStyles.h4),
+          Expanded(
+            child: Text(
+              title,
+              style: AppTextStyles.h4,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+            ),
+          ),
         ],
       ),
     );
   }
 }
-

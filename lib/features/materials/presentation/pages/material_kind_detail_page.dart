@@ -14,6 +14,11 @@ import '../../../../core/widgets/materials/sections/section_three.dart';
 import '../../../../core/widgets/materials/sections/section_two.dart';
 import '../../../../core/widgets/materials/sections/section_four.dart';
 import '../../../../core/widgets/materials/sections/section_five.dart';
+import '../../../../core/widgets/materials/sections/section_table.dart';
+import '../../../../core/widgets/materials/sections/section_audio.dart';
+import '../../../../core/widgets/materials/sections/section_audio_paired.dart';
+import '../../../../core/widgets/materials/sections/section_dialog.dart';
+import '../../../../core/widgets/materials/sections/section_exercise_table.dart';
 import '../../../../shared/data/materials_content.dart';
 import '../../../../shared/models/material_content.dart';
 
@@ -226,19 +231,19 @@ class _MaterialKindDetailPageState extends State<MaterialKindDetailPage> {
   String _labelKind(String kind) {
     switch (kind) {
       case 'qiroah':
-        return "Qiro'ah";
+        return AppConstants.qiroahLabel;
       case 'kitabah':
-        return 'Kitabah';
+        return AppConstants.kitabahLabel;
       case 'mahfudzot':
-        return 'Mahfudzot';
+        return AppConstants.mahfudzotLabel;
       case 'qowaid':
-        return 'Qowaid';
+        return AppConstants.qowaidLabel;
       case 'istima':
-        return "Istima'";
+        return AppConstants.istimaLabel;
       case 'kalam':
-        return 'Kalam';
+        return AppConstants.kalamLabel;
       case 'mufrodat':
-        return 'Mufrodat';
+        return AppConstants.mufrodatLabel;
       default:
         return kind;
     }
@@ -386,6 +391,58 @@ class _ContentView extends StatelessWidget {
           instruction: s.subtitle,
           questions: s.groupQuestions.map((e) => e.question).toList(),
           subItems: s.groupQuestions.map((e) => e.subItems).toList(),
+          fontScale: fontScale,
+        );
+      case MaterialSectionType.table:
+        return SectionTable(
+          title: s.title,
+          tableData: s.tableData?.rows ?? [],
+          headers: s.tableData?.headers,
+          fontScale: fontScale,
+        );
+      case MaterialSectionType.audio:
+        return SectionAudio(
+          title: s.title,
+          instructions: s.audioData?.instructions ?? [],
+          audioFiles: s.audioData?.audioFiles,
+          questions: s.audioData?.questions,
+          fontScale: fontScale,
+        );
+      case MaterialSectionType.audioPaired:
+        return SectionAudioPaired(
+          title: s.title,
+          instructions: s.audioData?.instructions ?? [],
+          audioFiles: s.audioData?.audioFiles,
+          questions: s.audioData?.questions,
+          fontScale: fontScale,
+        );
+      case MaterialSectionType.dialog:
+        return SectionDialog(
+          title: s.title,
+          dialogLines: s.dialogLines
+              .map((line) => DialogLine(speaker: line.speaker, text: line.text))
+              .toList(),
+          instructions: s.richSubtitle == null && s.subtitle != null
+              ? [s.subtitle!]
+              : null,
+          richInstructions: s.richSubtitle,
+          fontScale: fontScale,
+        );
+      case MaterialSectionType.exerciseTable:
+        return SectionExerciseTable(
+          title: s.title,
+          subtitle: s.subtitle,
+          instructions: s.exerciseTableData?.instructions ?? [],
+          exercises:
+              s.exerciseTableData?.exercises
+                  .map(
+                    (e) => ExerciseTableItem(
+                      question: e.question,
+                      options: e.options,
+                    ),
+                  )
+                  .toList() ??
+              [],
           fontScale: fontScale,
         );
       case MaterialSectionType.one:
