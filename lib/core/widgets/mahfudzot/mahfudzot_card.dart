@@ -24,14 +24,14 @@ class MahfudzotCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppDimensions.radiusL),
         border: Border.all(
           color: AppColors.secondary.withValues(alpha: AppColors.alpha20),
-          width: 2,
+          width: 1,
         ),
         boxShadow: [
           BoxShadow(
             color: AppColors.shadowColor.withValues(alpha: AppColors.alpha10),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-            spreadRadius: 2,
+            blurRadius: 15,
+            offset: const Offset(0, 8),
+            spreadRadius: 1,
           ),
         ],
       ),
@@ -41,7 +41,7 @@ class MahfudzotCard extends StatelessWidget {
           // Quote icon
           Icon(
             Icons.format_quote,
-            size: 32,
+            size: 24,
             color: AppColors.secondary.withValues(alpha: AppColors.alpha30),
           ),
           const SizedBox(height: AppDimensions.spaceM),
@@ -60,8 +60,8 @@ class MahfudzotCard extends StatelessWidget {
             child: Text(
               arabic,
               style: AppTextStyles.arabicText.copyWith(
-                fontSize: 20,
-                height: 1.8,
+                fontSize: 16,
+                height: 1.6,
                 fontWeight: FontWeight.w500,
                 color: AppColors.textPrimary,
               ),
