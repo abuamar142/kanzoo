@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../../core/constants/app_timing.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../shared/models/mufrodat_models.dart';
-import '../../../../shared/services/mufrodat_service.dart';
+import '../../../../shared/services/mahfudzot_service.dart';
 import '../../../../shared/services/storage_service.dart';
 
 class SplashController extends GetxController {
@@ -16,15 +16,17 @@ class SplashController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _loadMufrodat();
+    _loadMahfudzot();
     _startCountdown();
     _navigateToNextScreen();
   }
 
-  Future<void> _loadMufrodat() async {
+  Future<void> _loadMahfudzot() async {
     try {
-      final sample = await MufrodatService.randomSample(10);
-      words.assignAll(sample);
+      final one = await MahfudzotService.randomOne();
+      if (one != null) {
+        words.assignAll([one]);
+      }
     } catch (_) {
       // ignore errors on splash
     }

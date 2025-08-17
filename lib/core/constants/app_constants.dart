@@ -104,7 +104,7 @@ class AppConstants {
   static const String materialsSectionNotes = 'Catatan';
 
   // Splash
-  static const String mufrodatTodayTitle = 'Mufrodat Hari Ini';
+  static const String mahfudzotTodayTitle = 'Mahfudzot Hari Ini';
 
   // Material Types Labels
   static const String qiroahLabel = "Qiro'ah";
