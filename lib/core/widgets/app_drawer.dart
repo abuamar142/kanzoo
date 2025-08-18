@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../routes/app_routes.dart';
 import '../constants/app_constants.dart';
-import '../constants/app_exercise.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_dimensions.dart';
 import 'app_dialogs.dart';
@@ -34,20 +33,6 @@ class AppDrawer extends StatelessWidget {
                         Get.toNamed(AppRoutes.materials);
                       } else if (Get.currentRoute != AppRoutes.materials) {
                         Get.offNamed(AppRoutes.materials);
-                      }
-                    },
-                  ),
-                  BaseDrawerItem(
-                    icon: Icons.quiz,
-                    title: AppConstants.drawerExercises,
-                    subtitle:
-                        'Lulus: ${AppExercise.passingScore.toInt()}%  |  Maks: ${AppExercise.maxAttempts}x',
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      if (Get.currentRoute == AppRoutes.home) {
-                        Get.toNamed(AppRoutes.exercises);
-                      } else if (Get.currentRoute != AppRoutes.exercises) {
-                        Get.offNamed(AppRoutes.exercises);
                       }
                     },
                   ),

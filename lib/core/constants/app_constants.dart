@@ -59,7 +59,7 @@ class AppConstants {
   ];
 
   // Home Page Text
-  static const String greetingArabic = 'Assalamu\'alaikum';
+  static const String greeting = 'Halo';
   static const String welcomeHomeMessage =
       'Selamat datang di aplikasi pembelajaran bahasa Arab. Mari mulai belajar hari ini!';
   static const String mainMenuTitle = 'Menu Utama';

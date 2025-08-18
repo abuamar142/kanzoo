@@ -5,6 +5,7 @@ import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/utils/string_extensions.dart';
 import '../../../../core/widgets/app_drawer.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../shared/services/storage_service.dart';
@@ -67,12 +68,12 @@ class HomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Welcome Message
-                _buildWelcomeCard(userName, userClass),
+                _buildGreeting(userName, userClass),
 
                 const SizedBox(height: AppDimensions.spaceL),
 
-                // Quick Actions
-                _buildQuickActions(),
+                // Materials List
+                _buildMaterialsList(),
 
                 const SizedBox(height: AppDimensions.spaceL),
 
@@ -86,84 +87,58 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildWelcomeCard(String userName, String userClass) {
+  Widget _buildGreeting(String userName, String userClass) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(AppDimensions.paddingL),
+      padding: const EdgeInsets.all(AppDimensions.paddingM),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [AppColors.primary, AppColors.primaryLight],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(AppDimensions.radiusL),
+        borderRadius: BorderRadius.circular(AppDimensions.radiusM),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withValues(alpha: AppColors.alpha30),
-            blurRadius: AppDimensions.spaceL,
-            offset: const Offset(0, AppDimensions.spaceS),
+            color: AppColors.primary.withValues(alpha: AppColors.alpha20),
+            blurRadius: AppDimensions.spaceM,
+            offset: const Offset(0, AppDimensions.spaceXS),
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(AppDimensions.paddingS),
-                decoration: BoxDecoration(
-                  color: AppColors.secondary.withValues(
-                    alpha: AppColors.alpha20,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${AppConstants.greeting} ${userName.capitalizeWords()}',
+                  style: AppTextStyles.h3.copyWith(
+                    color: AppColors.surface,
+                    fontWeight: FontWeight.w700,
                   ),
-                  shape: BoxShape.circle,
                 ),
-                child: const Icon(
-                  Icons.waving_hand,
-                  color: AppColors.secondary,
-                  size: AppDimensions.iconL,
-                ),
-              ),
-              const SizedBox(width: AppDimensions.spaceM),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppConstants.greetingArabic,
-                      style: AppTextStyles.bodyMedium.copyWith(
-                        color: AppColors.secondary.withValues(
-                          alpha: AppColors.alpha90,
-                        ),
+                if (userClass.isNotEmpty) ...[
+                  Text(
+                    '${AppConstants.classPrefix} $userClass',
+                    style: AppTextStyles.bodySmall.copyWith(
+                      color: AppColors.surface.withValues(
+                        alpha: AppColors.alpha90,
                       ),
                     ),
-                    const SizedBox(height: AppDimensions.spaceXS),
-                    Text(
-                      userName,
-                      style: AppTextStyles.h3.copyWith(
-                        color: AppColors.secondary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                ],
+                const SizedBox(height: AppDimensions.spaceM),
+                Text(
+                  AppConstants.welcomeHomeMessage,
+                  style: AppTextStyles.bodyMedium.copyWith(
+                    color: AppColors.surface.withValues(
+                      alpha: AppColors.alpha90,
                     ),
-                    if (userClass.isNotEmpty)
-                      Text(
-                        '${AppConstants.classPrefix} $userClass',
-                        style: AppTextStyles.bodyMedium.copyWith(
-                          color: AppColors.secondary.withValues(
-                            alpha: AppColors.alpha80,
-                          ),
-                        ),
-                      ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: AppDimensions.spaceM),
-          Text(
-            AppConstants.welcomeHomeMessage,
-            style: AppTextStyles.bodyMedium.copyWith(
-              color: AppColors.secondary.withValues(alpha: AppColors.alpha90),
+              ],
             ),
           ),
         ],
@@ -171,95 +146,135 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildQuickActions() {
+  Widget _buildMaterialsList() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          AppConstants.mainMenuTitle,
-          style: AppTextStyles.h4.copyWith(color: AppColors.textPrimary),
-        ),
-        const SizedBox(height: AppDimensions.spaceM),
         Row(
           children: [
-            Expanded(
-              child: _buildActionCard(
-                icon: Icons.book,
-                title: AppConstants.materialsTitle,
-                subtitle: AppConstants.materialsSubtitle,
-                color: AppColors.primary,
-                onTap: () {
-                  Get.toNamed(AppRoutes.materials);
-                },
-              ),
+            Icon(
+              Icons.menu_book,
+              color: AppColors.primary,
+              size: AppDimensions.iconM,
             ),
-            const SizedBox(width: AppDimensions.spaceM),
-            Expanded(
-              child: _buildActionCard(
-                icon: Icons.quiz,
-                title: AppConstants.exerciseTitle,
-                subtitle: AppConstants.exerciseSubtitle,
-                color: AppColors.arabicGreen,
-                onTap: () {
-                  Get.toNamed(AppRoutes.exercises);
-                },
-              ),
+            const SizedBox(width: AppDimensions.spaceS),
+            Text(
+              AppConstants.materialsTitle,
+              style: AppTextStyles.h4.copyWith(color: AppColors.textPrimary),
             ),
           ],
         ),
+        const SizedBox(height: AppDimensions.spaceM),
+        _buildChaptersList(),
       ],
     );
   }
 
-  Widget _buildActionCard({
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required Color color,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(AppDimensions.paddingM),
-        decoration: BoxDecoration(
-          color: AppColors.surface,
-          borderRadius: BorderRadius.circular(AppDimensions.radiusM),
-          border: Border.all(color: AppColors.borderLight),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.shadowColor.withValues(alpha: AppColors.alpha05),
-              blurRadius: AppDimensions.spaceS,
-              offset: const Offset(0, AppDimensions.spaceXS),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(AppDimensions.paddingM),
-              decoration: BoxDecoration(
-                color: color.withValues(alpha: AppColors.alpha10),
-                shape: BoxShape.circle,
+  Widget _buildChaptersList() {
+    final chapters = [1, 2, 3];
+    final gradients = const [
+      [AppColors.primary, AppColors.primaryLight],
+      [AppColors.arabicGreen, AppColors.success],
+      [AppColors.warning, AppColors.info],
+    ];
+
+    return Column(
+      children: chapters.map((chapter) {
+        final index = chapter - 1;
+        final pair = gradients[index % gradients.length];
+
+        return Container(
+          margin: const EdgeInsets.only(bottom: AppDimensions.spaceS),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(AppDimensions.radiusM),
+              onTap: () =>
+                  Get.toNamed('${AppRoutes.materialsChapter}/$chapter'),
+              child: Container(
+                padding: const EdgeInsets.all(AppDimensions.paddingM),
+                decoration: BoxDecoration(
+                  color: AppColors.surface,
+                  borderRadius: BorderRadius.circular(AppDimensions.radiusM),
+                  border: Border.all(color: AppColors.borderLight),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.shadowColor.withValues(
+                        alpha: AppColors.alpha05,
+                      ),
+                      blurRadius: AppDimensions.spaceS,
+                      offset: const Offset(0, AppDimensions.spaceXS),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                          colors: pair,
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: pair[0].withValues(alpha: AppColors.alpha30),
+                            blurRadius: 8,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.menu_book,
+                        color: AppColors.secondary,
+                        size: AppDimensions.iconM,
+                      ),
+                    ),
+                    const SizedBox(width: AppDimensions.spaceM),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Bab $chapter',
+                            style: AppTextStyles.bodyLarge.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: AppDimensions.spaceXS),
+                          Text(
+                            'Materi pembelajaran bahasa Arab',
+                            style: AppTextStyles.bodySmall.copyWith(
+                              color: AppColors.textSecondary,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(AppDimensions.paddingXS),
+                      decoration: BoxDecoration(
+                        color: pair[0].withValues(alpha: AppColors.alpha10),
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.radiusS,
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.chevron_right,
+                        color: pair[0],
+                        size: AppDimensions.iconS,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              child: Icon(icon, color: color, size: AppDimensions.iconL),
             ),
-            const SizedBox(height: AppDimensions.paddingS),
-            Text(
-              title,
-              style: AppTextStyles.bodyLarge.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: AppDimensions.spaceXS),
-            Text(
-              subtitle,
-              style: AppTextStyles.bodySmall,
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      }).toList(),
     );
   }
 
