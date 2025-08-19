@@ -136,7 +136,10 @@ class LoginController extends GetxController {
                         alpha: AppColors.alpha05,
                       ),
                       child: InkWell(
-                        onTap: () => selectClass(className),
+                        onTap: () {
+                          FocusScope.of(context).unfocus();
+                          selectClass(className);
+                        },
                         borderRadius: BorderRadius.circular(
                           AppDimensions.radiusM,
                         ),

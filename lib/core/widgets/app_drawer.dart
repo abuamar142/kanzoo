@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../../routes/app_routes.dart';
 import '../constants/app_constants.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_dimensions.dart';
@@ -23,19 +21,6 @@ class AppDrawer extends StatelessWidget {
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: [
-                  BaseDrawerItem(
-                    icon: Icons.menu_book,
-                    title: AppConstants.drawerMaterials,
-                    subtitle: AppConstants.materialsSubtitle,
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      if (Get.currentRoute == AppRoutes.home) {
-                        Get.toNamed(AppRoutes.materials);
-                      } else if (Get.currentRoute != AppRoutes.materials) {
-                        Get.offNamed(AppRoutes.materials);
-                      }
-                    },
-                  ),
                   BaseDrawerItem(
                     icon: Icons.translate,
                     title: AppConstants.drawerMufrodat,

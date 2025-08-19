@@ -1,4 +1,8 @@
 import '../models/material_content.dart';
+import '../models/mufrodat_models.dart';
+import 'chapter_mufrodat/bab1/bab1_mufrodat_data.dart';
+import 'chapter_mufrodat/bab2/bab2_mufrodat_data.dart';
+import 'chapter_mufrodat/bab3/bab3_mufrodat_data.dart';
 
 class MaterialsContentData {
   static final List<MaterialContent> contents = [
@@ -494,98 +498,299 @@ class MaterialsContentData {
           ),
         ),
         MaterialSection(
-          title: 'Latihan Soal',
-          type: MaterialSectionType.exerciseTable,
-          exerciseTableData: MaterialExerciseTableData(
-            instructions: ['1. Tentukan khabar pada kalimat berikut!'],
-            exercises: [
-              MaterialExerciseTableItem(
+          title: 'Latihan Soal Interaktif',
+          type: MaterialSectionType.interactiveQuiz,
+          interactiveQuizData: MaterialInteractiveQuizData(
+            instructions: [
+              'Tentukan khabar pada kalimat berikut!',
+              'Pilih jawaban yang paling tepat, kemudian klik "Check Jawaban" untuk melihat hasilnya.',
+            ],
+            questions: [
+              MaterialQuizQuestion(
                 question: 'المَدْرَسَةُ كَبِيْرَةٌ',
+                hint: 'Khabar adalah kata yang menerangkan mubtada\'',
                 options: [
-                  [
-                    'أ. المَدْرَسَةُ',
-                    'ب. كَبِيْرَةٌ',
-                    '',
-                    'ج. المَدْرَسَةُ كَبِيْرَةٌ',
-                  ],
+                  MaterialQuizOption(
+                    text: 'أ. المَدْرَسَةُ',
+                    isCorrect: false,
+                    explanation: 'المَدْرَسَةُ adalah mubtada\', bukan khabar.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. كَبِيْرَةٌ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! كَبِيْرَةٌ adalah khabar yang menerangkan mubtada\' المَدْرَسَةُ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. المَدْرَسَةُ كَبِيْرَةٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Ini adalah kalimat lengkap, bukan khabar saja.',
+                  ),
                 ],
               ),
-              MaterialExerciseTableItem(
+              MaterialQuizQuestion(
                 question: 'الطَّالِبُ مَاهِرٌ',
+                hint: 'Cari kata yang menerangkan sifat atau keadaan mubtada\'',
                 options: [
-                  ['أ. مَاهِرٌ', 'ب. الطَّالِبُ', '', 'ج. الطَّالِبُ مَاهِرٌ'],
+                  MaterialQuizOption(
+                    text: 'أ. مَاهِرٌ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! مَاهِرٌ adalah khabar yang menerangkan الطَّالِبُ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. الطَّالِبُ',
+                    isCorrect: false,
+                    explanation: 'الطَّالِبُ adalah mubtada\', bukan khabar.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. الطَّالِبُ مَاهِرٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Ini adalah kalimat lengkap, bukan khabar saja.',
+                  ),
                 ],
               ),
-              MaterialExerciseTableItem(
+              MaterialQuizQuestion(
                 question: 'هُوَ مُدَرِّسٌ',
                 options: [
-                  ['أ. هُوَ', 'ب. مُدَرِّسٌ', '', 'ج. هُوَ مُدَرِّسٌ'],
+                  MaterialQuizOption(
+                    text: 'أ. هُوَ',
+                    isCorrect: false,
+                    explanation:
+                        'هُوَ adalah mubtada\' (kata ganti), bukan khabar.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. مُدَرِّسٌ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! مُدَرِّسٌ adalah khabar yang menerangkan هُوَ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. هُوَ مُدَرِّسٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Ini adalah kalimat lengkap, bukan khabar saja.',
+                  ),
                 ],
               ),
-              MaterialExerciseTableItem(
+              MaterialQuizQuestion(
                 question: 'هِيَ طَالِبَةٌ',
                 options: [
-                  ['أ. هِيَ', 'ب. طَالِبَةٌ', '', 'ج. هِيَ طَالِبَةٌ'],
+                  MaterialQuizOption(
+                    text: 'أ. هِيَ',
+                    isCorrect: false,
+                    explanation:
+                        'هِيَ adalah mubtada\' (kata ganti), bukan khabar.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. طَالِبَةٌ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! طَالِبَةٌ adalah khabar yang menerangkan هِيَ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. هِيَ طَالِبَةٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Ini adalah kalimat lengkap, bukan khabar saja.',
+                  ),
                 ],
               ),
-              MaterialExerciseTableItem(
+              MaterialQuizQuestion(
                 question: 'تِلْكَ مُدَرِّسَةٌ',
                 options: [
-                  ['أ. مُدَرِّسَةٌ', 'ب. تِلْكَ', '', 'ج. تِلْكَ مُدَرِّسَةٌ'],
+                  MaterialQuizOption(
+                    text: 'أ. مُدَرِّسَةٌ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! مُدَرِّسَةٌ adalah khabar yang menerangkan تِلْكَ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. تِلْكَ',
+                    isCorrect: false,
+                    explanation:
+                        'تِلْكَ adalah mubtada\' (kata tunjuk), bukan khabar.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. تِلْكَ مُدَرِّسَةٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Ini adalah kalimat lengkap, bukan khabar saja.',
+                  ),
                 ],
               ),
             ],
+            completionMessage:
+                'Selamat! Anda telah menyelesaikan latihan soal tentang mubtada\' dan khabar.',
+            showScoreAtEnd: true,
           ),
         ),
         MaterialSection(
-          title: 'Latihan Soal 2',
-          type: MaterialSectionType.exerciseTable,
-          exerciseTableData: MaterialExerciseTableData(
+          title: 'Latihan Soal 2: Pilihan Ganda',
+          type: MaterialSectionType.interactiveQuiz,
+          interactiveQuizData: MaterialInteractiveQuizData(
             instructions: [
-              '2. Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
+              'Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
             ],
-            exercises: [
-              MaterialExerciseTableItem(
+            questions: [
+              MaterialQuizQuestion(
                 question: 'هُوَ....',
+                hint:
+                    'Pilih kata yang sesuai untuk melengkapi kalimat dengan mubtada\' هُوَ (dia laki-laki)',
                 options: [
-                  [
-                    'أ. طَالِبٌ',
-                    'ب. طَالِبَةٌ',
-                    '',
-                    'ج. مُدَرِّسَةٌ د. صَدِيْقَتِيْ',
-                  ],
+                  MaterialQuizOption(
+                    text: 'أ. طَالِبٌ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! طَالِبٌ (mudzakkar) sesuai dengan mubtada\' هُوَ (dia laki-laki).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. طَالِبَةٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. طَالِبَةٌ (mu\'annats) tidak sesuai dengan هُوَ (mudzakkar).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. مُدَرِّسَةٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. مُدَرِّسَةٌ (mu\'annats) tidak sesuai dengan هُوَ (mudzakkar).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'د. صَدِيْقَتِيْ',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. صَدِيْقَتِيْ (mu\'annats) tidak sesuai dengan هُوَ (mudzakkar).',
+                  ),
                 ],
               ),
-              MaterialExerciseTableItem(
+              MaterialQuizQuestion(
                 question: 'أَنْتَ....',
+                hint:
+                    'Pilih nama yang sesuai untuk kata ganti أَنْتَ (kamu laki-laki)',
                 options: [
-                  [
-                    'أ. فَطِمَةٌ',
-                    'ب. أَحْمَد',
-                    'ج. زَيْنَبْ',
-                    'د. مَحْمُوْدَة',
-                  ],
+                  MaterialQuizOption(
+                    text: 'أ. فَطِمَةٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. فَطِمَةٌ adalah nama perempuan, tidak sesuai dengan أَنْتَ (kamu laki-laki).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. أَحْمَد',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! أَحْمَد adalah nama laki-laki yang sesuai dengan أَنْتَ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. زَيْنَبْ',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. زَيْنَبْ adalah nama perempuan, tidak sesuai dengan أَنْتَ (kamu laki-laki).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'د. مَحْمُوْدَة',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. مَحْمُوْدَة adalah nama perempuan, tidak sesuai dengan أَنْتَ (kamu laki-laki).',
+                  ),
                 ],
               ),
-              MaterialExerciseTableItem(
+              MaterialQuizQuestion(
                 question: 'هٰذَا أَحْمَد .... طَالِبٌ',
+                hint: 'Pilih kata ganti yang tepat untuk melengkapi kalimat',
                 options: [
-                  ['أ. هُوَ', 'ب. هِيَ', 'ج. أَنَا', 'د. أَنْتَ'],
+                  MaterialQuizOption(
+                    text: 'أ. هُوَ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! هُوَ (dia laki-laki) sesuai untuk menggantikan أَحْمَد (nama laki-laki).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. هِيَ',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. هِيَ (dia perempuan) tidak sesuai untuk أَحْمَد (nama laki-laki).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. أَنَا',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. أَنَا (saya) tidak sesuai dalam konteks kalimat ini.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'د. أَنْتَ',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. أَنْتَ (kamu) tidak sesuai dalam konteks kalimat ini.',
+                  ),
                 ],
               ),
-              MaterialExerciseTableItem(
+              MaterialQuizQuestion(
                 question: 'مَنْ ....؟ هِيَ طَالِبَةٌ',
+                hint: 'Pilih kata ganti yang tepat untuk pertanyaan',
                 options: [
-                  ['أ. هُوَ', 'ب. أَنَا', 'ج. هِيَ', 'د. أَنْتَ'],
+                  MaterialQuizOption(
+                    text: 'أ. هُوَ',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. هُوَ (dia laki-laki) tidak sesuai dengan jawaban هِيَ طَالِبَةٌ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. أَنَا',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. أَنَا (saya) tidak sesuai dengan jawaban هِيَ طَالِبَةٌ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. هِيَ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! هِيَ sesuai dengan jawaban yang diberikan: هِيَ طَالِبَةٌ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'د. أَنْتَ',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. أَنْتَ (kamu laki-laki) tidak sesuai dengan jawaban هِيَ طَالِبَةٌ.',
+                  ),
                 ],
               ),
-              MaterialExerciseTableItem(
+              MaterialQuizQuestion(
                 question: 'اِسْمِيْ .... أَنَا طَالِبٌ',
+                hint: 'Pilih nama yang tepat untuk melengkapi kalimat',
                 options: [
-                  ['أ. فَطِمَةٌ', 'ب. مُدَرِّسَةٌ', 'ج. زَيْنَبْ', 'د. عُمَر'],
+                  MaterialQuizOption(
+                    text: 'أ. فَطِمَةٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. فَطِمَةٌ adalah nama perempuan, tidak sesuai dengan طَالِبٌ (murid laki-laki).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. مُدَرِّسَةٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. مُدَرِّسَةٌ bukan nama, melainkan profesi (guru perempuan).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. زَيْنَبْ',
+                    isCorrect: false,
+                    explanation:
+                        'Salah. زَيْنَبْ adalah nama perempuan, tidak sesuai dengan طَالِبٌ (murid laki-laki).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'د. عُمَر',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! عُمَر adalah nama laki-laki yang sesuai dengan طَالِبٌ (murid laki-laki).',
+                  ),
                 ],
               ),
             ],
+            completionMessage:
+                'Excellent! Anda telah menguasai konsep mubtada\', khabar, dan kata ganti dalam bahasa Arab.',
+            showScoreAtEnd: true,
           ),
         ),
       ],
@@ -1135,10 +1340,10 @@ class MaterialsContentData {
               'istima_ bab 3 - B - 5.mp3',
             ],
             questions: [
-              '١. تَسْأَلُ نَجِيبَةُ عَنْ ... فِي فَصْلِ قَانِتَةَ .',
-              '٢. يُنَظِّفُ ... الْفَصْلَ بَعْدَ الْجُرَسِ لِلرُّجُوْعِ مِنَ الْمَدْرَسَةِ.',
-              '٣. الْأَدَوَاتُ الْمَدْرَسِيَّةُ فِي فَصْلِيْ كَامِلَةٌ ......',
-              '٤. اَلسَّبُورَةُ وَ ... وَقَلَمُ الْحِبْرِ.',
+              '١. تَسْأَلُ نَجِيبَةُ عَنْ ... فِي فَصْلِ قَانِتَةَ',
+              '٢. يُنَظِّفُ ... الْفَصْلَ بَعْدَ الْجُرَسِ لِلرُّجُوْعِ مِنَ الْمَدْرَسَةِ',
+              '٣. الْأَدَوَاتُ الْمَدْرَسِيَّةُ فِي فَصْلِيْ كَامِلَةٌ',
+              '٤. اَلسَّبُورَةُ وَ ... وَقَلَمُ الْحِبْرِ',
               '٥. لَا ... الْمُدَرِّسُ بِالطَّبْشُوْرَةِ',
             ],
           ),
@@ -1423,6 +1628,141 @@ class MaterialsContentData {
                 ],
               ),
             ],
+          ),
+        ),
+        MaterialSection(
+          title: 'Quiz Interaktif: Na\'at dan Man\'ut',
+          type: MaterialSectionType.interactiveQuiz,
+          interactiveQuizData: MaterialInteractiveQuizData(
+            instructions: [
+              'Identifikasi na\'at (kata sifat) dan man\'ut (kata yang diberi sifat) pada kalimat berikut!',
+              'Pilih jawaban yang paling tepat untuk setiap pertanyaan.',
+            ],
+            questions: [
+              MaterialQuizQuestion(
+                question:
+                    'هٰذَا مَقْصَفٌ نَظِيفٌ\nManakah yang berkedudukan sebagai na\'at (kata sifat)?',
+                hint:
+                    'Na\'at adalah kata yang memberikan sifat pada kata sebelumnya',
+                options: [
+                  MaterialQuizOption(
+                    text: 'أ. هٰذَا',
+                    isCorrect: false,
+                    explanation:
+                        'هٰذَا adalah mubtada\' (kata tunjuk), bukan na\'at.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. مَقْصَفٌ',
+                    isCorrect: false,
+                    explanation:
+                        'مَقْصَفٌ adalah man\'ut (kata yang diberi sifat), bukan na\'at.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. نَظِيفٌ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! نَظِيفٌ adalah na\'at yang memberikan sifat "bersih" pada مَقْصَفٌ.',
+                  ),
+                ],
+              ),
+              MaterialQuizQuestion(
+                question:
+                    'تِلْكَ حَدِيقَةٌ جَمِيلَةٌ\nApa yang berkedudukan sebagai man\'ut?',
+                hint: 'Man\'ut adalah kata yang diberi sifat oleh na\'at',
+                options: [
+                  MaterialQuizOption(
+                    text: 'أ. تِلْكَ',
+                    isCorrect: false,
+                    explanation:
+                        'تِلْكَ adalah mubtada\' (kata tunjuk), bukan man\'ut.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. حَدِيقَةٌ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! حَدِيقَةٌ adalah man\'ut yang diberi sifat جَمِيلَةٌ (indah).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. جَمِيلَةٌ',
+                    isCorrect: false,
+                    explanation:
+                        'جَمِيلَةٌ adalah na\'at (kata sifat), bukan man\'ut.',
+                  ),
+                ],
+              ),
+              MaterialQuizQuestion(
+                question:
+                    'الطَّالِبُ الذَّكِيُّ مُجْتَهِدٌ\nManakah pasangan na\'at dan man\'ut yang benar?',
+                options: [
+                  MaterialQuizOption(
+                    text: 'أ. Na\'at: الطَّالِبُ, Man\'ut: الذَّكِيُّ',
+                    isCorrect: false,
+                    explanation: 'الطَّالِبُ adalah mubtada\', bukan na\'at.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. Na\'at: الذَّكِيُّ, Man\'ut: الطَّالِبُ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! الذَّكِيُّ (cerdas) adalah na\'at yang memberikan sifat pada الطَّالِبُ (siswa).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. Na\'at: مُجْتَهِدٌ, Man\'ut: الطَّالِبُ',
+                    isCorrect: false,
+                    explanation: 'مُجْتَهِدٌ adalah khabar, bukan na\'at.',
+                  ),
+                ],
+              ),
+              MaterialQuizQuestion(
+                question: 'أَيْنَ الْمَكْتَبَةُ؟\nApa fungsi dari kata أَيْنَ?',
+                options: [
+                  MaterialQuizOption(
+                    text: 'أ. Menanyakan asal datang',
+                    isCorrect: false,
+                    explanation:
+                        'Untuk menanyakan asal datang menggunakan مِنْ أَيْنَ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. Menanyakan posisi atau letak',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! أَيْنَ digunakan untuk menanyakan posisi atau letak suatu benda.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. Menanyakan tujuan',
+                    isCorrect: false,
+                    explanation:
+                        'Untuk menanyakan tujuan menggunakan إِلَى أَيْنَ.',
+                  ),
+                ],
+              ),
+              MaterialQuizQuestion(
+                question:
+                    'الْكِتَابُ عَلَى المَكْتَبِ\nApa kedudukan عَلَى المَكْتَبِ dalam kalimat ini?',
+                options: [
+                  MaterialQuizOption(
+                    text: 'أ. Mubtada\'',
+                    isCorrect: false,
+                    explanation:
+                        'الْكِتَابُ adalah mubtada\', bukan عَلَى المَكْتَبِ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. Khabar (keterangan tempat)',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! عَلَى المَكْتَبِ adalah khabar berupa keterangan tempat.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. Na\'at',
+                    isCorrect: false,
+                    explanation:
+                        'عَلَى المَكْتَبِ bukan kata sifat, melainkan keterangan tempat.',
+                  ),
+                ],
+              ),
+            ],
+            completionMessage:
+                'Excellent! Anda telah memahami konsep na\'at, man\'ut, dan keterangan tempat dengan baik.',
+            showScoreAtEnd: true,
           ),
         ),
       ],
@@ -1831,6 +2171,205 @@ class MaterialsContentData {
           ),
         ),
         MaterialSection(
+          title: 'Quiz Interaktif: Warna dan Dhamir Muttashil',
+          type: MaterialSectionType.interactiveQuiz,
+          interactiveQuizData: MaterialInteractiveQuizData(
+            instructions: [
+              'Pilih jawaban yang paling tepat untuk setiap pertanyaan tentang warna dan dhamir muttashil!',
+            ],
+            questions: [
+              MaterialQuizQuestion(
+                question: 'تِلْكَ بِطَاقَةٌ...',
+                hint:
+                    'Pilih kata warna yang sesuai untuk بِطَاقَةٌ (kartu - mu\'annats)',
+                options: [
+                  MaterialQuizOption(
+                    text: 'أ. كَرِيْمِيُّ',
+                    isCorrect: false,
+                    explanation:
+                        'كَرِيْمِيُّ adalah bentuk mudzakkar, tidak sesuai dengan بِطَاقَةٌ (mu\'annats).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. رَمَادِي',
+                    isCorrect: false,
+                    explanation:
+                        'رَمَادِي adalah bentuk mudzakkar, tidak sesuai dengan بِطَاقَةٌ (mu\'annats).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. بُرْتُقَالِيَّةٌ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! بُرْتُقَالِيَّةٌ adalah bentuk mu\'annats yang sesuai dengan بِطَاقَةٌ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'د. بُنِيٌّ',
+                    isCorrect: false,
+                    explanation:
+                        'بُنِيٌّ adalah bentuk mudzakkar, tidak sesuai dengan بِطَاقَةٌ (mu\'annats).',
+                  ),
+                ],
+              ),
+              MaterialQuizQuestion(
+                question: 'هَذَا جِدَارٌ ...',
+                hint:
+                    'Pilih warna yang sesuai untuk جِدَارٌ (dinding - mudzakkar)',
+                options: [
+                  MaterialQuizOption(
+                    text: 'أ. بَنَفْسَجِي',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! بَنَفْسَجِي adalah bentuk mudzakkar yang sesuai dengan جِدَارٌ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. بَيْضَاءُ',
+                    isCorrect: false,
+                    explanation:
+                        'بَيْضَاءُ adalah bentuk mu\'annats, tidak sesuai dengan جِدَارٌ (mudzakkar).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. حَمْرَاءُ',
+                    isCorrect: false,
+                    explanation:
+                        'حَمْرَاءُ adalah bentuk mu\'annats, tidak sesuai dengan جِدَارٌ (mudzakkar).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'د. زَرْقَاءُ',
+                    isCorrect: false,
+                    explanation:
+                        'زَرْقَاءُ adalah bentuk mu\'annats, tidak sesuai dengan جِدَارٌ (mudzakkar).',
+                  ),
+                ],
+              ),
+              MaterialQuizQuestion(
+                question: 'لَوْنُ الْمُمْسَحَةِ ....',
+                hint: 'Dengan لَوْنُ, kata warna selalu berbentuk mudzakkar',
+                options: [
+                  MaterialQuizOption(
+                    text: 'أ. رَمَادِيَّةٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Ketika menggunakan لَوْنُ, kata warna harus berbentuk mudzakkar, bukan mu\'annats.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. بُنِيَّةٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Ketika menggunakan لَوْنُ, kata warna harus berbentuk mudzakkar, bukan mu\'annats.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. وَرْدِيَّةٌ',
+                    isCorrect: false,
+                    explanation:
+                        'Ketika menggunakan لَوْنُ, kata warna harus berbentuk mudzakkar, bukan mu\'annats.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'د. بَنَفْسَحِيٌّ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! Dengan لَوْنُ, kata warna selalu berbentuk mudzakkar.',
+                  ),
+                ],
+              ),
+              MaterialQuizQuestion(
+                question: 'ذَلِكَ الْمُعْجَمُ ... أَخْضَرُ',
+                hint:
+                    'Pilih dhamir muttashil yang tepat untuk الْمُعْجَمُ (kamus - mudzakkar)',
+                options: [
+                  MaterialQuizOption(
+                    text: 'أ. لَوْنُهُ',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! لَوْنُهُ (warnanya) sesuai untuk الْمُعْجَمُ (mudzakkar).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. لَوْنُهَا',
+                    isCorrect: false,
+                    explanation:
+                        'لَوْنُهَا digunakan untuk kata benda mu\'annats, tidak sesuai dengan الْمُعْجَمُ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. لَوْنُكَ',
+                    isCorrect: false,
+                    explanation:
+                        'لَوْنُكَ berarti "warnamu", tidak tepat dalam konteks ini.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'د. لَوْنُكِ',
+                    isCorrect: false,
+                    explanation:
+                        'لَوْنُكِ berarti "warnamu (perempuan)", tidak tepat dalam konteks ini.',
+                  ),
+                ],
+              ),
+              MaterialQuizQuestion(
+                question: 'هَذِهِ الْمَقْلَمَةُ ... كريمي',
+                hint:
+                    'Pilih dhamir muttashil yang tepat untuk الْمَقْلَمَةُ (kotak pensil - mu\'annats)',
+                options: [
+                  MaterialQuizOption(
+                    text: 'أ. لَوْنُهُ',
+                    isCorrect: false,
+                    explanation:
+                        'لَوْنُهُ digunakan untuk kata benda mudzakkar, tidak sesuai dengan الْمَقْلَمَةُ.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. لَوْنُهَا',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! لَوْنُهَا (warnanya) sesuai untuk الْمَقْلَمَةُ (mu\'annats).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. لَوْنُكَ',
+                    isCorrect: false,
+                    explanation:
+                        'لَوْنُكَ berarti "warnamu (laki-laki)", tidak tepat dalam konteks ini.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'د. لَوْنُكِ',
+                    isCorrect: false,
+                    explanation:
+                        'لَوْنُكِ berarti "warnamu (perempuan)", tidak tepat dalam konteks ini.',
+                  ),
+                ],
+              ),
+              MaterialQuizQuestion(
+                question: 'انْظُرْ يَا مُنْذِر ! تِلْكَ سَاعَة ...',
+                hint:
+                    'Pilih warna yang sesuai untuk سَاعَة (jam - mu\'annats) tanpa لَوْنُ',
+                options: [
+                  MaterialQuizOption(
+                    text: 'أ. أَسْوَد',
+                    isCorrect: false,
+                    explanation:
+                        'أَسْوَد adalah bentuk mudzakkar, harus disesuaikan dengan سَاعَة (mu\'annats).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ب. كَرِيمِي',
+                    isCorrect: false,
+                    explanation:
+                        'كَرِيمِي adalah bentuk mudzakkar, harus disesuaikan dengan سَاعَة (mu\'annats).',
+                  ),
+                  MaterialQuizOption(
+                    text: 'ج. حَمْرَاء',
+                    isCorrect: true,
+                    explanation:
+                        'Benar! حَمْرَاء adalah bentuk mu\'annats yang sesuai dengan سَاعَة.',
+                  ),
+                  MaterialQuizOption(
+                    text: 'د. رَمَادِي',
+                    isCorrect: false,
+                    explanation:
+                        'رَمَادِي adalah bentuk mudzakkar, harus disesuaikan dengan سَاعَة (mu\'annats).',
+                  ),
+                ],
+              ),
+            ],
+            completionMessage:
+                'Hebat! Anda telah menguasai penggunaan warna dan dhamir muttashil dalam bahasa Arab.',
+            showScoreAtEnd: true,
+          ),
+        ),
+        MaterialSection(
           title: 'Tugas Kelompok',
           type: MaterialSectionType.one,
           paragraphs: [
@@ -1838,6 +2377,30 @@ class MaterialsContentData {
           ],
         ),
       ],
+    ),
+
+    // Mufrodat Bab 1
+    MaterialContent(
+      topicId: 'mufrodat_bab1',
+      kind: 'mufrodat',
+      chapter: 1,
+      sections: _buildMufrodatSections(Bab1MufrodatData.categories),
+    ),
+
+    // Mufrodat Bab 2
+    MaterialContent(
+      topicId: 'mufrodat_bab2',
+      kind: 'mufrodat',
+      chapter: 2,
+      sections: _buildMufrodatSections(Bab2MufrodatData.categories),
+    ),
+
+    // Mufrodat Bab 3
+    MaterialContent(
+      topicId: 'mufrodat_bab3',
+      kind: 'mufrodat',
+      chapter: 3,
+      sections: _buildMufrodatSections(Bab3MufrodatData.categories),
     ),
   ];
 
@@ -1859,5 +2422,26 @@ class MaterialsContentData {
     } catch (_) {
       return null;
     }
+  }
+
+  static List<MaterialSection> _buildMufrodatSections(
+    List<CategoryMufrodat> categories,
+  ) {
+    return categories.map((category) {
+      // Create table data from mufrodat items
+      final headers = ['No', 'Bahasa Indonesia', 'البحث العربي'];
+      final rows = <List<String>>[];
+
+      for (int i = 0; i < category.items.length; i++) {
+        final item = category.items[i];
+        rows.add(['${i + 1}', item.indonesian, item.arabic]);
+      }
+
+      return MaterialSection(
+        title: category.title,
+        type: MaterialSectionType.table,
+        tableData: MaterialTableData(headers: headers, rows: rows),
+      );
+    }).toList();
   }
 }

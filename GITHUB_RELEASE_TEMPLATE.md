@@ -3,7 +3,7 @@
 ## Release Title:
 
 ```
-🏫 Kanzoo v1.0.0 - Arabic Learning App for SMP Students
+🏫 Kanzoo v1.1.0 - Arabic Learning App with Interactive Features
 ```
 
 ## Release Description:
@@ -25,30 +25,42 @@ materi digital dan latihan soal interaktif.
 - **Guru Pembimbing**: Moch. Fikri Jauhar Maulana S. Pd.
 - **Target**: Siswa SMP
 
-## ✨ Fitur Utama v1.0.0
+## ✨ Fitur Utama v1.1.0
 
-### 🚀 Core Features
+### 🎓 Learning Materials
 
-- **Splash Screen** dengan branding sekolah dan loading animation
-- **Home Screen** dengan navigasi ke materi dan latihan
-- **Design System** biru-putih yang konsisten dan user-friendly
+- **� Qiro'ah** - Materi membaca teks Arab dengan font scaling
+- **✍️ Kitabah** - Materi menulis huruf Arab
+- **📚 Qowa'id** - Materi tata bahasa Arab dengan soal interaktif
+- **🎧 Istima'** - Materi mendengarkan dengan audio player lengkap
+- **🗣️ Kalam** - Materi berbicara dan percakapan
+- **📝 Mufrodat** - Kamus lengkap dari semua bab
 
-### 🛠️ Technical Features
+### 🎮 Interactive Features
 
+- **📝 Interactive Quiz** - Soal interaktif dengan sistem check jawaban
+- **🎵 Audio Player** - Pemutar audio untuk materi istima'
+- **🔤 Font Size Adjustment** - Pengaturan ukuran teks yang persisten
+- **📖 Comprehensive Dictionary** - Mufrodat lengkap dari Bab 1, 2, dan 3
+
+### � Core Features
+
+- **Splash Screen** dengan mahfudzot harian
+- **Home Dashboard** dengan navigasi materi
 - **Clean Architecture** untuk maintainability
-- **GetX** untuk state management dan routing
-- **Material 3** design language
-- **Offline-first** approach untuk pembelajaran tanpa internet
+- **GetX** untuk state management yang reaktif
+- **Material 3** design system yang konsisten
+- **Offline-first** untuk pembelajaran tanpa internet
 
 ## 📱 Download & Installation
 
 ### 📦 APK Files (Pilih sesuai device Anda)
 
-| ABI Type      | Device Compatibility                    | File Size | Download                         |
-| ------------- | --------------------------------------- | --------- | -------------------------------- |
-| **arm64-v8a** | **Modern Android phones** (Recommended) | **8.6MB** | [⬇️ Download](link-to-arm64-apk) |
-| armeabi-v7a   | Older Android devices                   | 8.0MB     | [⬇️ Download](link-to-arm-apk)   |
-| x86_64        | Android emulators & Intel tablets       | 8.7MB     | [⬇️ Download](link-to-x86-apk)   |
+| ABI Type      | Device Compatibility                    | File Size  | Download                         |
+| ------------- | --------------------------------------- | ---------- | -------------------------------- |
+| **arm64-v8a** | **Modern Android phones** (Recommended) | **13.9MB** | [⬇️ Download](link-to-arm64-apk) |
+| armeabi-v7a   | Older Android devices                   | 13.4MB     | [⬇️ Download](link-to-arm-apk)   |
+| x86_64        | Android emulators & Intel tablets       | 14.0MB     | [⬇️ Download](link-to-x86-apk)   |
 
 ### 📋 System Requirements
 
@@ -78,23 +90,32 @@ _Coming soon - Screenshots will be added in future releases_
 
 ### 📊 Size Comparison
 
-- **Tanpa optimasi**: ~25MB+ universal APK
-- **Dengan split APK**: 8.0-8.7MB per device type
-- **Pengurangan ukuran**: ~65% lebih kecil!
+- **Tanpa optimasi**: ~35MB+ universal APK
+- **Dengan split APK**: 13.4-14.0MB per device type
+- **Pengurangan ukuran**: ~60% lebih kecil!
 
 ## 🛣️ Roadmap
 
-### 📚 Future Features (Coming Soon)
+### ✅ Completed Features (v1.1.0)
 
-- [ ] Materi pembelajaran bahasa Arab lengkap
-- [ ] Sistem latihan soal interaktif
-- [ ] Fitur assessment dan scoring
-- [ ] Progress tracking untuk siswa
-- [ ] Pembahasan soal dengan penjelasan detail
+- [x] Materi pembelajaran bahasa Arab lengkap (5 jenis materi)
+- [x] Sistem latihan soal interaktif dengan feedback
+- [x] Audio player untuk materi istima'
+- [x] Font size adjustment yang persisten
+- [x] Kamus mufrodat lengkap dari semua bab
+
+### 🔄 Future Features (Coming Soon)
+
+- [ ] Sistem progress tracking untuk siswa
+- [ ] Export hasil belajar ke PDF
+- [ ] Mode gelap (dark theme)
+- [ ] Fitur bookmark materi favorit
+- [ ] Sharing hasil quiz ke guru
 
 ## 🐛 Known Issues
 
-- Tidak ada issues yang diketahui untuk release v1.0.0
+- Audio player memerlukan izin storage pada beberapa device Android lama
+- Font scaling reset setelah restart app (akan diperbaiki di v1.2.0)
 
 ## 🤝 Feedback & Support
 
@@ -109,9 +130,10 @@ Aplikasi ini dikembangkan khusus untuk MTsN 14 Jombang.
 
 ---
 
-**Build Date**: August 4, 2025  
+**Build Date**: August 19, 2025  
 **Build Status**: ✅ Production Ready  
-**Target Audience**: Siswa SMP pembelajaran bahasa Arab
+**Target Audience**: Siswa SMP pembelajaran bahasa Arab  
+**Latest Features**: Interactive Quiz, Audio Player, Font Scaling, Complete Dictionary
 
 🌟 **Terima kasih telah menggunakan Kanzoo!** 🌟
 ```

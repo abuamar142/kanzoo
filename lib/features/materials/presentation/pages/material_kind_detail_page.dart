@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_drawer.dart';
-import '../../../../core/widgets/materials/base_example_item.dart';
-import '../../../../core/widgets/materials/base_vocab_item.dart';
-import '../../../../core/widgets/materials/sections/section_one.dart';
-import '../../../../core/widgets/materials/sections/section_three.dart';
-import '../../../../core/widgets/materials/sections/section_two.dart';
-import '../../../../core/widgets/materials/sections/section_four.dart';
-import '../../../../core/widgets/materials/sections/section_five.dart';
-import '../../../../core/widgets/materials/sections/section_table.dart';
+import '../../../../core/widgets/breadcrumb/app_breadcrumb.dart';
+import '../../../../core/widgets/font_size/font_size_overlay.dart';
 import '../../../../core/widgets/materials/sections/section_audio.dart';
 import '../../../../core/widgets/materials/sections/section_audio_paired.dart';
-import '../../../../core/widgets/materials/sections/section_dialog.dart';
-import '../../../../core/widgets/materials/sections/section_exercise_table.dart';
+import '../../../../core/widgets/materials/sections/section_five.dart';
+import '../../../../core/widgets/materials/sections/section_four.dart';
+import '../../../../core/widgets/materials/sections/section_interactive_quiz.dart';
+import '../../../../core/widgets/materials/sections/section_one.dart';
+import '../../../../core/widgets/materials/sections/section_table.dart';
+import '../../../../core/widgets/materials/sections/section_three.dart';
+import '../../../../core/widgets/materials/sections/section_two.dart';
+import '../../../../routes/app_routes.dart';
 import '../../../../shared/data/materials_content.dart';
 import '../../../../shared/models/material_content.dart';
+import '../controllers/font_size_controller.dart';
 
 class MaterialKindDetailPage extends StatefulWidget {
   const MaterialKindDetailPage({super.key});
@@ -30,452 +30,638 @@ class MaterialKindDetailPage extends StatefulWidget {
 }
 
 class _MaterialKindDetailPageState extends State<MaterialKindDetailPage> {
-  double _fontSize = AppConstants.materialFontSizeDefault;
-  bool _showOverlay = false;
-
-  double get _baseBodySize => AppTextStyles.bodyMedium.fontSize ?? 14.0;
-  double get _fontScale => (_fontSize / _baseBodySize).clamp(
-    AppConstants.materialFontSizeMin / _baseBodySize,
-    AppConstants.materialFontSizeMax / _baseBodySize,
-  );
+  late FontSizeController fontSizeController;
 
   @override
   void initState() {
     super.initState();
-    _loadFontSize();
+    // Initialize font size controller
+    fontSizeController = Get.put(FontSizeController());
   }
 
-  Future<void> _loadFontSize() async {
-    final prefs = await SharedPreferences.getInstance();
-    final saved = prefs.getDouble(AppConstants.materialFontSizeKey);
-    if (saved != null && mounted) {
-      setState(() {
-        _fontSize = saved.clamp(
-          AppConstants.materialFontSizeMin,
-          AppConstants.materialFontSizeMax,
-        );
-      });
-    }
-  }
-
-  Future<void> _saveFontSize() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setDouble(AppConstants.materialFontSizeKey, _fontSize);
-  }
-
-  void _increaseFont() {
-    setState(() {
-      _fontSize = (_fontSize + 1).clamp(
-        AppConstants.materialFontSizeMin,
-        AppConstants.materialFontSizeMax,
-      );
-    });
-    _saveFontSize();
-  }
-
-  void _decreaseFont() {
-    setState(() {
-      _fontSize = (_fontSize - 1).clamp(
-        AppConstants.materialFontSizeMin,
-        AppConstants.materialFontSizeMax,
-      );
-    });
-    _saveFontSize();
+  @override
+  void dispose() {
+    // Clean up controller when page is disposed
+    Get.delete<FontSizeController>();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final chapter = Get.parameters['chapter'] ?? '1';
-    final kind = Get.parameters['kind'] ?? 'qiroah';
+    final String chapter = Get.parameters['chapter'] ?? '1';
+    final String kind = Get.parameters['kind'] ?? 'qiroah';
+
+    // Get material content from data
+    final MaterialContent? materialContent = MaterialsContentData.byKindChapter(
+      kind,
+      int.parse(chapter),
+    );
+
+    // Get material type info for header
+    final materialInfo = _getMaterialInfo(kind);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("${_labelKind(kind)} - Bab $chapter"),
+        title: Text('${materialInfo['title']} - Bab $chapter'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.format_size),
-            onPressed: () => setState(() => _showOverlay = !_showOverlay),
-            tooltip: 'Atur ukuran teks',
+          Obx(
+            () => IconButton(
+              icon: Icon(
+                fontSizeController.isOverlayVisible
+                    ? Icons.format_size
+                    : Icons.format_size_outlined,
+              ),
+              onPressed: fontSizeController.toggleOverlay,
+              tooltip: AppConstants.fontSizeLabel,
+            ),
           ),
         ],
       ),
       drawer: const AppDrawer(),
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Padding(
-              padding: const EdgeInsets.all(AppDimensions.paddingM),
-              child: FutureBuilder<MaterialContent?>(
-                future: _loadContent(kind, int.tryParse(chapter) ?? 1),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  final content = snapshot.data;
-                  if (content == null) {
-                    return Center(
-                      child: Text(
-                        AppConstants.dataNotFound,
-                        style: AppTextStyles.bodyMedium.copyWith(
-                          fontSize: _fontSize,
-                        ),
-                      ),
-                    );
-                  }
-                  return _ContentView(content: content, fontScale: _fontScale);
-                },
-              ),
-            ),
-          ),
-          if (_showOverlay) _buildFontOverlay(context),
-        ],
-      ),
-    );
-  }
-
-  Future<MaterialContent?> _loadContent(String kind, int chapter) async {
-    final id = '${kind}_bab$chapter';
-    // Try by kind+chapter first
-    MaterialContent? content = MaterialsContentData.byKindChapter(
-      kind,
-      chapter,
-    );
-    if (content != null) return content;
-    // Try direct topic id
-    content = MaterialsContentData.byTopicId(id);
-    if (content != null) return content;
-
-    if (kind == 'qiroah') {
-      // Fallback: slice from combined 'qiroah' content by chapter heading
-      final combined = MaterialsContentData.byTopicId('qiroah');
-      if (combined != null) {
-        final sections = <MaterialSection>[];
-        bool take = false;
-        for (final s in combined.sections) {
-          final chapNum = _qiroahChapterFromTitle(s.title);
-          if (chapNum != null) {
-            if (take && chapNum != chapter) {
-              break; // reached next chapter header
-            }
-            if (chapNum == chapter) {
-              take = true;
-              sections.add(s); // include header for qiroah (contains content)
-              continue;
-            }
+      body: GestureDetector(
+        onTap: () {
+          // Close font size overlay when tapping outside
+          if (fontSizeController.isOverlayVisible) {
+            fontSizeController.hideOverlay();
           }
-          if (take) sections.add(s);
-        }
-        if (sections.isNotEmpty) {
-          return MaterialContent(topicId: id, sections: sections);
-        }
-      }
-      return null;
-    }
-
-    if (kind == 'kitabah') {
-      // Fallback: slice from combined 'kitabah' content by chapter heading
-      final combined = MaterialsContentData.byTopicId('kitabah');
-      if (combined != null) {
-        final sections = <MaterialSection>[];
-        bool take = false;
-        for (final s in combined.sections) {
-          final chapNum = _kitabahChapterFromTitle(s.title);
-          if (chapNum != null) {
-            if (take && chapNum != chapter) break; // next chapter header
-            if (chapNum == chapter) {
-              take = true;
-              continue; // skip the header section itself for Kitabah
-            }
-          }
-          if (take) sections.add(s);
-        }
-        if (sections.isNotEmpty) {
-          return MaterialContent(topicId: id, sections: sections);
-        }
-      }
-      return null;
-    }
-
-    // Other kinds: try future sources when available
-    return null;
-  }
-
-  int? _qiroahChapterFromTitle(String title) {
-    final t = title.trim();
-    if (t.startsWith("Qiro'ah Bab ")) {
-      final n = int.tryParse(t.substring("Qiro'ah Bab ".length).trim());
-      if (n != null) return n;
-    }
-    if (t.startsWith('Qiroah Bab ')) {
-      final n = int.tryParse(t.substring('Qiroah Bab '.length).trim());
-      if (n != null) return n;
-    }
-    final re = RegExp(r"^qiro.?ah bab\s*(\d+)", caseSensitive: false);
-    final m = re.firstMatch(t);
-    if (m != null) return int.tryParse(m.group(1) ?? '');
-    return null;
-  }
-
-  int? _kitabahChapterFromTitle(String title) {
-    final t = title.trim();
-    if (t.startsWith('Kitabah Bab ')) {
-      final n = int.tryParse(t.substring('Kitabah Bab '.length).trim());
-      if (n != null) return n;
-    }
-    final re = RegExp(r"^kitabah bab\s*(\d+)", caseSensitive: false);
-    final m = re.firstMatch(t);
-    if (m != null) return int.tryParse(m.group(1) ?? '');
-    return null;
-  }
-
-  String _labelKind(String kind) {
-    switch (kind) {
-      case 'qiroah':
-        return AppConstants.qiroahLabel;
-      case 'kitabah':
-        return AppConstants.kitabahLabel;
-      case 'mahfudzot':
-        return AppConstants.mahfudzotLabel;
-      case 'qowaid':
-        return AppConstants.qowaidLabel;
-      case 'istima':
-        return AppConstants.istimaLabel;
-      case 'kalam':
-        return AppConstants.kalamLabel;
-      case 'mufrodat':
-        return AppConstants.mufrodatLabel;
-      default:
-        return kind;
-    }
-  }
-
-  Widget _buildFontOverlay(BuildContext context) {
-    return Positioned(
-      right: AppDimensions.spaceM,
-      bottom: AppDimensions.spaceM,
-      child: Material(
-        color: Colors.transparent,
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppDimensions.paddingM,
-            vertical: AppDimensions.paddingS,
-          ),
-          decoration: BoxDecoration(
-            color: AppColors.surface,
-            borderRadius: BorderRadius.circular(AppDimensions.radiusL),
-            border: Border.all(color: AppColors.borderLight),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.shadowColor.withValues(
-                  alpha: AppColors.alpha20,
-                ),
-                blurRadius: AppDimensions.shadowBlurRadius,
-                offset: const Offset(0, AppDimensions.shadowOffset),
-              ),
-            ],
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                onPressed: _decreaseFont,
-                icon: const Icon(Icons.remove),
-                tooltip: 'Kecilkan',
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimensions.spaceS,
-                ),
-                child: Text(
-                  _fontSize.toStringAsFixed(0),
-                  style: AppTextStyles.bodyLarge.copyWith(
-                    fontSize: (AppTextStyles.bodyLarge.fontSize ?? 16),
-                  ),
-                ),
-              ),
-              IconButton(
-                onPressed: _increaseFont,
-                icon: const Icon(Icons.add),
-                tooltip: 'Besarkan',
-              ),
-            ],
-          ),
+        },
+        child: Stack(
+          children: [
+            materialContent == null
+                ? _buildNotFoundContent(materialInfo, chapter)
+                : _buildMaterialContent(materialContent, materialInfo, chapter),
+            const FontSizeOverlay(),
+          ],
         ),
       ),
     );
   }
-}
 
-class _ContentView extends StatelessWidget {
-  final MaterialContent content;
-  final double fontScale;
-  const _ContentView({required this.content, required this.fontScale});
-
-  @override
-  Widget build(BuildContext context) {
-    final sections = content.sections;
-    return SingleChildScrollView(
-      padding: const EdgeInsets.only(bottom: AppDimensions.spaceXL * 2),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          for (final section in sections) ...[
-            _buildSection(section),
-
-            if (section.vocab.isNotEmpty) ...[
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.surface,
-                  borderRadius: BorderRadius.circular(AppDimensions.radiusM),
-                  border: Border.all(color: AppColors.borderLight),
-                ),
-                child: Column(
-                  children: [
-                    for (final v in section.vocab)
-                      BaseVocabItem(
-                        arabic: v.arabic,
-                        indonesian: v.indonesian,
-                        note: v.note,
-                        fontScale: fontScale,
-                      ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: AppDimensions.spaceM),
-            ],
-            if (section.examples.isNotEmpty) ...[
-              for (final ex in section.examples)
-                BaseExampleItem(
-                  arabic: ex.arabic,
-                  translation: ex.translation,
-                  fontScale: fontScale,
-                ),
-            ],
-            const SizedBox(height: AppDimensions.spaceL),
-          ],
-        ],
-      ),
+  // Helper method to apply font size scaling to text styles
+  TextStyle _scaledTextStyle(TextStyle baseStyle) {
+    return baseStyle.copyWith(
+      fontSize:
+          (baseStyle.fontSize ?? AppConstants.materialFontSizeDefault) *
+          fontSizeController.fontScale,
     );
   }
 
-  Widget _buildSection(MaterialSection s) {
-    // Prefer explicit type mapping; fallback to heuristics when type is null
-    switch (s.type) {
+  // Helper method to apply font size scaling to text styles with copyWith
+  TextStyle _scaledTextStyleWith(
+    TextStyle baseStyle, {
+    Color? color,
+    FontWeight? fontWeight,
+    double? height,
+    TextDecoration? decoration,
+    Color? decorationColor,
+  }) {
+    return baseStyle.copyWith(
+      fontSize:
+          (baseStyle.fontSize ?? AppConstants.materialFontSizeDefault) *
+          fontSizeController.fontScale,
+      color: color,
+      fontWeight: fontWeight,
+      height: height,
+      decoration: decoration,
+      decorationColor: decorationColor,
+    );
+  }
+
+  Widget _buildBreadcrumbAndTitle(
+    Map<String, dynamic> materialInfo,
+    String chapter,
+    String kind,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Breadcrumb Navigation
+        AppBreadcrumb(
+          items: [
+            BreadcrumbItem(
+              label: 'Beranda',
+              icon: Icons.home,
+              onTap: () => Get.offAllNamed(AppRoutes.home),
+            ),
+            BreadcrumbItem(
+              label: 'Bab $chapter',
+              icon: Icons.menu_book,
+              onTap: () => Get.back(),
+            ),
+            BreadcrumbItem(
+              label: materialInfo['title'] as String,
+              icon: materialInfo['icon'] as IconData,
+              isActive: true,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNotFoundContent(
+    Map<String, dynamic> materialInfo,
+    String chapter,
+  ) {
+    final String kind = Get.parameters['kind'] ?? 'qiroah';
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          padding: const EdgeInsets.all(AppDimensions.paddingM),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.maxHeight - (AppDimensions.paddingM * 2),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildBreadcrumbAndTitle(materialInfo, chapter, kind),
+                const SizedBox(height: AppDimensions.spaceL),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(AppDimensions.paddingL),
+                    decoration: BoxDecoration(
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(
+                        AppDimensions.radiusM,
+                      ),
+                      border: Border.all(color: AppColors.borderLight),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.shadowColor.withValues(
+                            alpha: AppColors.alpha05,
+                          ),
+                          blurRadius: AppDimensions.spaceS,
+                          offset: const Offset(0, AppDimensions.spaceXS),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.construction,
+                          size: AppDimensions.iconXXL,
+                          color: AppColors.textSecondary,
+                        ),
+                        const SizedBox(height: AppDimensions.spaceM),
+                        Obx(
+                          () => Text(
+                            'Konten dalam pengembangan',
+                            style: _scaledTextStyleWith(
+                              AppTextStyles.h4,
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        const SizedBox(height: AppDimensions.spaceS),
+                        Obx(
+                          () => Text(
+                            'Materi ${materialInfo['title']} untuk Bab $chapter sedang dalam tahap pengembangan. Silakan kembali lagi nanti.',
+                            style: _scaledTextStyleWith(
+                              AppTextStyles.bodyMedium,
+                              color: AppColors.textSecondary,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildMaterialContent(
+    MaterialContent content,
+    Map<String, dynamic> materialInfo,
+    String chapter,
+  ) {
+    final String kind = Get.parameters['kind'] ?? 'qiroah';
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          padding: const EdgeInsets.all(AppDimensions.paddingM),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.maxHeight - (AppDimensions.paddingM * 2),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildBreadcrumbAndTitle(materialInfo, chapter, kind),
+                const SizedBox(height: AppDimensions.spaceL),
+                ...content.sections.map((section) => _buildSection(section)),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildSection(MaterialSection section) {
+    switch (section.type) {
+      case MaterialSectionType.one:
+        return Column(
+          children: [
+            Obx(
+              () => SectionOne(
+                title: section.title,
+                paragraphs: section.paragraphs,
+                fontScale: fontSizeController.fontScale,
+              ),
+            ),
+            const SizedBox(height: AppDimensions.spaceL),
+          ],
+        );
       case MaterialSectionType.two:
-        return SectionTwo(
-          title: s.title,
-          subtitle: (s.subtitle ?? '').trim(),
-          paragraphs: s.paragraphs,
-          fontScale: fontScale,
+        return Column(
+          children: [
+            Obx(
+              () => SectionTwo(
+                title: section.title,
+                subtitle: section.subtitle ?? '',
+                paragraphs: section.paragraphs,
+                fontScale: fontSizeController.fontScale,
+              ),
+            ),
+            const SizedBox(height: AppDimensions.spaceL),
+          ],
         );
       case MaterialSectionType.three:
-        return SectionThree(
-          title: s.title,
-          paragraphs: s.paragraphs,
-          footer: (s.footer ?? '').trim(),
-          fontScale: fontScale,
+        return Column(
+          children: [
+            Obx(
+              () => SectionThree(
+                title: section.title,
+                paragraphs: section.paragraphs,
+                footer: section.footer ?? '',
+                fontScale: fontSizeController.fontScale,
+              ),
+            ),
+            const SizedBox(height: AppDimensions.spaceL),
+          ],
         );
       case MaterialSectionType.four:
-        return SectionFour(
-          title: s.title,
-          instruction: s.subtitle,
-          items: s.scrambleItems.map((e) => e.tokens).toList(),
-          underlineIndices: s.scrambleItems
-              .map((e) => e.underlineIndex)
-              .toList(),
-          fontScale: fontScale,
+        return Column(
+          children: [
+            Obx(
+              () => SectionFour(
+                title: section.title,
+                instruction: section.subtitle,
+                items: section.scrambleItems
+                    .map((item) => item.tokens)
+                    .toList(),
+                underlineIndices: section.scrambleItems
+                    .map((item) => item.underlineIndex)
+                    .toList(),
+                fontScale: fontSizeController.fontScale,
+              ),
+            ),
+            const SizedBox(height: AppDimensions.spaceL),
+          ],
         );
       case MaterialSectionType.five:
-        return SectionFive(
-          title: s.title,
-          instruction: s.subtitle,
-          questions: s.groupQuestions.map((e) => e.question).toList(),
-          subItems: s.groupQuestions.map((e) => e.subItems).toList(),
-          fontScale: fontScale,
+        return Column(
+          children: [
+            Obx(
+              () => SectionFive(
+                title: section.title,
+                instruction: section.subtitle,
+                questions: section.groupQuestions
+                    .map((item) => item.question)
+                    .toList(),
+                subItems: section.groupQuestions
+                    .map((item) => item.subItems)
+                    .toList(),
+                fontScale: fontSizeController.fontScale,
+              ),
+            ),
+            const SizedBox(height: AppDimensions.spaceL),
+          ],
         );
       case MaterialSectionType.table:
-        return SectionTable(
-          title: s.title,
-          tableData: s.tableData?.rows ?? [],
-          headers: s.tableData?.headers,
-          fontScale: fontScale,
+        return Column(
+          children: [
+            Obx(
+              () => SectionTable(
+                title: section.title,
+                tableData: section.tableData!.rows,
+                headers: section.tableData!.headers,
+                fontScale: fontSizeController.fontScale,
+              ),
+            ),
+            const SizedBox(height: AppDimensions.spaceL),
+          ],
         );
       case MaterialSectionType.audio:
-        return SectionAudio(
-          title: s.title,
-          instructions: s.audioData?.instructions ?? [],
-          audioFiles: s.audioData?.audioFiles,
-          questions: s.audioData?.questions,
-          fontScale: fontScale,
+        return Column(
+          children: [
+            Obx(
+              () => SectionAudio(
+                title: section.title,
+                audioData: section.audioData!,
+                fontScale: fontSizeController.fontScale,
+              ),
+            ),
+            const SizedBox(height: AppDimensions.spaceL),
+          ],
         );
       case MaterialSectionType.audioPaired:
-        return SectionAudioPaired(
-          title: s.title,
-          instructions: s.audioData?.instructions ?? [],
-          audioFiles: s.audioData?.audioFiles,
-          questions: s.audioData?.questions,
-          fontScale: fontScale,
+        return Column(
+          children: [
+            Obx(
+              () => SectionAudioPaired(
+                title: section.title,
+                audioData: section.audioData!,
+                fontScale: fontSizeController.fontScale,
+              ),
+            ),
+            const SizedBox(height: AppDimensions.spaceL),
+          ],
         );
       case MaterialSectionType.dialog:
-        return SectionDialog(
-          title: s.title,
-          dialogLines: s.dialogLines
-              .map((line) => DialogLine(speaker: line.speaker, text: line.text))
-              .toList(),
-          instructions: s.richSubtitle == null && s.subtitle != null
-              ? [s.subtitle!]
-              : null,
-          richInstructions: s.richSubtitle,
-          fontScale: fontScale,
+        return Column(
+          children: [
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(AppDimensions.paddingL),
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(AppDimensions.radiusM),
+                border: Border.all(color: AppColors.borderLight),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    section.title,
+                    style: AppTextStyles.h4.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                  if (section.subtitle != null ||
+                      section.richSubtitle != null) ...[
+                    const SizedBox(height: AppDimensions.spaceS),
+                    Text(
+                      section.subtitle ??
+                          section.richSubtitle?.toPlainText() ??
+                          '',
+                      style: AppTextStyles.bodyMedium.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                  ],
+                  const SizedBox(height: AppDimensions.spaceM),
+                  ...section.dialogLines.map(
+                    (line) => Container(
+                      margin: const EdgeInsets.only(
+                        bottom: AppDimensions.spaceS,
+                      ),
+                      padding: const EdgeInsets.all(AppDimensions.paddingM),
+                      decoration: BoxDecoration(
+                        color: AppColors.primary.withValues(
+                          alpha: AppColors.alpha05,
+                        ),
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.radiusS,
+                        ),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Obx(
+                              () => Text(
+                                line.text,
+                                style: _scaledTextStyle(
+                                  AppTextStyles.arabicText,
+                                ),
+                                textDirection: TextDirection.rtl,
+                                textAlign: TextAlign.right,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: AppDimensions.spaceS),
+                          const Text(
+                            ':',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(width: AppDimensions.spaceM),
+                          SizedBox(
+                            width: 50,
+                            child: Obx(
+                              () => Text(
+                                line.speaker,
+                                style: _scaledTextStyleWith(
+                                  AppTextStyles.bodyMedium,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.primary,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: AppDimensions.spaceL),
+          ],
         );
       case MaterialSectionType.exerciseTable:
-        return SectionExerciseTable(
-          title: s.title,
-          subtitle: s.subtitle,
-          instructions: s.exerciseTableData?.instructions ?? [],
-          exercises:
-              s.exerciseTableData?.exercises
-                  .map(
-                    (e) => ExerciseTableItem(
-                      question: e.question,
-                      options: e.options,
+        return Column(
+          children: [
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(AppDimensions.paddingL),
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(AppDimensions.radiusM),
+                border: Border.all(color: AppColors.borderLight),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Obx(
+                    () => Text(
+                      section.title,
+                      style: _scaledTextStyleWith(
+                        AppTextStyles.h4,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primary,
+                      ),
                     ),
-                  )
-                  .toList() ??
-              [],
-          fontScale: fontScale,
+                  ),
+                  if (section.subtitle != null) ...[
+                    const SizedBox(height: AppDimensions.spaceS),
+                    Obx(
+                      () => Text(
+                        section.subtitle!,
+                        style: _scaledTextStyleWith(
+                          AppTextStyles.bodyMedium,
+                          color: AppColors.textSecondary,
+                        ),
+                      ),
+                    ),
+                  ],
+                  if (section.exerciseTableData != null) ...[
+                    const SizedBox(height: AppDimensions.spaceM),
+                    ...section.exerciseTableData!.instructions.map(
+                      (instruction) => Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: AppDimensions.spaceS,
+                        ),
+                        child: Obx(
+                          () => Text(
+                            instruction,
+                            style: _scaledTextStyleWith(
+                              AppTextStyles.bodyMedium,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: AppDimensions.spaceM),
+                    ...section.exerciseTableData!.exercises.asMap().entries.map(
+                      (entry) => Container(
+                        margin: const EdgeInsets.only(
+                          bottom: AppDimensions.spaceM,
+                        ),
+                        padding: const EdgeInsets.all(AppDimensions.paddingM),
+                        decoration: BoxDecoration(
+                          color: AppColors.primary.withValues(
+                            alpha: AppColors.alpha05,
+                          ),
+                          borderRadius: BorderRadius.circular(
+                            AppDimensions.radiusS,
+                          ),
+                          border: Border.all(color: AppColors.borderLight),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Obx(
+                              () => Text(
+                                '${entry.key + 1}. ${entry.value.question}',
+                                style: _scaledTextStyleWith(
+                                  AppTextStyles.bodyMedium,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: AppDimensions.spaceS),
+                            ...entry.value.options.map(
+                              (optionRow) => Padding(
+                                padding: const EdgeInsets.only(
+                                  bottom: AppDimensions.spaceXS,
+                                ),
+                                child: Text(
+                                  optionRow.join('  '),
+                                  style: AppTextStyles.bodyMedium,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            const SizedBox(height: AppDimensions.spaceL),
+          ],
         );
-      case MaterialSectionType.one:
-        return SectionOne(
-          title: s.title,
-          paragraphs: s.paragraphs,
-          fontScale: fontScale,
+      case MaterialSectionType.interactiveQuiz:
+        return Column(
+          children: [
+            Obx(
+              () => SectionInteractiveQuiz(
+                title: section.title,
+                quizData: section.interactiveQuizData!,
+                fontScale: fontSizeController.fontScale,
+              ),
+            ),
+            const SizedBox(height: AppDimensions.spaceL),
+          ],
         );
-      case null:
-        break;
+      default:
+        return Column(
+          children: [
+            SectionOne(title: section.title, paragraphs: section.paragraphs),
+            const SizedBox(height: AppDimensions.spaceL),
+          ],
+        );
     }
-    // Heuristics fallback
-    if ((s.subtitle ?? '').trim().isNotEmpty &&
-        (s.footer ?? '').trim().isEmpty) {
-      return SectionTwo(
-        title: s.title,
-        subtitle: s.subtitle!.trim(),
-        paragraphs: s.paragraphs,
-        fontScale: fontScale,
-      );
+  }
+
+  Map<String, dynamic> _getMaterialInfo(String kind) {
+    switch (kind) {
+      case 'qiroah':
+        return {
+          'title': AppConstants.qiroahLabel,
+          'subtitle': 'Materi membaca teks Arab',
+          'icon': Icons.book,
+          'colors': [AppColors.primary, AppColors.primaryLight],
+        };
+      case 'kitabah':
+        return {
+          'title': AppConstants.kitabahLabel,
+          'subtitle': 'Materi menulis huruf Arab',
+          'icon': Icons.edit,
+          'colors': [AppColors.arabicGreen, AppColors.success],
+        };
+      case 'qowaid':
+        return {
+          'title': AppConstants.qowaidLabel,
+          'subtitle': 'Materi tata bahasa Arab',
+          'icon': Icons.school,
+          'colors': [AppColors.warning, AppColors.info],
+        };
+      case 'istima':
+        return {
+          'title': AppConstants.istimaLabel,
+          'subtitle': 'Materi mendengarkan Arab',
+          'icon': Icons.headphones,
+          'colors': [AppColors.info, AppColors.primary],
+        };
+      case 'kalam':
+        return {
+          'title': AppConstants.kalamLabel,
+          'subtitle': 'Materi berbicara Arab',
+          'icon': Icons.record_voice_over,
+          'colors': [AppColors.error, AppColors.warning],
+        };
+      case 'mufrodat':
+        return {
+          'title': AppConstants.mufrodatLabel,
+          'subtitle': 'Kosakata bahasa Arab',
+          'icon': Icons.menu_book,
+          'colors': [AppColors.arabicGreen, AppColors.primaryLight],
+        };
+      default:
+        return {
+          'title': 'Materi',
+          'subtitle': 'Materi pembelajaran',
+          'icon': Icons.book,
+          'colors': [AppColors.primary, AppColors.primaryLight],
+        };
     }
-    if ((s.footer ?? '').trim().isNotEmpty) {
-      return SectionThree(
-        title: s.title,
-        paragraphs: s.paragraphs,
-        footer: s.footer!.trim(),
-        fontScale: fontScale,
-      );
-    }
-    return SectionOne(
-      title: s.title,
-      paragraphs: s.paragraphs,
-      fontScale: fontScale,
-    );
   }
 }

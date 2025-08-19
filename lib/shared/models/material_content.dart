@@ -9,6 +9,7 @@ enum MaterialSectionType {
   audioPaired,
   dialog,
   exerciseTable,
+  interactiveQuiz,
 }
 
 class MaterialRichTextSpan {
@@ -123,6 +124,46 @@ class MaterialExerciseTableData {
   });
 }
 
+class MaterialQuizOption {
+  final String text;
+  final bool isCorrect;
+  final String? explanation;
+
+  const MaterialQuizOption({
+    required this.text,
+    required this.isCorrect,
+    this.explanation,
+  });
+}
+
+class MaterialQuizQuestion {
+  final String question;
+  final List<MaterialQuizOption> options;
+  final String? explanation;
+  final String? hint;
+
+  const MaterialQuizQuestion({
+    required this.question,
+    required this.options,
+    this.explanation,
+    this.hint,
+  });
+}
+
+class MaterialInteractiveQuizData {
+  final List<String> instructions;
+  final List<MaterialQuizQuestion> questions;
+  final String? completionMessage;
+  final bool showScoreAtEnd;
+
+  const MaterialInteractiveQuizData({
+    this.instructions = const [],
+    required this.questions,
+    this.completionMessage,
+    this.showScoreAtEnd = true,
+  });
+}
+
 class MaterialSection {
   final String title;
   final String? subtitle; // optional subtitle under title
@@ -138,6 +179,7 @@ class MaterialSection {
   final List<MaterialDialogLine> dialogLines;
   final MaterialAudioData? audioData;
   final MaterialExerciseTableData? exerciseTableData;
+  final MaterialInteractiveQuizData? interactiveQuizData;
 
   const MaterialSection({
     required this.title,
@@ -154,6 +196,7 @@ class MaterialSection {
     this.dialogLines = const [],
     this.audioData,
     this.exerciseTableData,
+    this.interactiveQuizData,
   });
 
   // Helper method to get the effective subtitle

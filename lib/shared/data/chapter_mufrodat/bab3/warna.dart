@@ -1,0 +1,28 @@
+import '../../../models/mufrodat_models.dart';
+
+const List<ItemMufrodat> warna = [
+  ItemMufrodat(indonesian: 'Merah (lk)', arabic: 'أَحْمَرُ'),
+  ItemMufrodat(indonesian: 'Merah (pr)', arabic: 'حَمْرَاءُ'),
+  ItemMufrodat(indonesian: 'Putih (lk)', arabic: 'أَبْيَضُ'),
+  ItemMufrodat(indonesian: 'Putih (pr)', arabic: 'بَيْضَاءُ'),
+  ItemMufrodat(indonesian: 'Biru (lk)', arabic: 'أَزْرَقُ'),
+  ItemMufrodat(indonesian: 'Biru (pr)', arabic: 'زَرْقَاءُ'),
+  ItemMufrodat(indonesian: 'Kuning (lk)', arabic: 'أَصْفَرُ'),
+  ItemMufrodat(indonesian: 'Kuning (pr)', arabic: 'صَفْرَاءُ'),
+  ItemMufrodat(indonesian: 'Hijau (lk)', arabic: 'أَخْضَرُ'),
+  ItemMufrodat(indonesian: 'Hijau (pr)', arabic: 'خَضْرَاءُ'),
+  ItemMufrodat(indonesian: 'Hitam (lk)', arabic: 'أَسْوَدُ'),
+  ItemMufrodat(indonesian: 'Hitam (pr)', arabic: 'سَوْدَاءُ'),
+  ItemMufrodat(indonesian: 'Orange (lk)', arabic: 'بُرْتُقَالِي'),
+  ItemMufrodat(indonesian: 'Orange (pr)', arabic: 'بُرْتُقَالِيَّةٌ'),
+  ItemMufrodat(indonesian: 'Krem (lk)', arabic: 'كَرِيمي'),
+  ItemMufrodat(indonesian: 'Krem (pr)', arabic: 'كَرِيمِيَّةٌ'),
+  ItemMufrodat(indonesian: 'Abu-abu (lk)', arabic: 'رَمَادِيٌّ'),
+  ItemMufrodat(indonesian: 'Abu-abu (pr)', arabic: 'رَمَادِيَّةٌ'),
+  ItemMufrodat(indonesian: 'Coklat (lk)', arabic: 'بُنِي'),
+  ItemMufrodat(indonesian: 'Coklat (pr)', arabic: 'بُنِيَّةٌ'),
+  ItemMufrodat(indonesian: 'Merah muda (lk)', arabic: 'وَرْدِيٌّ'),
+  ItemMufrodat(indonesian: 'Merah muda (pr)', arabic: 'وَرْدِيَّةٌ'),
+  ItemMufrodat(indonesian: 'Ungu (lk)', arabic: 'بَنَفْسَجِيٌّ'),
+  ItemMufrodat(indonesian: 'Ungu (pr)', arabic: 'بَنَفْسَجِيَّةٌ'),
+];

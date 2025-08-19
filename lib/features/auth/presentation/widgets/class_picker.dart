@@ -19,6 +19,7 @@ class ClassPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(AppDimensions.radiusM),
         boxShadow: [
           BoxShadow(
@@ -27,17 +28,20 @@ class ClassPicker extends StatelessWidget {
             offset: const Offset(0, AppDimensions.paddingXS),
           ),
         ],
+        border: Border.all(
+          color: AppColors.textSecondary.withValues(alpha: AppColors.alpha20),
+        ),
       ),
       child: Material(
         borderRadius: BorderRadius.circular(AppDimensions.radiusM),
-        color: AppColors.surface,
+        color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(AppDimensions.radiusM),
           child: Container(
             padding: const EdgeInsets.symmetric(
-              horizontal: AppDimensions.paddingS,
-              vertical: AppDimensions.paddingS,
+              horizontal: AppDimensions.paddingM,
+              vertical: AppDimensions.paddingM,
             ),
             child: Row(
               children: [

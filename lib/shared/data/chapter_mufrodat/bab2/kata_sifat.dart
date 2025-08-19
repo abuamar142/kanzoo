@@ -1,0 +1,28 @@
+import '../../../models/mufrodat_models.dart';
+
+const List<ItemMufrodat> kataSifat = [
+  ItemMufrodat(indonesian: 'Besar', arabic: 'كَبِيرٌ'),
+  ItemMufrodat(indonesian: 'Kecil', arabic: 'صَغِيْرٌ'),
+  ItemMufrodat(indonesian: 'Jauh', arabic: 'بَعِيدٌ'),
+  ItemMufrodat(indonesian: 'Dekat', arabic: 'قَرِيْبٌ'),
+  ItemMufrodat(indonesian: 'Panjang', arabic: 'طَوِيلٌ'),
+  ItemMufrodat(indonesian: 'Pendek', arabic: 'قَصِيرٌ'),
+  ItemMufrodat(indonesian: 'Banyak ', arabic: 'كَثِيرٌ'),
+  ItemMufrodat(indonesian: 'Sedikit', arabic: 'قَلِيلٌ'),
+  ItemMufrodat(indonesian: 'Luas ', arabic: 'وَاسِعٌ'),
+  ItemMufrodat(indonesian: 'Sempit', arabic: 'ضَيِّقٌ'),
+  ItemMufrodat(indonesian: 'Bersih ', arabic: 'نَظِيفٌ'),
+  ItemMufrodat(indonesian: 'Kotor ', arabic: 'مُتَّسِخٌ'),
+  ItemMufrodat(indonesian: 'Indah', arabic: 'جَمِيلٌ'),
+  ItemMufrodat(indonesian: 'Jelek', arabic: 'قَبِيحٌ'),
+  ItemMufrodat(indonesian: 'Rajin', arabic: 'نَشِيطٌ'),
+  ItemMufrodat(indonesian: 'Malas', arabic: 'گسلان'),
+  ItemMufrodat(indonesian: 'Pandai', arabic: 'مَاهِرٌ'),
+  ItemMufrodat(indonesian: 'Bodoh', arabic: 'جَاهِلُ'),
+  ItemMufrodat(indonesian: 'Baru', arabic: 'جَدِيدٌ'),
+  ItemMufrodat(indonesian: 'Lama', arabic: 'قَدِيمٌ'),
+  ItemMufrodat(indonesian: 'Ringan', arabic: 'خَفِيفٌ'),
+  ItemMufrodat(indonesian: 'Berat', arabic: 'ثَقِيلٌ'),
+  ItemMufrodat(indonesian: 'Baik', arabic: 'جَيِّدٌ'),
+  ItemMufrodat(indonesian: 'Buruk', arabic: 'سَيِّئٌ'),
+];

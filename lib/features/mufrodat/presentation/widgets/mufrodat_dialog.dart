@@ -5,7 +5,9 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/dictionary/base_dictionary_item.dart';
-import '../../../../shared/data/mufrodat_data.dart';
+import '../../../../shared/data/chapter_mufrodat/bab1/bab1_mufrodat_data.dart';
+import '../../../../shared/data/chapter_mufrodat/bab2/bab2_mufrodat_data.dart';
+import '../../../../shared/data/chapter_mufrodat/bab3/bab3_mufrodat_data.dart';
 import '../../../../shared/models/mufrodat_models.dart';
 
 enum MufrodatSort { defaultOrder, indonesian, arabic }
@@ -21,6 +23,34 @@ class _MufrodatDialogState extends State<MufrodatDialog> {
   MufrodatSort _sort = MufrodatSort.defaultOrder;
   String _query = '';
 
+  // Gabungkan semua data mufrodat dari semua bab
+  List<CategoryMufrodat> get _allMufrodatCategories {
+    final allCategories = <CategoryMufrodat>[];
+
+    // Tambahkan data dari Bab 1 dengan prefix
+    for (final category in Bab1MufrodatData.categories) {
+      allCategories.add(
+        CategoryMufrodat('Bab 1 - ${category.title}', category.items),
+      );
+    }
+
+    // Tambahkan data dari Bab 2 dengan prefix
+    for (final category in Bab2MufrodatData.categories) {
+      allCategories.add(
+        CategoryMufrodat('Bab 2 - ${category.title}', category.items),
+      );
+    }
+
+    // Tambahkan data dari Bab 3 dengan prefix
+    for (final category in Bab3MufrodatData.categories) {
+      allCategories.add(
+        CategoryMufrodat('Bab 3 - ${category.title}', category.items),
+      );
+    }
+
+    return allCategories;
+  }
+
   @override
   Widget build(BuildContext context) {
     int compareIndo(ItemMufrodat a, ItemMufrodat b) =>
@@ -30,7 +60,7 @@ class _MufrodatDialogState extends State<MufrodatDialog> {
 
     List<Widget> buildList() {
       final children = <Widget>[];
-      for (final c in MufrodatData.categories) {
+      for (final c in _allMufrodatCategories) {
         // Filter by query per category
         List<ItemMufrodat> items = c.items.where((e) {
           if (_query.isEmpty) return true;
@@ -48,17 +78,42 @@ class _MufrodatDialogState extends State<MufrodatDialog> {
         children.add(
           Container(
             width: double.infinity,
+            margin: const EdgeInsets.only(
+              top: AppDimensions.spaceS,
+              bottom: AppDimensions.spaceXS,
+            ),
             padding: const EdgeInsets.symmetric(
               vertical: AppDimensions.paddingS,
               horizontal: AppDimensions.paddingM,
             ),
-            color: AppColors.surface,
-            child: Text(
-              c.title,
-              style: AppTextStyles.label.copyWith(
-                color: AppColors.textPrimary,
-                fontWeight: FontWeight.w600,
+            decoration: BoxDecoration(
+              color: AppColors.primary.withValues(alpha: AppColors.alpha10),
+              borderRadius: BorderRadius.circular(AppDimensions.radiusS),
+              border: Border.all(
+                color: AppColors.primary.withValues(alpha: AppColors.alpha20),
               ),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: AppColors.primary.withValues(
+                      alpha: AppColors.alpha20,
+                    ),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.book, color: AppColors.primary, size: 14),
+                ),
+                const SizedBox(width: AppDimensions.spaceS),
+                Text(
+                  c.title,
+                  style: AppTextStyles.bodyMedium.copyWith(
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
             ),
           ),
         );
@@ -89,155 +144,324 @@ class _MufrodatDialogState extends State<MufrodatDialog> {
       child: Center(
         child: Container(
           margin: const EdgeInsets.all(AppDimensions.marginM),
-          padding: const EdgeInsets.all(AppDimensions.paddingM),
+          constraints: BoxConstraints(
+            maxWidth: 500,
+            maxHeight: MediaQuery.of(context).size.height * 0.7, // 70% layar
+          ),
           decoration: BoxDecoration(
             color: AppColors.surface,
             borderRadius: BorderRadius.circular(AppDimensions.radiusL),
-            border: Border.all(color: AppColors.borderLight),
             boxShadow: [
               BoxShadow(
                 color: AppColors.shadowColor.withValues(
-                  alpha: AppColors.alpha30,
+                  alpha: AppColors.alpha20,
                 ),
-                blurRadius: AppDimensions.shadowBlurRadius,
-                offset: const Offset(0, AppDimensions.spaceS),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+                spreadRadius: 2,
               ),
             ],
           ),
-          constraints: const BoxConstraints(maxWidth: 560, maxHeight: 640),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                children: [
-                  const Icon(Icons.translate, color: AppColors.primary),
-                  const SizedBox(width: AppDimensions.spaceS),
-                  Text(
-                    AppConstants.mufrodatDialogTitle,
-                    style: AppTextStyles.h4,
+              // Header dengan gradient
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(AppDimensions.paddingM),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [AppColors.primary, AppColors.primaryLight],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    icon: const Icon(Icons.close),
-                    tooltip: 'Tutup',
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(AppDimensions.radiusL),
+                    topRight: Radius.circular(AppDimensions.radiusL),
                   ),
-                ],
-              ),
-              const SizedBox(height: AppDimensions.spaceM),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: AppConstants.dictionarySearchHint,
-                        prefixIcon: const Icon(Icons.search),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                            AppDimensions.radiusS,
-                          ),
-                          borderSide: const BorderSide(
-                            color: AppColors.borderLight,
-                          ),
+                ),
+                child: Row(
+                  children: [
+                    // Dictionary icon
+                    Container(
+                      padding: const EdgeInsets.all(AppDimensions.paddingS),
+                      decoration: BoxDecoration(
+                        color: AppColors.secondary.withValues(
+                          alpha: AppColors.alpha20,
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                            AppDimensions.radiusS,
-                          ),
-                          borderSide: const BorderSide(
-                            color: AppColors.borderLight,
-                          ),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.translate,
+                        size: 20,
+                        color: AppColors.secondary,
+                      ),
+                    ),
+
+                    const SizedBox(width: AppDimensions.spaceM),
+
+                    // Title
+                    Expanded(
+                      child: Text(
+                        AppConstants.mufrodatDialogTitle,
+                        style: AppTextStyles.h4.copyWith(
+                          color: AppColors.secondary,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onChanged: (v) => setState(() => _query = v.trim()),
                     ),
-                  ),
-                  const SizedBox(width: AppDimensions.spaceS),
-                  Container(
-                    height: 48,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.borderLight),
-                      borderRadius: BorderRadius.circular(
-                        AppDimensions.radiusS,
+
+                    // Close button
+                    Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.secondary.withValues(
+                          alpha: AppColors.alpha20,
+                        ),
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.close,
+                          color: AppColors.secondary,
+                          size: 18,
+                        ),
+                        onPressed: () => Navigator.of(context).pop(),
+                        tooltip: 'Tutup',
+                        padding: const EdgeInsets.all(6),
+                        constraints: const BoxConstraints(
+                          minWidth: 30,
+                          minHeight: 30,
+                        ),
                       ),
                     ),
-                    child: IconButton(
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(
-                        minWidth: 48,
-                        minHeight: 48,
-                      ),
-                      icon: const Icon(Icons.sort),
-                      tooltip: 'Urutkan',
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) => Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              ListTile(
-                                leading: _sort == MufrodatSort.defaultOrder
-                                    ? const Icon(
-                                        Icons.check,
-                                        color: AppColors.primary,
-                                      )
-                                    : const SizedBox(width: 24),
-                                title: const Text(
-                                  AppConstants.dictionarySortDefault,
-                                ),
-                                onTap: () {
-                                  setState(
-                                    () => _sort = MufrodatSort.defaultOrder,
-                                  );
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              ListTile(
-                                leading: _sort == MufrodatSort.indonesian
-                                    ? const Icon(
-                                        Icons.check,
-                                        color: AppColors.primary,
-                                      )
-                                    : const SizedBox(width: 24),
-                                title: const Text(
-                                  AppConstants.dictionarySortByIndonesian,
-                                ),
-                                onTap: () {
-                                  setState(
-                                    () => _sort = MufrodatSort.indonesian,
-                                  );
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              ListTile(
-                                leading: _sort == MufrodatSort.arabic
-                                    ? const Icon(
-                                        Icons.check,
-                                        color: AppColors.primary,
-                                      )
-                                    : const SizedBox(width: 24),
-                                title: const Text(
-                                  AppConstants.dictionarySortByArabic,
-                                ),
-                                onTap: () {
-                                  setState(() => _sort = MufrodatSort.arabic);
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              const SizedBox(height: AppDimensions.spaceM),
+
+              // Content
               Expanded(
-                child: Scrollbar(child: ListView(children: buildList())),
+                child: Padding(
+                  padding: const EdgeInsets.all(AppDimensions.paddingM),
+                  child: Column(
+                    children: [
+                      // Search and sort controls
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.primary.withValues(
+                                  alpha: AppColors.alpha05,
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                  AppDimensions.radiusM,
+                                ),
+                              ),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: AppConstants.dictionarySearchHint,
+                                  prefixIcon: Icon(
+                                    Icons.search,
+                                    color: AppColors.primary,
+                                    size: 18,
+                                  ),
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: AppDimensions.paddingS,
+                                    vertical: AppDimensions.paddingS,
+                                  ),
+                                  hintStyle: AppTextStyles.bodyMedium.copyWith(
+                                    color: AppColors.textHint,
+                                  ),
+                                ),
+                                style: AppTextStyles.bodyMedium,
+                                onChanged: (v) =>
+                                    setState(() => _query = v.trim()),
+                                onTapOutside: (event) =>
+                                    FocusScope.of(context).unfocus(),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: AppDimensions.spaceS),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.arabicGreen.withValues(
+                                alpha: AppColors.alpha10,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                AppDimensions.radiusM,
+                              ),
+                              border: Border.all(
+                                color: AppColors.arabicGreen.withValues(
+                                  alpha: AppColors.alpha20,
+                                ),
+                              ),
+                            ),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.sort,
+                                color: AppColors.arabicGreen,
+                                size: 18,
+                              ),
+                              tooltip: AppConstants.dictionarySortLabel,
+                              onPressed: () {
+                                _showSortMenu(context);
+                              },
+                              padding: const EdgeInsets.all(
+                                AppDimensions.paddingXS,
+                              ),
+                              constraints: const BoxConstraints(
+                                minWidth: 36,
+                                minHeight: 36,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: AppDimensions.spaceS),
+
+                      // Dictionary list
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.surface,
+                            borderRadius: BorderRadius.circular(
+                              AppDimensions.radiusM,
+                            ),
+                            border: Border.all(color: AppColors.borderLight),
+                          ),
+                          child: Scrollbar(
+                            child: ListView(
+                              padding: const EdgeInsets.all(
+                                AppDimensions.paddingS,
+                              ),
+                              children: buildList(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  void _showSortMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: AppColors.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(AppDimensions.radiusL),
+        ),
+      ),
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(AppDimensions.paddingM),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Handle bar
+            Container(
+              width: 40,
+              height: 4,
+              margin: const EdgeInsets.only(bottom: AppDimensions.spaceM),
+              decoration: BoxDecoration(
+                color: AppColors.borderLight,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+
+            // Title
+            Text(
+              AppConstants.dictionarySortLabel,
+              style: AppTextStyles.h4.copyWith(fontWeight: FontWeight.w600),
+            ),
+
+            const SizedBox(height: AppDimensions.spaceM),
+
+            // Sort options
+            ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(AppDimensions.paddingXS),
+                decoration: BoxDecoration(
+                  color: _sort == MufrodatSort.defaultOrder
+                      ? AppColors.primary.withValues(alpha: AppColors.alpha10)
+                      : Colors.transparent,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  _sort == MufrodatSort.defaultOrder ? Icons.check : Icons.list,
+                  color: _sort == MufrodatSort.defaultOrder
+                      ? AppColors.primary
+                      : AppColors.textSecondary,
+                  size: 20,
+                ),
+              ),
+              title: Text(AppConstants.dictionarySortDefault),
+              onTap: () {
+                setState(() => _sort = MufrodatSort.defaultOrder);
+                Navigator.pop(context);
+              },
+            ),
+
+            ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(AppDimensions.paddingXS),
+                decoration: BoxDecoration(
+                  color: _sort == MufrodatSort.indonesian
+                      ? AppColors.primary.withValues(alpha: AppColors.alpha10)
+                      : Colors.transparent,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  _sort == MufrodatSort.indonesian
+                      ? Icons.check
+                      : Icons.sort_by_alpha,
+                  color: _sort == MufrodatSort.indonesian
+                      ? AppColors.primary
+                      : AppColors.textSecondary,
+                  size: 20,
+                ),
+              ),
+              title: Text(AppConstants.dictionarySortByIndonesian),
+              onTap: () {
+                setState(() => _sort = MufrodatSort.indonesian);
+                Navigator.pop(context);
+              },
+            ),
+
+            ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(AppDimensions.paddingXS),
+                decoration: BoxDecoration(
+                  color: _sort == MufrodatSort.arabic
+                      ? AppColors.primary.withValues(alpha: AppColors.alpha10)
+                      : Colors.transparent,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  _sort == MufrodatSort.arabic ? Icons.check : Icons.translate,
+                  color: _sort == MufrodatSort.arabic
+                      ? AppColors.primary
+                      : AppColors.textSecondary,
+                  size: 20,
+                ),
+              ),
+              title: Text(AppConstants.dictionarySortByArabic),
+              onTap: () {
+                setState(() => _sort = MufrodatSort.arabic);
+                Navigator.pop(context);
+              },
+            ),
+
+            const SizedBox(height: AppDimensions.spaceM),
+          ],
         ),
       ),
     );

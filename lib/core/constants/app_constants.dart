@@ -10,9 +10,6 @@ class AppConstants {
   static const String teacherName = 'Moch. Fikri Jauhar Maulana S. Pd.';
 
   // Storage Keys
-  static const String userProgressKey = 'user_progress';
-  static const String completedChaptersKey = 'completed_chapters';
-  static const String userScoresKey = 'user_scores';
   static const String materialFontSizeKey = 'material_font_size';
 
   // Reading preferences
@@ -64,13 +61,6 @@ class AppConstants {
       'Selamat datang di aplikasi pembelajaran bahasa Arab. Mari mulai belajar hari ini!';
   static const String mainMenuTitle = 'Menu Utama';
   static const String materialsTitle = 'Materi';
-  static const String materialsSubtitle = 'Pelajari bahasa Arab';
-  static const String exerciseTitle = 'Latihan';
-  static const String exerciseSubtitle = 'Kerjakan soal';
-  static const String exercisesListTitle = 'Daftar Soal';
-  static const String exercisesAllLabel = 'Lihat Semua Soal';
-  static const String exerciseStartLabel = 'Mulai';
-  static const String exerciseDetailPending = 'Detail soal akan segera hadir';
   static const String comingSoonMessage = 'akan segera hadir!';
   static const String logoutMenuText = 'Keluar';
   static const String classPrefix = 'Kelas';
@@ -78,11 +68,8 @@ class AppConstants {
 
   // Drawer Text
   static const String drawerHeaderTitle = appName;
-  static const String drawerMaterials = 'Daftar Materi';
-  static const String drawerExercises = 'Daftar Soal';
   static const String drawerAbout = 'Tentang Aplikasi';
   static const String aboutDialogTitle = 'Tentang';
-  static const String dictionaryDialogTitle = 'Kamus';
   static const String mufrodatDialogTitle = 'Mufrodat';
   static const String drawerMufrodat = 'Mufrodat';
 
@@ -96,12 +83,6 @@ class AppConstants {
   static const String dictionarySectionIntroduction = 'Perkenalan';
   static const String dictionarySectionDemonstratives = 'Kata Tunjuk';
   static const String dictionarySectionMufrodat = 'Mufrodat';
-
-  // Materials Sections
-  static const String materialsSectionIntro = 'Pengantar';
-  static const String materialsSectionVocabulary = 'Kosakata';
-  static const String materialsSectionExamples = 'Contoh Kalimat';
-  static const String materialsSectionNotes = 'Catatan';
 
   // Splash
   static const String mahfudzotTodayTitle = 'Mahfudzot Hari Ini';
@@ -124,12 +105,11 @@ class AppConstants {
       'Praktikkanlah percakapan berikut di depan kelas dengan temanmu. Kemudian Ganti nama dengan namamu sendiri.';
   static const String makeSentenceInstruction =
       'Buatlah kalimat sederhana menggunakan kosakata di bawah ini!';
-  static const String audioNotAvailable =
-      'Audio akan tersedia dalam versi lengkap aplikasi';
+
+  // Font Size
+  static const String fontSizeLabel = 'Ukuran Teks';
 
   // Error Messages
-  static const String networkError = 'Tidak ada koneksi internet';
   static const String generalError = 'Terjadi kesalahan, silakan coba lagi';
-  static const String dataNotFound = 'Data tidak ditemukan';
   static const String saveDataError = 'Gagal menyimpan data';
 }
