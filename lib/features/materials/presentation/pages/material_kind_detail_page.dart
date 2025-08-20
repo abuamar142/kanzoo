@@ -18,7 +18,7 @@ import '../../../../core/widgets/materials/sections/section_table.dart';
 import '../../../../core/widgets/materials/sections/section_three.dart';
 import '../../../../core/widgets/materials/sections/section_two.dart';
 import '../../../../routes/app_routes.dart';
-import '../../../../shared/data/materials_content.dart';
+import '../../../../shared/data/materials/materials_data.dart';
 import '../../../../shared/models/material_content.dart';
 import '../controllers/font_size_controller.dart';
 
@@ -52,9 +52,9 @@ class _MaterialKindDetailPageState extends State<MaterialKindDetailPage> {
     final String kind = Get.parameters['kind'] ?? 'qiroah';
 
     // Get material content from data
-    final MaterialContent? materialContent = MaterialsContentData.byKindChapter(
-      kind,
+    final MaterialContent? materialContent = MaterialsData.getByChapterAndKind(
       int.parse(chapter),
+      kind,
     );
 
     // Get material type info for header

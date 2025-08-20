@@ -5,9 +5,9 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/dictionary/base_dictionary_item.dart';
-import '../../../../shared/data/chapter_mufrodat/bab1/bab1_mufrodat_data.dart';
-import '../../../../shared/data/chapter_mufrodat/bab2/bab2_mufrodat_data.dart';
-import '../../../../shared/data/chapter_mufrodat/bab3/bab3_mufrodat_data.dart';
+import '../../../../shared/data/materials/bab1/mufrodat.dart' as bab1_mufrodat;
+import '../../../../shared/data/materials/bab2/mufrodat.dart' as bab2_mufrodat;
+import '../../../../shared/data/materials/bab3/mufrodat.dart' as bab3_mufrodat;
 import '../../../../shared/models/mufrodat_models.dart';
 
 enum MufrodatSort { defaultOrder, indonesian, arabic }
@@ -28,23 +28,32 @@ class _MufrodatDialogState extends State<MufrodatDialog> {
     final allCategories = <CategoryMufrodat>[];
 
     // Tambahkan data dari Bab 1 dengan prefix
-    for (final category in Bab1MufrodatData.categories) {
+    for (final category in bab1_mufrodat.items) {
       allCategories.add(
-        CategoryMufrodat('Bab 1 - ${category.title}', category.items),
+        CategoryMufrodat(
+          title: 'Bab 1 - ${category.title}',
+          items: category.items,
+        ),
       );
     }
 
     // Tambahkan data dari Bab 2 dengan prefix
-    for (final category in Bab2MufrodatData.categories) {
+    for (final category in bab2_mufrodat.items) {
       allCategories.add(
-        CategoryMufrodat('Bab 2 - ${category.title}', category.items),
+        CategoryMufrodat(
+          title: 'Bab 2 - ${category.title}',
+          items: category.items,
+        ),
       );
     }
 
     // Tambahkan data dari Bab 3 dengan prefix
-    for (final category in Bab3MufrodatData.categories) {
+    for (final category in bab3_mufrodat.items) {
       allCategories.add(
-        CategoryMufrodat('Bab 3 - ${category.title}', category.items),
+        CategoryMufrodat(
+          title: 'Bab 3 - ${category.title}',
+          items: category.items,
+        ),
       );
     }
 
