@@ -12,14 +12,13 @@ class AppPages {
     GetPage(name: AppRoutes.splash, page: () => const SplashPage()),
     GetPage(name: AppRoutes.login, page: () => const LoginPage()),
     GetPage(name: AppRoutes.home, page: () => const HomePage()),
-    // Materials flow: home -> chapter topics -> material detail
     GetPage(
       name: '${AppRoutes.materialsChapter}/:chapter',
-      page: () => const MaterialsChapterTopicsPage(),
+      page: () => const MaterialKindPage(),
     ),
     GetPage(
       name: '${AppRoutes.materialsKindDetail}/:chapter/:kind',
-      page: () => const MaterialKindDetailPage(),
+      page: () => const MaterialDetailPage(),
     ),
   ];
 }

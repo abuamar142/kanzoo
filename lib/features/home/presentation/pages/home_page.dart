@@ -8,6 +8,7 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/utils/string_extensions.dart';
 import '../../../../core/widgets/app_drawer.dart';
 import '../../../../routes/app_routes.dart';
+import '../../../../shared/models/chapter.dart';
 import '../../../../shared/services/storage_service.dart';
 
 class HomePage extends StatelessWidget {
@@ -171,18 +172,10 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildChaptersList() {
-    final chapters = [1, 2, 3];
-    final gradients = const [
-      [AppColors.primary, AppColors.primaryLight],
-      [AppColors.arabicGreen, AppColors.success],
-      [AppColors.warning, AppColors.info],
-    ];
+    final chapters = Chapter.all;
 
     return Column(
       children: chapters.map((chapter) {
-        final index = chapter - 1;
-        final pair = gradients[index % gradients.length];
-
         return Container(
           margin: const EdgeInsets.only(bottom: AppDimensions.spaceS),
           child: Material(
@@ -190,7 +183,7 @@ class HomePage extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(AppDimensions.radiusM),
               onTap: () =>
-                  Get.toNamed('${AppRoutes.materialsChapter}/$chapter'),
+                  Get.toNamed('${AppRoutes.materialsChapter}/${chapter.id}'),
               child: Container(
                 padding: const EdgeInsets.all(AppDimensions.paddingM),
                 decoration: BoxDecoration(
@@ -215,13 +208,15 @@ class HomePage extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         gradient: LinearGradient(
-                          colors: pair,
+                          colors: chapter.gradientColors,
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: pair[0].withValues(alpha: AppColors.alpha30),
+                            color: chapter.gradientColors[0].withValues(
+                              alpha: AppColors.alpha30,
+                            ),
                             blurRadius: 8,
                             offset: const Offset(0, 3),
                           ),
@@ -239,7 +234,7 @@ class HomePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Bab $chapter',
+                            chapter.title,
                             style: AppTextStyles.bodyLarge.copyWith(
                               fontWeight: FontWeight.w600,
                             ),
@@ -257,14 +252,16 @@ class HomePage extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(AppDimensions.paddingXS),
                       decoration: BoxDecoration(
-                        color: pair[0].withValues(alpha: AppColors.alpha10),
+                        color: chapter.gradientColors[0].withValues(
+                          alpha: AppColors.alpha10,
+                        ),
                         borderRadius: BorderRadius.circular(
                           AppDimensions.radiusS,
                         ),
                       ),
                       child: Icon(
                         Icons.chevron_right,
-                        color: pair[0],
+                        color: chapter.gradientColors[0],
                         size: AppDimensions.iconS,
                       ),
                     ),

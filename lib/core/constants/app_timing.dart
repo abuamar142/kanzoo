@@ -5,7 +5,7 @@ class AppTiming {
   static const int slowAnimation = 500;
 
   // Splash Screen
-  static const int splashDuration = 10000; // 10 seconds
+  static const int splashDuration = 7000; // 7 seconds
 
   // Exercise/Quiz Timing (in seconds)
   static const int defaultTimeLimit = 300; // 5 minutes

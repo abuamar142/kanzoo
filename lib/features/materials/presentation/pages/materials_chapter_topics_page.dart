@@ -1,69 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_drawer.dart';
 import '../../../../core/widgets/breadcrumb/app_breadcrumb.dart';
 import '../../../../routes/app_routes.dart';
+import '../../../../shared/models/kind.dart';
 
-class MaterialsChapterTopicsPage extends StatelessWidget {
-  const MaterialsChapterTopicsPage({super.key});
+class MaterialKindPage extends StatelessWidget {
+  const MaterialKindPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final String chapter = Get.parameters['chapter'] ?? '1';
 
-    // Material types with their icons and colors
-    final materialTypes = [
-      {
-        'id': 'qiroah',
-        'title': AppConstants.qiroahLabel,
-        'subtitle': 'Materi membaca teks Arab',
-        'icon': Icons.book,
-        'colors': [AppColors.primary, AppColors.primaryLight],
-      },
-      {
-        'id': 'kitabah',
-        'title': AppConstants.kitabahLabel,
-        'subtitle': 'Materi menulis huruf Arab',
-        'icon': Icons.edit,
-        'colors': [AppColors.arabicGreen, AppColors.success],
-      },
-      {
-        'id': 'qowaid',
-        'title': AppConstants.qowaidLabel,
-        'subtitle': 'Materi tata bahasa Arab',
-        'icon': Icons.school,
-        'colors': [AppColors.warning, AppColors.info],
-      },
-      {
-        'id': 'istima',
-        'title': AppConstants.istimaLabel,
-        'subtitle': 'Materi mendengarkan Arab',
-        'icon': Icons.headphones,
-        'colors': [AppColors.info, AppColors.primary],
-      },
-      {
-        'id': 'kalam',
-        'title': AppConstants.kalamLabel,
-        'subtitle': 'Materi berbicara Arab',
-        'icon': Icons.record_voice_over,
-        'colors': [AppColors.error, AppColors.warning],
-      },
-      {
-        'id': 'mufrodat',
-        'title': AppConstants.mufrodatLabel,
-        'subtitle': 'Kosakata bahasa Arab',
-        'icon': Icons.menu_book,
-        'colors': [AppColors.arabicGreen, AppColors.primaryLight],
-      },
-    ];
+    final materialKinds = Kind.all;
 
     return Scaffold(
-      appBar: AppBar(title: Text('Bab $chapter - Jenis Materi')),
+      appBar: AppBar(
+        title: Text('Bab $chapter - Jenis Materi'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Get.back(),
+        ),
+      ),
       drawer: const AppDrawer(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(AppDimensions.paddingM),
@@ -109,8 +71,7 @@ class MaterialsChapterTopicsPage extends StatelessWidget {
             const SizedBox(height: AppDimensions.spaceM),
 
             // Material Types List
-            ...materialTypes.map((material) {
-              final colors = material['colors'] as List<Color>;
+            ...materialKinds.map((kind) {
               return Container(
                 margin: const EdgeInsets.only(bottom: AppDimensions.spaceM),
                 child: Material(
@@ -118,7 +79,7 @@ class MaterialsChapterTopicsPage extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(AppDimensions.radiusM),
                     onTap: () => Get.toNamed(
-                      '${AppRoutes.materialsKindDetail}/$chapter/${material['id']}',
+                      '${AppRoutes.materialsKindDetail}/$chapter/${kind.id}',
                     ),
                     child: Container(
                       padding: const EdgeInsets.all(AppDimensions.paddingM),
@@ -146,13 +107,13 @@ class MaterialsChapterTopicsPage extends StatelessWidget {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               gradient: LinearGradient(
-                                colors: colors,
+                                colors: kind.colors,
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: colors[0].withValues(
+                                  color: kind.colors[0].withValues(
                                     alpha: AppColors.alpha30,
                                   ),
                                   blurRadius: 8,
@@ -161,7 +122,7 @@ class MaterialsChapterTopicsPage extends StatelessWidget {
                               ],
                             ),
                             child: Icon(
-                              material['icon'] as IconData,
+                              kind.icon,
                               color: AppColors.surface,
                               size: AppDimensions.iconL,
                             ),
@@ -172,14 +133,14 @@ class MaterialsChapterTopicsPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  material['title'] as String,
+                                  kind.title,
                                   style: AppTextStyles.bodyLarge.copyWith(
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 const SizedBox(height: AppDimensions.spaceXS),
                                 Text(
-                                  material['subtitle'] as String,
+                                  kind.subtitle,
                                   style: AppTextStyles.bodySmall.copyWith(
                                     color: AppColors.textSecondary,
                                   ),
@@ -192,7 +153,7 @@ class MaterialsChapterTopicsPage extends StatelessWidget {
                               AppDimensions.paddingXS,
                             ),
                             decoration: BoxDecoration(
-                              color: colors[0].withValues(
+                              color: kind.colors[0].withValues(
                                 alpha: AppColors.alpha10,
                               ),
                               borderRadius: BorderRadius.circular(
@@ -201,7 +162,7 @@ class MaterialsChapterTopicsPage extends StatelessWidget {
                             ),
                             child: Icon(
                               Icons.chevron_right,
-                              color: colors[0],
+                              color: kind.colors[0],
                               size: AppDimensions.iconS,
                             ),
                           ),

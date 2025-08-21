@@ -22,14 +22,14 @@ import '../../../../shared/data/materials/materials_data.dart';
 import '../../../../shared/models/material_content.dart';
 import '../controllers/font_size_controller.dart';
 
-class MaterialKindDetailPage extends StatefulWidget {
-  const MaterialKindDetailPage({super.key});
+class MaterialDetailPage extends StatefulWidget {
+  const MaterialDetailPage({super.key});
 
   @override
-  State<MaterialKindDetailPage> createState() => _MaterialKindDetailPageState();
+  State<MaterialDetailPage> createState() => _MaterialDetailPageState();
 }
 
-class _MaterialKindDetailPageState extends State<MaterialKindDetailPage> {
+class _MaterialDetailPageState extends State<MaterialDetailPage> {
   late FontSizeController fontSizeController;
 
   @override
@@ -63,6 +63,10 @@ class _MaterialKindDetailPageState extends State<MaterialKindDetailPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('${materialInfo['title']} - Bab $chapter'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Get.back(),
+        ),
         actions: [
           Obx(
             () => IconButton(
