@@ -7,20 +7,26 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_drawer.dart';
 import '../../../../core/widgets/breadcrumb/app_breadcrumb.dart';
 import '../../../../routes/app_routes.dart';
-import '../../../../shared/enum/kind.dart';
+import '../../../../shared/shared.dart';
 
 class MaterialKindPage extends StatelessWidget {
   const MaterialKindPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final String chapter = Get.parameters['chapter'] ?? '1';
+    // Get Chapter enum from arguments
+    final Map<String, dynamic>? args = Get.arguments;
+    final Chapter? chapter = args?['chapter'] as Chapter?;
 
-    final materialKinds = Kind.all;
+    // Fallback to Bab 1 if no arguments provided
+    final Chapter activeChapter = chapter ?? Chapter.bab1;
+
+    // Get available material kinds for this chapter
+    final availableKinds = MaterialsData.getAvailableKindEnums(activeChapter);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bab $chapter - Jenis Materi'),
+        title: Text('${activeChapter.title} - Jenis Materi'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Get.back(),
@@ -41,7 +47,7 @@ class MaterialKindPage extends StatelessWidget {
                   onTap: () => Get.offAllNamed(AppRoutes.home),
                 ),
                 BreadcrumbItem(
-                  label: 'Bab $chapter',
+                  label: activeChapter.title,
                   icon: Icons.menu_book,
                   isActive: true,
                 ),
@@ -62,7 +68,7 @@ class MaterialKindPage extends StatelessWidget {
             const SizedBox(height: AppDimensions.spaceS),
 
             Text(
-              'Pilih jenis materi yang ingin dipelajari untuk Bab $chapter',
+              'Pilih jenis materi yang ingin dipelajari untuk ${activeChapter.title}',
               style: AppTextStyles.bodyMedium.copyWith(
                 color: AppColors.textSecondary,
               ),
@@ -71,7 +77,7 @@ class MaterialKindPage extends StatelessWidget {
             const SizedBox(height: AppDimensions.spaceM),
 
             // Material Types List
-            ...materialKinds.map((kind) {
+            ...availableKinds.map((kind) {
               return Container(
                 margin: const EdgeInsets.only(bottom: AppDimensions.spaceM),
                 child: Material(
@@ -79,7 +85,8 @@ class MaterialKindPage extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(AppDimensions.radiusM),
                     onTap: () => Get.toNamed(
-                      '${AppRoutes.materialsKindDetail}/$chapter/${kind.id}',
+                      AppRoutes.materialDetail,
+                      arguments: {'chapter': activeChapter, 'kind': kind},
                     ),
                     child: Container(
                       padding: const EdgeInsets.all(AppDimensions.paddingM),

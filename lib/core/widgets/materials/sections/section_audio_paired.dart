@@ -1,12 +1,12 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:audioplayers/audioplayers.dart';
 
+import '../../../../shared/shared.dart';
 import '../../../constants/app_constants.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_dimensions.dart';
 import '../../../theme/app_text_styles.dart';
-import '../../../../shared/models/material_content.dart';
 
 class SectionAudioPaired extends StatefulWidget {
   final String title;
@@ -123,9 +123,13 @@ class _SectionAudioPairedState extends State<SectionAudioPaired> {
   }
 
   String _getChapterFolder() {
-    // Get chapter from route parameters or determine from context
-    final String chapter = Get.parameters['chapter'] ?? '1';
-    return 'bab $chapter';
+    // Get chapter from route arguments
+    final Map<String, dynamic>? args = Get.arguments;
+    final Chapter? chapter = args?['chapter'] as Chapter?;
+
+    // Use the chapter enum to get the correct folder name
+    final activeChapter = chapter ?? Chapter.bab1;
+    return 'bab ${activeChapter.id}';
   }
 
   Future<void> _stopAudio() async {

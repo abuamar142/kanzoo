@@ -3,6 +3,6 @@ abstract class AppRoutes {
   static const String splash = '/';
   static const String login = '/login';
   static const String home = '/home';
-  static const String materialsChapter = '/materials/chapter';
-  static const String materialsKindDetail = '/materials/kind';
+  static const String materialKind = '/materials/kind';
+  static const String materialDetail = '/materials/kind/detail';
 }

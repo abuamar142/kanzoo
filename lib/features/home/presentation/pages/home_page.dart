@@ -8,8 +8,7 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/utils/string_extensions.dart';
 import '../../../../core/widgets/app_drawer.dart';
 import '../../../../routes/app_routes.dart';
-import '../../../../shared/enum/chapter.dart';
-import '../../../../shared/services/storage_service.dart';
+import '../../../../shared/shared.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -182,8 +181,10 @@ class HomePage extends StatelessWidget {
             color: Colors.transparent,
             child: InkWell(
               borderRadius: BorderRadius.circular(AppDimensions.radiusM),
-              onTap: () =>
-                  Get.toNamed('${AppRoutes.materialsChapter}/${chapter.id}'),
+              onTap: () => Get.toNamed(
+                AppRoutes.materialKind,
+                arguments: {'chapter': chapter},
+              ),
               child: Container(
                 padding: const EdgeInsets.all(AppDimensions.paddingM),
                 decoration: BoxDecoration(

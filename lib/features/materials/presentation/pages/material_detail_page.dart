@@ -18,8 +18,7 @@ import '../../../../core/widgets/materials/sections/section_table.dart';
 import '../../../../core/widgets/materials/sections/section_three.dart';
 import '../../../../core/widgets/materials/sections/section_two.dart';
 import '../../../../routes/app_routes.dart';
-import '../../../../shared/data/materials/materials_data.dart';
-import '../../../../shared/models/material_content.dart';
+import '../../../../shared/shared.dart';
 import '../controllers/font_size_controller.dart';
 
 class MaterialDetailPage extends StatefulWidget {
@@ -48,21 +47,22 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final String chapter = Get.parameters['chapter'] ?? '1';
-    final String kind = Get.parameters['kind'] ?? 'qiroah';
+    // Get Chapter and Kind enums from arguments
+    final Map<String, dynamic>? args = Get.arguments;
+    final Chapter? chapter = args?['chapter'] as Chapter?;
+    final Kind? kind = args?['kind'] as Kind?;
 
-    // Get material content from data
-    final MaterialContent? materialContent = MaterialsData.getByChapterAndKind(
-      int.parse(chapter),
-      kind,
-    );
+    // Fallback defaults
+    final Chapter activeChapter = chapter ?? Chapter.bab1;
+    final Kind activeKind = kind ?? Kind.qiroah;
 
-    // Get material type info for header
-    final materialInfo = _getMaterialInfo(kind);
+    // Get material content using enums
+    final MaterialContent? materialContent =
+        MaterialsData.getByChapterAndKindEnum(activeChapter, activeKind);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${materialInfo['title']} - Bab $chapter'),
+        title: Text('${activeKind.title} - ${activeChapter.title}'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Get.back(),
@@ -92,8 +92,12 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
         child: Stack(
           children: [
             materialContent == null
-                ? _buildNotFoundContent(materialInfo, chapter)
-                : _buildMaterialContent(materialContent, materialInfo, chapter),
+                ? _buildNotFoundContent(activeKind, activeChapter)
+                : _buildMaterialContent(
+                    materialContent,
+                    activeKind,
+                    activeChapter,
+                  ),
             const FontSizeOverlay(),
           ],
         ),
@@ -131,11 +135,7 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
     );
   }
 
-  Widget _buildBreadcrumbAndTitle(
-    Map<String, dynamic> materialInfo,
-    String chapter,
-    String kind,
-  ) {
+  Widget _buildBreadcrumbAndTitle(Kind materialKind, Chapter chapter) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -148,13 +148,13 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
               onTap: () => Get.offAllNamed(AppRoutes.home),
             ),
             BreadcrumbItem(
-              label: 'Bab $chapter',
+              label: chapter.title,
               icon: Icons.menu_book,
               onTap: () => Get.back(),
             ),
             BreadcrumbItem(
-              label: materialInfo['title'] as String,
-              icon: materialInfo['icon'] as IconData,
+              label: materialKind.title,
+              icon: materialKind.icon,
               isActive: true,
             ),
           ],
@@ -163,12 +163,7 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
     );
   }
 
-  Widget _buildNotFoundContent(
-    Map<String, dynamic> materialInfo,
-    String chapter,
-  ) {
-    final String kind = Get.parameters['kind'] ?? 'qiroah';
-
+  Widget _buildNotFoundContent(Kind materialKind, Chapter chapter) {
     return LayoutBuilder(
       builder: (context, constraints) {
         return SingleChildScrollView(
@@ -180,7 +175,7 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildBreadcrumbAndTitle(materialInfo, chapter, kind),
+                _buildBreadcrumbAndTitle(materialKind, chapter),
                 const SizedBox(height: AppDimensions.spaceL),
                 Expanded(
                   child: Container(
@@ -224,7 +219,7 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
                         const SizedBox(height: AppDimensions.spaceS),
                         Obx(
                           () => Text(
-                            'Materi ${materialInfo['title']} untuk Bab $chapter sedang dalam tahap pengembangan. Silakan kembali lagi nanti.',
+                            'Materi ${materialKind.title} untuk ${chapter.title} sedang dalam tahap pengembangan. Silakan kembali lagi nanti.',
                             style: _scaledTextStyleWith(
                               AppTextStyles.bodyMedium,
                               color: AppColors.textSecondary,
@@ -246,11 +241,9 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
 
   Widget _buildMaterialContent(
     MaterialContent content,
-    Map<String, dynamic> materialInfo,
-    String chapter,
+    Kind materialKind,
+    Chapter chapter,
   ) {
-    final String kind = Get.parameters['kind'] ?? 'qiroah';
-
     return LayoutBuilder(
       builder: (context, constraints) {
         return SingleChildScrollView(
@@ -262,7 +255,7 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildBreadcrumbAndTitle(materialInfo, chapter, kind),
+                _buildBreadcrumbAndTitle(materialKind, chapter),
                 const SizedBox(height: AppDimensions.spaceL),
                 ...content.sections.map((section) => _buildSection(section)),
               ],
@@ -612,60 +605,6 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
             const SizedBox(height: AppDimensions.spaceL),
           ],
         );
-    }
-  }
-
-  Map<String, dynamic> _getMaterialInfo(String kind) {
-    switch (kind) {
-      case 'qiroah':
-        return {
-          'title': AppConstants.qiroahLabel,
-          'subtitle': 'Materi membaca teks Arab',
-          'icon': Icons.book,
-          'colors': [AppColors.primary, AppColors.primaryLight],
-        };
-      case 'kitabah':
-        return {
-          'title': AppConstants.kitabahLabel,
-          'subtitle': 'Materi menulis huruf Arab',
-          'icon': Icons.edit,
-          'colors': [AppColors.arabicGreen, AppColors.success],
-        };
-      case 'qowaid':
-        return {
-          'title': AppConstants.qowaidLabel,
-          'subtitle': 'Materi tata bahasa Arab',
-          'icon': Icons.school,
-          'colors': [AppColors.warning, AppColors.info],
-        };
-      case 'istima':
-        return {
-          'title': AppConstants.istimaLabel,
-          'subtitle': 'Materi mendengarkan Arab',
-          'icon': Icons.headphones,
-          'colors': [AppColors.info, AppColors.primary],
-        };
-      case 'kalam':
-        return {
-          'title': AppConstants.kalamLabel,
-          'subtitle': 'Materi berbicara Arab',
-          'icon': Icons.record_voice_over,
-          'colors': [AppColors.error, AppColors.warning],
-        };
-      case 'mufrodat':
-        return {
-          'title': AppConstants.mufrodatLabel,
-          'subtitle': 'Kosakata bahasa Arab',
-          'icon': Icons.menu_book,
-          'colors': [AppColors.arabicGreen, AppColors.primaryLight],
-        };
-      default:
-        return {
-          'title': 'Materi',
-          'subtitle': 'Materi pembelajaran',
-          'icon': Icons.book,
-          'colors': [AppColors.primary, AppColors.primaryLight],
-        };
     }
   }
 }

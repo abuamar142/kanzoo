@@ -1,3 +1,5 @@
+import '../../enum/chapter.dart';
+import '../../enum/kind.dart';
 import '../../models/material_content.dart';
 import '../../models/mufrodat_models.dart';
 import 'bab1/index.dart';
@@ -51,6 +53,37 @@ class MaterialsData {
     final chapterMaterials = getByChapter(chapter);
     return chapterMaterials.map((m) => m.kind!).toList();
   }
+
+  // ========== ENUM-BASED METHODS ==========
+
+  /// Get materials by Chapter enum
+  static List<MaterialContent> getByChapterEnum(Chapter chapter) {
+    return getByChapter(chapter.id);
+  }
+
+  /// Get specific material by Chapter enum and Kind enum
+  static MaterialContent? getByChapterAndKindEnum(Chapter chapter, Kind kind) {
+    return getByChapterAndKind(chapter.id, kind.id);
+  }
+
+  /// Get available Kind enums for a Chapter enum
+  static List<Kind> getAvailableKindEnums(Chapter chapter) {
+    final chapterMaterials = getByChapterEnum(chapter);
+    final kindIds = chapterMaterials.map((m) => m.kind!).toList();
+    return kindIds
+        .map((id) => Kind.findById(id))
+        .where((kind) => kind != null)
+        .cast<Kind>()
+        .toList();
+  }
+
+  /// Check if a Chapter enum has materials
+  static bool hasChapterEnum(Chapter chapter) {
+    return hasChapter(chapter.id);
+  }
+
+  /// Get all available Chapter enums (convenience method)
+  static List<Chapter> get availableChapterEnums => Chapter.all;
 
   /// Get all available chapters
   static List<int> get availableChapters => [1, 2, 3];
