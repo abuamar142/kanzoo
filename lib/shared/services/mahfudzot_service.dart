@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import '../data/materials_content.dart';
+import '../data/materials/materials_data.dart';
 import '../models/material_content.dart';
 import '../models/mufrodat_models.dart';
 
@@ -8,7 +8,7 @@ class MahfudzotService {
   static Future<List<ItemMufrodat>> loadAll() async {
     final List<ItemMufrodat> items = [];
 
-    for (final MaterialContent content in MaterialsContentData.contents) {
+    for (final MaterialContent content in MaterialsData.allMaterials) {
       if (content.kind != 'mahfudzot') continue;
       for (final section in content.sections) {
         final table = section.tableData;
@@ -18,7 +18,7 @@ class MahfudzotService {
           final arabic = row[1].trim();
           final indo = row[2].trim();
           if (arabic.isEmpty || indo.isEmpty) continue;
-          items.add(ItemMufrodat(indonesian: indo, arabic: arabic));
+          items.add(ItemMufrodat(indo, arabic));
         }
       }
     }
