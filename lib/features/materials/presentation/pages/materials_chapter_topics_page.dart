@@ -7,7 +7,7 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_drawer.dart';
 import '../../../../core/widgets/breadcrumb/app_breadcrumb.dart';
 import '../../../../routes/app_routes.dart';
-import '../../../../shared/models/kind.dart';
+import '../../../../shared/enum/kind.dart';
 
 class MaterialKindPage extends StatelessWidget {
   const MaterialKindPage({super.key});

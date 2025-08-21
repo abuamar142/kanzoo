@@ -8,7 +8,7 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/utils/string_extensions.dart';
 import '../../../../core/widgets/app_drawer.dart';
 import '../../../../routes/app_routes.dart';
-import '../../../../shared/models/chapter.dart';
+import '../../../../shared/enum/chapter.dart';
 import '../../../../shared/services/storage_service.dart';
 
 class HomePage extends StatelessWidget {
