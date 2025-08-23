@@ -67,6 +67,7 @@ SimpleMaterialContent get kitabahBab2Content => SimpleMaterialContent([
         ],
       ),
     ],
+    'bab2_kitabah_scramble',
   ),
   SectionOne('Tugas Kelompok', [
     'Buatlah 5 kalimat sederhana dengan kata keterangan tempat (ظَرْفُ المَكَان) berikut!',

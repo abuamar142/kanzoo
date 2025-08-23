@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/services/shared_preferences_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimensions.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -13,22 +14,21 @@ import 'scramble_item.dart';
 
 class ScrambleSection extends MaterialSection {
   final List<ScrambleSentence> sentences;
+  final String sectionId;
 
-  const ScrambleSection({required this.sentences});
+  const ScrambleSection({required this.sentences, required this.sectionId});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ScrambleSectionController>(
-      init: ScrambleSectionController(sentences),
+      init: ScrambleSectionController(sentences, sectionId),
       builder: (controller) {
         return Container(
           padding: EdgeInsets.all(AppDimensions.paddingM),
           decoration: BoxDecoration(
             color: AppColors.surface,
             borderRadius: BorderRadius.circular(AppDimensions.radiusM),
-            border: Border.all(
-              color: AppColors.primary.withValues(alpha: AppColors.alpha20),
-            ),
+            border: Border.all(color: _getSectionBorderColor(controller)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +47,7 @@ class ScrambleSection extends MaterialSection {
                           // Clickable area to open scramble dialog
                           Expanded(
                             child: GestureDetector(
-                              onTap: () => _openScrambleDialog(
+                              onTap: () => _handleScrambleTap(
                                 sentenceIndex,
                                 controller
                                     .scrambledSentences[sentenceIndex]
@@ -77,44 +77,27 @@ class ScrambleSection extends MaterialSection {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      // Show randomized sentence preview
                                       Wrap(
+                                        textDirection: TextDirection.rtl,
                                         alignment: WrapAlignment.center,
                                         spacing: AppDimensions.spaceS,
                                         runSpacing: AppDimensions.spaceS,
-                                        children: controller
-                                            .scrambledSentences[sentenceIndex]
-                                            .currentOrder
-                                            .map(
-                                              (item) => ScrambleItem(
-                                                text: item,
-                                                isDragging: false,
-                                              ),
-                                            )
-                                            .toList(),
+                                        children:
+                                            _getDisplayOrder(
+                                                  controller,
+                                                  sentenceIndex,
+                                                )
+                                                .map(
+                                                  (item) => ScrambleItem(
+                                                    text: item,
+                                                    isDragging: false,
+                                                  ),
+                                                )
+                                                .toList(),
                                       ),
                                       SizedBox(height: AppDimensions.spaceM),
                                       // Instruction text
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.touch_app,
-                                            color: AppColors.primary,
-                                            size: AppDimensions.iconS,
-                                          ),
-                                          SizedBox(width: AppDimensions.spaceS),
-                                          Text(
-                                            'Ketuk untuk menyusun kalimat',
-                                            style: AppTextStyles.caption
-                                                .copyWith(
-                                                  color: AppColors.primary,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
+                                      _buildInstructionText(sentenceIndex),
                                     ],
                                   ),
                                 ),
@@ -202,14 +185,119 @@ class ScrambleSection extends MaterialSection {
     );
   }
 
+  void _handleScrambleTap(int questionNumber, List<String> correctOrder) {
+    // Check if this question is already completed
+    final scrambleId = '${sectionId}_question_$questionNumber';
+    final isCompleted = SharedPreferencesService.isScrambleCompleted(
+      scrambleId,
+    );
+
+    // Only open dialog if not completed
+    if (!isCompleted) {
+      _openScrambleDialog(questionNumber, correctOrder);
+    }
+  }
+
   void _openScrambleDialog(int questionNumber, List<String> correctOrder) {
     Get.dialog(
       ScrambleDialog(
         correctOrder: correctOrder,
         questionNumber: questionNumber + 1,
+        scrambleId: '${sectionId}_question_$questionNumber',
+        onAnswerCorrect: () {
+          // Refresh UI when answer is correct
+          final controller = Get.find<ScrambleSectionController>();
+          controller.update();
+        },
       ),
       barrierDismissible: true,
     );
+  }
+
+  Color _getSectionBorderColor(ScrambleSectionController controller) {
+    // Check if all questions in this section are completed
+    bool allCompleted = true;
+    for (int i = 0; i < sentences.length; i++) {
+      final scrambleId = '${sectionId}_question_$i';
+      if (!SharedPreferencesService.isScrambleCompleted(scrambleId)) {
+        allCompleted = false;
+        break;
+      }
+    }
+
+    if (allCompleted) {
+      return AppColors.success;
+    }
+
+    return AppColors.primary.withValues(alpha: AppColors.alpha20);
+  }
+
+  List<String> _getDisplayOrder(
+    ScrambleSectionController controller,
+    int sentenceIndex,
+  ) {
+    // Check if this specific scramble question is completed
+    final scrambleId = '${sectionId}_question_$sentenceIndex';
+    final isCompleted = SharedPreferencesService.isScrambleCompleted(
+      scrambleId,
+    );
+
+    if (isCompleted) {
+      // Show correct order when completed
+      return controller.scrambledSentences[sentenceIndex].correctOrder;
+    } else {
+      // Show scrambled order when not completed
+      return controller.scrambledSentences[sentenceIndex].currentOrder;
+    }
+  }
+
+  Widget _buildInstructionText(int sentenceIndex) {
+    final scrambleId = '${sectionId}_question_$sentenceIndex';
+    final isCompleted = SharedPreferencesService.isScrambleCompleted(
+      scrambleId,
+    );
+
+    if (isCompleted) {
+      // Show completion message
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.check_circle,
+            color: AppColors.success,
+            size: AppDimensions.iconS,
+          ),
+          SizedBox(width: AppDimensions.spaceS),
+          Text(
+            AppConstants.alreadyCorrectText,
+            style: AppTextStyles.caption.copyWith(
+              color: AppColors.success,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      );
+    } else {
+      // Show instruction to tap
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.touch_app,
+            color: AppColors.primary,
+            size: AppDimensions.iconS,
+          ),
+          SizedBox(width: AppDimensions.spaceS),
+          Text(
+            AppConstants.tapToArrangeText,
+            style: AppTextStyles.caption.copyWith(
+              color: AppColors.primary,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      );
+    }
   }
 
   String _getArabicNumber(int number) {
@@ -264,10 +352,11 @@ class ScrambleSentence {
 
 class ScrambleSectionController extends GetxController {
   final List<ScrambleSentence> originalSentences;
+  final String sectionId;
   late List<ScrambleSentence> scrambledSentences;
   List<bool?> validationResults = [];
 
-  ScrambleSectionController(this.originalSentences) {
+  ScrambleSectionController(this.originalSentences, this.sectionId) {
     resetScramble();
   }
 
@@ -327,6 +416,16 @@ class ScrambleSectionController extends GetxController {
   }
 
   Color getValidationColor(int sentenceIndex) {
+    // Check if this specific scramble question is completed
+    final scrambleId = '${sectionId}_question_$sentenceIndex';
+    final isCompleted = SharedPreferencesService.isScrambleCompleted(
+      scrambleId,
+    );
+
+    if (isCompleted) {
+      return AppColors.success;
+    }
+
     if (validationResults[sentenceIndex] == null) {
       return AppColors.primary.withValues(alpha: AppColors.alpha20);
     }

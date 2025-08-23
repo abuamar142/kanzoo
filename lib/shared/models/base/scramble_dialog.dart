@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/services/shared_preferences_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimensions.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -12,11 +13,15 @@ import 'scramble_item.dart';
 class ScrambleDialog extends StatefulWidget {
   final List<String> correctOrder;
   final int questionNumber;
+  final String scrambleId;
+  final VoidCallback? onAnswerCorrect;
 
   const ScrambleDialog({
     super.key,
     required this.correctOrder,
     required this.questionNumber,
+    required this.scrambleId,
+    this.onAnswerCorrect,
   });
 
   @override
@@ -29,7 +34,11 @@ class _ScrambleDialogState extends State<ScrambleDialog> {
   @override
   void initState() {
     super.initState();
-    controller = ScrambleDialogController(widget.correctOrder);
+    controller = ScrambleDialogController(
+      widget.correctOrder,
+      widget.scrambleId,
+      widget.onAnswerCorrect,
+    );
   }
 
   @override
@@ -345,11 +354,17 @@ class _ScrambleDialogState extends State<ScrambleDialog> {
 
 class ScrambleDialogController extends GetxController {
   final List<String> correctOrder;
+  final String scrambleId;
+  final VoidCallback? onAnswerCorrect;
   late RxList<String?> answerOrder;
   late RxList<String> availableItems;
   late RxList<String> scrambledItems;
 
-  ScrambleDialogController(this.correctOrder) {
+  ScrambleDialogController(
+    this.correctOrder,
+    this.scrambleId,
+    this.onAnswerCorrect,
+  ) {
     _initializeData();
   }
 
@@ -397,10 +412,22 @@ class ScrambleDialogController extends GetxController {
 
   void checkAnswer() {
     if (isAnswerCorrect) {
+      // Save completion status to shared preferences
+      SharedPreferencesService.setScrambleCompleted(scrambleId, true);
+
       AppSnackbar.showSuccess(
         message: AppConstants.correctArrangement,
         duration: const Duration(seconds: 2),
       );
+
+      // Close dialog after a short delay and trigger parent update
+      Future.delayed(const Duration(milliseconds: 1500), () {
+        Get.back();
+        // Notify parent that answer was correct
+        if (onAnswerCorrect != null) {
+          onAnswerCorrect!();
+        }
+      });
     } else {
       AppSnackbar.showError(
         message: AppConstants.incorrectArrangement,

@@ -9,8 +9,14 @@ class SectionTwo extends MaterialSection {
   final String title;
   final String instruction;
   final List<ScrambleSentence> scrambleSentences;
+  final String sectionId;
 
-  const SectionTwo(this.title, this.instruction, this.scrambleSentences);
+  const SectionTwo(
+    this.title,
+    this.instruction,
+    this.scrambleSentences,
+    this.sectionId,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,10 @@ class SectionTwo extends MaterialSection {
       children: [
         TitleSection(title).build(context),
         SubtitleSection(instruction).build(context),
-        ScrambleSection(sentences: scrambleSentences).build(context),
+        ScrambleSection(
+          sentences: scrambleSentences,
+          sectionId: sectionId,
+        ).build(context),
       ],
     );
   }

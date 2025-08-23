@@ -58,4 +58,29 @@ class SharedPreferencesService {
   static bool containsKey(String key) {
     return _prefs?.containsKey(key) ?? false;
   }
+
+  // Scramble completion preferences
+  static Future<void> setScrambleCompleted(
+    String scrambleId,
+    bool isCompleted,
+  ) async {
+    await _prefs?.setBool('scramble_$scrambleId', isCompleted);
+  }
+
+  static bool isScrambleCompleted(String scrambleId) {
+    return _prefs?.getBool('scramble_$scrambleId') ?? false;
+  }
+
+  static Future<void> clearScrambleProgress(String scrambleId) async {
+    await _prefs?.remove('scramble_$scrambleId');
+  }
+
+  static Future<void> clearAllScrambleProgress() async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.startsWith('scramble_')) {
+        await _prefs?.remove(key);
+      }
+    }
+  }
 }

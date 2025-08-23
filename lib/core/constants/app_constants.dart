@@ -118,4 +118,6 @@ class AppConstants {
   static const String incorrectArrangement = 'Susunan salah, coba lagi!';
   static const String checkAnswerButtonText = 'Periksa Jawaban';
   static const String resetButtonText = 'Ulangi';
+  static const String tapToArrangeText = 'Ketuk untuk menyusun kalimat';
+  static const String alreadyCorrectText = 'Sudah benar';
 }

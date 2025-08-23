@@ -67,6 +67,7 @@ SimpleMaterialContent get kitabahBab1Content => SimpleMaterialContent([
         ],
       ),
     ],
+    'bab1_kitabah_scramble',
   ),
   SectionOne('Tugas Kelompok', [
     '1) Buatlah 3 kalimat yang mengandung kata Ganti (ضَمِيْرٌ) dan kata tunjuk (اِسْمُ الإِشَارَة)!',
