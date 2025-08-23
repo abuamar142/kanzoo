@@ -7,6 +7,7 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_drawer.dart';
 import '../../../../core/widgets/breadcrumb/app_breadcrumb.dart';
 import '../../../../routes/app_routes.dart';
+import '../../../../shared/data/materials/chapter_materials_data.dart';
 import '../../../../shared/shared.dart';
 
 class MaterialKindPage extends StatelessWidget {
@@ -14,15 +15,15 @@ class MaterialKindPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get Chapter enum from arguments
     final Map<String, dynamic>? args = Get.arguments;
     final Chapter? chapter = args?['chapter'] as Chapter?;
 
-    // Fallback to Bab 1 if no arguments provided
     final Chapter activeChapter = chapter ?? Chapter.bab1;
 
-    // Get available material kinds for this chapter
-    final availableKinds = MaterialsData.getAvailableKindEnums(activeChapter);
+    final chapterContent = ChapterMaterialsData.getByChapter(activeChapter);
+    final availableKinds =
+        chapterContent?.kinds.map((kindContent) => kindContent.kind).toList() ??
+        [];
 
     return Scaffold(
       appBar: AppBar(

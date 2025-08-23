@@ -5,10 +5,11 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/dictionary/base_dictionary_item.dart';
-import '../../../../shared/data/materials/bab1/mufrodat.dart' as bab1_mufrodat;
-import '../../../../shared/data/materials/bab2/mufrodat.dart' as bab2_mufrodat;
-import '../../../../shared/data/materials/bab3/mufrodat.dart' as bab3_mufrodat;
+import '../../../../shared/data/materials/chapter_materials_data.dart';
+import '../../../../shared/enum/kind.dart';
 import '../../../../shared/models/mufrodat_models.dart';
+import '../../../../shared/models/simple_material_content.dart';
+import '../../../../shared/models/templates/section_three.dart';
 
 enum MufrodatSort { defaultOrder, indonesian, arabic }
 
@@ -23,38 +24,54 @@ class _MufrodatDialogState extends State<MufrodatDialog> {
   MufrodatSort _sort = MufrodatSort.defaultOrder;
   String _query = '';
 
-  // Gabungkan semua data mufrodat dari semua bab
+  List<CategoryMufrodat> _extractMufrodatFromContent(
+    SimpleMaterialContent content,
+    String babPrefix,
+  ) {
+    final categories = <CategoryMufrodat>[];
+
+    for (final section in content.sections) {
+      if (section is SectionThree) {
+        final items = <ItemMufrodat>[];
+
+        for (final pair in section.wordPairs) {
+          final indonesian = pair[0].trim();
+          final arabic = pair[1].trim();
+          if (indonesian.isNotEmpty && arabic.isNotEmpty) {
+            items.add(ItemMufrodat(indonesian, arabic));
+          }
+        }
+
+        if (items.isNotEmpty) {
+          categories.add(
+            CategoryMufrodat(
+              title: '$babPrefix - ${section.title}',
+              items: items,
+            ),
+          );
+        }
+      }
+    }
+
+    return categories;
+  }
+
   List<CategoryMufrodat> get _allMufrodatCategories {
     final allCategories = <CategoryMufrodat>[];
 
-    // Tambahkan data dari Bab 1 dengan prefix
-    for (final category in bab1_mufrodat.items) {
-      allCategories.add(
-        CategoryMufrodat(
-          title: 'Bab 1 - ${category.title}',
-          items: category.items,
-        ),
-      );
-    }
+    for (final chapterContent in ChapterMaterialsData.allChapters) {
+      final mufrodatKind = chapterContent.kinds
+          .where((k) => k.kind == Kind.mufrodat)
+          .firstOrNull;
 
-    // Tambahkan data dari Bab 2 dengan prefix
-    for (final category in bab2_mufrodat.items) {
-      allCategories.add(
-        CategoryMufrodat(
-          title: 'Bab 2 - ${category.title}',
-          items: category.items,
-        ),
-      );
-    }
-
-    // Tambahkan data dari Bab 3 dengan prefix
-    for (final category in bab3_mufrodat.items) {
-      allCategories.add(
-        CategoryMufrodat(
-          title: 'Bab 3 - ${category.title}',
-          items: category.items,
-        ),
-      );
+      if (mufrodatKind != null) {
+        allCategories.addAll(
+          _extractMufrodatFromContent(
+            mufrodatKind.material,
+            chapterContent.chapter.title,
+          ),
+        );
+      }
     }
 
     return allCategories;

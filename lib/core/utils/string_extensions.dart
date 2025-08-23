@@ -50,4 +50,34 @@ extension StringExtensions on String {
         .map((word) => word[0].toUpperCase() + word.substring(1).toLowerCase())
         .join(' ');
   }
+
+  // Arabic text detection methods
+
+  /// Check if the string contains Arabic characters
+  bool get isArabic {
+    return RegExp(r'[\u0600-\u06FF]').hasMatch(this);
+  }
+
+  /// Check if the string contains Arabic numbers
+  bool get hasArabicNumbers {
+    return RegExp(r'[\u0660-\u0669]').hasMatch(this);
+  }
+
+  /// Check if the string is primarily Arabic text (more than 50% Arabic characters)
+  bool get isPrimarilyArabic {
+    if (isEmpty) return false;
+
+    final arabicChars = RegExp(r'[\u0600-\u06FF]').allMatches(this).length;
+    final totalChars = replaceAll(
+      RegExp(r'\s+'),
+      '',
+    ).length; // Remove spaces for counting
+
+    return totalChars > 0 && (arabicChars / totalChars) > 0.5;
+  }
+
+  /// Check if string contains Arabic question numbers (١, ٢, ٣, etc.)
+  bool get hasArabicQuestionNumbers {
+    return RegExp(r'[١٢٣٤٥٦٧٨٩٠]').hasMatch(this);
+  }
 }

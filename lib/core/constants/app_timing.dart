@@ -19,6 +19,17 @@ class AppTiming {
   static const int searchDebounce = 500;
   static const int inputDebounce = 300;
 
+  // Snackbar durations
+  static const Duration snackbarDuration = Duration(
+    milliseconds: 3000,
+  ); // 3 seconds
+  static const Duration snackbarDurationShort = Duration(
+    milliseconds: 2000,
+  ); // 2 seconds
+  static const Duration snackbarDurationLong = Duration(
+    milliseconds: 4000,
+  ); // 4 seconds
+
   // Timeout durations
   static const int networkTimeout = 10000; // 10 seconds
   static const int cacheTimeout = 300000; // 5 minutes

@@ -112,4 +112,10 @@ class AppConstants {
   // Error Messages
   static const String generalError = 'Terjadi kesalahan, silakan coba lagi';
   static const String saveDataError = 'Gagal menyimpan data';
+
+  // Exercise and Quiz Messages
+  static const String correctArrangement = 'Susunan benar!';
+  static const String incorrectArrangement = 'Susunan salah, coba lagi!';
+  static const String checkAnswerButtonText = 'Periksa Jawaban';
+  static const String resetButtonText = 'Ulangi';
 }

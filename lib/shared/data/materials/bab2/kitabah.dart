@@ -1,97 +1,77 @@
-import '../../../models/material_content.dart';
+import '../../../models/base/scramble_section.dart';
+import '../../../models/simple_material_content.dart';
+import '../../../models/templates/section_one.dart';
+import '../../../models/templates/section_two.dart';
 
-class Bab2KitabahData {
-  static final MaterialContent content = MaterialContent(
-    topicId: 'kitabah_bab2',
-    kind: 'kitabah',
-    chapter: 2,
-    sections: [
-      MaterialSection(
-        title: 'Tugas Individu',
-        type: MaterialSectionType.four,
-        subtitle:
-            'Urutkan kalimat dimulai dari kata yang bergaris bawah (kata depan)!',
-        scrambleItems: [
-          // Underline the preposition token when present
-          MaterialScrambleItem(
-            tokens: [
-              'الْكَبِير',
-              'أَمَامَ',
-              'كَبِيرَة',
-              'هِيَ',
-              'الْمَدْرَسَة',
-              'الْمَسْجِد',
-            ],
-            underlineIndex: 4,
-          ),
-          MaterialScrambleItem(
-            tokens: [
-              'في',
-              'كَبِيرَة',
-              'عَلَى',
-              'فَصْلِى',
-              'السَبُّوْرَة',
-              'هي',
-              'الحَائِط',
-            ],
-            underlineIndex: 4,
-          ),
-          MaterialScrambleItem(
-            tokens: [
-              'المَخْزَنِ',
-              'بَيْنَ',
-              'مُنَظَّم',
-              'و',
-              'الْمُصَلَّى',
-              'فَصْلِي',
-              'هو',
-            ],
-            underlineIndex: 5,
-          ),
-          MaterialScrambleItem(
-            tokens: [
-              'هَذَا',
-              'وَرَاءَ',
-              'مَلْعَب',
-              'هُوَ',
-              'الْمَدْرَسَة',
-              'وَاسِع',
-            ],
-            underlineIndex: 0,
-          ),
-          MaterialScrambleItem(
-            tokens: [
-              'المَدْرَسَة',
-              'و',
-              'مَكْتَبَة',
-              'هِيَ',
-              'وَاسِعَة',
-              'المُصَلَّى',
-              'نَظِيفَة',
-              'وَرَاءَ',
-            ],
-            underlineIndex: 2,
-          ),
+SimpleMaterialContent get kitabahBab2Content => SimpleMaterialContent([
+  SectionTwo(
+    'Tugas Individu',
+    'Urutkan kalimat dimulai dari kata yang bergaris bawah (kata depan)!',
+    [
+      ScrambleSentence(
+        correctOrder: [
+          'أَمَامَ',
+          'الْمَدْرَسَة',
+          'الْمَسْجِد',
+          'الْكَبِير',
+          '،',
+          'هِيَ',
+          'كَبِيرَة',
         ],
       ),
-      MaterialSection(
-        title: 'Tugas Kelompok',
-        type: MaterialSectionType.five,
-        subtitle: 'Kerjakan tugas berikut:',
-        groupQuestions: [
-          MaterialGroupQuestion(
-            question:
-                'Buatlah 5 kalimat sederhana dengan kata keterangan tempat (ظَرْفُ المَكَان) berikut!',
-            subItems: ['وَرَاءَ', 'بَيْنَ', 'أَمَامَ', 'جَانِبَ', 'تَحْتَ'],
-          ),
-          MaterialGroupQuestion(
-            question: 'Kerjakan di buku tulis bersama temanmu!',
-          ),
-          MaterialGroupQuestion(
-            question: 'Kumpulkan kepada guru untuk dinilai!',
-          ),
+      ScrambleSentence(
+        correctOrder: [
+          'في',
+          'فَصْلِى',
+          'السَبُّوْرَة',
+          'كَبِيرَة',
+          '،',
+          'هي',
+          'عَلَى',
+          'الحَائِط',
+        ],
+      ),
+      ScrambleSentence(
+        correctOrder: [
+          'فَصْلِي',
+          'بَيْنَ',
+          'المَخْزَنِ',
+          'و',
+          'الْمُصَلَّى',
+          '،',
+          'هو',
+          'مُنَظَّم',
+        ],
+      ),
+      ScrambleSentence(
+        correctOrder: [
+          'وَرَاءَ',
+          'الْمَدْرَسَة',
+          'مَلْعَب',
+          '،',
+          'هَذَا',
+          'هُوَ',
+          'وَاسِع',
+        ],
+      ),
+      ScrambleSentence(
+        correctOrder: [
+          'وَرَاءَ',
+          'المُصَلَّى',
+          'مَكْتَبَة',
+          '،',
+          'هِيَ',
+          'وَاسِعَة',
+          'و',
+          'نَظِيفَة',
         ],
       ),
     ],
-  );
-}
+  ),
+  SectionOne('Tugas Kelompok', [
+    'Buatlah 5 kalimat sederhana dengan kata keterangan tempat (ظَرْفُ المَكَان) berikut!',
+    'وَرَاءَ، بَيْنَ، أَمَامَ، جَانِبَ، تَحْتَ',
+    'Kerjakan di buku tulis bersama temanmu!',
+    'Kumpulkan kepada guru untuk dinilai!',
+  ]),
+]);

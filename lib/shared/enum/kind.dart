@@ -45,6 +45,13 @@ enum Kind {
     subtitle: 'Kosakata bahasa Arab',
     icon: Icons.menu_book,
     colors: [AppColors.arabicGreen, AppColors.primaryLight],
+  ),
+  mahfudzot(
+    id: 'mahfudzot',
+    title: AppConstants.mahfudzotLabel,
+    subtitle: 'Materi hafalan Arab',
+    icon: Icons.bookmark,
+    colors: [AppColors.info, AppColors.success],
   );
 
   final String id;

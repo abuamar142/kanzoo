@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 
 enum Chapter {
+  general(
+    id: 0,
+    title: 'General',
+    gradientColors: [AppColors.primary, AppColors.primaryLight],
+  ),
   bab1(
     id: 1,
     title: 'Bab 1',

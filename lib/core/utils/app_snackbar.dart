@@ -2,121 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../constants/app_constants.dart';
+import '../constants/app_timing.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_dimensions.dart';
 
-/// Utility class for showing consistent snackbars throughout the app
 class AppSnackbar {
-  /// Private constructor to prevent instantiation
   AppSnackbar._();
 
-  /// Show success snackbar with green background
-  static void showSuccess({
-    required String message,
-    String? title,
-    Duration? duration,
-  }) {
-    Get.snackbar(
-      title ?? AppConstants.successTitle,
-      message,
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: AppColors.success,
-      colorText: AppColors.secondary,
-      margin: const EdgeInsets.all(AppDimensions.marginM),
-      borderRadius: AppDimensions.radiusM,
-      duration: duration ?? const Duration(seconds: 3),
-      icon: const Icon(
-        Icons.check_circle,
-        color: AppColors.secondary,
-        size: AppDimensions.iconM,
-      ),
-      shouldIconPulse: false,
-      animationDuration: const Duration(milliseconds: 300),
-    );
-  }
-
-  /// Show error snackbar with red background
-  static void showError({
-    required String message,
-    String? title,
-    Duration? duration,
-  }) {
-    Get.snackbar(
-      title ?? AppConstants.errorTitle,
-      message,
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: AppColors.error,
-      colorText: AppColors.secondary,
-      margin: const EdgeInsets.all(AppDimensions.marginM),
-      borderRadius: AppDimensions.radiusM,
-      duration: duration ?? const Duration(seconds: 4),
-      icon: const Icon(
-        Icons.error,
-        color: AppColors.secondary,
-        size: AppDimensions.iconM,
-      ),
-      shouldIconPulse: false,
-      animationDuration: const Duration(milliseconds: 300),
-    );
-  }
-
-  /// Show info snackbar with blue background
-  static void showInfo({
-    required String message,
-    String? title,
-    Duration? duration,
-  }) {
-    Get.snackbar(
-      title ?? AppConstants.infoTitle,
-      message,
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: AppColors.info,
-      colorText: AppColors.secondary,
-      margin: const EdgeInsets.all(AppDimensions.marginM),
-      borderRadius: AppDimensions.radiusM,
-      duration: duration ?? const Duration(seconds: 3),
-      icon: const Icon(
-        Icons.info,
-        color: AppColors.secondary,
-        size: AppDimensions.iconM,
-      ),
-      shouldIconPulse: false,
-      animationDuration: const Duration(milliseconds: 300),
-    );
-  }
-
-  /// Show warning snackbar with orange background
-  static void showWarning({
-    required String message,
-    String? title,
-    Duration? duration,
-  }) {
-    Get.snackbar(
-      title ?? AppConstants.warningTitle,
-      message,
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: AppColors.warning,
-      colorText: AppColors.secondary,
-      margin: const EdgeInsets.all(AppDimensions.marginM),
-      borderRadius: AppDimensions.radiusM,
-      duration: duration ?? const Duration(seconds: 3),
-      icon: const Icon(
-        Icons.warning,
-        color: AppColors.secondary,
-        size: AppDimensions.iconM,
-      ),
-      shouldIconPulse: false,
-      animationDuration: const Duration(milliseconds: 300),
-    );
-  }
-
-  /// Show custom snackbar with custom colors and icon
-  static void showCustom({
+  static void _showBaseSnackbar({
     required String title,
     required String message,
     required Color backgroundColor,
+    required IconData icon,
     Color? textColor,
-    IconData? icon,
     Duration? duration,
   }) {
     Get.snackbar(
@@ -125,27 +23,113 @@ class AppSnackbar {
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: backgroundColor,
       colorText: textColor ?? AppColors.secondary,
-      margin: const EdgeInsets.all(AppDimensions.marginM),
+      margin: EdgeInsets.all(AppDimensions.marginM),
       borderRadius: AppDimensions.radiusM,
-      duration: duration ?? const Duration(seconds: 3),
-      icon: icon != null
-          ? Icon(
-              icon,
-              color: textColor ?? AppColors.secondary,
-              size: AppDimensions.iconM,
-            )
-          : null,
+      duration: duration ?? AppTiming.snackbarDuration,
+      icon: Icon(
+        icon,
+        color: textColor ?? AppColors.secondary,
+        size: AppDimensions.iconM,
+      ),
       shouldIconPulse: false,
-      animationDuration: const Duration(milliseconds: 300),
+      animationDuration: Duration(milliseconds: AppTiming.fastAnimation),
     );
   }
 
-  /// Show coming soon snackbar - commonly used in the app
+  static void showSuccess({
+    required String message,
+    String? title,
+    Duration? duration,
+  }) {
+    _showBaseSnackbar(
+      title: title ?? AppConstants.successTitle,
+      message: message,
+      backgroundColor: AppColors.success,
+      icon: Icons.check_circle,
+      duration: duration,
+    );
+  }
+
+  static void showError({
+    required String message,
+    String? title,
+    Duration? duration,
+  }) {
+    _showBaseSnackbar(
+      title: title ?? AppConstants.errorTitle,
+      message: message,
+      backgroundColor: AppColors.error,
+      icon: Icons.error,
+      duration: duration ?? AppTiming.snackbarDurationLong,
+    );
+  }
+
+  static void showInfo({
+    required String message,
+    String? title,
+    Duration? duration,
+  }) {
+    _showBaseSnackbar(
+      title: title ?? AppConstants.infoTitle,
+      message: message,
+      backgroundColor: AppColors.info,
+      icon: Icons.info,
+      duration: duration,
+    );
+  }
+
+  static void showWarning({
+    required String message,
+    String? title,
+    Duration? duration,
+  }) {
+    _showBaseSnackbar(
+      title: title ?? AppConstants.warningTitle,
+      message: message,
+      backgroundColor: AppColors.warning,
+      icon: Icons.warning,
+      duration: duration,
+    );
+  }
+
+  static void showCustom({
+    required String title,
+    required String message,
+    required Color backgroundColor,
+    Color? textColor,
+    IconData? icon,
+    Duration? duration,
+  }) {
+    if (icon != null) {
+      _showBaseSnackbar(
+        title: title,
+        message: message,
+        backgroundColor: backgroundColor,
+        icon: icon,
+        textColor: textColor,
+        duration: duration,
+      );
+    } else {
+      Get.snackbar(
+        title,
+        message,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: backgroundColor,
+        colorText: textColor ?? AppColors.secondary,
+        margin: EdgeInsets.all(AppDimensions.marginM),
+        borderRadius: AppDimensions.radiusM,
+        duration: duration ?? AppTiming.snackbarDuration,
+        shouldIconPulse: false,
+        animationDuration: Duration(milliseconds: AppTiming.fastAnimation),
+      );
+    }
+  }
+
   static void showComingSoon(String featureName) {
     showInfo(
       message: '$featureName ${AppConstants.comingSoonMessage}',
       title: AppConstants.infoTitle,
-      duration: const Duration(seconds: 2),
+      duration: AppTiming.snackbarDurationShort,
     );
   }
 }
