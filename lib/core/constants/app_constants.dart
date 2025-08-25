@@ -69,6 +69,7 @@ class AppConstants {
   // Drawer Text
   static const String drawerHeaderTitle = appName;
   static const String drawerAbout = 'Tentang Aplikasi';
+  static const String drawerResetData = 'Reset Data';
   static const String aboutDialogTitle = 'Tentang';
   static const String mufrodatDialogTitle = 'Mufrodat';
   static const String drawerMufrodat = 'Mufrodat';
@@ -120,4 +121,24 @@ class AppConstants {
   static const String resetButtonText = 'Ulangi';
   static const String tapToArrangeText = 'Ketuk untuk menyusun kalimat';
   static const String alreadyCorrectText = 'Sudah benar';
+
+  // Reset Data Page
+  static const String resetDataPageTitle = 'Reset Data';
+  static const String resetDataDescription =
+      'Hapus data kemajuan belajar untuk memulai dari awal';
+  static const String resetBab1KitabahTitle = 'Reset Bab 1 - Kitabah';
+  static const String resetBab1KitabahDescription =
+      'Hapus semua kemajuan soal pada Bab 1 Kitabah';
+  static const String resetBab2KitabahTitle = 'Reset Bab 2 - Kitabah';
+  static const String resetBab2KitabahDescription =
+      'Hapus semua kemajuan soal pada Bab 2 Kitabah';
+  static const String resetAllDataTitle = 'Reset Semua Data';
+  static const String resetAllDataDescription =
+      'Hapus semua kemajuan pembelajaran';
+  static const String resetConfirmationTitle = 'Konfirmasi Reset';
+  static const String resetConfirmationMessage =
+      'Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat dibatalkan.';
+  static const String resetSuccessMessage = 'Data berhasil dihapus';
+  static const String cancelButtonText = 'Batal';
+  static const String confirmButtonText = 'Ya, Hapus';
 }

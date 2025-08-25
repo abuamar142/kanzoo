@@ -1,3 +1,6 @@
+import '../../../../core/utils/section_id_generator.dart';
+import '../../../enum/chapter.dart';
+import '../../../enum/kind.dart';
 import '../../../models/base/scramble_section.dart';
 import '../../../models/simple_material_content.dart';
 import '../../../models/templates/section_one.dart';
@@ -67,7 +70,7 @@ SimpleMaterialContent get kitabahBab1Content => SimpleMaterialContent([
         ],
       ),
     ],
-    'bab1_kitabah_scramble',
+    SectionIdGenerator.generateScrambleId(Chapter.bab1, Kind.kitabah),
   ),
   SectionOne('Tugas Kelompok', [
     '1) Buatlah 3 kalimat yang mengandung kata Ganti (ضَمِيْرٌ) dan kata tunjuk (اِسْمُ الإِشَارَة)!',

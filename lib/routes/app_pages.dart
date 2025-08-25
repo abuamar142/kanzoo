@@ -4,6 +4,7 @@ import '../features/auth/presentation/pages/login_page.dart';
 import '../features/home/presentation/pages/home_page.dart';
 import '../features/materials/presentation/pages/material_detail_page.dart';
 import '../features/materials/presentation/pages/material_kind_page.dart';
+import '../features/reset_data/presentation/pages/reset_data_page.dart';
 import '../features/splash/presentation/pages/splash_page.dart';
 import 'app_routes.dart';
 
@@ -17,5 +18,6 @@ class AppPages {
       name: AppRoutes.materialDetail,
       page: () => const MaterialDetailPage(),
     ),
+    GetPage(name: AppRoutes.resetData, page: () => const ResetDataPage()),
   ];
 }

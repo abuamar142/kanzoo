@@ -1,6 +1,9 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../shared/enum/chapter.dart';
+import '../../shared/enum/kind.dart';
 import '../constants/app_constants.dart';
+import '../utils/section_id_generator.dart';
 
 class SharedPreferencesService {
   static SharedPreferences? _prefs;
@@ -75,6 +78,15 @@ class SharedPreferencesService {
     await _prefs?.remove('scramble_$scrambleId');
   }
 
+  static Future<void> clearSectionProgress(String sectionId) async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.startsWith('scramble_$sectionId')) {
+        await _prefs?.remove(key);
+      }
+    }
+  }
+
   static Future<void> clearAllScrambleProgress() async {
     final keys = _prefs?.getKeys() ?? <String>{};
     for (String key in keys) {
@@ -82,5 +94,32 @@ class SharedPreferencesService {
         await _prefs?.remove(key);
       }
     }
+  }
+
+  // Chapter and Kind based methods
+  static Future<void> clearChapterProgress(Chapter chapter) async {
+    final sectionIds = SectionIdGenerator.getAllScrambleIdsForChapter(chapter);
+    for (String sectionId in sectionIds) {
+      await clearSectionProgress(sectionId);
+    }
+  }
+
+  static Future<void> clearKindProgress(Kind kind) async {
+    final sectionIds = SectionIdGenerator.getAllScrambleIdsForKind(kind);
+    for (String sectionId in sectionIds) {
+      await clearSectionProgress(sectionId);
+    }
+  }
+
+  static Future<void> clearChapterKindProgress(
+    Chapter chapter,
+    Kind kind,
+  ) async {
+    final sectionId = SectionIdGenerator.generateScrambleId(chapter, kind);
+    await clearSectionProgress(sectionId);
+  }
+
+  static String getScrambleId(Chapter chapter, Kind kind) {
+    return SectionIdGenerator.generateScrambleId(chapter, kind);
   }
 }

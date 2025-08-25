@@ -5,4 +5,5 @@ abstract class AppRoutes {
   static const String home = '/home';
   static const String materialKind = '/materials/kind';
   static const String materialDetail = '/materials/kind/detail';
+  static const String resetData = '/reset-data';
 }

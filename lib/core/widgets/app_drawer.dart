@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../routes/app_routes.dart';
 import '../constants/app_constants.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_dimensions.dart';
@@ -28,6 +29,15 @@ class AppDrawer extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).pop();
                       AppDialogs.showMufrodat(context);
+                    },
+                  ),
+                  BaseDrawerItem(
+                    icon: Icons.refresh,
+                    title: AppConstants.drawerResetData,
+                    subtitle: 'Hapus data kemajuan belajar',
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed(AppRoutes.resetData);
                     },
                   ),
                 ],
