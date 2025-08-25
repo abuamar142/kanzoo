@@ -1,112 +1,63 @@
-import '../../../models/material_content.dart';
+import '../../../models/base/dialog_line.dart';
+import '../../../models/simple_material_content.dart';
+import '../../../models/templates/section_dialog.dart';
+import '../../../models/templates/section_one.dart';
 
-class Bab1KalamData {
-  static final MaterialContent content = MaterialContent(
-    topicId: 'kalam_bab1',
-    kind: 'kalam',
-    chapter: 1,
-    sections: [
-      MaterialSection(
-        title: '1. Praktik Percakapan',
-        type: MaterialSectionType.dialog,
-        richSubtitle: MaterialRichText(
-          spans: [
-            MaterialRichTextSpan(
-              text:
-                  'Praktikkanlah percakapan berikut di depan kelas dengan temanmu. Kemudian Ganti nama ',
-            ),
-            MaterialRichTextSpan(
-              text: 'azam',
-              color: 'primary',
-              isHighlighted: true,
-            ),
-            MaterialRichTextSpan(text: ' dan '),
-            MaterialRichTextSpan(
-              text: 'Naufal',
-              color: 'primary',
-              isHighlighted: true,
-            ),
-            MaterialRichTextSpan(text: ' dengan namamu sendiri.'),
-          ],
-        ),
-        dialogLines: [
-          MaterialDialogLine(
-            speaker: 'عَزَّام',
-            text: 'السَّلَامُ عَلَيْكُمْ .',
-          ),
-          MaterialDialogLine(
-            speaker: 'نَوْفَل',
-            text: 'وَعَلَيْكُمُ السَّلَام .',
-          ),
-          MaterialDialogLine(speaker: 'عَزَّامِ', text: 'أَهْلًا وَسَهْلًا .'),
-          MaterialDialogLine(speaker: 'نَوْفَل', text: 'أَهْلًا بِكَ .'),
-          MaterialDialogLine(
-            speaker: 'عَزَّام',
-            text: 'اِسْمِي عَزَّام . مَا اسْمُكَ ؟',
-          ),
-          MaterialDialogLine(speaker: 'نَوْفَل', text: 'اسْمِي نَوْفَل'),
-          MaterialDialogLine(speaker: 'عَزَّامِ', text: 'كَيْفَ حَالُكَ ؟'),
-          MaterialDialogLine(
-            speaker: 'نَوْفَل',
-            text: 'بِخَيْرٍ ، الْحَمْدُ لِلَّهِ . وَأَنْتَ ؟',
-          ),
-          MaterialDialogLine(
-            speaker: 'عَزَّام',
-            text: 'بِخَيْرٍ ، الْحَمْدُ لِلَّه .',
-          ),
-          MaterialDialogLine(
-            speaker: 'نَوْفَل',
-            text: 'مِنْ أَيْنَ أَنْتَ يَا عَزَّام ؟',
-          ),
-          MaterialDialogLine(
-            speaker: 'عَزَّامِ',
-            text: 'أَنَا مِنْ جُوْبَانج جَاوَا الشَّرْقِيَّة',
-          ),
-          MaterialDialogLine(
-            speaker: 'نَوْفَل',
-            text: 'هَلْ أَنْتَ جُوْبَانجي ؟',
-          ),
-          MaterialDialogLine(
-            speaker: 'عَزَّامِ',
-            text:
-                'نَعَمْ ، أَنَا مَا جُوْبَانجي. وَمِنْ أَيْنَ أَنْتَ يَا نَوْفَل ؟',
-          ),
-          MaterialDialogLine(
-            speaker: 'نَوْفَل',
-            text:
-                'أَنَا كَادِيْرِيُّ . أَنَا مِنْ كَادِيْرِي جَاوَى الشَّرْقِيَّة.',
-          ),
-          MaterialDialogLine(
-            speaker: 'عَزَّام',
-            text:
-                'هَذَا أَخِي . اِسْمُهُ مَحْمُود . هُوَ مُدَرِّسٌ . هُوَ مِنْ سُوْرَابَايَا .',
-          ),
-          MaterialDialogLine(
-            speaker: 'نَوْفَل',
-            text: 'أَهْلًا وَسَهْلًا يَا مَحْمُود . وَمَنْ هَذَا يَا عَزَّام ؟',
-          ),
-          MaterialDialogLine(
-            speaker: 'عَزَّامِ',
-            text:
-                'هَذَا صَدِيقِى . اسْمُه أَحْمَد . هُوَ طَبِيْبٌ . هُوَ مِنْ مَالاَنج .',
-          ),
-          MaterialDialogLine(
-            speaker: 'نَوْفَل',
-            text: 'أَهْلًا وَسَهْلًا يَا أَحْمَد',
-          ),
-        ],
+SimpleMaterialContent get kalamBab1Content => SimpleMaterialContent([
+  SectionDialog(
+    '1. Praktik Percakapan',
+    'Praktikkanlah percakapan berikut di depan kelas dengan temanmu. Kemudian Ganti nama azam dan Naufal dengan namamu sendiri.',
+    [
+      DialogLine(speaker: 'عَزَّام', text: 'السَّلَامُ عَلَيْكُمْ .'),
+      DialogLine(speaker: 'نَوْفَل', text: 'وَعَلَيْكُمُ السَّلَام .'),
+      DialogLine(speaker: 'عَزَّامِ', text: 'أَهْلًا وَسَهْلًا .'),
+      DialogLine(speaker: 'نَوْفَل', text: 'أَهْلًا بِكَ .'),
+      DialogLine(speaker: 'عَزَّام', text: 'اِسْمِي عَزَّام . مَا اسْمُكَ ؟'),
+      DialogLine(speaker: 'نَوْفَل', text: 'اسْمِي نَوْفَل'),
+      DialogLine(speaker: 'عَزَّامِ', text: 'كَيْفَ حَالُكَ ؟'),
+      DialogLine(
+        speaker: 'نَوْفَل',
+        text: 'بِخَيْرٍ ، الْحَمْدُ لِلَّهِ . وَأَنْتَ ؟',
       ),
-      MaterialSection(
-        title: '2. Latihan Membuat Kalimat',
-        type: MaterialSectionType.one,
-        paragraphs: [
-          'Buatlah kalimat sederhana menggunakan kosakata di bawah ini!',
-          'أ. طَالِبٌ',
-          'ب. بَيْتٌ',
-          'ج. فَصْلٌ',
-          'د. مَدْرَسَةٌ',
-        ],
+      DialogLine(speaker: 'عَزَّام', text: 'بِخَيْرٍ ، الْحَمْدُ لِلَّه .'),
+      DialogLine(speaker: 'نَوْفَل', text: 'مِنْ أَيْنَ أَنْتَ يَا عَزَّام ؟'),
+      DialogLine(
+        speaker: 'عَزَّامِ',
+        text: 'أَنَا مِنْ جُوْبَانج جَاوَا الشَّرْقِيَّة',
       ),
+      DialogLine(speaker: 'نَوْفَل', text: 'هَلْ أَنْتَ جُوْبَانجي ؟'),
+      DialogLine(
+        speaker: 'عَزَّامِ',
+        text:
+            'نَعَمْ ، أَنَا مَا جُوْبَانجي. وَمِنْ أَيْنَ أَنْتَ يَا نَوْفَل ؟',
+      ),
+      DialogLine(
+        speaker: 'نَوْفَل',
+        text:
+            'أَنَا كَادِيْرِيُّ . أَنَا مِنْ كَادِيْرِي جَاوَى الشَّرْقِيَّة.',
+      ),
+      DialogLine(
+        speaker: 'عَزَّام',
+        text:
+            'هَذَا أَخِي . اِسْمُهُ مَحْمُود . هُوَ مُدَرِّسٌ . هُوَ مِنْ سُوْرَابَايَا .',
+      ),
+      DialogLine(
+        speaker: 'نَوْفَل',
+        text: 'أَهْلًا وَسَهْلًا يَا مَحْمُود . وَمَنْ هَذَا يَا عَزَّام ؟',
+      ),
+      DialogLine(
+        speaker: 'عَزَّامِ',
+        text:
+            'هَذَا صَدِيقِى . اسْمُه أَحْمَد . هُوَ طَبِيْبٌ . هُوَ مِنْ مَالاَنج .',
+      ),
+      DialogLine(speaker: 'نَوْفَل', text: 'أَهْلًا وَسَهْلًا يَا أَحْمَد'),
     ],
-  );
-}
+  ),
+  SectionOne('2. Latihan Membuat Kalimat', [
+    'Buatlah kalimat sederhana menggunakan kosakata di bawah ini!',
+    'أ. طَالِبٌ',
+    'ب. بَيْتٌ',
+    'ج. فَصْلٌ',
+    'د. مَدْرَسَةٌ',
+  ]),
+]);

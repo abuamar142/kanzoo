@@ -25,17 +25,17 @@ class ParagraphSection extends MaterialSection {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: AppDimensions.paddingM),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: paragraphs.map((paragraph) {
+            final isArabicText = paragraph.isPrimarilyArabic;
+
             return Padding(
               padding: const EdgeInsets.only(bottom: AppDimensions.spaceS),
               child: Text(
                 paragraph,
                 style: scaledTextStyle,
-                textAlign: paragraph.isPrimarilyArabic
-                    ? TextAlign.right
-                    : TextAlign.left,
-                textDirection: paragraph.isPrimarilyArabic
+                textAlign: isArabicText ? TextAlign.right : TextAlign.left,
+                textDirection: isArabicText
                     ? TextDirection.rtl
                     : TextDirection.ltr,
               ),

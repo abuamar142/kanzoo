@@ -67,13 +67,30 @@ extension StringExtensions on String {
   bool get isPrimarilyArabic {
     if (isEmpty) return false;
 
-    final arabicChars = RegExp(r'[\u0600-\u06FF]').allMatches(this).length;
+    // Extended Arabic range including Arabic digits, punctuation, and additional symbols
+    final arabicChars = RegExp(
+      r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]',
+    ).allMatches(this).length;
     final totalChars = replaceAll(
       RegExp(r'\s+'),
       '',
     ).length; // Remove spaces for counting
 
-    return totalChars > 0 && (arabicChars / totalChars) > 0.5;
+    // If text contains Arabic question numbers, treat as Arabic
+    if (hasArabicQuestionNumbers) {
+      return true;
+    }
+
+    // If text starts with Arabic characters, treat as Arabic
+    if (trim().isNotEmpty &&
+        RegExp(
+          r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]',
+        ).hasMatch(trim()[0])) {
+      return true;
+    }
+
+    return totalChars > 0 &&
+        (arabicChars / totalChars) > 0.3; // Lowered threshold to 30%
   }
 
   /// Check if string contains Arabic question numbers (١, ٢, ٣, etc.)
