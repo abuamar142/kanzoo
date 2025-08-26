@@ -92,6 +92,79 @@ class ResetDataPage extends StatelessWidget {
               ),
             ),
 
+            // Exercise reset section
+            Text(
+              'Reset Latihan Audio (Istima)',
+              style: AppTextStyles.h3.copyWith(color: AppColors.textPrimary),
+            ),
+            SizedBox(height: AppDimensions.spaceL),
+
+            // Reset Bab 1 Istima
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.headphones,
+                title: AppConstants.resetBab1IstimaTitle,
+                description: AppConstants.resetBab1IstimaDescription,
+                onTap: controller.resetBab1Istima,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.info,
+              ),
+            ),
+
+            // Reset Bab 2 Istima
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.headphones,
+                title: AppConstants.resetBab2IstimaTitle,
+                description: AppConstants.resetBab2IstimaDescription,
+                onTap: controller.resetBab2Istima,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.info,
+              ),
+            ),
+
+            // Reset Bab 3 Istima
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.headphones,
+                title: AppConstants.resetBab3IstimaTitle,
+                description: AppConstants.resetBab3IstimaDescription,
+                onTap: controller.resetBab3Istima,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.info,
+              ),
+            ),
+
+            // Reset All Istima
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.headphones_outlined,
+                title: AppConstants.resetAllIstimaTitle,
+                description: AppConstants.resetAllIstimaDescription,
+                onTap: controller.resetAllIstima,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.warning,
+              ),
+            ),
+
+            // Divider
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: AppDimensions.spaceL),
+              child: Divider(color: AppColors.borderLight, thickness: 1),
+            ),
+
+            // Reset all exercises
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.sports_esports,
+                title: AppConstants.resetAllExercisesTitle,
+                description: AppConstants.resetAllExercisesDescription,
+                onTap: controller.resetAllExercises,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.error,
+              ),
+            ),
+
             // Divider
             Padding(
               padding: EdgeInsets.symmetric(vertical: AppDimensions.spaceL),

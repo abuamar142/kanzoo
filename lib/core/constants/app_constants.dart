@@ -107,6 +107,16 @@ class AppConstants {
   static const String makeSentenceInstruction =
       'Buatlah kalimat sederhana menggunakan kosakata di bawah ini!';
 
+  // Istima Instructions
+  static const String listenAndMatchInstruction =
+      'Dengarkan audio berikut dan pilih jawaban yang sesuai!';
+  static const String listenAndCompleteInstruction =
+      'Dengarkan audio dan lengkapi kalimat yang kosong!';
+
+  // Answer Feedback
+  static const String correctAnswerText = 'Jawaban Benar!';
+  static const String wrongAnswerText = 'Jawaban Salah!';
+
   // Font Size
   static const String fontSizeLabel = 'Ukuran Teks';
 
@@ -132,6 +142,21 @@ class AppConstants {
   static const String resetBab2KitabahTitle = 'Reset Bab 2 - Kitabah';
   static const String resetBab2KitabahDescription =
       'Hapus semua kemajuan soal pada Bab 2 Kitabah';
+  static const String resetBab1IstimaTitle = 'Reset Bab 1 - Istima';
+  static const String resetBab1IstimaDescription =
+      'Hapus semua kemajuan latihan mendengar pada Bab 1';
+  static const String resetBab2IstimaTitle = 'Reset Bab 2 - Istima';
+  static const String resetBab2IstimaDescription =
+      'Hapus semua kemajuan latihan mendengar pada Bab 2';
+  static const String resetBab3IstimaTitle = 'Reset Bab 3 - Istima';
+  static const String resetBab3IstimaDescription =
+      'Hapus semua kemajuan latihan mendengar pada Bab 3';
+  static const String resetAllIstimaTitle = 'Reset Semua Istima';
+  static const String resetAllIstimaDescription =
+      'Hapus semua kemajuan latihan mendengar dari semua bab';
+  static const String resetAllExercisesTitle = 'Reset Semua Latihan';
+  static const String resetAllExercisesDescription =
+      'Hapus semua kemajuan latihan (Istima, Kitabah, dll)';
   static const String resetAllDataTitle = 'Reset Semua Data';
   static const String resetAllDataDescription =
       'Hapus semua kemajuan pembelajaran';

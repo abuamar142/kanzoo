@@ -84,9 +84,81 @@ class ResetDataController extends GetxController {
     await _showConfirmationDialog(() async {
       isLoading.value = true;
       try {
-        // Clear all scramble progress
+        // Clear all scramble progress and exercise progress
         await SharedPreferencesService.clearAllScrambleProgress();
+        await SharedPreferencesService.clearAllExerciseProgress();
 
+        AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
+      } catch (e) {
+        AppSnackbar.showError(message: '${AppConstants.generalError}: $e');
+      } finally {
+        isLoading.value = false;
+      }
+    });
+  }
+
+  // Exercise-specific reset methods
+  Future<void> resetBab1Istima() async {
+    await _showConfirmationDialog(() async {
+      isLoading.value = true;
+      try {
+        await SharedPreferencesService.clearChapterIstimaProgress(Chapter.bab1);
+        AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
+      } catch (e) {
+        AppSnackbar.showError(message: '${AppConstants.generalError}: $e');
+      } finally {
+        isLoading.value = false;
+      }
+    });
+  }
+
+  Future<void> resetBab2Istima() async {
+    await _showConfirmationDialog(() async {
+      isLoading.value = true;
+      try {
+        await SharedPreferencesService.clearChapterIstimaProgress(Chapter.bab2);
+        AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
+      } catch (e) {
+        AppSnackbar.showError(message: '${AppConstants.generalError}: $e');
+      } finally {
+        isLoading.value = false;
+      }
+    });
+  }
+
+  Future<void> resetBab3Istima() async {
+    await _showConfirmationDialog(() async {
+      isLoading.value = true;
+      try {
+        await SharedPreferencesService.clearChapterIstimaProgress(Chapter.bab3);
+        AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
+      } catch (e) {
+        AppSnackbar.showError(message: '${AppConstants.generalError}: $e');
+      } finally {
+        isLoading.value = false;
+      }
+    });
+  }
+
+  Future<void> resetAllIstima() async {
+    await _showConfirmationDialog(() async {
+      isLoading.value = true;
+      try {
+        await SharedPreferencesService.clearAllIstimaProgress();
+        AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
+      } catch (e) {
+        AppSnackbar.showError(message: '${AppConstants.generalError}: $e');
+      } finally {
+        isLoading.value = false;
+      }
+    });
+  }
+
+  Future<void> resetAllExercises() async {
+    await _showConfirmationDialog(() async {
+      isLoading.value = true;
+      try {
+        await SharedPreferencesService.clearAllExerciseProgress();
         AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
       } catch (e) {
         AppSnackbar.showError(message: '${AppConstants.generalError}: $e');

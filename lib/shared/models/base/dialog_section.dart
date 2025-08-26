@@ -67,7 +67,7 @@ class DialogSection extends MaterialSection {
                           AppDimensions.radiusS,
                         ),
                         border: Border.all(
-                          color: speakerColor.withOpacity(0.3),
+                          color: speakerColor.withValues(alpha: 0.3),
                           width: 1,
                         ),
                       ),
@@ -104,12 +104,12 @@ class DialogSection extends MaterialSection {
                       vertical: AppDimensions.paddingXS,
                     ),
                     decoration: BoxDecoration(
-                      color: speakerColor.withOpacity(0.1),
+                      color: speakerColor.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(
                         AppDimensions.radiusS,
                       ),
                       border: Border.all(
-                        color: speakerColor.withOpacity(0.3),
+                        color: speakerColor.withValues(alpha: 0.3),
                         width: 1,
                       ),
                     ),

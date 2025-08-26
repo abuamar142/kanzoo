@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../shared/enum/chapter.dart';
+import '../../shared/enum/exercise.dart';
 import '../../shared/enum/kind.dart';
 import '../constants/app_constants.dart';
 import '../utils/section_id_generator.dart';
@@ -121,5 +122,92 @@ class SharedPreferencesService {
 
   static String getScrambleId(Chapter chapter, Kind kind) {
     return SectionIdGenerator.generateScrambleId(chapter, kind);
+  }
+
+  // Istima exercise completion preferences
+  static Future<void> markIstimaExerciseCompleted(String exerciseId) async {
+    await _prefs?.setBool('istima_$exerciseId', true);
+  }
+
+  static bool isIstimaExerciseCompleted(String exerciseId) {
+    return _prefs?.getBool('istima_$exerciseId') ?? false;
+  }
+
+  static Future<void> clearIstimaExerciseProgress(String exerciseId) async {
+    await _prefs?.remove('istima_$exerciseId');
+  }
+
+  static Future<void> clearIstimaChapterProgress(Chapter chapter) async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.startsWith('istima_${chapter.name}_istima_')) {
+        await _prefs?.remove(key);
+      }
+    }
+  }
+
+  static Future<void> clearAllIstimaProgress() async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.startsWith('istima_')) {
+        await _prefs?.remove(key);
+      }
+    }
+  }
+
+  // Exercise-based methods using new Exercise enum
+  static Future<void> markExerciseCompleted(String exerciseId) async {
+    await _prefs?.setBool('exercise_$exerciseId', true);
+  }
+
+  static bool isExerciseCompleted(String exerciseId) {
+    return _prefs?.getBool('exercise_$exerciseId') ?? false;
+  }
+
+  static Future<void> clearExerciseProgress(String exerciseId) async {
+    await _prefs?.remove('exercise_$exerciseId');
+  }
+
+  static Future<void> clearChapterExerciseProgress(
+    Chapter chapter,
+    Exercise exercise,
+  ) async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.startsWith('exercise_${chapter.name}_istima_${exercise.id}')) {
+        await _prefs?.remove(key);
+      }
+    }
+  }
+
+  static Future<void> clearChapterIstimaProgress(Chapter chapter) async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.startsWith('exercise_${chapter.name}_istima_') ||
+          key.startsWith('istima_${chapter.name}_istima_')) {
+        await _prefs?.remove(key);
+      }
+    }
+  }
+
+  static Future<void> clearKindExerciseProgress(
+    Kind kind,
+    Exercise exercise,
+  ) async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.contains('_${kind.name}_${exercise.id}')) {
+        await _prefs?.remove(key);
+      }
+    }
+  }
+
+  static Future<void> clearAllExerciseProgress() async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.startsWith('exercise_') || key.startsWith('istima_')) {
+        await _prefs?.remove(key);
+      }
+    }
   }
 }
