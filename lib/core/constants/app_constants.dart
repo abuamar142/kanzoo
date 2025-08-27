@@ -96,6 +96,7 @@ class AppConstants {
   static const String istimaLabel = "Istima'";
   static const String kalamLabel = 'Kalam';
   static const String mufrodatLabel = 'Mufrodat';
+  static const String sumatifLabel = 'Sumatif';
 
   // Material Instructions
   static const String listenInstruction =

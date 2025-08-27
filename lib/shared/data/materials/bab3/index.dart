@@ -8,6 +8,7 @@ import 'kitabah.dart';
 import 'mufrodat.dart';
 import 'qiroah.dart';
 import 'qowaid.dart';
+import 'sumatif.dart';
 
 class Bab3MaterialsData {
   static ChapterContent get chapterContent => ChapterContent(
@@ -19,6 +20,7 @@ class Bab3MaterialsData {
       KindContent(kind: Kind.kalam, material: kalamBab3Content),
       KindContent(kind: Kind.istima, material: istimaBab3Content),
       KindContent(kind: Kind.mufrodat, material: mufrodatBab3Content),
+      KindContent(kind: Kind.sumatif, material: sumatifBab3Content),
     ],
   );
 }

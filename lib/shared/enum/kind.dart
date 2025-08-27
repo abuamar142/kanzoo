@@ -52,6 +52,13 @@ enum Kind {
     subtitle: 'Materi hafalan Arab',
     icon: Icons.bookmark,
     colors: [AppColors.info, AppColors.success],
+  ),
+  sumatif(
+    id: 'sumatif',
+    title: AppConstants.sumatifLabel,
+    subtitle: 'Penilaian akhir bab',
+    icon: Icons.assignment,
+    colors: [AppColors.error, AppColors.primaryDark],
   );
 
   final String id;
