@@ -9,6 +9,10 @@ import '../../../core/theme/app_dimensions.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/utils/app_snackbar.dart';
 import '../../../core/utils/string_extensions.dart';
+import '../../../core/widgets/materials/components/check_all_answers_button.dart';
+import '../../../core/widgets/materials/components/exercise_container.dart';
+import '../../../core/widgets/materials/components/exercise_header.dart';
+import '../../../core/widgets/materials/components/exercise_options.dart';
 import '../../../features/materials/presentation/controllers/font_size_controller.dart';
 import 'audio_exercise.dart';
 import 'material_section.dart';
@@ -91,6 +95,17 @@ class CompletionSection extends MaterialSection {
                     scaledQuestionStyle,
                   );
                 }),
+
+                // Check All Answers Button
+                const SizedBox(height: AppDimensions.spaceL),
+                CheckAllAnswersButton(
+                  onPressed: () => controller.checkAllAnswers(),
+                  isEnabled: controller.canCheckAnswers(),
+                  showResults: controller.showResults.value,
+                  correctAnswers: controller.getCorrectAnswersCount(),
+                  totalQuestions: exercises.length,
+                  textStyle: scaledTextStyle,
+                ),
               ],
             ),
           );
@@ -111,80 +126,20 @@ class CompletionSection extends MaterialSection {
 
     return Padding(
       padding: const EdgeInsets.only(bottom: AppDimensions.spaceL),
-      child: Container(
-        padding: const EdgeInsets.all(AppDimensions.paddingM),
-        decoration: BoxDecoration(
-          color: isCompleted
-              ? (isCorrect
-                    ? AppColors.success.withValues(alpha: 0.1)
-                    : AppColors.error.withValues(alpha: 0.1))
-              : AppColors.surface,
-          borderRadius: BorderRadius.circular(AppDimensions.radiusM),
-          border: Border.all(
-            color: isCompleted
-                ? (isCorrect ? AppColors.success : AppColors.error)
-                : AppColors.primary.withValues(alpha: 0.3),
-            width: 2,
-          ),
-        ),
+      child: ExerciseContainer(
+        isCompleted: isCompleted,
+        isCorrect: isCorrect,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Question number and audio button
-            Row(
-              children: [
-                // Question number
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppDimensions.paddingS,
-                    vertical: AppDimensions.paddingXS,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(AppDimensions.radiusS),
-                  ),
-                  child: Text(
-                    _getArabicNumber(index + 1),
-                    style: questionStyle.copyWith(color: AppColors.primary),
-                  ),
-                ),
-                const SizedBox(width: AppDimensions.spaceM),
-
-                // Audio play button
-                GestureDetector(
-                  onTap: () => controller.playAudio(exercise.audioFile),
-                  child: Container(
-                    padding: const EdgeInsets.all(AppDimensions.paddingS),
-                    decoration: BoxDecoration(
-                      color: AppColors.primary,
-                      borderRadius: BorderRadius.circular(
-                        AppDimensions.radiusCircular,
-                      ),
-                    ),
-                    child: Icon(
-                      controller.isPlaying.value &&
-                              controller.currentPlayingFile.value ==
-                                  exercise.audioFile
-                          ? Icons.pause
-                          : Icons.play_arrow,
-                      color: AppColors.background,
-                      size: AppDimensions.iconM,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: AppDimensions.spaceS),
-
-                // Audio file indicator
-                Expanded(
-                  child: Text(
-                    'Audio ${index + 1}',
-                    style: textStyle.copyWith(
-                      color: AppColors.textSecondary,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ),
-              ],
+            ExerciseHeader(
+              onAudioTap: () => controller.playAudio(exercise.audioFile),
+              isPlaying: controller.isPlaying.value,
+              isCurrentFile:
+                  controller.currentPlayingFile.value == exercise.audioFile,
+              exerciseIndex: index,
+              questionStyle: questionStyle,
             ),
             const SizedBox(height: AppDimensions.spaceM),
 
@@ -201,118 +156,21 @@ class CompletionSection extends MaterialSection {
             ),
             const SizedBox(height: AppDimensions.spaceM),
 
-            // Completion exercise - show correct answer or options
-            if (isCompleted) ...[
-              Container(
-                padding: const EdgeInsets.all(AppDimensions.paddingM),
-                decoration: BoxDecoration(
-                  color: isCorrect
-                      ? AppColors.success.withValues(alpha: 0.1)
-                      : AppColors.error.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(AppDimensions.radiusS),
-                  border: Border.all(
-                    color: isCorrect ? AppColors.success : AppColors.error,
-                    width: 1,
-                  ),
-                ),
-                child: Text(
-                  exercise.options[exercise.correctAnswerIndex],
-                  style: textStyle.copyWith(
-                    color: isCorrect ? AppColors.success : AppColors.error,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  textAlign:
-                      exercise
-                          .options[exercise.correctAnswerIndex]
-                          .isPrimarilyArabic
-                      ? TextAlign.right
-                      : TextAlign.left,
-                  textDirection:
-                      exercise
-                          .options[exercise.correctAnswerIndex]
-                          .isPrimarilyArabic
-                      ? TextDirection.rtl
-                      : TextDirection.ltr,
-                ),
-              ),
-            ] else ...[
-              // Show completion options as buttons
-              Wrap(
-                spacing: AppDimensions.spaceS,
-                runSpacing: AppDimensions.spaceS,
-                children: exercise.options.asMap().entries.map((optionEntry) {
-                  final optionIndex = optionEntry.key;
-                  final option = optionEntry.value;
-
-                  return GestureDetector(
-                    onTap: () => controller.selectAnswer(index, optionIndex),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppDimensions.paddingM,
-                        vertical: AppDimensions.paddingS,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(
-                          AppDimensions.radiusS,
-                        ),
-                        border: Border.all(
-                          color: AppColors.primary.withValues(alpha: 0.3),
-                          width: 1,
-                        ),
-                      ),
-                      child: Text(
-                        option,
-                        style: textStyle.copyWith(color: AppColors.primary),
-                        textAlign: option.isPrimarilyArabic
-                            ? TextAlign.right
-                            : TextAlign.left,
-                        textDirection: option.isPrimarilyArabic
-                            ? TextDirection.rtl
-                            : TextDirection.ltr,
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ],
-
-            // Result indicator
-            if (isCompleted) ...[
-              const SizedBox(height: AppDimensions.spaceM),
-              Row(
-                children: [
-                  Icon(
-                    isCorrect ? Icons.check_circle : Icons.cancel,
-                    color: isCorrect ? AppColors.success : AppColors.error,
-                    size: AppDimensions.iconS,
-                  ),
-                  const SizedBox(width: AppDimensions.spaceXS),
-                  Text(
-                    isCorrect
-                        ? AppConstants.correctAnswerText
-                        : AppConstants.wrongAnswerText,
-                    style: textStyle.copyWith(
-                      color: isCorrect ? AppColors.success : AppColors.error,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+            // Completion exercise - show all options with appropriate styling
+            ExerciseOptions(
+              options: exercise.options,
+              correctAnswerIndexes: exercise.correctAnswerIndexes,
+              selectedAnswer: controller.selectedAnswers[index],
+              isCompleted: isCompleted,
+              isCorrect: isCorrect,
+              onOptionTap: (optionIndex) =>
+                  controller.selectAnswer(index, optionIndex),
+              textStyle: textStyle,
+            ),
           ],
         ),
       ),
     );
-  }
-
-  String _getArabicNumber(int number) {
-    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-    return number
-        .toString()
-        .split('')
-        .map((digit) => arabicNumbers[int.parse(digit)])
-        .join();
   }
 }
 
@@ -323,6 +181,7 @@ class IstimaCompletionSectionController extends GetxController {
   late AudioPlayer _audioPlayer;
   RxBool isPlaying = false.obs;
   RxString currentPlayingFile = ''.obs;
+  RxBool showResults = false.obs;
 
   List<int?> selectedAnswers = [];
   List<bool> completedExercises = [];
@@ -345,12 +204,27 @@ class IstimaCompletionSectionController extends GetxController {
   }
 
   void _loadCompletedExercises() {
-    for (int i = 0; i < exercises.length; i++) {
-      final exerciseId = '${sectionId}_exercise_$i';
-      completedExercises[i] =
-          SharedPreferencesService.isIstimaExerciseCompleted(exerciseId);
-      if (completedExercises[i]) {
-        selectedAnswers[i] = exercises[i].correctAnswerIndex;
+    // Load saved answers from SharedPreferences
+    final savedAnswers = SharedPreferencesService.getCompletionExerciseResults(
+      sectionId,
+    );
+    if (savedAnswers.isNotEmpty) {
+      showResults.value = true;
+      for (int i = 0; i < exercises.length; i++) {
+        if (savedAnswers.containsKey(i)) {
+          selectedAnswers[i] = savedAnswers[i];
+          completedExercises[i] = true;
+        }
+      }
+    } else {
+      // Fallback to old method for backward compatibility
+      for (int i = 0; i < exercises.length; i++) {
+        final exerciseId = '${sectionId}_exercise_$i';
+        completedExercises[i] =
+            SharedPreferencesService.isIstimaExerciseCompleted(exerciseId);
+        if (completedExercises[i]) {
+          selectedAnswers[i] = exercises[i].correctAnswerIndexes.first;
+        }
       }
     }
     update();
@@ -379,16 +253,51 @@ class IstimaCompletionSectionController extends GetxController {
 
     selectedAnswers[exerciseIndex] = answerIndex;
 
-    // Check if answer is correct
-    final isCorrect =
-        answerIndex == exercises[exerciseIndex].correctAnswerIndex;
-    if (isCorrect) {
-      completedExercises[exerciseIndex] = true;
-      final exerciseId = '${sectionId}_exercise_$exerciseIndex';
-      SharedPreferencesService.markIstimaExerciseCompleted(exerciseId);
+    // Don't auto-complete exercises anymore - wait for "Check All Answers"
+    update();
+  }
+
+  void checkAllAnswers() {
+    showResults.value = true;
+
+    // Prepare all answers for saving
+    Map<int, int> allAnswers = {};
+
+    for (int i = 0; i < exercises.length; i++) {
+      final selectedAnswer = selectedAnswers[i];
+      if (selectedAnswer != null) {
+        allAnswers[i] = selectedAnswer;
+      }
     }
 
+    // Save all answers (both correct and incorrect) to SharedPreferences
+    SharedPreferencesService.saveCompletionExerciseResults(
+      sectionId,
+      allAnswers,
+    );
+
     update();
+  }
+
+  bool canCheckAnswers() {
+    // Enable button only if ALL exercises have an answer selected
+    for (int i = 0; i < exercises.length; i++) {
+      if (selectedAnswers[i] == null) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  int getCorrectAnswersCount() {
+    int count = 0;
+    for (int i = 0; i < exercises.length; i++) {
+      if (selectedAnswers[i] != null &&
+          exercises[i].correctAnswerIndexes.contains(selectedAnswers[i])) {
+        count++;
+      }
+    }
+    return count;
   }
 
   bool isExerciseCompleted(int index) {
@@ -397,7 +306,9 @@ class IstimaCompletionSectionController extends GetxController {
 
   bool isAnswerCorrect(int index) {
     if (selectedAnswers[index] == null) return false;
-    return selectedAnswers[index] == exercises[index].correctAnswerIndex;
+    return exercises[index].correctAnswerIndexes.contains(
+      selectedAnswers[index],
+    );
   }
 
   @override

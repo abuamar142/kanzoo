@@ -19,7 +19,7 @@ SimpleMaterialContent get istimaBab3Content => SimpleMaterialContent([
           'لَوْنُ السَاعَةِ رَمَادِيٌّ',
           'لَوْنُ الْوَرْدَةِ أَحْمَرٌ',
         ],
-        correctAnswerIndex: 0,
+        correctAnswerIndexes: [0],
       ),
       AudioExercise(
         audioFile: 'bab 3/istima_ bab 3 - A - 2.mp3',
@@ -30,27 +30,27 @@ SimpleMaterialContent get istimaBab3Content => SimpleMaterialContent([
           'لَوْنُ الْخَرِيْطَةِ أَصْفَرٌ',
           'لَوْنُ الْحَقِيْبَةِ وَرْدِيٌّ',
         ],
-        correctAnswerIndex: 1,
+        correctAnswerIndexes: [1],
       ),
       AudioExercise(
         audioFile: 'bab 3/istima_ bab 3 - A - 3.mp3',
         question:
             'فَصْلِي جَانِبَ (الْمَكْتَبَةِ - الْمَسْجِدِ - الْحَمَّامِ )',
         options: ['الْمَكْتَبَةِ', 'الْمَسْجِدِ', 'الْحَمَّامِ'],
-        correctAnswerIndex: 0,
+        correctAnswerIndexes: [0],
       ),
       AudioExercise(
         audioFile: 'bab 3/istima_ bab 3 - A - 4.mp3',
         question:
             'في فَصْلِي صُورَةُ . ( الزَّهْرَةُ - السَّبُّوْرَةُ - الْحَائِطُ )',
         options: ['الزَّهْرَةُ', 'السَّبُّوْرَةُ', 'الْحَائِطُ'],
-        correctAnswerIndex: 0,
+        correctAnswerIndexes: [0],
       ),
       AudioExercise(
         audioFile: 'bab 3/istima_ bab 3 - A - 5.mp3',
         question: 'لَوْنُ السَّبُّوْرَةِ ( أَسْوَدٌ - أَخْضَرٌ - بُنِيٌّ )',
         options: ['أَسْوَدٌ', 'أَخْضَرٌ', 'بُنِيٌّ'],
-        correctAnswerIndex: 0,
+        correctAnswerIndexes: [0],
       ),
     ],
     SectionIdGenerator.generateExerciseId(
@@ -72,7 +72,7 @@ SimpleMaterialContent get istimaBab3Content => SimpleMaterialContent([
           'الْمُدَرِّسِينَ',
           'الْكُتُبِ',
         ],
-        correctAnswerIndex: 1,
+        correctAnswerIndexes: [1],
       ),
       AudioExercise(
         audioFile: 'bab 3/istima_ bab 3 - B - 2.mp3',
@@ -84,13 +84,13 @@ SimpleMaterialContent get istimaBab3Content => SimpleMaterialContent([
           'الْبَوَّابُ',
           'الْخَادِمُ',
         ],
-        correctAnswerIndex: 0,
+        correctAnswerIndexes: [0],
       ),
       AudioExercise(
         audioFile: 'bab 3/istima_ bab 3 - B - 3.mp3',
         question: 'الْأَدَوَاتُ الْمَدْرَسِيَّةُ فِي فَصْلِيْ كَامِلَةٌ',
         options: ['نَعَمْ', 'لاَ', 'قَلِيلَةٌ', 'كَثِيرَةٌ'],
-        correctAnswerIndex: 0,
+        correctAnswerIndexes: [0],
       ),
       AudioExercise(
         audioFile: 'bab 3/istima_ bab 3 - B - 4.mp3',
@@ -101,13 +101,13 @@ SimpleMaterialContent get istimaBab3Content => SimpleMaterialContent([
           'الْكُرَّاسَةُ',
           'الْمِسْطَرَةُ',
         ],
-        correctAnswerIndex: 0,
+        correctAnswerIndexes: [0],
       ),
       AudioExercise(
         audioFile: 'bab 3/istima_ bab 3 - B - 5.mp3',
         question: 'لَا ... الْمُدَرِّسُ بِالطَّبْشُوْرَةِ',
         options: ['يَكْتُبُ', 'يَقْرَأُ', 'يَشْرَحُ', 'يُدَرِّسُ'],
-        correctAnswerIndex: 0,
+        correctAnswerIndexes: [0],
       ),
     ],
     SectionIdGenerator.generateExerciseId(

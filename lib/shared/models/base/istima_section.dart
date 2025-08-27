@@ -218,8 +218,8 @@ class IstimaSection extends MaterialSection {
                   final optionIndex = optionEntry.key;
                   final option = optionEntry.value;
                   final isSelected = selectedAnswer == optionIndex;
-                  final isCorrectOption =
-                      optionIndex == exercise.correctAnswerIndex;
+                  final isCorrectOption = exercise.correctAnswerIndexes
+                      .contains(optionIndex);
 
                   Color backgroundColor = AppColors.surface;
                   Color borderColor = AppColors.primary.withValues(alpha: 0.3);
@@ -294,20 +294,20 @@ class IstimaSection extends MaterialSection {
                     ),
                   ),
                   child: Text(
-                    exercise.options[exercise.correctAnswerIndex],
+                    exercise.options[exercise.correctAnswerIndexes.first],
                     style: textStyle.copyWith(
                       color: isCorrect ? AppColors.success : AppColors.error,
                       fontWeight: FontWeight.w600,
                     ),
                     textAlign:
                         exercise
-                            .options[exercise.correctAnswerIndex]
+                            .options[exercise.correctAnswerIndexes.first]
                             .isPrimarilyArabic
                         ? TextAlign.right
                         : TextAlign.left,
                     textDirection:
                         exercise
-                            .options[exercise.correctAnswerIndex]
+                            .options[exercise.correctAnswerIndexes.first]
                             .isPrimarilyArabic
                         ? TextDirection.rtl
                         : TextDirection.ltr,
@@ -430,7 +430,7 @@ class IstimaSectionController extends GetxController {
       completedExercises[i] =
           SharedPreferencesService.isIstimaExerciseCompleted(exerciseId);
       if (completedExercises[i]) {
-        selectedAnswers[i] = exercises[i].correctAnswerIndex;
+        selectedAnswers[i] = exercises[i].correctAnswerIndexes.first;
       }
     }
     update();
@@ -460,8 +460,9 @@ class IstimaSectionController extends GetxController {
     selectedAnswers[exerciseIndex] = answerIndex;
 
     // Check if answer is correct
-    final isCorrect =
-        answerIndex == exercises[exerciseIndex].correctAnswerIndex;
+    final isCorrect = exercises[exerciseIndex].correctAnswerIndexes.contains(
+      answerIndex,
+    );
     if (isCorrect) {
       completedExercises[exerciseIndex] = true;
       final exerciseId = '${sectionId}_exercise_$exerciseIndex';
@@ -477,7 +478,9 @@ class IstimaSectionController extends GetxController {
 
   bool isAnswerCorrect(int index) {
     if (selectedAnswers[index] == null) return false;
-    return selectedAnswers[index] == exercises[index].correctAnswerIndex;
+    return exercises[index].correctAnswerIndexes.contains(
+      selectedAnswers[index],
+    );
   }
 
   @override

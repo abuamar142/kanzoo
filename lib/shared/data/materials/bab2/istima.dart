@@ -19,7 +19,7 @@ SimpleMaterialContent get istimaBab2Content => SimpleMaterialContent([
           'القَلَمُ فِي الحَقِيْبَةِ',
           'الْمِصْبَاحُ فَوْقَ الْمَكْتَبِ',
         ],
-        correctAnswerIndex: 0,
+        correctAnswerIndexes: [0],
       ),
       AudioExercise(
         audioFile: 'bab 2/istima_ bab 2 - A - 2.mp3',
@@ -30,7 +30,7 @@ SimpleMaterialContent get istimaBab2Content => SimpleMaterialContent([
           'الْمَسْجِدُ وَرَاءَ الْفَصْلِ',
           'الْمِقْلَمَةُ فِي الرَّفٍّ',
         ],
-        correctAnswerIndex: 1,
+        correctAnswerIndexes: [1],
       ),
       AudioExercise(
         audioFile: 'bab 2/istima_ bab 2 - A - 3.mp3',
@@ -42,20 +42,20 @@ SimpleMaterialContent get istimaBab2Content => SimpleMaterialContent([
           'الْحَمَّامُ مُتَّسِخٌ',
           'الْمُدَرِّسُ مَاهِرٌ',
         ],
-        correctAnswerIndex: 2,
+        correctAnswerIndexes: [2],
       ),
       AudioExercise(
         audioFile: 'bab 2/istima_ bab 2 - A - 4.mp3',
         question: 'مَدْرَسَتِي ( وَرَاءَ - أَمَامَ - جَانِبَ ) الْمَسْجِد',
         options: ['وَرَاءَ', 'أَمَامَ', 'جَانِبَ'],
-        correctAnswerIndex: 1,
+        correctAnswerIndexes: [1],
       ),
       AudioExercise(
         audioFile: 'bab 2/istima_ bab 2 - A - 5.mp3',
         question:
             'مَدْرَسَتِي فِي شَارِعِ ( حَتَّى - سُوكَارْنُو – سُوْكَارْنِي)',
         options: ['حَتَّى', 'سُوكَارْنُو', 'سُوْكَارْنِي'],
-        correctAnswerIndex: 1,
+        correctAnswerIndexes: [1],
       ),
     ],
     SectionIdGenerator.generateExerciseId(
@@ -77,33 +77,33 @@ SimpleMaterialContent get istimaBab2Content => SimpleMaterialContent([
           'مُدَرِّسُونَ مَاهِرُونَ',
           'مَكْتَبَةٌ وَاسِعَةٌ',
         ],
-        correctAnswerIndex: 0,
+        correctAnswerIndexes: [0],
       ),
       AudioExercise(
         audioFile: 'bab 2/istima_ bab 2 - B - 2.mp3',
         question:
             '... اللُّغَةَ الْإِنْجِلِيزِيَّةَ وَاللُّغَةَ الْعَرَبِيَّةَ فِي مَعْمَلِ اللُّغَةِ.',
         options: ['نَدْرُسُ', 'نَتَعَلَّمُ', 'نُحِبُّ', 'نَفْهَمُ'],
-        correctAnswerIndex: 0,
+        correctAnswerIndexes: [0],
       ),
       AudioExercise(
         audioFile: 'bab 2/istima_ bab 2 - B - 3.mp3',
         question: 'فَصْلِيْ ... غُرْفَةِ الْمُدَرِّسِينَ.',
         options: ['أَمَامَ', 'وَرَاءَ', 'جَانِبَ', 'فَوْقَ'],
-        correctAnswerIndex: 2,
+        correctAnswerIndexes: [2],
       ),
       AudioExercise(
         audioFile: 'bab 2/istima_ bab 2 - B - 4.mp3',
         question: 'الْمَكْتَبَةُ وَقَعَتْ بَيْنَ ... وَغُرْفَةِ الصِّحَّةِ .',
         options: ['الْفَصْلِ', 'الْمُصَلَّى', 'الْحَمَّامِ', 'الْمُدِيرِ'],
-        correctAnswerIndex: 1,
+        correctAnswerIndexes: [1],
       ),
       AudioExercise(
         audioFile: 'bab 2/istima_ bab 2 - B - 5.mp3',
         question:
             'لِأَنَّ ... وَالْمَرَافِقَ الْمَدْرَسِيَّةَ فِي مَدْرَسَتِكَ كَثِيرَةٌ',
         options: ['الْفُصُولَ', 'الطُّلاَّبَ', 'الْمُدَرِّسِينَ', 'الْكُتُبَ'],
-        correctAnswerIndex: 0,
+        correctAnswerIndexes: [0],
       ),
     ],
     SectionIdGenerator.generateExerciseId(

@@ -82,7 +82,8 @@ class SharedPreferencesService {
   static Future<void> clearSectionProgress(String sectionId) async {
     final keys = _prefs?.getKeys() ?? <String>{};
     for (String key in keys) {
-      if (key.startsWith('scramble_$sectionId')) {
+      if (key.startsWith('scramble_$sectionId') ||
+          key.startsWith('section_answers_$sectionId')) {
         await _prefs?.remove(key);
       }
     }
@@ -149,7 +150,7 @@ class SharedPreferencesService {
   static Future<void> clearAllIstimaProgress() async {
     final keys = _prefs?.getKeys() ?? <String>{};
     for (String key in keys) {
-      if (key.startsWith('istima_')) {
+      if (key.startsWith('istima_') || key.startsWith('section_answers_')) {
         await _prefs?.remove(key);
       }
     }
@@ -184,7 +185,8 @@ class SharedPreferencesService {
     final keys = _prefs?.getKeys() ?? <String>{};
     for (String key in keys) {
       if (key.startsWith('exercise_${chapter.name}_istima_') ||
-          key.startsWith('istima_${chapter.name}_istima_')) {
+          key.startsWith('istima_${chapter.name}_istima_') ||
+          key.startsWith('section_answers_${chapter.name}_istima_')) {
         await _prefs?.remove(key);
       }
     }
@@ -205,9 +207,100 @@ class SharedPreferencesService {
   static Future<void> clearAllExerciseProgress() async {
     final keys = _prefs?.getKeys() ?? <String>{};
     for (String key in keys) {
-      if (key.startsWith('exercise_') || key.startsWith('istima_')) {
+      if (key.startsWith('exercise_') ||
+          key.startsWith('istima_') ||
+          key.startsWith('answers_') ||
+          key.startsWith('section_answers_')) {
         await _prefs?.remove(key);
       }
     }
+  }
+
+  // New methods for saving complete exercise results (both correct and incorrect)
+  static Future<void> saveExerciseResults(
+    String sectionId,
+    Map<int, List<int>>
+    answers, // For matching section (multiple answers per question)
+  ) async {
+    final answersData = <String, List<int>>{};
+    answers.forEach((questionIndex, selectedAnswers) {
+      answersData[questionIndex.toString()] = selectedAnswers;
+    });
+
+    // Convert to JSON-like string representation
+    final answersString = answersData.entries
+        .map((e) => '${e.key}:${e.value.join(',')}')
+        .join('|');
+
+    await _prefs?.setString('section_answers_$sectionId', answersString);
+  }
+
+  static Future<void> saveCompletionExerciseResults(
+    String sectionId,
+    Map<int, int>
+    answers, // For completion section (single answer per question)
+  ) async {
+    final answersString = answers.entries
+        .map((e) => '${e.key}:${e.value}')
+        .join('|');
+
+    await _prefs?.setString('section_answers_$sectionId', answersString);
+  }
+
+  static Map<int, List<int>> getExerciseResults(String sectionId) {
+    final answersString = _prefs?.getString('section_answers_$sectionId');
+    if (answersString == null || answersString.isEmpty) {
+      return {};
+    }
+
+    final results = <int, List<int>>{};
+    final pairs = answersString.split('|');
+
+    for (final pair in pairs) {
+      if (pair.isEmpty) continue;
+      final parts = pair.split(':');
+      if (parts.length == 2) {
+        final questionIndex = int.tryParse(parts[0]);
+        final answers = parts[1]
+            .split(',')
+            .map((e) => int.tryParse(e))
+            .where((e) => e != null)
+            .cast<int>()
+            .toList();
+        if (questionIndex != null) {
+          results[questionIndex] = answers;
+        }
+      }
+    }
+
+    return results;
+  }
+
+  static Map<int, int> getCompletionExerciseResults(String sectionId) {
+    final answersString = _prefs?.getString('section_answers_$sectionId');
+    if (answersString == null || answersString.isEmpty) {
+      return {};
+    }
+
+    final results = <int, int>{};
+    final pairs = answersString.split('|');
+
+    for (final pair in pairs) {
+      if (pair.isEmpty) continue;
+      final parts = pair.split(':');
+      if (parts.length == 2) {
+        final questionIndex = int.tryParse(parts[0]);
+        final answer = int.tryParse(parts[1]);
+        if (questionIndex != null && answer != null) {
+          results[questionIndex] = answer;
+        }
+      }
+    }
+
+    return results;
+  }
+
+  static Future<void> clearSectionAnswers(String sectionId) async {
+    await _prefs?.remove('section_answers_$sectionId');
   }
 }
