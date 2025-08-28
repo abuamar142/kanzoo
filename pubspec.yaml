@@ -30,6 +30,14 @@ flutter:
     - assets/materials/materi-istima/bab 3/
 
   fonts:
+    - family: Signika
+      fonts:
+        - asset: assets/fonts/Signika-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Signika-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Signika-Bold.ttf
+          weight: 700
     - family: Noto Naskh Arabic
       fonts:
         - asset: assets/fonts/NotoNaskhArabic-Regular.ttf
