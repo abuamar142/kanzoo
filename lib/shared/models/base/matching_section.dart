@@ -14,6 +14,7 @@ import '../../../core/widgets/materials/components/exercise_header.dart';
 import '../../../core/widgets/materials/components/exercise_options.dart';
 import '../../../core/widgets/materials/components/multiple_answer_indicator.dart';
 import '../../../features/materials/presentation/controllers/font_size_controller.dart';
+import '../../enum/chapter.dart';
 import 'audio_exercise.dart';
 import 'material_section.dart';
 
@@ -163,6 +164,8 @@ class MatchingSection extends MaterialSection {
                 : null,
           ),
 
+          SizedBox(height: AppDimensions.spaceS),
+
           // Matching options
           ExerciseOptions(
             options: exercise.options,
@@ -173,7 +176,6 @@ class MatchingSection extends MaterialSection {
             onOptionTap: (optionIndex) =>
                 controller.selectAnswer(index, optionIndex),
             textStyle: textStyle,
-            textDirection: TextDirection.rtl,
           ),
         ],
       ),
@@ -242,7 +244,9 @@ class IstimaMatchingSectionController extends GetxController {
       } else {
         currentPlayingFile.value = audioFile;
         await _audioPlayer.play(
-          AssetSource('materials/materi-istima/$audioFile'),
+          AssetSource(
+            'materials/istima/audio/${_getChapterFolder()}/$audioFile',
+          ),
         );
       }
     } catch (e) {
@@ -342,6 +346,16 @@ class IstimaMatchingSectionController extends GetxController {
   bool isAnswerCorrect(int index) {
     if (selectedAnswers[index].isEmpty) return false;
     return _isAnswerSetCorrect(index);
+  }
+
+  String _getChapterFolder() {
+    // Get chapter from route arguments
+    final Map<String, dynamic>? args = Get.arguments;
+    final Chapter? chapter = args?['chapter'] as Chapter?;
+
+    // Use the chapter enum to get the correct folder name
+    final activeChapter = chapter ?? Chapter.bab1;
+    return 'bab ${activeChapter.id}';
   }
 
   @override

@@ -13,7 +13,6 @@ class ExerciseOptions extends StatelessWidget {
   final bool isCorrect;
   final Function(int) onOptionTap;
   final TextStyle textStyle;
-  final TextDirection? textDirection;
 
   const ExerciseOptions({
     super.key,
@@ -25,7 +24,6 @@ class ExerciseOptions extends StatelessWidget {
     required this.isCorrect,
     required this.onOptionTap,
     required this.textStyle,
-    this.textDirection,
   });
 
   @override
@@ -33,7 +31,7 @@ class ExerciseOptions extends StatelessWidget {
     return Wrap(
       spacing: AppDimensions.spaceS,
       runSpacing: AppDimensions.spaceS,
-      textDirection: textDirection,
+      textDirection: TextDirection.rtl,
       children: options.asMap().entries.map((optionEntry) {
         final optionIndex = optionEntry.key;
         final option = optionEntry.value;

@@ -10,6 +10,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/utils/app_snackbar.dart';
 import '../../../core/utils/string_extensions.dart';
 import '../../../features/materials/presentation/controllers/font_size_controller.dart';
+import '../../enum/chapter.dart';
 import 'audio_exercise.dart';
 import 'material_section.dart';
 
@@ -443,7 +444,9 @@ class IstimaSectionController extends GetxController {
       } else {
         currentPlayingFile.value = audioFile;
         await _audioPlayer.play(
-          AssetSource('materials/materi-istima/$audioFile'),
+          AssetSource(
+            'materials/istima/audio/${_getChapterFolder()}/$audioFile',
+          ),
         );
       }
     } catch (e) {
@@ -481,6 +484,16 @@ class IstimaSectionController extends GetxController {
     return exercises[index].correctAnswerIndexes.contains(
       selectedAnswers[index],
     );
+  }
+
+  String _getChapterFolder() {
+    // Get chapter from route arguments
+    final Map<String, dynamic>? args = Get.arguments;
+    final Chapter? chapter = args?['chapter'] as Chapter?;
+
+    // Use the chapter enum to get the correct folder name
+    final activeChapter = chapter ?? Chapter.bab1;
+    return 'bab ${activeChapter.id}';
   }
 
   @override

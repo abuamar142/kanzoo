@@ -25,9 +25,9 @@ flutter:
   assets:
     - assets/images/logos/
     - assets/materials/qiroah/
-    - assets/materials/materi-istima/bab 1/
-    - assets/materials/materi-istima/bab 2/
-    - assets/materials/materi-istima/bab 3/
+    - assets/materials/istima/audio/bab 1/
+    - assets/materials/istima/audio/bab 2/
+    - assets/materials/istima/audio/bab 3/
 
   fonts:
     - family: Signika

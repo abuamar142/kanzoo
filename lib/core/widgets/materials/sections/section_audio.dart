@@ -98,7 +98,7 @@ class _SectionAudioState extends State<SectionAudio> {
 
       final audioFile = audioFiles[index];
       final assetPath =
-          'materials/materi-istima/${_getChapterFolder()}/$audioFile';
+          'materials/istima/audio/${_getChapterFolder()}/$audioFile';
 
       if (_currentPlayingIndex == index && _isPlaying) {
         await _audioPlayer.pause();

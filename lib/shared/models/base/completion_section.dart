@@ -14,6 +14,7 @@ import '../../../core/widgets/materials/components/exercise_container.dart';
 import '../../../core/widgets/materials/components/exercise_header.dart';
 import '../../../core/widgets/materials/components/exercise_options.dart';
 import '../../../features/materials/presentation/controllers/font_size_controller.dart';
+import '../../enum/chapter.dart';
 import 'audio_exercise.dart';
 import 'material_section.dart';
 
@@ -124,51 +125,48 @@ class CompletionSection extends MaterialSection {
     final isCompleted = controller.isExerciseCompleted(index);
     final isCorrect = controller.isAnswerCorrect(index);
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: AppDimensions.spaceL),
-      child: ExerciseContainer(
-        isCompleted: isCompleted,
-        isCorrect: isCorrect,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Question number and audio button
-            ExerciseHeader(
-              onAudioTap: () => controller.playAudio(exercise.audioFile),
-              isPlaying: controller.isPlaying.value,
-              isCurrentFile:
-                  controller.currentPlayingFile.value == exercise.audioFile,
-              exerciseIndex: index,
-              questionStyle: questionStyle,
-            ),
-            const SizedBox(height: AppDimensions.spaceM),
+    return ExerciseContainer(
+      isCompleted: isCompleted,
+      isCorrect: isCorrect,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Question number and audio button
+          ExerciseHeader(
+            onAudioTap: () => controller.playAudio(exercise.audioFile),
+            isPlaying: controller.isPlaying.value,
+            isCurrentFile:
+                controller.currentPlayingFile.value == exercise.audioFile,
+            exerciseIndex: index,
+            questionStyle: questionStyle,
+          ),
+          const SizedBox(height: AppDimensions.spaceM),
 
-            // Question text
-            Text(
-              exercise.question,
-              style: questionStyle,
-              textAlign: exercise.question.isPrimarilyArabic
-                  ? TextAlign.right
-                  : TextAlign.left,
-              textDirection: exercise.question.isPrimarilyArabic
-                  ? TextDirection.rtl
-                  : TextDirection.ltr,
-            ),
-            const SizedBox(height: AppDimensions.spaceM),
+          // Question text
+          Text(
+            exercise.question,
+            style: questionStyle,
+            textAlign: exercise.question.isPrimarilyArabic
+                ? TextAlign.right
+                : TextAlign.left,
+            textDirection: exercise.question.isPrimarilyArabic
+                ? TextDirection.rtl
+                : TextDirection.ltr,
+          ),
+          const SizedBox(height: AppDimensions.spaceM),
 
-            // Completion exercise - show all options with appropriate styling
-            ExerciseOptions(
-              options: exercise.options,
-              correctAnswerIndexes: exercise.correctAnswerIndexes,
-              selectedAnswer: controller.selectedAnswers[index],
-              isCompleted: isCompleted,
-              isCorrect: isCorrect,
-              onOptionTap: (optionIndex) =>
-                  controller.selectAnswer(index, optionIndex),
-              textStyle: textStyle,
-            ),
-          ],
-        ),
+          // Completion exercise - show all options with appropriate styling
+          ExerciseOptions(
+            options: exercise.options,
+            correctAnswerIndexes: exercise.correctAnswerIndexes,
+            selectedAnswer: controller.selectedAnswers[index],
+            isCompleted: isCompleted,
+            isCorrect: isCorrect,
+            onOptionTap: (optionIndex) =>
+                controller.selectAnswer(index, optionIndex),
+            textStyle: textStyle,
+          ),
+        ],
       ),
     );
   }
@@ -237,7 +235,9 @@ class IstimaCompletionSectionController extends GetxController {
       } else {
         currentPlayingFile.value = audioFile;
         await _audioPlayer.play(
-          AssetSource('materials/materi-istima/$audioFile'),
+          AssetSource(
+            'materials/istima/audio/${_getChapterFolder()}/$audioFile',
+          ),
         );
       }
     } catch (e) {
@@ -309,6 +309,16 @@ class IstimaCompletionSectionController extends GetxController {
     return exercises[index].correctAnswerIndexes.contains(
       selectedAnswers[index],
     );
+  }
+
+  String _getChapterFolder() {
+    // Get chapter from route arguments
+    final Map<String, dynamic>? args = Get.arguments;
+    final Chapter? chapter = args?['chapter'] as Chapter?;
+
+    // Use the chapter enum to get the correct folder name
+    final activeChapter = chapter ?? Chapter.bab1;
+    return 'bab ${activeChapter.id}';
   }
 
   @override
