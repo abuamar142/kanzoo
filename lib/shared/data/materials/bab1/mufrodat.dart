@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
+import '../../../models/base/button_section.dart';
 import '../../../models/base/material_section.dart';
 import '../../../models/simple_material_content.dart';
 import '../../../models/templates/section_three.dart';
@@ -143,6 +146,13 @@ class Bab1MufrodatData {
         ['Barat laut', 'شَمَالِ غَرْبِي'],
         ['Tenggara', 'جَنُوبِ شَرْقِيَ'],
       ],
+    ),
+    ButtonSection(
+      title: 'Uji Kemampuan Mufrodat Bab 1',
+      buttonText: 'Buka Latihan Online',
+      url: 'https://wordwall.net/resource/96422276',
+      description: 'Ayo uji kemampuan kamu dengan latihan interaktif online!',
+      icon: Icons.quiz,
     ),
   ];
 }

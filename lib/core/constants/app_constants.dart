@@ -124,6 +124,12 @@ class AppConstants {
   // Error Messages
   static const String generalError = 'Terjadi kesalahan, silakan coba lagi';
   static const String saveDataError = 'Gagal menyimpan data';
+  static const String cannotOpenLinkError = 'Tidak dapat membuka tautan';
+  static const String linkOpenError = 'Gagal membuka tautan';
+
+  // External Link Messages
+  static const String externalLinkNotice =
+      'Tautan akan dibuka di browser eksternal';
 
   // Exercise and Quiz Messages
   static const String correctArrangement = 'Susunan benar!';
