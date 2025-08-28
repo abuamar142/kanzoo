@@ -1,9 +1,16 @@
+import '../../../models/base/image_section.dart';
+import '../../../models/base/material_section.dart';
 import '../../../models/base/paragraph_section.dart';
+import '../../../models/base/title_section.dart';
 import '../../../models/simple_material_content.dart';
-import '../../../models/templates/section_one.dart';
 
-SimpleMaterialContent get qiroahBab2Content => SimpleMaterialContent([
-  SectionOne("Qiro'ah", [
+class Bab2QiroahData {
+  static final List<MaterialSection> sections = [
+    TitleSection("Qiro'ah"),
+    ImageSection(
+      imagePath: 'assets/materials/qiroah/2.png',
+      caption: 'Fasilitas sekolah dan lingkungan belajar',
+    ),
     ParagraphSection([
       'الْمَرَافِقُ الْمَدْرَسِيَّةِ',
     ], isArabicParagraph: true),
@@ -16,8 +23,7 @@ SimpleMaterialContent get qiroahBab2Content => SimpleMaterialContent([
     ParagraphSection([
       'فِي الطَّابِقِ الثَّانِي، أَنْظَرَ السَّيِّدُ مَرْوَانُ الْمَكْتَبَةَ وَالْمَعْمَلَ وَالْمَخْزَنَ. أَخْبَرَ السَّيِّدُ مَرْوَانُ أَنَّ التَّلَامِيذَ يَسُرُّوْنَ قِرَاءَةً وَاسْتِعَارَةَ كُتُبِ فِي الْمَكْتَبَةِ وَمُمَارَسَةً فِي الْمَعْمَلِ فِي هَذِهِ الْمَدْرَسَةِ ثَلَاثَةُ مَعَامِلَ ، مَعْمَلُ اللُّغَةِ ومَعْمَلُ الْحَاسُوبِ وَمَعْمَلُ الْعُلُومِ الطَّبِيعِيَّةِ. أَمَّا وَظِيفَةُ الْمَخْزَنِ لِحِفْظِ أَدَوَاتِ التَّنْظِيفِ.',
     ], isArabicParagraph: true),
-  ]),
-  SectionOne("Tugas Individu", [
+    TitleSection("Tugas Individu"),
     ParagraphSection([
       'Jawablah pertanyaan-pertanyaan di bawah ini dengan benar!',
     ]),
@@ -28,5 +34,8 @@ SimpleMaterialContent get qiroahBab2Content => SimpleMaterialContent([
       '٤. كَمْ نَوْعُ الْمَزْيَلَةِ فِي مَدْرَسَةِ عَابِدٍ؟',
       '٥. مَا الْغُرْفَةُ فِي الطَّابِقِ الثَّانِي؟',
     ], isArabicParagraph: true),
-  ]),
-]);
+  ];
+}
+
+SimpleMaterialContent get qiroahBab2Content =>
+    SimpleMaterialContent(Bab2QiroahData.sections);

@@ -24,6 +24,7 @@ class TableSection extends MaterialSection {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Container(
+            margin: EdgeInsets.only(bottom: AppDimensions.spaceM),
             decoration: BoxDecoration(
               border: Border.all(
                 color: AppColors.primary.withValues(alpha: AppColors.alpha20),

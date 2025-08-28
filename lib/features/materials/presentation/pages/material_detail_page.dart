@@ -168,12 +168,7 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
                 _buildBreadcrumbAndTitle(materialKind, chapter),
                 const SizedBox(height: AppDimensions.spaceL),
                 ...content.sections.map(
-                  (section) => Column(
-                    children: [
-                      section.build(context),
-                      const SizedBox(height: AppDimensions.spaceL),
-                    ],
-                  ),
+                  (section) => Column(children: [section.build(context)]),
                 ),
               ],
             ),

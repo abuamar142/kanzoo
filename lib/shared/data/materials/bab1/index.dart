@@ -14,12 +14,12 @@ class Bab1MaterialsData {
   static ChapterContent get chapterContent => ChapterContent(
     chapter: Chapter.bab1,
     kinds: [
-      KindContent(kind: Kind.kitabah, material: kitabahBab1Content),
+      KindContent(kind: Kind.mufrodat, material: mufrodatBab1Content),
+      KindContent(kind: Kind.istima, material: istimaBab1Content),
+      KindContent(kind: Kind.kalam, material: kalamBab1Content),
       KindContent(kind: Kind.qiroah, material: qiroahBab1Content),
       KindContent(kind: Kind.qowaid, material: qowaidBab1Content),
-      KindContent(kind: Kind.kalam, material: kalamBab1Content),
-      KindContent(kind: Kind.istima, material: istimaBab1Content),
-      KindContent(kind: Kind.mufrodat, material: mufrodatBab1Content),
+      KindContent(kind: Kind.kitabah, material: kitabahBab1Content),
       KindContent(kind: Kind.sumatif, material: sumatifBab1Content),
     ],
   );

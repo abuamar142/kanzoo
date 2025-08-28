@@ -13,16 +13,12 @@ class AppTheme {
       ),
 
       // App Bar Theme
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.secondary,
         elevation: 0,
         centerTitle: true,
-        titleTextStyle: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-          color: AppColors.secondary, // Putih untuk AppBar
-        ),
+        titleTextStyle: AppTextStyles.h3.copyWith(color: AppColors.secondary),
       ),
 
       // Card Theme
