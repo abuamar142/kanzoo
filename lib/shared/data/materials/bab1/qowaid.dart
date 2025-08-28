@@ -1,15 +1,26 @@
+import '../../../models/base/paragraph_section.dart';
 import '../../../models/base/table_section.dart';
 import '../../../models/simple_material_content.dart';
 import '../../../models/templates/section_one.dart';
 
 SimpleMaterialContent get qowaidBab1Content => SimpleMaterialContent([
   SectionOne("1. Mubtada' dan Khobar", [
-    'Dalam kitab *an-nahwu al-wadhih,* mubtada\' dan Khobar didefinisikan sebagai berikut:',
-    'الْمُبْتَدَأُ هُوَ اسْمٌ مَرْفُوعٌ فِي أَوَّلِ الْجُمْلَةِ .',
-    'Mubtada\' Adalah isim (kata benda) dibaca rafa\' yang terletak diawal kalimat. Mubtada\' berkedudukan sebagai subyek.',
-    'الْخَبَرُ هُوَ اسْمٌ مَرْفُوْعُ يُكَوِّنُ مَعَ الْمُبْتَدَأَ جُمْلَةً مُفِيدَةً.',
-    'Khabar Adalah isim (kata benda) dibaca rafa\' yang Bersama mubtada\' membentuk kalimat yang sempurna. Khabar berkedudukan sebagai predikat.',
-    'Contoh:',
+    ParagraphSection([
+      'Dalam kitab *an-nahwu al-wadhih,* mubtada\' dan Khobar didefinisikan sebagai berikut:',
+    ]),
+    ParagraphSection([
+      'الْمُبْتَدَأُ هُوَ اسْمٌ مَرْفُوعٌ فِي أَوَّلِ الْجُمْلَةِ .',
+    ], isArabicParagraph: true),
+    ParagraphSection([
+      'Mubtada\' Adalah isim (kata benda) dibaca rafa\' yang terletak diawal kalimat. Mubtada\' berkedudukan sebagai subyek.',
+    ]),
+    ParagraphSection([
+      'الْخَبَرُ هُوَ اسْمٌ مَرْفُوْعُ يُكَوِّنُ مَعَ الْمُبْتَدَأَ جُمْلَةً مُفِيدَةً.',
+    ], isArabicParagraph: true),
+    ParagraphSection([
+      'Khabar Adalah isim (kata benda) dibaca rafa\' yang Bersama mubtada\' membentuk kalimat yang sempurna. Khabar berkedudukan sebagai predikat.',
+      'Contoh:',
+    ]),
   ]),
   TableSection(
     headers: ['No', 'Kalimat', 'Arti', 'Penjelasan'],
@@ -27,10 +38,12 @@ SimpleMaterialContent get qowaidBab1Content => SimpleMaterialContent([
     ],
   ),
   SectionOne('2. Kata Ganti (ضَمِيْرٌ)', [
-    'Damir (ضمير) adalah kata ganti orang dalam bahasa Arab. Damir ada tiga jenis, yaitu munfaşil, muttaşil, dan mustatir. Pada materi ini akan dipelajari damir munfaşil. Damir munfaşil adalah kata ganti yang tidak bersambung dengan kata setelahnya (bisa berdiri sendiri). Damir munfaşil ada 14. Beberapa contoh damir munfaşil sebagai berikut:',
+    ParagraphSection([
+      'Damir (ضمير) adalah kata ganti orang dalam bahasa Arab. Damir ada tiga jenis, yaitu munfaşil, muttaşil, dan mustatir. Pada materi ini akan dipelajari damir munfaşil. Damir munfaşil adalah kata ganti yang tidak bersambung dengan kata setelahnya (bisa berdiri sendiri). Damir munfaşil ada 14. Beberapa contoh damir munfaşil sebagai berikut:',
+    ]),
   ]),
   TableSection(
-    headers: [],
+    headers: ['', '', ''],
     rows: [
       ['هُوَ', 'أَنْتَ', 'أَنَا'],
       ['Dia (lk)', 'Kamu (lk)', 'Saya'],
@@ -39,12 +52,14 @@ SimpleMaterialContent get qowaidBab1Content => SimpleMaterialContent([
     ],
   ),
   SectionOne('3. Kata Tunjuk (اسْمُ الإِشَارَة)', [
-    'Ism isyārah adalah kata yang berfungsi untuk menunjuk manusia ataupun benda dalam jarak dekat ataupun jauh. Ism isyārah dibagi menjadi tiga sebagai berikut.',
-    '1. Ism isyarah lil mufrad, yaitu kata tunjuk jauh atau dekat untuk benda tunggal. Ism isyārah tersebut Adalah هٰذَا، هَذِهِ، ذَلِكَ، تِلْكَ',
-    '2. Ism isyarah lil musanna, yaitu kata tunjuk jauh atau dekat untuk dua benda. Ism isyārah yang digunakan dalam kategori ini adalah هَذَانِ، هُتَانِ، ذَانِكَ، تَانِكَ',
-    '3. Ism isyarah lil jam\'i, yaitu kata tunjuk jauh atau dekat untuk benda jamak. Isim isyārah yang digunakan adalah هٰؤُلَاءِ (kata tunjuk jamak berjarak dekat) dan أُولٰئِكَ (kata tunjuk jamak berjarak jauh). Keduanya berlaku untuk mużakkar maupun mu\'annas.',
-    'Kata benda (ism) yang bermakna mużakkar adalah kata benda yang menunjukkan laki-laki dan tidak berakhiran huruf ta\' marbutah (ـة/ة)',
-    'Kata benda (ism) yang bermakna mu\'annas adalah kata benda yang menunjukkan perempuan dan berakhiran huruf ta\' marbutah (ـة/ة)',
+    ParagraphSection([
+      'Ism isyārah adalah kata yang berfungsi untuk menunjuk manusia ataupun benda dalam jarak dekat ataupun jauh. Ism isyārah dibagi menjadi tiga sebagai berikut.',
+      '1. Ism isyarah lil mufrad, yaitu kata tunjuk jauh atau dekat untuk benda tunggal. Ism isyārah tersebut Adalah هٰذَا، هَذِهِ، ذَلِكَ، تِلْكَ',
+      '2. Ism isyarah lil musanna, yaitu kata tunjuk jauh atau dekat untuk dua benda. Ism isyārah yang digunakan dalam kategori ini adalah هَذَانِ، هُتَانِ، ذَانِكَ، تَانِكَ',
+      '3. Ism isyarah lil jam\'i, yaitu kata tunjuk jauh atau dekat untuk benda jamak. Isim isyārah yang digunakan adalah هٰؤُلَاءِ (kata tunjuk jamak berjarak dekat) dan أُولٰئِكَ (kata tunjuk jamak berjarak jauh). Keduanya berlaku untuk mużakkar maupun mu\'annas.',
+      'Kata benda (ism) yang bermakna mużakkar adalah kata benda yang menunjukkan laki-laki dan tidak berakhiran huruf ta\' marbutah (ـة/ة)',
+      'Kata benda (ism) yang bermakna mu\'annas adalah kata benda yang menunjukkan perempuan dan berakhiran huruf ta\' marbutah (ـة/ة)',
+    ]),
   ]),
   TableSection(
     headers: ['Mudzakkar', 'Muannats', 'Keterangan'],
@@ -56,8 +71,10 @@ SimpleMaterialContent get qowaidBab1Content => SimpleMaterialContent([
     ],
   ),
   SectionOne('Contoh dalam Kalimat', [
-    'ذٰلِكَ طَالِبٌ = itu siswa',
-    'هٰذِهِ طَالِبَةٌ = ini siswi',
+    ParagraphSection([
+      'ذٰلِكَ طَالِبٌ = itu siswa',
+      'هٰذِهِ طَالِبَةٌ = ini siswi',
+    ], isArabicParagraph: true),
   ]),
   TableSection(
     headers: [

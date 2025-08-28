@@ -3,22 +3,27 @@ import 'package:flutter/material.dart';
 import '../../../core/utils/section_id_generator.dart';
 import '../../enum/chapter.dart';
 import '../../enum/kind.dart';
+import '../base/dragable_matching_section.dart';
+import '../base/matching_question_section.dart';
 import '../base/material_section.dart';
-import '../base/multiple_choice_section.dart';
 import '../base/subtitle_section.dart';
 import '../base/title_section.dart';
 
-class SectionSix extends MaterialSection {
+class SectionSeven extends MaterialSection {
   final String title;
   final String subtitle;
-  final List<MultipleChoiceQuestion> questions;
+  final String leftColumnTitle;
+  final String rightColumnTitle;
+  final List<MatchingPair> pairs;
   final Chapter chapter;
   final Kind kind;
 
-  const SectionSix({
+  const SectionSeven({
     required this.title,
     required this.subtitle,
-    required this.questions,
+    required this.leftColumnTitle,
+    required this.rightColumnTitle,
+    required this.pairs,
     required this.chapter,
     required this.kind,
   });
@@ -32,10 +37,12 @@ class SectionSix extends MaterialSection {
       children: [
         TitleSection(title).build(context),
         SubtitleSection(subtitle).build(context),
-        MultipleChoiceSection(
+        DragableMatchingSection(
           title: '',
-          questions: questions,
-          sectionId: '${sectionId}_multiple_choice',
+          leftColumnTitle: leftColumnTitle,
+          rightColumnTitle: rightColumnTitle,
+          pairs: pairs,
+          sectionId: '${sectionId}_dragable_matching',
         ).build(context),
       ],
     );

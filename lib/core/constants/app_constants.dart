@@ -161,6 +161,21 @@ class AppConstants {
   static const String resetAllDataTitle = 'Reset Semua Data';
   static const String resetAllDataDescription =
       'Hapus semua kemajuan pembelajaran';
+
+  // New reset constants for Sumatif
+  static const String resetBab1SumatifTitle = 'Reset Bab 1 - Sumatif';
+  static const String resetBab1SumatifDescription =
+      'Hapus semua kemajuan ujian sumatif pada Bab 1';
+  static const String resetBab2SumatifTitle = 'Reset Bab 2 - Sumatif';
+  static const String resetBab2SumatifDescription =
+      'Hapus semua kemajuan ujian sumatif pada Bab 2';
+  static const String resetBab3SumatifTitle = 'Reset Bab 3 - Sumatif';
+  static const String resetBab3SumatifDescription =
+      'Hapus semua kemajuan ujian sumatif pada Bab 3';
+  static const String resetAllSumatifTitle = 'Reset Semua Sumatif';
+  static const String resetAllSumatifDescription =
+      'Hapus semua kemajuan ujian sumatif dari semua bab';
+
   static const String resetConfirmationTitle = 'Konfirmasi Reset';
   static const String resetConfirmationMessage =
       'Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat dibatalkan.';

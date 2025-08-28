@@ -5,6 +5,7 @@ import '../../../models/base/material_section.dart';
 import '../../../models/base/multiple_choice_section.dart';
 import '../../../models/simple_material_content.dart';
 import '../../../models/templates/section_five.dart';
+import '../../../models/templates/section_seven.dart';
 import '../../../models/templates/section_six.dart';
 
 class Bab3SumatifData {
@@ -136,17 +137,19 @@ class Bab3SumatifData {
       ],
     ),
 
-    const MatchingQuestionSection(
+    SectionSeven(
       title: 'B. Mencocokkan (5 soal)',
+      subtitle: 'Cocokkan kolom A dengan kolom B!',
       leftColumnTitle: 'Kolom A',
       rightColumnTitle: 'Kolom B',
-      sectionId: 'bab3_sumatif_matching',
+      chapter: Chapter.bab3,
+      kind: Kind.sumatif,
       pairs: [
-        MatchingPair(left: 'كِتَابِي', right: 'Bukuku'),
-        MatchingPair(left: 'كِتَابُكَ', right: 'Bukumu (lk)'),
-        MatchingPair(left: 'كِتَابُهُ', right: 'Bukunya (lk)'),
-        MatchingPair(left: 'كِتَابُهَا', right: 'Bukunya (pr)'),
-        MatchingPair(left: 'كِتَابُنَا', right: 'Buku kita'),
+        const MatchingPair(left: 'كِتَابِي', right: 'Bukuku'),
+        const MatchingPair(left: 'كِتَابُكَ', right: 'Bukumu (lk)'),
+        const MatchingPair(left: 'كِتَابُهُ', right: 'Bukunya (lk)'),
+        const MatchingPair(left: 'كِتَابُهَا', right: 'Bukunya (pr)'),
+        const MatchingPair(left: 'كِتَابُنَا', right: 'Buku kita'),
       ],
     ),
 

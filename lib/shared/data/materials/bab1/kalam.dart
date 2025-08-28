@@ -1,4 +1,5 @@
 import '../../../models/base/dialog_line.dart';
+import '../../../models/base/paragraph_section.dart';
 import '../../../models/simple_material_content.dart';
 import '../../../models/templates/section_dialog.dart';
 import '../../../models/templates/section_one.dart';
@@ -54,10 +55,14 @@ SimpleMaterialContent get kalamBab1Content => SimpleMaterialContent([
     ],
   ),
   SectionOne('2. Latihan Membuat Kalimat', [
-    'Buatlah kalimat sederhana menggunakan kosakata di bawah ini!',
-    'أ. طَالِبٌ',
-    'ب. بَيْتٌ',
-    'ج. فَصْلٌ',
-    'د. مَدْرَسَةٌ',
+    ParagraphSection([
+      'Buatlah kalimat sederhana menggunakan kosakata di bawah ini!',
+    ]),
+    ParagraphSection([
+      'أ. طَالِبٌ',
+      'ب. بَيْتٌ',
+      'ج. فَصْلٌ',
+      'د. مَدْرَسَةٌ',
+    ], isArabicParagraph: true),
   ]),
 ]);

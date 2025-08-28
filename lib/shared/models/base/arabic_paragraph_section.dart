@@ -8,9 +8,8 @@ import 'material_section.dart';
 
 class ParagraphSection extends MaterialSection {
   final List<String> paragraphs;
-  final bool isArabicParagraph;
 
-  const ParagraphSection(this.paragraphs, {this.isArabicParagraph = false});
+  const ParagraphSection(this.paragraphs);
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +31,8 @@ class ParagraphSection extends MaterialSection {
               child: Text(
                 paragraph,
                 style: scaledTextStyle,
-                textAlign: isArabicParagraph ? TextAlign.right : TextAlign.left,
-                textDirection: isArabicParagraph
-                    ? TextDirection.rtl
-                    : TextDirection.ltr,
+                textAlign: TextAlign.right,
+                textDirection: TextDirection.rtl,
               ),
             );
           }).toList(),

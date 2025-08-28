@@ -11,6 +11,7 @@ class ResetDataItem extends StatelessWidget {
   final VoidCallback onTap;
   final bool isLoading;
   final Color? iconColor;
+  final bool enableMargin;
 
   const ResetDataItem({
     super.key,
@@ -20,12 +21,13 @@ class ResetDataItem extends StatelessWidget {
     required this.onTap,
     this.isLoading = false,
     this.iconColor,
+    this.enableMargin = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: AppDimensions.marginM),
+      margin: EdgeInsets.only(bottom: enableMargin ? AppDimensions.marginM : 0),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(AppDimensions.radiusM),

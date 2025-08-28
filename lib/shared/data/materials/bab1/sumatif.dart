@@ -5,6 +5,7 @@ import '../../../models/base/material_section.dart';
 import '../../../models/base/multiple_choice_section.dart';
 import '../../../models/simple_material_content.dart';
 import '../../../models/templates/section_five.dart';
+import '../../../models/templates/section_seven.dart';
 import '../../../models/templates/section_six.dart';
 
 class Bab1SumatifData {
@@ -76,7 +77,7 @@ class Bab1SumatifData {
           correctAnswerIndex: 2,
         ),
         const MultipleChoiceQuestion(
-          question: 'Kata tunjuk untuk **itu (pr)** adalah …',
+          question: 'Kata tunjuk untuk itu (pr) adalah …',
           options: ['هَذَا', 'هَذِهِ', 'ذَلِكَ', 'تِلْكَ'],
           correctAnswerIndex: 3,
         ),
@@ -113,18 +114,19 @@ class Bab1SumatifData {
       ],
     ),
 
-    const MatchingQuestionSection(
+    SectionSeven(
       title: 'B. Mencocokkan (5 soal)',
       subtitle: 'Cocokkan kolom A dengan kolom B!',
       leftColumnTitle: 'Kolom A',
       rightColumnTitle: 'Kolom B',
-      sectionId: 'bab1_sumatif_matching',
+      chapter: Chapter.bab1,
+      kind: Kind.sumatif,
       pairs: [
-        MatchingPair(left: 'هُوَ', right: 'Dia (lk)'),
-        MatchingPair(left: 'هَذِهِ', right: 'Ini (pr)'),
-        MatchingPair(left: 'تِلْكَ', right: 'Itu (pr)'),
-        MatchingPair(left: 'أَنْتَ', right: 'Kamu (lk)'),
-        MatchingPair(left: 'أَنَا', right: 'Saya'),
+        const MatchingPair(left: 'هُوَ', right: 'Dia (lk)'),
+        const MatchingPair(left: 'هَذِهِ', right: 'Ini (pr)'),
+        const MatchingPair(left: 'تِلْكَ', right: 'Itu (pr)'),
+        const MatchingPair(left: 'أَنْتَ', right: 'Kamu (lk)'),
+        const MatchingPair(left: 'أَنَا', right: 'Saya'),
       ],
     ),
 
@@ -135,7 +137,7 @@ class Bab1SumatifData {
         '1. Lengkapilah kalimat berikut: هَذَا … (siswa)',
         '2. Apa arti ungkapan "مَسَاءُ الْخَيْرِ" dalam bahasa Indonesia?',
         '3. Tuliskan satu contoh kalimat jumlah ismiyah menggunakan mubtada\' dan khabar!',
-        '4. Sebutkan 2 contoh **ism isyārah** untuk mufrad (tunggal)!',
+        '4. Sebutkan 2 contoh ism isyārah untuk mufrad (tunggal)!',
         '5. Jawablah dengan bahasa Arab: "مَنْ أَنْتَ؟"',
       ],
     ),

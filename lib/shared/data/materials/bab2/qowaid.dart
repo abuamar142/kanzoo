@@ -1,10 +1,13 @@
+import '../../../models/base/paragraph_section.dart';
 import '../../../models/base/table_section.dart';
 import '../../../models/simple_material_content.dart';
 import '../../../models/templates/section_one.dart';
 
 SimpleMaterialContent get qowaidBab2Content => SimpleMaterialContent([
   SectionOne("1. Na'at dan Man'ut (نَعْت وَ مَنْعُوْتٌ)", [
-    'Na\'at adalah kata yang memberikan sifat/karakteristik tertentu pada kata yang ada di depannya. Sedangkan Man\'ut Adalah benda yang diberi sifat/karakter. Contoh:',
+    ParagraphSection([
+      'Na\'at adalah kata yang memberikan sifat/karakteristik tertentu pada kata yang ada di depannya. Sedangkan Man\'ut Adalah benda yang diberi sifat/karakter. Contoh:',
+    ]),
   ]),
   TableSection(
     headers: ['No', 'Kalimat', 'Analisa kedudukan', '', ''],
@@ -29,8 +32,10 @@ SimpleMaterialContent get qowaidBab2Content => SimpleMaterialContent([
     ],
   ),
   SectionOne('Catatan Na\'at dan Man\'ut', [
-    'Catatan:',
-    '1) Dalam Bahasa Indonesia, na\'at diposisikan dengan terjemahan kata "yang...". Contoh:',
+    ParagraphSection([
+      'Catatan:',
+      '1) Dalam Bahasa Indonesia, na\'at diposisikan dengan terjemahan kata "yang...". Contoh:',
+    ]),
   ]),
   TableSection(
     headers: ['No', 'Kalimat', 'Man\'ut (yang disifati)', 'Na\'at (sifat)'],
@@ -41,7 +46,9 @@ SimpleMaterialContent get qowaidBab2Content => SimpleMaterialContent([
   ),
   SectionOne(
     '2) Na\'at harus sesuai dengan Man\'ut dari sisi Jenis kelamin (Mudzakkar & Mu\'annats)',
-    ['Daftar kata sifat:'],
+    [
+      ParagraphSection(['Daftar kata sifat:']),
+    ],
   ),
   TableSection(
     headers: ['المَعنى', 'الكَلِمَة', '', 'المَعنى', 'الكَلِمَة'],
@@ -61,7 +68,9 @@ SimpleMaterialContent get qowaidBab2Content => SimpleMaterialContent([
     ],
   ),
   SectionOne('2. Kata Keterangan Tempat (ظَرْفُ المَكَان)', [
-    'Adalah isim (kata benda) yang menunjukkan kata keterangan tempat. Beberapa ظَرْفُ المَكَان sebagai berikut:',
+    ParagraphSection([
+      'Adalah isim (kata benda) yang menunjukkan kata keterangan tempat. Beberapa ظَرْفُ المَكَان sebagai berikut:',
+    ]),
   ]),
   TableSection(
     headers: ['الكَلِمَة', 'المَعنى', 'العِبَارَة', 'التَّرْجَمَة'],
@@ -128,12 +137,14 @@ SimpleMaterialContent get qowaidBab2Content => SimpleMaterialContent([
     ],
   ),
   SectionOne('Keterangan Susunan Kalimat', [
-    'Keterangan:',
-    'a) kata yang berwarna merah berkedudukan sebagai Mubtada\' (subyek)',
-    'b) kata yang bergarisbawah berkedudukan sebagai Khabar (predikat dengan bentuk kata keterangan tempat dan sifat)',
-    'c) Khabar yang berupa kata keterangan tempat tidak harus ada kesesuaian antara Mudzakkar/ Mu\'annats',
-    'd) khabar yang berupa na\'at harus harus ada kesesuaian antara Mudzakkar/ Mu\'annats',
-    'e) Setiap kata yang berada setelah kata keterangan tempat, maka huruf akhirnya dibaca kasrah (lihat contoh di atas)',
+    ParagraphSection([
+      'Keterangan:',
+      'a) kata yang berwarna merah berkedudukan sebagai Mubtada\' (subyek)',
+      'b) kata yang bergarisbawah berkedudukan sebagai Khabar (predikat dengan bentuk kata keterangan tempat dan sifat)',
+      'c) Khabar yang berupa kata keterangan tempat tidak harus ada kesesuaian antara Mudzakkar/ Mu\'annats',
+      'd) khabar yang berupa na\'at harus harus ada kesesuaian antara Mudzakkar/ Mu\'annats',
+      'e) Setiap kata yang berada setelah kata keterangan tempat, maka huruf akhirnya dibaca kasrah (lihat contoh di atas)',
+    ]),
   ]),
   TableSection(
     headers: ['Kata tanya', 'Fungsi', 'Contoh'],
@@ -156,42 +167,53 @@ SimpleMaterialContent get qowaidBab2Content => SimpleMaterialContent([
     ],
   ),
   SectionOne('Latihan Soal', [
-    'المِثَال: تِلْكَ مَدْرَسَةٌ جَدِيدَةٌ',
-    '1. Tentukan I\'rob (kedudukan dalam kalimat) pada kalimat di bawah sesuai dengan contoh!',
-    'الجَوَابُ : تِلْكَ مَدْرَسَةٌ : الْمُبْتَدَأُ (اِسْمُ الْإِشَارَةِ) ، مَدْرَسَةٌ جَدِيدَةٌ : الْخَبَرُ (نَعْتٌ وَمَنْعُوْتٌ)',
-    '',
-    '1. هُذَا مَقْصَفٌ نَظِيفٌ',
-    'الجَوَابُ: ..........',
-    '',
-    '2. تِلْكَ حَدِيقَةٌ جَمِيلَةٌ',
-    'الجَوَابُ: ..........',
-    '',
-    '3. الْحَمَّامُ وَرَاءَ غُرْفَةِ الصِّحَّةِ',
-    'الجَوَابُ: ........',
-    '',
-    '4. الطَّالِبُ فِيْ المَسْجٍدٍ',
-    'الجَوَابُ: .........',
-    '',
-    '2. Buatlah kalimat sederhana dengan kata keterangan tempat berikut!',
-    '1. فِيْ: ...',
-    '2. وَرَاءَ: ...',
-    '3. جَانِبَ: ...',
-    '4. تَحْتَ: ...',
-    '5. هُنَا: ...',
+    ParagraphSection([
+      'المِثَال: تِلْكَ مَدْرَسَةٌ جَدِيدَةٌ',
+    ], isArabicParagraph: true),
+    ParagraphSection([
+      '1. Tentukan I\'rob (kedudukan dalam kalimat) pada kalimat di bawah sesuai dengan contoh!',
+    ]),
+    ParagraphSection([
+      'الجَوَابُ : تِلْكَ مَدْرَسَةٌ : الْمُبْتَدَأُ (اِسْمُ الْإِشَارَةِ) ، مَدْرَسَةٌ جَدِيدَةٌ : الْخَبَرُ (نَعْتٌ وَمَنْعُوْتٌ)',
+    ], isArabicParagraph: true),
+    ParagraphSection([
+      '1. هُذَا مَقْصَفٌ نَظِيفٌ',
+      'الجَوَابُ: ..........',
+      '',
+      '2. تِلْكَ حَدِيقَةٌ جَمِيلَةٌ',
+      'الجَوَابُ: ..........',
+      '',
+      '3. الْحَمَّامُ وَرَاءَ غُرْفَةِ الصِّحَّةِ',
+      'الجَوَابُ: ........',
+      '',
+      '4. الطَّالِبُ فِيْ المَسْجٍدٍ',
+      'الجَوَابُ: .........',
+    ], isArabicParagraph: true),
+    ParagraphSection([
+      '2. Buatlah kalimat sederhana dengan kata keterangan tempat berikut!',
+      '1. فِيْ: ...',
+      '2. وَرَاءَ: ...',
+      '3. جَانِبَ: ...',
+      '4. تَحْتَ: ...',
+      '5. هُنَا: ...',
+    ]),
   ]),
   SectionOne('Latihan Pilihan Ganda', [
-    '3. Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
-    '',
-    '1. ... تَذْهَبُ ؟ أَذْهَب إِلَى الْمُصَلَّى',
-    'أ. أَيْنَ    ب. مِنْ أَيْنَ    ج. إِلَى أَيْنَ',
-    '',
-    '2. ... صَفْوَانُ يَا عُبَيْدُ ؟ هُوَ مِنْ غُرْفَةِ الْمُدَرِّسِينَ',
-    'أ. أَيْنَ    ب. مِنْ أَيْنَ    ج. إِلَى أَيْنَ',
-    '',
-    '3. ... الإِدَارَةُ ؟ هِيَ بَيْنَ الْمَعْهَدِ وَالْمَسْجِدِ',
-    'أ. أَيْنَ    ب. مِنْ أَيْنَ    ج. إِلَى أَيْنَ',
-    '',
-    '4. ... المَقْصَف ؟ هُوَ أَمَامَ المَسْجِدِ',
-    'أ. أَيْنَ    ب. مِنْ أَيْنَ    ج. إِلَى أَيْنَ',
+    ParagraphSection([
+      '3. Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
+    ]),
+    ParagraphSection([
+      '1. ... تَذْهَبُ ؟ أَذْهَب إِلَى الْمُصَلَّى',
+      'أ. أَيْنَ    ب. مِنْ أَيْنَ    ج. إِلَى أَيْنَ',
+      '',
+      '2. ... صَفْوَانُ يَا عُبَيْدُ ؟ هُوَ مِنْ غُرْفَةِ الْمُدَرِّسِينَ',
+      'أ. أَيْنَ    ب. مِنْ أَيْنَ    ج. إِلَى أَيْنَ',
+      '',
+      '3. ... الإِدَارَةُ ؟ هِيَ بَيْنَ الْمَعْهَدِ وَالْمَسْجِدِ',
+      'أ. أَيْنَ    ب. مِنْ أَيْنَ    ج. إِلَى أَيْنَ',
+      '',
+      '4. ... المَقْصَف ؟ هُوَ أَمَامَ المَسْجِدِ',
+      'أ. أَيْنَ    ب. مِنْ أَيْنَ    ج. إِلَى أَيْنَ',
+    ], isArabicParagraph: true),
   ]),
 ]);

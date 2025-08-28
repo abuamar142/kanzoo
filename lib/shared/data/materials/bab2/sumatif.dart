@@ -5,6 +5,7 @@ import '../../../models/base/material_section.dart';
 import '../../../models/base/multiple_choice_section.dart';
 import '../../../models/simple_material_content.dart';
 import '../../../models/templates/section_five.dart';
+import '../../../models/templates/section_seven.dart';
 import '../../../models/templates/section_six.dart';
 
 class Bab2SumatifData {
@@ -125,17 +126,19 @@ class Bab2SumatifData {
       ],
     ),
 
-    const MatchingQuestionSection(
+    SectionSeven(
       title: 'B. Mencocokkan (5 soal)',
+      subtitle: 'Cocokkan kolom A dengan kolom B!',
       leftColumnTitle: 'Kolom A',
       rightColumnTitle: 'Kolom B',
-      sectionId: 'bab2_sumatif_matching',
+      chapter: Chapter.bab2,
+      kind: Kind.sumatif,
       pairs: [
-        MatchingPair(left: 'أَيْنَ', right: 'Di mana'),
-        MatchingPair(left: 'مِنْ أَيْنَ', right: 'Dari mana'),
-        MatchingPair(left: 'إِلَى أَيْنَ', right: 'Ke mana'),
-        MatchingPair(left: 'جَانِبَ', right: 'Di samping'),
-        MatchingPair(left: 'وَرَاءَ', right: 'Di belakang'),
+        const MatchingPair(left: 'أَيْنَ', right: 'Di mana'),
+        const MatchingPair(left: 'مِنْ أَيْنَ', right: 'Dari mana'),
+        const MatchingPair(left: 'إِلَى أَيْنَ', right: 'Ke mana'),
+        const MatchingPair(left: 'جَانِبَ', right: 'Di samping'),
+        const MatchingPair(left: 'وَرَاءَ', right: 'Di belakang'),
       ],
     ),
 

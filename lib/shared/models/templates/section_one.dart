@@ -6,7 +6,7 @@ import '../base/title_section.dart';
 
 class SectionOne extends MaterialSection {
   final String title;
-  final List<String> paragraphs;
+  final List<ParagraphSection> paragraphs;
 
   const SectionOne(this.title, this.paragraphs);
 
@@ -16,7 +16,9 @@ class SectionOne extends MaterialSection {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TitleSection(title).build(context),
-        ParagraphSection(paragraphs).build(context),
+        ...paragraphs.map((paragraph) {
+          return paragraph.build(context);
+        }),
       ],
     );
   }

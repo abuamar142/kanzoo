@@ -1,6 +1,7 @@
 import '../../../../core/utils/section_id_generator.dart';
 import '../../../enum/chapter.dart';
 import '../../../enum/kind.dart';
+import '../../../models/base/paragraph_section.dart';
 import '../../../models/base/scramble_section.dart';
 import '../../../models/simple_material_content.dart';
 import '../../../models/templates/section_one.dart';
@@ -73,9 +74,11 @@ SimpleMaterialContent get kitabahBab2Content => SimpleMaterialContent([
     SectionIdGenerator.generateScrambleId(Chapter.bab2, Kind.kitabah),
   ),
   SectionOne('Tugas Kelompok', [
-    'Buatlah 5 kalimat sederhana dengan kata keterangan tempat (ظَرْفُ المَكَان) berikut!',
-    'وَرَاءَ، بَيْنَ، أَمَامَ، جَانِبَ، تَحْتَ',
-    'Kerjakan di buku tulis bersama temanmu!',
-    'Kumpulkan kepada guru untuk dinilai!',
+    ParagraphSection([
+      'Buatlah 5 kalimat sederhana dengan kata keterangan tempat (ظَرْفُ المَكَان) berikut!',
+      'وَرَاءَ، بَيْنَ، أَمَامَ، جَانِبَ، تَحْتَ',
+      'Kerjakan di buku tulis bersama temanmu!',
+      'Kumpulkan kepada guru untuk dinilai!',
+    ]),
   ]),
 ]);

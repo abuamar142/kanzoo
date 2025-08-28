@@ -247,6 +247,30 @@ class SharedPreferencesService {
     await _prefs?.setString('section_answers_$sectionId', answersString);
   }
 
+  // New method for saving multiple choice results
+  static Future<void> saveMultipleChoiceResults(
+    String sectionId,
+    List<int?> selectedAnswers,
+  ) async {
+    final answersData = <String>[];
+    for (int i = 0; i < selectedAnswers.length; i++) {
+      answersData.add('$i:${selectedAnswers[i] ?? -1}');
+    }
+    final answersString = answersData.join('|');
+    await _prefs?.setString('section_answers_$sectionId', answersString);
+  }
+
+  // New method for saving dragable matching results
+  static Future<void> saveDragableMatchingResults(
+    String sectionId,
+    Map<String, String> matchedPairs,
+  ) async {
+    final answersData = matchedPairs.entries
+        .map((e) => '${e.key}:::${e.value}')
+        .join('|');
+    await _prefs?.setString('section_answers_$sectionId', answersData);
+  }
+
   static Map<int, List<int>> getExerciseResults(String sectionId) {
     final answersString = _prefs?.getString('section_answers_$sectionId');
     if (answersString == null || answersString.isEmpty) {
@@ -300,7 +324,80 @@ class SharedPreferencesService {
     return results;
   }
 
+  // New getter methods for the additional save functions
+  static List<int?> getMultipleChoiceResults(String sectionId) {
+    final answersString = _prefs?.getString('section_answers_$sectionId');
+    if (answersString == null || answersString.isEmpty) {
+      return [];
+    }
+
+    final results = <int, int?>{};
+    final pairs = answersString.split('|');
+    int maxIndex = 0;
+
+    for (final pair in pairs) {
+      if (pair.isEmpty) continue;
+      final parts = pair.split(':');
+      if (parts.length == 2) {
+        final questionIndex = int.tryParse(parts[0]);
+        final answer = int.tryParse(parts[1]);
+        if (questionIndex != null) {
+          results[questionIndex] = answer == -1 ? null : answer;
+          maxIndex = questionIndex > maxIndex ? questionIndex : maxIndex;
+        }
+      }
+    }
+
+    // Convert to list format
+    final resultList = <int?>[];
+    for (int i = 0; i <= maxIndex; i++) {
+      resultList.add(results[i]);
+    }
+
+    return resultList;
+  }
+
+  static Map<String, String> getDragableMatchingResults(String sectionId) {
+    final answersString = _prefs?.getString('section_answers_$sectionId');
+    if (answersString == null || answersString.isEmpty) {
+      return {};
+    }
+
+    final results = <String, String>{};
+    final pairs = answersString.split('|');
+
+    for (final pair in pairs) {
+      if (pair.isEmpty) continue;
+      final parts = pair.split(':::');
+      if (parts.length == 2) {
+        results[parts[0]] = parts[1];
+      }
+    }
+
+    return results;
+  }
+
   static Future<void> clearSectionAnswers(String sectionId) async {
     await _prefs?.remove('section_answers_$sectionId');
+  }
+
+  // New methods for clearing Sumatif progress specifically
+  static Future<void> clearChapterSumatifProgress(Chapter chapter) async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.startsWith('section_answers_${chapter.name}_sumatif_') ||
+          key.startsWith('exercise_${chapter.name}_sumatif_')) {
+        await _prefs?.remove(key);
+      }
+    }
+  }
+
+  static Future<void> clearAllSumatifProgress() async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.contains('_sumatif_') || key.contains('sumatif')) {
+        await _prefs?.remove(key);
+      }
+    }
   }
 }

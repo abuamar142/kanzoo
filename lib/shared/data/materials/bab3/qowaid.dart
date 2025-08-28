@@ -1,10 +1,13 @@
+import '../../../models/base/paragraph_section.dart';
 import '../../../models/base/table_section.dart';
 import '../../../models/simple_material_content.dart';
 import '../../../models/templates/section_one.dart';
 
 SimpleMaterialContent get qowaidBab3Content => SimpleMaterialContent([
   SectionOne('1. Kata Ganti Bersambung (ضَمِيْر مُتَّصِل)', [
-    'Dlamir Muttashil adalah kata ganti yang bersambung dengan kata sebelumnya. Setiap kali kita ingin menggunakannya, maka kita cukup menambahkan imbuhan tertentu di akhirnya dengan disesuaikan pelakunya. Adapun rinciannya adalah sebagai berikut:',
+    ParagraphSection([
+      'Dlamir Muttashil adalah kata ganti yang bersambung dengan kata sebelumnya. Setiap kali kita ingin menggunakannya, maka kita cukup menambahkan imbuhan tertentu di akhirnya dengan disesuaikan pelakunya. Adapun rinciannya adalah sebagai berikut:',
+    ]),
   ]),
   TableSection(
     headers: ['No', 'Kata Ganti', '', 'Contoh kata', '', '', 'Arti'],
@@ -149,7 +152,7 @@ SimpleMaterialContent get qowaidBab3Content => SimpleMaterialContent([
     ],
   ),
   SectionOne('Contoh Penggunaan Warna', [
-    'Perhatikan contoh-contoh berikut ini!',
+    ParagraphSection(['Perhatikan contoh-contoh berikut ini!']),
   ]),
   TableSection(
     headers: ['Pertanyaan', '', 'Alternatif jawaban', ''],
@@ -186,10 +189,11 @@ SimpleMaterialContent get qowaidBab3Content => SimpleMaterialContent([
     ],
   ),
   SectionOne('Keterangan Struktur Kalimat Warna', [
-    'Struktur susunan diatas adalah Mubtada\' Khabar',
-    '',
-    '• Alternatif 1: Kata benda terletak setelah kata لَوْنُ (lihat kata berwarna hitam)',
-    '• Alternatif 2: Kata benda didahulukan dan kata لَوْنُ disambungkan dengan dlamir muttasil yang kembali kepada kata bendanya (lihat kata berwarna merah)',
+    ParagraphSection([
+      'Struktur susunan diatas adalah Mubtada\' Khabar',
+      '• Alternatif 1: Kata benda terletak setelah kata لَوْنُ (lihat kata berwarna hitam)',
+      '• Alternatif 2: Kata benda didahulukan dan kata لَوْنُ disambungkan dengan dlamir muttasil yang kembali kepada kata bendanya (lihat kata berwarna merah)',
+    ]),
   ]),
   TableSection(
     headers: ['Jika bentuk kalimat', 'مُذَكَّرْ', '', 'مُؤَنَّث', ''],
@@ -241,40 +245,43 @@ SimpleMaterialContent get qowaidBab3Content => SimpleMaterialContent([
     ],
   ),
   SectionOne('Latihan Soal', [
-    'A. Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
-    '',
-    '1. تِلْكَ بِطَاقَةٌ...',
-    'أ. كَرِيْمِيُّ   ب. رَمَادِي   ج. بُرْتُقَالِيَّةٌ   د. بُنِيٌّ',
-    '',
-    '2. هَذَا جِدَارٌ ...',
-    'أ. بَنَفْسَجِي   ب. حَمْرَاءُ   ج. بَيْضَاءُ   د. زَرْقَاءُ',
-    '',
-    '3. هَذِهِ صُورَةٌ...',
-    'أ. أَزْرَقُ   ب. بَيْضَاءُ   ج. أَصْفَرُ   د. أَخْضَرُ',
-    '',
-    '4. لَوْنُ الْمُمْسَحَةِ ....',
-    'أ. رَمَادِيَّةٌ   ب. بُنِيَّةٌ   ج. وَرْدِيَّةٌ   د. بَنَفْسَحِيٌّ',
-    '',
-    '5. لَوْنُ الْسَاعَةِ ...',
-    'أ. حَمْرَاءُ   ب. بَيْضَاءُ   ج. أَزْرَقُ   د. بَنَفْسَجِيَّةٌ',
-    '',
-    '6. لَوْنُ الْمَوْسُوْعَةِ',
-    'أ. أَخْضَرُ   ب. صَفْرَاءُ   ج. سَوْدَاءُ   د. بُرْتُقَالِيَّةٌ',
-    '',
-    '7. ذَلِكَ الْمُعْجَمُ ... أَخْضَرُ',
-    'أ. لَوْنُهَا   ب. لَوْنُهُ   ج. لَوْنُكَ   د. لَوْنُكِ',
-    '',
-    '8. هَذِهِ الْمَقْلَمَةُ ... كريمي',
-    'أ. لَوْنُهَا   ب. لَوْنُهُ   ج. لَوْنُكَ   د. لَوْنُكِ',
-    '',
-    '9. قَلَمِي ... بُنِي',
-    'أ. لَوْنُهَا   ب. لَوْنُهُ   ج. لَوْنُكَ   د. لَوْنُكِ',
-    '',
-    '10. انْظُرْ يَا مُنْذِر ! تِلْكَ سَاعَة ...',
-    'أ. أَسْوَد   ب. كَرِيمِي   ج. حَمْرَاء   د. رَمَادِيَ',
+    ParagraphSection([
+      'A. Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
+    ]),
+    ParagraphSection([
+      '1. تِلْكَ بِطَاقَةٌ...',
+      'أ. كَرِيْمِيُّ   ب. رَمَادِي   ج. بُرْتُقَالِيَّةٌ   د. بُنِيٌّ',
+      '',
+      '2. هَذَا جِدَارٌ ...',
+      'أ. بَنَفْسَجِي   ب. حَمْرَاءُ   ج. بَيْضَاءُ   د. زَرْقَاءُ',
+      '',
+      '3. هَذِهِ صُورَةٌ...',
+      'أ. أَزْرَقُ   ب. بَيْضَاءُ   ج. أَصْفَرُ   د. أَخْضَرُ',
+      '',
+      '4. لَوْنُ الْمُمْسَحَةِ ....',
+      'أ. رَمَادِيَّةٌ   ب. بُنِيَّةٌ   ج. وَرْدِيَّةٌ   د. بَنَفْسَحِيٌّ',
+      '',
+      '5. لَوْنُ الْسَاعَةِ ...',
+      'أ. حَمْرَاءُ   ب. بَيْضَاءُ   ج. أَزْرَقُ   د. بَنَفْسَجِيَّةٌ',
+      '',
+      '6. لَوْنُ الْمَوْسُوْعَةِ',
+      'أ. أَخْضَرُ   ب. صَفْرَاءُ   ج. سَوْدَاءُ   د. بُرْتُقَالِيَّةٌ',
+      '',
+      '7. ذَلِكَ الْمُعْجَمُ ... أَخْضَرُ',
+      'أ. لَوْنُهَا   ب. لَوْنُهُ   ج. لَوْنُكَ   د. لَوْنُكِ',
+      '',
+      '8. هَذِهِ الْمَقْلَمَةُ ... كريمي',
+      'أ. لَوْنُهَا   ب. لَوْنُهُ   ج. لَوْنُكَ   د. لَوْنُكِ',
+      '',
+      '9. قَلَمِي ... بُنِي',
+      'أ. لَوْنُهَا   ب. لَوْنُهُ   ج. لَوْنُكَ   د. لَوْنُكِ',
+      '',
+      '10. انْظُرْ يَا مُنْذِر ! تِلْكَ سَاعَة ...',
+      'أ. أَسْوَد   ب. كَرِيمِي   ج. حَمْرَاء   د. رَمَادِيَ',
+    ], isArabicParagraph: true),
   ]),
   SectionOne('Latihan Mengisi Dhamir Muttashil', [
-    '2. Isilah kotak kosong dengan dhamir muttashil!',
+    ParagraphSection(['2. Isilah kotak kosong dengan dhamir muttashil!']),
   ]),
   TableSection(
     headers: [
@@ -296,6 +303,8 @@ SimpleMaterialContent get qowaidBab3Content => SimpleMaterialContent([
     ],
   ),
   SectionOne('Tugas Kelompok', [
-    'Carilah lima kosakata tentang peralatan sekolah! Buatlah kalimat sederhana berbahasa arab menggunakan peralatan sekolah tersebut! Sertakan dhamir muttashil dan macam-macam warna! Kerjakan di buku tulis Bersama temanmu! Kumpulkan pada guru untuk dinilai!',
+    ParagraphSection([
+      'Carilah lima kosakata tentang peralatan sekolah! Buatlah kalimat sederhana berbahasa arab menggunakan peralatan sekolah tersebut! Sertakan dhamir muttashil dan macam-macam warna! Kerjakan di buku tulis Bersama temanmu! Kumpulkan pada guru untuk dinilai!',
+    ]),
   ]),
 ]);

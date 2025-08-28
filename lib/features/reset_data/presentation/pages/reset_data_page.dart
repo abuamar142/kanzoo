@@ -144,6 +144,65 @@ class ResetDataPage extends StatelessWidget {
                 onTap: controller.resetAllIstima,
                 isLoading: controller.isLoading.value,
                 iconColor: AppColors.warning,
+                enableMargin: false,
+              ),
+            ),
+
+            SizedBox(height: AppDimensions.spaceXL),
+
+            // Sumatif reset section
+            Text(
+              'Reset Ujian Sumatif',
+              style: AppTextStyles.h3.copyWith(color: AppColors.textPrimary),
+            ),
+            SizedBox(height: AppDimensions.spaceL),
+
+            // Reset Bab 1 Sumatif
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.assignment,
+                title: AppConstants.resetBab1SumatifTitle,
+                description: AppConstants.resetBab1SumatifDescription,
+                onTap: controller.resetBab1Sumatif,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.error,
+              ),
+            ),
+
+            // Reset Bab 2 Sumatif
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.assignment,
+                title: AppConstants.resetBab2SumatifTitle,
+                description: AppConstants.resetBab2SumatifDescription,
+                onTap: controller.resetBab2Sumatif,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.error,
+              ),
+            ),
+
+            // Reset Bab 3 Sumatif
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.assignment,
+                title: AppConstants.resetBab3SumatifTitle,
+                description: AppConstants.resetBab3SumatifDescription,
+                onTap: controller.resetBab3Sumatif,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.error,
+              ),
+            ),
+
+            // Reset All Sumatif
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.assignment_outlined,
+                title: AppConstants.resetAllSumatifTitle,
+                description: AppConstants.resetAllSumatifDescription,
+                onTap: controller.resetAllSumatif,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.warning,
+                enableMargin: false,
               ),
             ),
 
@@ -162,6 +221,7 @@ class ResetDataPage extends StatelessWidget {
                 onTap: controller.resetAllExercises,
                 isLoading: controller.isLoading.value,
                 iconColor: AppColors.error,
+                enableMargin: false,
               ),
             ),
 
@@ -180,6 +240,7 @@ class ResetDataPage extends StatelessWidget {
                 onTap: controller.resetAllData,
                 isLoading: controller.isLoading.value,
                 iconColor: AppColors.error,
+                enableMargin: false,
               ),
             ),
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/services/shared_preferences_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimensions.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -32,6 +33,21 @@ class MultipleChoiceSectionController extends GetxController {
 
   MultipleChoiceSectionController(this.questions, this.sectionId) {
     selectedAnswers = List.filled(questions.length, null);
+    _loadSavedAnswers();
+  }
+
+  void _loadSavedAnswers() {
+    final savedAnswers = SharedPreferencesService.getMultipleChoiceResults(
+      sectionId,
+    );
+    if (savedAnswers.isNotEmpty && savedAnswers.length == questions.length) {
+      selectedAnswers = savedAnswers;
+      // Check if all answers were saved (meaning answers were checked before)
+      if (selectedAnswers.every((answer) => answer != null)) {
+        showResults.value = true;
+      }
+      update();
+    }
   }
 
   void selectAnswer(int questionIndex, int optionIndex) {
@@ -41,14 +57,21 @@ class MultipleChoiceSectionController extends GetxController {
     }
   }
 
-  void checkAllAnswers() {
+  void checkAllAnswers() async {
     showResults.value = true;
+    // Save progress to SharedPreferences
+    await SharedPreferencesService.saveMultipleChoiceResults(
+      sectionId,
+      selectedAnswers,
+    );
     update();
   }
 
-  void resetAnswers() {
+  void resetAnswers() async {
     selectedAnswers = List.filled(questions.length, null);
     showResults.value = false;
+    // Clear saved progress
+    await SharedPreferencesService.clearSectionAnswers(sectionId);
     update();
   }
 
@@ -122,20 +145,22 @@ class MultipleChoiceSection extends MaterialSection {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Question text
-                        Text(
-                          '${questionIndex + 1}. ${question.question}',
-                          style: AppTextStyles.bodyMedium.copyWith(
-                            fontSize:
-                                AppTextStyles.bodyMedium.fontSize! *
-                                fontController.fontScale,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          textAlign: question.question.isPrimarilyArabic
-                              ? TextAlign.right
-                              : TextAlign.left,
-                          textDirection: question.question.isPrimarilyArabic
-                              ? TextDirection.rtl
-                              : TextDirection.ltr,
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                '${questionIndex + 1}. ${question.question}',
+                                style: AppTextStyles.bodyMedium.copyWith(
+                                  fontSize:
+                                      AppTextStyles.bodyMedium.fontSize! *
+                                      fontController.fontScale,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                textAlign: TextAlign.right,
+                                textDirection: TextDirection.rtl,
+                              ),
+                            ),
+                          ],
                         ),
 
                         SizedBox(height: AppDimensions.spaceM),
