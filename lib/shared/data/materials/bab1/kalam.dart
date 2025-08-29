@@ -1,14 +1,23 @@
 import '../../../models/base/dialog_line.dart';
+import '../../../models/base/dialog_section.dart';
+import '../../../models/base/image_section.dart';
+import '../../../models/base/material_section.dart';
 import '../../../models/base/paragraph_section.dart';
+import '../../../models/base/subtitle_section.dart';
+import '../../../models/base/title_section.dart';
 import '../../../models/simple_material_content.dart';
-import '../../../models/templates/section_dialog.dart';
-import '../../../models/templates/section_one.dart';
 
-SimpleMaterialContent get kalamBab1Content => SimpleMaterialContent([
-  SectionDialog(
-    '1. Praktik Percakapan',
-    'Praktikkanlah percakapan berikut di depan kelas dengan temanmu. Kemudian Ganti nama azam dan Naufal dengan namamu sendiri.',
-    [
+class Bab1KalamData {
+  static final List<MaterialSection> sections = [
+    TitleSection('1. Praktik Percakapan'),
+    SubtitleSection(
+      'Praktikkanlah percakapan berikut di depan kelas dengan temanmu. Kemudian Ganti nama azam dan Naufal dengan namamu sendiri.',
+    ),
+    ImageSection(
+      imagePath: 'assets/materials/kalam/1.png',
+      caption: 'Gambar percakapan perkenalan diri',
+    ),
+    DialogSection([
       DialogLine(speaker: 'عَزَّام', text: 'السَّلَامُ عَلَيْكُمْ .'),
       DialogLine(speaker: 'نَوْفَل', text: 'وَعَلَيْكُمُ السَّلَام .'),
       DialogLine(speaker: 'عَزَّامِ', text: 'أَهْلًا وَسَهْلًا .'),
@@ -29,8 +38,7 @@ SimpleMaterialContent get kalamBab1Content => SimpleMaterialContent([
       DialogLine(speaker: 'نَوْفَل', text: 'هَلْ أَنْتَ جُوْبَانجي ؟'),
       DialogLine(
         speaker: 'عَزَّامِ',
-        text:
-            'نَعَمْ ، أَنَا مَا جُوْبَانجي. وَمِنْ أَيْنَ أَنْتَ يَا نَوْفَل ؟',
+        text: 'نَعَمْ ، أَنَا جُوْبَانجي. وَمِنْ أَيْنَ أَنْتَ يَا نَوْفَل ؟',
       ),
       DialogLine(
         speaker: 'نَوْفَل',
@@ -52,17 +60,19 @@ SimpleMaterialContent get kalamBab1Content => SimpleMaterialContent([
             'هَذَا صَدِيقِى . اسْمُه أَحْمَد . هُوَ طَبِيْبٌ . هُوَ مِنْ مَالاَنج .',
       ),
       DialogLine(speaker: 'نَوْفَل', text: 'أَهْلًا وَسَهْلًا يَا أَحْمَد'),
-    ],
-  ),
-  SectionOne('2. Latihan Membuat Kalimat', [
-    ParagraphSection([
-      'Buatlah kalimat sederhana menggunakan kosakata di bawah ini!',
     ]),
+    TitleSection('2. Latihan Membuat Kalimat'),
+    SubtitleSection(
+      'Buatlah kalimat sederhana menggunakan kosakata di bawah ini!',
+    ),
     ParagraphSection([
       'أ. طَالِبٌ',
       'ب. بَيْتٌ',
       'ج. فَصْلٌ',
       'د. مَدْرَسَةٌ',
     ], isArabicParagraph: true),
-  ]),
-]);
+  ];
+}
+
+SimpleMaterialContent get kalamBab1Content =>
+    SimpleMaterialContent(Bab1KalamData.sections);

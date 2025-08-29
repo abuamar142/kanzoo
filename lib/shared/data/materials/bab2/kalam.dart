@@ -1,12 +1,22 @@
 import '../../../models/base/dialog_line.dart';
+import '../../../models/base/dialog_section.dart';
+import '../../../models/base/image_section.dart';
+import '../../../models/base/material_section.dart';
+import '../../../models/base/subtitle_section.dart';
+import '../../../models/base/title_section.dart';
 import '../../../models/simple_material_content.dart';
-import '../../../models/templates/section_dialog.dart';
 
-SimpleMaterialContent get kalamBab2Content => SimpleMaterialContent([
-  SectionDialog(
-    '1. Praktik Percakapan',
-    'Praktikkanlah percakapan berikut di depan kelas dengan temanmu. Kemudian Ganti nama dengan namamu sendiri.',
-    [
+class Bab2KalamData {
+  static final List<MaterialSection> sections = [
+    TitleSection('1. Praktik Percakapan'),
+    SubtitleSection(
+      'Praktikkanlah percakapan berikut di depan kelas dengan temanmu. Kemudian Ganti nama syarif dan Musa dengan namamu sendiri.',
+    ),
+    ImageSection(
+      imagePath: 'assets/materials/kalam/2.png',
+      caption: 'Gambar percakapan tentang fasilitas sekolah',
+    ),
+    DialogSection([
       DialogLine(speaker: 'شَرِيْفٌ', text: 'السَّلَامُ عَلَيْكُمْ.'),
       DialogLine(speaker: 'مُوْسَى', text: 'وَعَلَيْكُمُ السَّلَامُ.'),
       DialogLine(
@@ -80,12 +90,15 @@ SimpleMaterialContent get kalamBab2Content => SimpleMaterialContent([
       DialogLine(
         speaker: 'شَرِيْفٌ',
         text:
-            'إِذَنْ، لَا بُدَّ أَنْ تَحِدَّ فِي التَّعَلُّمِ. لِأَنَّ الْمَرَافِقَ الْمَدْرَسِيَّةَ وَالْمُدَرِّسِينَ فِي مَدْرَسَتِكَ كثيرة.',
+            'إِذَنْ، لَا بُدَّ أَنْ تَحِدَّ فِي التَّعَلُّمِ. لِأَنَّ الْمَرَافِقَ الْمَدْرَسِيَّةُ وَالْمُدَرِّسِينَ فِي مَدْرَسَتِكَ كثيرة.',
       ),
       DialogLine(
         speaker: 'مُوسَى',
         text: 'إِنْ شَاءَ اللهُ. سَأَجِدُّ فِي التَّعَلُّمِ، يَا شَرِيْفٌ',
       ),
-    ],
-  ),
-]);
+    ]),
+  ];
+}
+
+SimpleMaterialContent get kalamBab2Content =>
+    SimpleMaterialContent(Bab2KalamData.sections);

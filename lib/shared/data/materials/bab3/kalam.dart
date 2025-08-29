@@ -1,14 +1,18 @@
 import '../../../models/base/dialog_line.dart';
+import '../../../models/base/dialog_section.dart';
+import '../../../models/base/material_section.dart';
 import '../../../models/base/paragraph_section.dart';
+import '../../../models/base/subtitle_section.dart';
+import '../../../models/base/title_section.dart';
 import '../../../models/simple_material_content.dart';
-import '../../../models/templates/section_dialog.dart';
-import '../../../models/templates/section_one.dart';
 
-SimpleMaterialContent get kalamBab3Content => SimpleMaterialContent([
-  SectionDialog(
-    '1. Praktik Percakapan',
-    'Praktikkanlah percakapan berikut di depan kelas dengan temanmu. Kemudian Ganti nama Barizah dan Izzah dengan namamu sendiri.',
-    [
+class Bab3KalamData {
+  static final List<MaterialSection> sections = [
+    TitleSection('1. Praktik Percakapan'),
+    SubtitleSection(
+      'Praktikkanlah percakapan berikut di depan kelas dengan temanmu. Kemudian Ganti nama Barizah dan Izzah dengan namamu sendiri.',
+    ),
+    DialogSection([
       DialogLine(speaker: 'بَارِزَة', text: 'السَّلَامُ عَلَيْكُم .'),
       DialogLine(speaker: 'عزَّة', text: 'وَعَلَيْكُمُ السَّلَام .'),
       DialogLine(
@@ -45,16 +49,18 @@ SimpleMaterialContent get kalamBab3Content => SimpleMaterialContent([
         speaker: 'عِزَّة',
         text: 'فَصْلُكِ جَيِّدٌ جِدًّا يَا بَارِزَ',
       ),
-    ],
-  ),
-  SectionOne('2. Latihan Membuat Kalimat', [
-    ParagraphSection([
-      'Buatlah kalimat sederhana menggunakan kosakata di bawah ini!',
     ]),
+    TitleSection('2. Latihan Membuat Kalimat'),
+    SubtitleSection(
+      'Buatlah kalimat sederhana menggunakan kosakata di bawah ini!',
+    ),
     ParagraphSection([
       'أ. طَلاَّسَةٌ',
       'ب. مَوْسُوْعَةٌ',
       'ج. خَرِيْطَةٌ',
     ], isArabicParagraph: true),
-  ]),
-]);
+  ];
+}
+
+SimpleMaterialContent get kalamBab3Content =>
+    SimpleMaterialContent(Bab3KalamData.sections);

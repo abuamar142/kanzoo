@@ -26,6 +26,7 @@ flutter:
   assets:
     - assets/images/logos/
     - assets/materials/qiroah/
+    - assets/materials/kalam/
     - assets/materials/istima/audio/bab 1/
     - assets/materials/istima/audio/bab 2/
     - assets/materials/istima/audio/bab 3/
