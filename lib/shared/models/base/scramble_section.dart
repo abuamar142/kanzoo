@@ -24,6 +24,7 @@ class ScrambleSection extends MaterialSection {
       init: ScrambleSectionController(sentences, sectionId),
       builder: (controller) {
         return Container(
+          margin: EdgeInsets.only(bottom: AppDimensions.marginM),
           padding: EdgeInsets.all(AppDimensions.paddingM),
           decoration: BoxDecoration(
             color: AppColors.surface,

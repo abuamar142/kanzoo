@@ -1,83 +1,93 @@
 import '../../../../core/utils/section_id_generator.dart';
 import '../../../enum/chapter.dart';
 import '../../../enum/kind.dart';
+import '../../../models/base/material_section.dart';
 import '../../../models/base/paragraph_section.dart';
 import '../../../models/base/scramble_section.dart';
+import '../../../models/base/subtitle_section.dart';
+import '../../../models/base/title_section.dart';
 import '../../../models/simple_material_content.dart';
-import '../../../models/templates/section_one.dart';
-import '../../../models/templates/section_two.dart';
 
-SimpleMaterialContent get kitabahBab1Content => SimpleMaterialContent([
-  SectionTwo(
-    'Tugas Individu',
-    'Urutkan kalimat dimulai dari kata yang bergaris bawah (kata depan)!',
-    [
-      ScrambleSentence(
-        correctOrder: [
-          'مَنْ',
-          'هَذِهِ',
-          '؟',
-          'هِيَ',
-          'لَطِيفَة',
-          '،',
-          'هَذِهِ',
-          'صَدِيقَتِي',
-          'هِيَ',
-          'طَالِبَة',
-        ],
+class Bab1KitabahData {
+  static final List<MaterialSection> sections = [
+    TitleSection('Tugas Individu'),
+    SubtitleSection(
+      'Urutkan kalimat dimulai dari kata yang bergaris bawah (kata depan)!',
+    ),
+    ScrambleSection(
+      sentences: [
+        ScrambleSentence(
+          correctOrder: [
+            'مَنْ',
+            'هَذِهِ',
+            '؟',
+            'هِيَ',
+            'لَطِيفَة',
+            '،',
+            'هَذِهِ',
+            'صَدِيقَتِي',
+            'هِيَ',
+            'طَالِبَة',
+          ],
+        ),
+        ScrambleSentence(
+          correctOrder: ['أَنَا', 'اسْمِي', 'شَفِيقٍ', '،', 'أَنَا', 'طَالِب'],
+        ),
+        ScrambleSentence(
+          correctOrder: [
+            'أَنْتَ',
+            'مَحْمُود',
+            'يَا',
+            'صَدِيقِي',
+            '،',
+            'وَ',
+            'أَنْتَ',
+            'فَوْزَان',
+            'يَا',
+            'صَدِيقِي',
+          ],
+        ),
+        ScrambleSentence(
+          correctOrder: [
+            'مَنْ',
+            'هذا',
+            '؟',
+            'هُوَ',
+            'مَرْزُوقِى',
+            '،',
+            'هَذَا',
+            'صَدِيقِي',
+            'هُوَ',
+            'طَالِب',
+          ],
+        ),
+        ScrambleSentence(
+          correctOrder: [
+            'أَنْتِ',
+            'رَفِيدَة',
+            'يَا',
+            'صَدِيقَتِي',
+            '،',
+            'وَأَنْتِ',
+            'قَانِتَة',
+            'يَا',
+            'صَدِيقَتِي',
+          ],
+        ),
+      ],
+      sectionId: SectionIdGenerator.generateScrambleId(
+        Chapter.bab1,
+        Kind.kitabah,
       ),
-      ScrambleSentence(
-        correctOrder: ['أَنَا', 'اسْمِي', 'شَفِيقٍ', '،', 'أَنَا', 'طَالِب'],
-      ),
-      ScrambleSentence(
-        correctOrder: [
-          'أَنْتَ',
-          'مَحْمُود',
-          'يَا',
-          'صَدِيقِي',
-          '،',
-          'وَ',
-          'أَنْتَ',
-          'فَوْزَان',
-          'يَا',
-          'صَدِيقِي',
-        ],
-      ),
-      ScrambleSentence(
-        correctOrder: [
-          'مَنْ',
-          'هذا',
-          '؟',
-          'هُوَ',
-          'مَرْزُوقِى',
-          '،',
-          'هَذَا',
-          'صَدِيقِي',
-          'هُوَ',
-          'طَالِب',
-        ],
-      ),
-      ScrambleSentence(
-        correctOrder: [
-          'أَنْتِ',
-          'رَفِيدَة',
-          'يَا',
-          'صَدِيقَتِي',
-          '،',
-          'وَأَنْتِ',
-          'قَانِتَة',
-          'يَا',
-          'صَدِيقَتِي',
-        ],
-      ),
-    ],
-    SectionIdGenerator.generateScrambleId(Chapter.bab1, Kind.kitabah),
-  ),
-  SectionOne('Tugas Kelompok', [
+    ),
+    TitleSection('Tugas Kelompok'),
     ParagraphSection([
       '1) Buatlah 3 kalimat yang mengandung kata Ganti (ضَمِيْرٌ) dan kata tunjuk (اِسْمُ الإِشَارَة)!',
       '2) Kerjakan di buku tulis bersama temanmu!',
       '3) Kumpulkan kepada guru untuk dinilai!',
     ]),
-  ]),
-]);
+  ];
+}
+
+SimpleMaterialContent get kitabahBab1Content =>
+    SimpleMaterialContent(Bab1KitabahData.sections);
