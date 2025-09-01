@@ -1,6 +1,7 @@
 import '../../../models/base/image_section.dart';
 import '../../../models/base/material_section.dart';
 import '../../../models/base/paragraph_section.dart';
+import '../../../models/base/subtitle_section.dart';
 import '../../../models/base/title_section.dart';
 import '../../../models/simple_material_content.dart';
 
@@ -21,9 +22,9 @@ class Bab3QiroahData {
       'في الْيَوْمِ التَّالِي، قَبْلَ الذَّهَابِ إِلَى الْمَدْرَسَةِ يَسْتَعِدُّ زَيْدٌ الْأَدَوَاتِ الْمَدْرَسِيَّةَ وَيَضَعُهَا فِي حَقِيبَتِهِ الزَّرْقَاءِ. وَبَعْدَ الرُّجُوْعِ مِنَ الْمَدْرَسَةِ، يَضَعُ وَيُرَتِّبُ زَيْدُ الْأَدَوَاتِ الْمَدْرَسِيَّةِ فِي غُرْفَةِ الْمُذَاكَرَةِ. وَيَضَعُ الْكُتُبَ فِي رَفِّ كُتُب . يُحَافِظُ زَيْدٌ عَلَى الْأَدَوَاتِ الْمَدْرَسِيَّةِ بِجَيِّدٍ. هُوَ يَشْكُرُ لِوَالِدَيْهِ عَلَى شِرَاءِ الْأَدَوَاتِ الْمَدْرَسِيَّةِ الْجَدِيدَةِ.',
     ], isArabicParagraph: true),
     TitleSection("Tugas Individu"),
-    ParagraphSection([
+    SubtitleSection(
       'Jawablah pertanyaan-pertanyaan di bawah ini dengan benar!',
-    ]),
+    ),
     ParagraphSection([
       '١. فِي أَيِّ فَصْلٍ يَدْرُسُ زَيْدٌ؟',
       '٢. أَيْنَ اشْتَرَى زَيْدُ الْحِذَاءَ وَالْجَوْرَبَ؟',

@@ -1,6 +1,7 @@
 import '../../../models/base/image_section.dart';
 import '../../../models/base/material_section.dart';
 import '../../../models/base/paragraph_section.dart';
+import '../../../models/base/subtitle_section.dart';
 import '../../../models/base/title_section.dart';
 import '../../../models/simple_material_content.dart';
 
@@ -16,9 +17,9 @@ class Bab1QiroahData {
       'انْظُرْ ! ذَلِكَ السَّيِّدُ عُمَرُ ، هُوَ أَمِينُ المَكْتَبَةِ فِي هَذِهِ الْمَدْرَسَةِ . وَتِلْكَ السَّيِّدَةُ حَفْصَةُ ، هِيَ مُوَظَّفَةٌ فِي الْمَكْتَبَةِ . وَهَذَا بَائِعٌ ، اِسْمُهُ السَّيِّدُ خَالِصٌ . وَهَذِهِ بَائِعَةٌ ، اِسْمُهَا السَّيِّدَةُ فَاطِمَةُ ، وذَلِكَ سَائِقُ ، السَّائِقُ اسْمُهُ السَّيِّدُ حَفِيظٌ . أَنْظُرْ أَيْضًا ! ذَلِكَ بَوَّابٌ ، اِسْمُهُ السَّيِّدُ مَسْعُودٌ ، هُوَ مِنْ سُوْرَابَايَا .وَتِلْكَ خَادِمَةٌ ، اِسْمُهَا نَبِيْلَةُ ، هِيَ مِنْ بَانْدُونْج',
     ], isArabicParagraph: true),
     TitleSection("Tugas Individu"),
-    ParagraphSection([
+    SubtitleSection(
       'Jawablah pertanyaan-pertanyaan di bawah ini dengan benar!',
-    ]),
+    ),
     ParagraphSection([
       '١. مَا اسْمُ الطَّالِبِ ؟',
       '٢. مَن صَالِح ؟',

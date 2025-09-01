@@ -1,6 +1,7 @@
 import '../../../models/base/image_section.dart';
 import '../../../models/base/material_section.dart';
 import '../../../models/base/paragraph_section.dart';
+import '../../../models/base/subtitle_section.dart';
 import '../../../models/base/title_section.dart';
 import '../../../models/simple_material_content.dart';
 
@@ -24,9 +25,9 @@ class Bab2QiroahData {
       'فِي الطَّابِقِ الثَّانِي، أَنْظَرَ السَّيِّدُ مَرْوَانُ الْمَكْتَبَةَ وَالْمَعْمَلَ وَالْمَخْزَنَ. أَخْبَرَ السَّيِّدُ مَرْوَانُ أَنَّ التَّلَامِيذَ يَسُرُّوْنَ قِرَاءَةً وَاسْتِعَارَةَ كُتُبِ فِي الْمَكْتَبَةِ وَمُمَارَسَةً فِي الْمَعْمَلِ فِي هَذِهِ الْمَدْرَسَةِ ثَلَاثَةُ مَعَامِلَ ، مَعْمَلُ اللُّغَةِ ومَعْمَلُ الْحَاسُوبِ وَمَعْمَلُ الْعُلُومِ الطَّبِيعِيَّةِ. أَمَّا وَظِيفَةُ الْمَخْزَنِ لِحِفْظِ أَدَوَاتِ التَّنْظِيفِ.',
     ], isArabicParagraph: true),
     TitleSection("Tugas Individu"),
-    ParagraphSection([
+    SubtitleSection(
       'Jawablah pertanyaan-pertanyaan di bawah ini dengan benar!',
-    ]),
+    ),
     ParagraphSection([
       '١. هَلْ وَقَعَتْ مَدْرَسَةُ عَابِدٍ فِي سُوْرَا كَرْتَا؟',
       '٢. مَاذَا يَشْعُرُ التَّلَامِيذُ؟',
