@@ -249,7 +249,7 @@ class IstimaCompletionSectionController extends GetxController {
   }
 
   void selectAnswer(int exerciseIndex, int answerIndex) {
-    if (completedExercises[exerciseIndex]) return;
+    if (completedExercises[exerciseIndex] || showResults.value) return;
 
     selectedAnswers[exerciseIndex] = answerIndex;
 
@@ -267,6 +267,7 @@ class IstimaCompletionSectionController extends GetxController {
       final selectedAnswer = selectedAnswers[i];
       if (selectedAnswer != null) {
         allAnswers[i] = selectedAnswer;
+        completedExercises[i] = true;
       }
     }
 
@@ -280,7 +281,9 @@ class IstimaCompletionSectionController extends GetxController {
   }
 
   bool canCheckAnswers() {
-    // Enable button only if ALL exercises have an answer selected
+    // Enable button only if ALL exercises have an answer selected AND not showing results
+    if (showResults.value) return false;
+
     for (int i = 0; i < exercises.length; i++) {
       if (selectedAnswers[i] == null) {
         return false;

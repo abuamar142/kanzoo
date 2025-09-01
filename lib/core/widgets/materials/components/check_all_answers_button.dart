@@ -107,87 +107,72 @@ class CheckAllAnswersButton extends StatelessWidget {
         // Results Display
         if (showResults) ...[
           const SizedBox(height: AppDimensions.spaceM),
+          // Results summary
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(AppDimensions.paddingM),
             decoration: BoxDecoration(
-              color: percentage >= 70
-                  ? AppColors.success.withValues(alpha: 0.1)
-                  : percentage >= 50
-                  ? AppColors.warning.withValues(alpha: 0.1)
-                  : AppColors.error.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(AppDimensions.radiusM),
+              color: AppColors.primary.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(AppDimensions.radiusS),
               border: Border.all(
-                color: percentage >= 70
-                    ? AppColors.success.withValues(alpha: 0.3)
-                    : percentage >= 50
-                    ? AppColors.warning.withValues(alpha: 0.3)
-                    : AppColors.error.withValues(alpha: 0.3),
+                color: AppColors.primary.withValues(alpha: 0.3),
                 width: 1,
               ),
             ),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      percentage >= 70
-                          ? Icons.emoji_events
-                          : percentage >= 50
-                          ? Icons.thumb_up
-                          : Icons.replay,
-                      color: percentage >= 70
-                          ? AppColors.success
-                          : percentage >= 50
-                          ? AppColors.warning
-                          : AppColors.error,
-                      size: AppDimensions.iconM,
-                    ),
-                    const SizedBox(width: AppDimensions.spaceS),
-                    Text(
-                      '$percentage%',
-                      style: AppTextStyles.h3.copyWith(
-                        color: percentage >= 70
-                            ? AppColors.success
-                            : percentage >= 50
-                            ? AppColors.warning
-                            : AppColors.error,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: AppDimensions.spaceXS),
                 Text(
-                  '$correctAnswers dari $totalQuestions soal benar',
-                  style: textStyle.copyWith(
-                    color: percentage >= 70
-                        ? AppColors.success
-                        : percentage >= 50
-                        ? AppColors.warning
-                        : AppColors.error,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  'Hasil: $correctAnswers/$totalQuestions',
+                  style: AppTextStyles.h4.copyWith(color: AppColors.primary),
                 ),
-                const SizedBox(height: AppDimensions.spaceXS),
+                const SizedBox(height: AppDimensions.spaceS),
                 Text(
-                  percentage >= 70
-                      ? 'Kerja bagus!'
-                      : percentage >= 50
-                      ? 'Terus berlatih!'
-                      : 'Jangan menyerah!',
-                  style: textStyle.copyWith(
-                    color: percentage >= 70
-                        ? AppColors.success
-                        : percentage >= 50
-                        ? AppColors.warning
-                        : AppColors.error,
-                    fontStyle: FontStyle.italic,
+                  'Persentase: $percentage%',
+                  style: textStyle.copyWith(color: AppColors.textSecondary),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: AppDimensions.spaceM),
+          // "Answers Saved" container
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(
+              vertical: AppDimensions.paddingM,
+            ),
+            decoration: BoxDecoration(
+              color: AppColors.success.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(AppDimensions.radiusS),
+              border: Border.all(color: AppColors.success, width: 1),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.check_circle,
+                  color: AppColors.success,
+                  size: AppDimensions.iconS,
+                ),
+                const SizedBox(width: AppDimensions.spaceS),
+                Text(
+                  'Jawaban telah disimpan',
+                  style: AppTextStyles.buttonMedium.copyWith(
+                    color: AppColors.success,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],
             ),
+          ),
+          const SizedBox(height: AppDimensions.spaceS),
+          // Information text about resetting
+          Text(
+            'Untuk mengerjakan ulang, silakan ke halaman Reset Data',
+            style: AppTextStyles.caption.copyWith(
+              color: AppColors.textHint,
+              fontStyle: FontStyle.italic,
+            ),
+            textAlign: TextAlign.center,
           ),
         ],
       ],

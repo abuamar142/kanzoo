@@ -46,13 +46,18 @@ class ExerciseOptions extends StatelessWidget {
         Color textColor = AppColors.textPrimary;
 
         if (isCompleted) {
-          // Only show if the selected answer is wrong - don't reveal correct answers
           if (isSelected && !isCorrect) {
+            // Wrong answer - show in red but don't reveal correct answer
             backgroundColor = AppColors.error.withValues(alpha: 0.2);
             borderColor = AppColors.error;
             textColor = AppColors.error;
+          } else if (isSelected && isCorrect) {
+            // Only show correct answer styling if student selected it correctly
+            backgroundColor = AppColors.success.withValues(alpha: 0.2);
+            borderColor = AppColors.success;
+            textColor = AppColors.success;
           }
-          // Don't highlight correct answers - keep them neutral
+          // Don't highlight correct answer if student didn't select it
         } else if (isSelected) {
           backgroundColor = AppColors.primary.withValues(alpha: 0.1);
           borderColor = AppColors.primary;

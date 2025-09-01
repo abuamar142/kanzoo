@@ -258,7 +258,7 @@ class IstimaMatchingSectionController extends GetxController {
   }
 
   void selectAnswer(int exerciseIndex, int answerIndex) {
-    if (completedExercises[exerciseIndex]) return;
+    if (completedExercises[exerciseIndex] || showResults.value) return;
 
     final exercise = exercises[exerciseIndex];
     final currentSelections = selectedAnswers[exerciseIndex];
@@ -279,6 +279,8 @@ class IstimaMatchingSectionController extends GetxController {
   }
 
   void checkAllAnswers() {
+    showResults.value = true;
+
     // Save all current answers to SharedPreferences
     final answersToSave = <int, List<int>>{};
     for (int i = 0; i < exercises.length; i++) {
@@ -298,12 +300,13 @@ class IstimaMatchingSectionController extends GetxController {
     // Save all answers (both correct and incorrect)
     SharedPreferencesService.saveExerciseResults(sectionId, answersToSave);
 
-    showResults.value = true;
     update();
   }
 
   bool canCheckAnswers() {
-    // Enable button only if ALL exercises have at least one selection
+    // Enable button only if ALL exercises have at least one selection AND not showing results
+    if (showResults.value) return false;
+
     for (int i = 0; i < exercises.length; i++) {
       if (selectedAnswers[i].isEmpty) {
         return false;
