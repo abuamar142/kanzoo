@@ -136,6 +136,7 @@ class AppConstants {
   static const String incorrectArrangement = 'Susunan salah, coba lagi!';
   static const String checkAnswerButtonText = 'Periksa Jawaban';
   static const String resetButtonText = 'Ulangi';
+  static const String answersSavedText = 'Jawaban telah disimpan';
   static const String tapToArrangeText = 'Ketuk untuk menyusun kalimat';
   static const String alreadyCorrectText = 'Sudah benar';
 
@@ -181,6 +182,20 @@ class AppConstants {
   static const String resetAllSumatifTitle = 'Reset Semua Sumatif';
   static const String resetAllSumatifDescription =
       'Hapus semua kemajuan ujian sumatif dari semua bab';
+
+  // New reset constants for Qowaid
+  static const String resetBab1QowaidTitle = 'Reset Bab 1 - Qowaid';
+  static const String resetBab1QowaidDescription =
+      'Hapus semua kemajuan latihan qowaid pada Bab 1';
+  static const String resetBab2QowaidTitle = 'Reset Bab 2 - Qowaid';
+  static const String resetBab2QowaidDescription =
+      'Hapus semua kemajuan latihan qowaid pada Bab 2';
+  static const String resetBab3QowaidTitle = 'Reset Bab 3 - Qowaid';
+  static const String resetBab3QowaidDescription =
+      'Hapus semua kemajuan latihan qowaid pada Bab 3';
+  static const String resetAllQowaidTitle = 'Reset Semua Qowaid';
+  static const String resetAllQowaidDescription =
+      'Hapus semua kemajuan latihan qowaid dari semua bab';
 
   static const String resetConfirmationTitle = 'Konfirmasi Reset';
   static const String resetConfirmationMessage =

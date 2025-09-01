@@ -231,6 +231,63 @@ class ResetDataController extends GetxController {
     });
   }
 
+  // New methods for Qowaid reset
+  Future<void> resetBab1Qowaid() async {
+    await _showConfirmationDialog(() async {
+      isLoading.value = true;
+      try {
+        await SharedPreferencesService.clearChapterQowaidProgress(Chapter.bab1);
+        AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
+      } catch (e) {
+        AppSnackbar.showError(message: '${AppConstants.generalError}: $e');
+      } finally {
+        isLoading.value = false;
+      }
+    });
+  }
+
+  Future<void> resetBab2Qowaid() async {
+    await _showConfirmationDialog(() async {
+      isLoading.value = true;
+      try {
+        await SharedPreferencesService.clearChapterQowaidProgress(Chapter.bab2);
+        AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
+      } catch (e) {
+        AppSnackbar.showError(message: '${AppConstants.generalError}: $e');
+      } finally {
+        isLoading.value = false;
+      }
+    });
+  }
+
+  Future<void> resetBab3Qowaid() async {
+    await _showConfirmationDialog(() async {
+      isLoading.value = true;
+      try {
+        await SharedPreferencesService.clearChapterQowaidProgress(Chapter.bab3);
+        AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
+      } catch (e) {
+        AppSnackbar.showError(message: '${AppConstants.generalError}: $e');
+      } finally {
+        isLoading.value = false;
+      }
+    });
+  }
+
+  Future<void> resetAllQowaid() async {
+    await _showConfirmationDialog(() async {
+      isLoading.value = true;
+      try {
+        await SharedPreferencesService.clearAllQowaidProgress();
+        AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
+      } catch (e) {
+        AppSnackbar.showError(message: '${AppConstants.generalError}: $e');
+      } finally {
+        isLoading.value = false;
+      }
+    });
+  }
+
   Future<void> _showConfirmationDialog(VoidCallback onConfirm) async {
     await Get.dialog(
       AlertDialog(

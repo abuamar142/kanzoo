@@ -206,6 +206,64 @@ class ResetDataPage extends StatelessWidget {
               ),
             ),
 
+            SizedBox(height: AppDimensions.spaceXL),
+
+            // Qowaid reset section
+            Text(
+              'Reset Latihan Qowaid',
+              style: AppTextStyles.h3.copyWith(color: AppColors.textPrimary),
+            ),
+            SizedBox(height: AppDimensions.spaceL),
+
+            // Reset Bab 1 Qowaid
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.school,
+                title: AppConstants.resetBab1QowaidTitle,
+                description: AppConstants.resetBab1QowaidDescription,
+                onTap: controller.resetBab1Qowaid,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.primary,
+              ),
+            ),
+
+            // Reset Bab 2 Qowaid
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.school,
+                title: AppConstants.resetBab2QowaidTitle,
+                description: AppConstants.resetBab2QowaidDescription,
+                onTap: controller.resetBab2Qowaid,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.primary,
+              ),
+            ),
+
+            // Reset Bab 3 Qowaid
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.school,
+                title: AppConstants.resetBab3QowaidTitle,
+                description: AppConstants.resetBab3QowaidDescription,
+                onTap: controller.resetBab3Qowaid,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.primary,
+              ),
+            ),
+
+            // Reset All Qowaid
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.school_outlined,
+                title: AppConstants.resetAllQowaidTitle,
+                description: AppConstants.resetAllQowaidDescription,
+                onTap: controller.resetAllQowaid,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.warning,
+                enableMargin: false,
+              ),
+            ),
+
             // Divider
             Padding(
               padding: EdgeInsets.symmetric(vertical: AppDimensions.spaceL),

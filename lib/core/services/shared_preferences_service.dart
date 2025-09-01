@@ -400,4 +400,24 @@ class SharedPreferencesService {
       }
     }
   }
+
+  // New methods for clearing Qowaid multiple choice progress specifically
+  static Future<void> clearChapterQowaidProgress(Chapter chapter) async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.startsWith('section_answers_${chapter.name}_qowaid_') ||
+          key.startsWith('exercise_${chapter.name}_qowaid_')) {
+        await _prefs?.remove(key);
+      }
+    }
+  }
+
+  static Future<void> clearAllQowaidProgress() async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.contains('_qowaid_') || key.contains('qowaid')) {
+        await _prefs?.remove(key);
+      }
+    }
+  }
 }

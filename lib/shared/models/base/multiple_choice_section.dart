@@ -67,16 +67,13 @@ class MultipleChoiceSectionController extends GetxController {
     update();
   }
 
-  void resetAnswers() async {
-    selectedAnswers = List.filled(questions.length, null);
-    showResults.value = false;
-    // Clear saved progress
-    await SharedPreferencesService.clearSectionAnswers(sectionId);
-    update();
+  bool canCheckAnswers() {
+    return selectedAnswers.every((answer) => answer != null) &&
+        !showResults.value;
   }
 
-  bool canCheckAnswers() {
-    return selectedAnswers.every((answer) => answer != null);
+  bool hasAnsweredBefore() {
+    return showResults.value;
   }
 
   int getCorrectAnswersCount() {
@@ -136,8 +133,6 @@ class MultipleChoiceSection extends MaterialSection {
                   final question = entry.value;
                   final selectedAnswer =
                       controller.selectedAnswers[questionIndex];
-                  final isCorrect =
-                      selectedAnswer == question.correctAnswerIndex;
 
                   return Container(
                     margin: EdgeInsets.only(bottom: AppDimensions.marginM),
@@ -170,8 +165,8 @@ class MultipleChoiceSection extends MaterialSection {
                           final optionIndex = optionEntry.key;
                           final option = optionEntry.value;
                           final isSelected = selectedAnswer == optionIndex;
-                          final isCorrectOption =
-                              optionIndex == question.correctAnswerIndex;
+                          final isCorrect =
+                              selectedAnswer == question.correctAnswerIndex;
 
                           Color backgroundColor = AppColors.surface;
                           Color borderColor = AppColors.primary.withValues(
@@ -181,20 +176,21 @@ class MultipleChoiceSection extends MaterialSection {
 
                           if (controller.showResults.value) {
                             if (isSelected && !isCorrect) {
-                              // Wrong answer - show in red
+                              // Wrong answer - show in red but don't reveal correct answer
                               backgroundColor = AppColors.error.withValues(
                                 alpha: 0.2,
                               );
                               borderColor = AppColors.error;
                               textColor = AppColors.error;
-                            } else if (isCorrectOption) {
-                              // Correct answer - show in green
+                            } else if (isSelected && isCorrect) {
+                              // Only show correct answer styling if student selected it correctly
                               backgroundColor = AppColors.success.withValues(
                                 alpha: 0.2,
                               );
                               borderColor = AppColors.success;
                               textColor = AppColors.success;
                             }
+                            // Don't highlight correct answer if student didn't select it
                           } else if (isSelected) {
                             backgroundColor = AppColors.primary.withValues(
                               alpha: 0.1,
@@ -367,31 +363,55 @@ class MultipleChoiceSection extends MaterialSection {
                     ),
                   ),
                   SizedBox(height: AppDimensions.spaceM),
+                  // "Answers Saved" button instead of reset button
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () => controller.resetAnswers(),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.warning,
-                        foregroundColor: AppColors.surface,
-                        padding: EdgeInsets.symmetric(
-                          vertical: AppDimensions.paddingM,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            AppDimensions.radiusS,
-                          ),
-                        ),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: AppDimensions.paddingM,
                       ),
-                      child: Text(
-                        AppConstants.resetButtonText,
-                        style: AppTextStyles.buttonMedium.copyWith(
-                          fontSize:
-                              AppTextStyles.buttonMedium.fontSize! *
-                              fontController.fontScale,
+                      decoration: BoxDecoration(
+                        color: AppColors.success.withValues(alpha: 0.2),
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.radiusS,
                         ),
+                        border: Border.all(color: AppColors.success, width: 1),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.check_circle,
+                            color: AppColors.success,
+                            size: AppDimensions.iconS,
+                          ),
+                          SizedBox(width: AppDimensions.spaceS),
+                          Text(
+                            AppConstants.answersSavedText,
+                            style: AppTextStyles.buttonMedium.copyWith(
+                              fontSize:
+                                  AppTextStyles.buttonMedium.fontSize! *
+                                  fontController.fontScale,
+                              color: AppColors.success,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+                  ),
+                  SizedBox(height: AppDimensions.spaceS),
+                  // Information text about resetting
+                  Text(
+                    'Untuk mengerjakan ulang, silakan ke halaman Reset Data',
+                    style: AppTextStyles.caption.copyWith(
+                      fontSize:
+                          AppTextStyles.caption.fontSize! *
+                          fontController.fontScale,
+                      color: AppColors.textHint,
+                      fontStyle: FontStyle.italic,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ],

@@ -4,7 +4,7 @@ import 'app_colors.dart';
 
 class AppTextStyles {
   // Base font size for scaling
-  static const double _baseSize = 16.0;
+  static const double _baseSize = 12.0;
 
   // Font families
   static const String _primaryFont = 'Signika';

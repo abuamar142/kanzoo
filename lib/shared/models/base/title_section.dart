@@ -4,21 +4,24 @@ import 'package:get/get.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimensions.dart';
 import '../../../core/theme/app_text_styles.dart';
-import '../../../core/utils/string_extensions.dart';
 import '../../../features/materials/presentation/controllers/font_size_controller.dart';
 import 'material_section.dart';
 
 class TitleSection extends MaterialSection {
   final String title;
   final bool enablePadding;
+  final bool isArabicTitle;
 
-  const TitleSection(this.title, {this.enablePadding = true});
+  const TitleSection(
+    this.title, {
+    this.enablePadding = true,
+    this.isArabicTitle = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       final fontController = Get.find<FontSizeController>();
-      final isArabicTitle = title.isPrimarilyArabic;
 
       return Container(
         margin: EdgeInsets.only(
