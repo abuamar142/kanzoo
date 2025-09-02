@@ -44,6 +44,8 @@ class DragableMatchingController extends GetxController {
     final savedMatches = SharedPreferencesService.getDragableMatchingResults(
       sectionId,
     );
+    final isCompleted = SharedPreferencesService.isExerciseCompleted(sectionId);
+
     if (savedMatches.isNotEmpty) {
       matchedPairs.value = savedMatches;
 
@@ -57,8 +59,8 @@ class DragableMatchingController extends GetxController {
         availableRightItems.remove(matchedValue);
       }
 
-      // Check if all answers were matched (meaning answers were checked before)
-      if (matchedPairs.length == pairs.length) {
+      // Check if exercise was completed before
+      if (isCompleted && matchedPairs.length == pairs.length) {
         showResults.value = true;
       }
 
@@ -111,6 +113,8 @@ class DragableMatchingController extends GetxController {
       sectionId,
       matchedPairs,
     );
+    // Mark exercise as completed
+    await SharedPreferencesService.markExerciseCompleted(sectionId);
     update();
   }
 
@@ -122,6 +126,7 @@ class DragableMatchingController extends GetxController {
     showResults.value = false;
     // Clear saved progress
     await SharedPreferencesService.clearSectionAnswers(sectionId);
+    await SharedPreferencesService.clearExerciseProgress(sectionId);
     update();
   }
 
@@ -611,31 +616,55 @@ class DragableMatchingSection extends MaterialSection {
                     ),
                   ),
                   SizedBox(height: AppDimensions.spaceM),
+                  // "Answers Saved" button instead of reset button
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () => controller.resetAnswers(),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.warning,
-                        foregroundColor: AppColors.surface,
-                        padding: EdgeInsets.symmetric(
-                          vertical: AppDimensions.paddingM,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            AppDimensions.radiusS,
-                          ),
-                        ),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: AppDimensions.paddingM,
                       ),
-                      child: Text(
-                        AppConstants.resetButtonText,
-                        style: AppTextStyles.buttonMedium.copyWith(
-                          fontSize:
-                              AppTextStyles.buttonMedium.fontSize! *
-                              fontController.fontScale,
+                      decoration: BoxDecoration(
+                        color: AppColors.success.withValues(alpha: 0.2),
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.radiusS,
                         ),
+                        border: Border.all(color: AppColors.success, width: 1),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.check_circle,
+                            color: AppColors.success,
+                            size: AppDimensions.iconS,
+                          ),
+                          SizedBox(width: AppDimensions.spaceS),
+                          Text(
+                            AppConstants.answersSavedText,
+                            style: AppTextStyles.buttonMedium.copyWith(
+                              fontSize:
+                                  AppTextStyles.buttonMedium.fontSize! *
+                                  fontController.fontScale,
+                              color: AppColors.success,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+                  ),
+                  SizedBox(height: AppDimensions.spaceS),
+                  // Information text about resetting
+                  Text(
+                    'Untuk mengerjakan ulang, silakan ke halaman Reset Data',
+                    style: AppTextStyles.caption.copyWith(
+                      fontSize:
+                          AppTextStyles.caption.fontSize! *
+                          fontController.fontScale,
+                      color: AppColors.textHint,
+                      fontStyle: FontStyle.italic,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ],
