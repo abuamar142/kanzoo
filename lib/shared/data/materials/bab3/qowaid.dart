@@ -6,7 +6,7 @@ import '../../../models/base/multiple_choice_section.dart';
 import '../../../models/base/paragraph_section.dart';
 import '../../../models/base/table_section.dart';
 import '../../../models/base/title_section.dart';
-import '../../../models/simple_material_content.dart';
+import '../../../models/material_content.dart';
 
 class Bab3QowaidData {
   static final List<MaterialSection> sections = [
@@ -362,5 +362,5 @@ class Bab3QowaidData {
   ];
 }
 
-SimpleMaterialContent get qowaidBab3Content =>
-    SimpleMaterialContent(Bab3QowaidData.sections);
+MaterialContent get qowaidBab3Content =>
+    MaterialContent(Bab3QowaidData.sections);

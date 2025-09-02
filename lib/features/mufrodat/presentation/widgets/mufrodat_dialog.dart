@@ -8,7 +8,7 @@ import '../../../../core/widgets/dictionary/base_dictionary_item.dart';
 import '../../../../shared/data/materials/chapter_materials_data.dart';
 import '../../../../shared/enum/kind.dart';
 import '../../../../shared/models/mufrodat_models.dart';
-import '../../../../shared/models/simple_material_content.dart';
+import '../../../../shared/models/material_content.dart';
 import '../../../../shared/models/templates/section_three.dart';
 
 enum MufrodatSort { defaultOrder, indonesian, arabic }
@@ -25,7 +25,7 @@ class _MufrodatDialogState extends State<MufrodatDialog> {
   String _query = '';
 
   List<CategoryMufrodat> _extractMufrodatFromContent(
-    SimpleMaterialContent content,
+    MaterialContent content,
     String babPrefix,
   ) {
     final categories = <CategoryMufrodat>[];

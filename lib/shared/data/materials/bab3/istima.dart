@@ -4,7 +4,7 @@ import '../../../enum/exercise.dart';
 import '../../../enum/kind.dart';
 import '../../../models/base/audio_exercise.dart';
 import '../../../models/base/material_section.dart';
-import '../../../models/simple_material_content.dart';
+import '../../../models/material_content.dart';
 import '../../../models/templates/section_four.dart';
 
 class Bab3IstimaData {
@@ -119,5 +119,5 @@ class Bab3IstimaData {
   ];
 }
 
-SimpleMaterialContent get istimaBab3Content =>
-    SimpleMaterialContent(Bab3IstimaData.sections);
+MaterialContent get istimaBab3Content =>
+    MaterialContent(Bab3IstimaData.sections);

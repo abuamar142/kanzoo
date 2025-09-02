@@ -3,7 +3,7 @@ import '../../../enum/kind.dart';
 import '../../../models/base/matching_question_section.dart';
 import '../../../models/base/material_section.dart';
 import '../../../models/base/multiple_choice_section.dart';
-import '../../../models/simple_material_content.dart';
+import '../../../models/material_content.dart';
 import '../../../models/templates/section_five.dart';
 import '../../../models/templates/section_seven.dart';
 import '../../../models/templates/section_six.dart';
@@ -156,5 +156,5 @@ class Bab2SumatifData {
   ];
 }
 
-SimpleMaterialContent get sumatifBab2Content =>
-    SimpleMaterialContent(Bab2SumatifData.sections);
+MaterialContent get sumatifBab2Content =>
+    MaterialContent(Bab2SumatifData.sections);

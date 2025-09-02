@@ -3,7 +3,7 @@ import '../../../models/base/material_section.dart';
 import '../../../models/base/paragraph_section.dart';
 import '../../../models/base/subtitle_section.dart';
 import '../../../models/base/title_section.dart';
-import '../../../models/simple_material_content.dart';
+import '../../../models/material_content.dart';
 
 class Bab2QiroahData {
   static final List<MaterialSection> sections = [
@@ -38,5 +38,5 @@ class Bab2QiroahData {
   ];
 }
 
-SimpleMaterialContent get qiroahBab2Content =>
-    SimpleMaterialContent(Bab2QiroahData.sections);
+MaterialContent get qiroahBab2Content =>
+    MaterialContent(Bab2QiroahData.sections);

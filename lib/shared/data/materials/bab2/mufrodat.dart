@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../models/base/button_section.dart';
 import '../../../models/base/material_section.dart';
-import '../../../models/simple_material_content.dart';
+import '../../../models/material_content.dart';
 import '../../../models/templates/section_three.dart';
 
 class Bab2MufrodatData {
@@ -134,5 +134,5 @@ class Bab2MufrodatData {
   ];
 }
 
-SimpleMaterialContent get mufrodatBab2Content =>
-    SimpleMaterialContent(Bab2MufrodatData.sections);
+MaterialContent get mufrodatBab2Content =>
+    MaterialContent(Bab2MufrodatData.sections);

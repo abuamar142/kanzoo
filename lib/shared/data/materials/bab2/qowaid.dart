@@ -7,7 +7,7 @@ import '../../../models/base/paragraph_section.dart';
 import '../../../models/base/subtitle_section.dart';
 import '../../../models/base/table_section.dart';
 import '../../../models/base/title_section.dart';
-import '../../../models/simple_material_content.dart';
+import '../../../models/material_content.dart';
 
 class Bab2QowaidData {
   static final List<MaterialSection> sections = [
@@ -249,5 +249,5 @@ class Bab2QowaidData {
   ];
 }
 
-SimpleMaterialContent get qowaidBab2Content =>
-    SimpleMaterialContent(Bab2QowaidData.sections);
+MaterialContent get qowaidBab2Content =>
+    MaterialContent(Bab2QowaidData.sections);

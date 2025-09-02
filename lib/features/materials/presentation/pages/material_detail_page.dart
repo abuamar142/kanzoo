@@ -10,7 +10,7 @@ import '../../../../core/widgets/breadcrumb/app_breadcrumb.dart';
 import '../../../../core/widgets/font_size/font_size_overlay.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../shared/data/materials/chapter_materials_data.dart';
-import '../../../../shared/models/simple_material_content.dart';
+import '../../../../shared/models/material_content.dart';
 import '../../../../shared/shared.dart';
 import '../controllers/font_size_controller.dart';
 
@@ -36,7 +36,7 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
     super.dispose();
   }
 
-  SimpleMaterialContent? _getContentFromNewStructure(
+  MaterialContent? _getContentFromNewStructure(
     Chapter chapter,
     Kind kind,
   ) {
@@ -63,7 +63,7 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
     final Kind activeKind = kind ?? Kind.qiroah;
 
     // Check if this should use new design system
-    SimpleMaterialContent? newContent = _getContentFromNewStructure(
+    MaterialContent? newContent = _getContentFromNewStructure(
       activeChapter,
       activeKind,
     );
@@ -150,7 +150,7 @@ class _MaterialDetailPageState extends State<MaterialDetailPage> {
   }
 
   Widget _buildNewContent(
-    SimpleMaterialContent content,
+    MaterialContent content,
     Kind materialKind,
     Chapter chapter,
   ) {

@@ -4,7 +4,7 @@ import '../../../models/base/material_section.dart';
 import '../../../models/base/paragraph_section.dart';
 import '../../../models/base/subtitle_section.dart';
 import '../../../models/base/title_section.dart';
-import '../../../models/simple_material_content.dart';
+import '../../../models/material_content.dart';
 
 class Bab3KalamData {
   static final List<MaterialSection> sections = [
@@ -62,5 +62,5 @@ class Bab3KalamData {
   ];
 }
 
-SimpleMaterialContent get kalamBab3Content =>
-    SimpleMaterialContent(Bab3KalamData.sections);
+MaterialContent get kalamBab3Content =>
+    MaterialContent(Bab3KalamData.sections);

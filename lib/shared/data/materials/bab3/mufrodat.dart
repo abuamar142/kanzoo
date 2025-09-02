@@ -1,5 +1,5 @@
 import '../../../models/base/material_section.dart';
-import '../../../models/simple_material_content.dart';
+import '../../../models/material_content.dart';
 import '../../../models/templates/section_three.dart';
 
 class Bab3MufrodatData {
@@ -107,5 +107,5 @@ class Bab3MufrodatData {
   ];
 }
 
-SimpleMaterialContent get mufrodatBab3Content =>
-    SimpleMaterialContent(Bab3MufrodatData.sections);
+MaterialContent get mufrodatBab3Content =>
+    MaterialContent(Bab3MufrodatData.sections);

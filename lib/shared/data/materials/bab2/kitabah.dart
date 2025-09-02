@@ -6,7 +6,7 @@ import '../../../models/base/paragraph_section.dart';
 import '../../../models/base/scramble_section.dart';
 import '../../../models/base/subtitle_section.dart';
 import '../../../models/base/title_section.dart';
-import '../../../models/simple_material_content.dart';
+import '../../../models/material_content.dart';
 
 class Bab2KitabahData {
   static final List<MaterialSection> sections = [
@@ -76,5 +76,5 @@ class Bab2KitabahData {
   ];
 }
 
-SimpleMaterialContent get kitabahBab2Content =>
-    SimpleMaterialContent(Bab2KitabahData.sections);
+MaterialContent get kitabahBab2Content =>
+    MaterialContent(Bab2KitabahData.sections);

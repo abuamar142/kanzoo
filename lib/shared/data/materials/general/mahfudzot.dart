@@ -1,7 +1,7 @@
-import '../../../models/simple_material_content.dart';
+import '../../../models/material_content.dart';
 import '../../../models/templates/section_three.dart';
 
-SimpleMaterialContent get mahfudzotGeneralContent => SimpleMaterialContent([
+MaterialContent get mahfudzotGeneralContent => MaterialContent([
   SectionThree(
     title: 'Kumpulan Mahfūẓāt',
     wordPairs: [
