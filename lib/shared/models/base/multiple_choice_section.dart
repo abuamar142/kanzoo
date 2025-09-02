@@ -93,14 +93,10 @@ class MultipleChoiceSectionController extends GetxController {
 }
 
 class MultipleChoiceSection extends MaterialSection {
-  final String title;
-  final String? subtitle;
   final List<MultipleChoiceQuestion> questions;
   final String sectionId;
 
   const MultipleChoiceSection({
-    required this.title,
-    this.subtitle,
     required this.questions,
     required this.sectionId,
   });

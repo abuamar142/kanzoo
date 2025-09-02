@@ -33,7 +33,6 @@ class SectionSix extends MaterialSection {
         TitleSection(title).build(context),
         SubtitleSection(subtitle).build(context),
         MultipleChoiceSection(
-          title: '',
           questions: questions,
           sectionId: '${sectionId}_multiple_choice',
         ).build(context),

@@ -4,13 +4,14 @@ import '../../../models/base/button_section.dart';
 import '../../../models/base/material_section.dart';
 import '../../../models/base/multiple_choice_section.dart';
 import '../../../models/base/paragraph_section.dart';
+import '../../../models/base/subtitle_section.dart';
 import '../../../models/base/table_section.dart';
 import '../../../models/base/title_section.dart';
 import '../../../models/simple_material_content.dart';
 
 class Bab2QowaidData {
   static final List<MaterialSection> sections = [
-    TitleSection("1. Na'at dan Man'ut (نَعْت وَ مَنْعُوْتٌ)"),
+    TitleSection("A. Na'at dan Man'ut (نَعْت وَ مَنْعُوْتٌ)"),
     ParagraphSection([
       'Na\'at adalah kata yang memberikan sifat/karakteristik tertentu pada kata yang ada di depannya. Sedangkan Man\'ut Adalah benda yang diberi sifat/karakter. Contoh:',
     ]),
@@ -36,10 +37,10 @@ class Bab2QowaidData {
         ['', 'Fatimah Adalah siswa yang rajin', 'Fatimah', 'Siswa', 'Rajin'],
       ],
     ),
-    TitleSection("2. Catatan Na'at dan Man'ut"),
+    SubtitleSection("Catatan"),
     ParagraphSection([
-      'Catatan:',
-      '1) Dalam Bahasa Indonesia, na\'at diposisikan dengan terjemahan kata "yang...". Contoh:',
+      '1) Dalam Bahasa Indonesia, na\'at diposisikan dengan terjemahan kata "yang...".',
+      'Contoh:',
     ]),
     TableSection(
       headers: ['No', 'Kalimat', 'Man\'ut (yang disifati)', 'Na\'at (sifat)'],
@@ -48,10 +49,10 @@ class Bab2QowaidData {
         ['2', 'Faruq Adalah siswa yang rajin', 'Siswa', 'yang rajin'],
       ],
     ),
-    TitleSection(
+    ParagraphSection([
       '2) Na\'at harus sesuai dengan Man\'ut dari sisi Jenis kelamin (Mudzakkar & Mu\'annats)',
-    ),
-    ParagraphSection(['Daftar kata sifat:']),
+      'Daftar kata sifat:',
+    ]),
 
     TableSection(
       headers: ['المَعنى', 'الكَلِمَة', '', 'المَعنى', 'الكَلِمَة'],
@@ -78,7 +79,7 @@ class Bab2QowaidData {
       url: 'https://youtu.be/myU4_1Wg5Fg?si=8vHABJPt7IzprGfT',
       icon: Icons.ondemand_video,
     ),
-    TitleSection('3. Kata Keterangan Tempat (ظَرْفُ المَكَان)'),
+    TitleSection('B. Kata Keterangan Tempat (ظَرْفُ المَكَان)'),
     ParagraphSection([
       'Adalah isim (kata benda) yang menunjukkan kata keterangan tempat. Beberapa ظَرْفُ المَكَان sebagai berikut:',
     ]),
@@ -132,7 +133,7 @@ class Bab2QowaidData {
       ],
     ),
     TitleSection(
-      '3. Susunan الْمُبْتَدَأُ (إِشَارَةٌ) + الْخَبَرُ (نَعْتُ/طَرْفُ الْمَكَانِ)',
+      'C. Susunan الْمُبْتَدَأُ (إِشَارَةٌ) + الْخَبَرُ (نَعْتُ/طَرْفُ الْمَكَانِ)',
     ),
     TableSection(
       headers: ['No', 'Kalimat', 'Arti'],
@@ -154,7 +155,7 @@ class Bab2QowaidData {
       'd) khabar yang berupa na\'at harus harus ada kesesuaian antara Mudzakkar/ Mu\'annats',
       'e) Setiap kata yang berada setelah kata keterangan tempat, maka huruf akhirnya dibaca kasrah (lihat contoh di atas)',
     ]),
-    TitleSection('4. Kata Tanya أَيْنَ، مِنْ أَيْنَ، إِلَى أَيْنَ'),
+    TitleSection('D. Kata Tanya أَيْنَ، مِنْ أَيْنَ، إِلَى أَيْنَ'),
     TableSection(
       headers: ['Kata tanya', 'Fungsi', 'Contoh'],
       rows: [
@@ -177,7 +178,7 @@ class Bab2QowaidData {
     ),
     TitleSection('Latihan Soal'),
     TitleSection(
-      '1. Tentukan I\'rob (kedudukan dalam kalimat) pada kalimat di bawah sesuai dengan contoh!',
+      'A. Tentukan I\'rob (kedudukan dalam kalimat) pada kalimat di bawah sesuai dengan contoh!',
     ),
     ParagraphSection([
       'المِثَال: تِلْكَ مَدْرَسَةٌ جَدِيدَةٌ',
@@ -199,7 +200,7 @@ class Bab2QowaidData {
       'الجَوَابُ: .........',
     ], isArabicParagraph: true),
     TitleSection(
-      '2. Buatlah kalimat sederhana dengan kata keterangan tempat berikut!',
+      'B. Buatlah kalimat sederhana dengan kata keterangan tempat berikut!',
     ),
     ParagraphSection([
       '1. فِيْ: ...',
@@ -209,11 +210,9 @@ class Bab2QowaidData {
       '5. هُنَا: ...',
     ]),
     TitleSection(
-      '3. Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
+      'C. Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
     ),
     MultipleChoiceSection(
-      title: 'Latihan Pilihan Ganda',
-      subtitle: 'Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
       sectionId: 'bab2_qowaid_mc_1',
       questions: [
         MultipleChoiceQuestion(

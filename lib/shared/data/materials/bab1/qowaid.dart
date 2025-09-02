@@ -10,7 +10,7 @@ import '../../../models/simple_material_content.dart';
 
 class Bab1QowaidData {
   static final List<MaterialSection> sections = [
-    TitleSection("1. Mubtada' dan Khobar"),
+    TitleSection("A. Mubtada' dan Khobar"),
     ParagraphSection([
       'Dalam kitab *an-nahwu al-wadhih,* mubtada\' dan Khobar didefinisikan sebagai berikut:',
     ]),
@@ -50,7 +50,7 @@ class Bab1QowaidData {
       url: 'https://youtu.be/Q8kTwIE5qxg?si=jkjaovsPgC-ELASe&t=669',
       icon: Icons.ondemand_video,
     ),
-    TitleSection('2. Kata Ganti (ضَمِيْرٌ)'),
+    TitleSection('B. Kata Ganti (ضَمِيْرٌ)'),
 
     ParagraphSection([
       'Damir (ضمير) adalah kata ganti orang dalam bahasa Arab. Damir ada tiga jenis, yaitu munfaşil, muttaşil, dan mustatir. Pada materi ini akan dipelajari damir munfaşil. Damir munfaşil adalah kata ganti yang tidak bersambung dengan kata setelahnya (bisa berdiri sendiri). Damir munfaşil ada 14. Beberapa contoh damir munfaşil sebagai berikut:',
@@ -72,7 +72,7 @@ class Bab1QowaidData {
       url: 'https://youtu.be/6IsK159f5_g?si=eYK13Zb8-rAmPIeh',
       icon: Icons.ondemand_video,
     ),
-    TitleSection('3. Kata Tunjuk (اسْمُ الإِشَارَة)'),
+    TitleSection('C. Kata Tunjuk (اسْمُ الإِشَارَة)'),
     ParagraphSection([
       'Ism isyārah adalah kata yang berfungsi untuk menunjuk manusia ataupun benda dalam jarak dekat ataupun jauh. Ism isyārah dibagi menjadi tiga sebagai berikut.',
       '1. Ism isyarah lil mufrad, yaitu kata tunjuk jauh atau dekat untuk benda tunggal. Ism isyārah tersebut Adalah هٰذَا، هَذِهِ، ذَلِكَ، تِلْكَ',
@@ -103,7 +103,7 @@ class Bab1QowaidData {
       url: 'https://youtu.be/WVW-BTUBDSE?si=3HhUpTDXB9u7xv_F',
       icon: Icons.ondemand_video,
     ),
-    TitleSection('4. Kata Tanya (أداة اسْتِفْهَام)'),
+    TitleSection('D. Kata Tanya (أداة اسْتِفْهَام)'),
     TableSection(
       headers: [
         'No',
@@ -174,28 +174,41 @@ class Bab1QowaidData {
       ],
     ),
     TitleSection('Latihan Soal'),
-    TitleSection('1. Tentukan khabar pada kalimat berikut!'),
-    TableSection(
-      headers: ['Kalimat', 'أ', 'ب', 'ج'],
-      rows: [
-        [
-          'المَدْرَسَةُ كَبِيْرَةٌ',
-          'المَدْرَسَةُ',
-          'كَبِيْرَةٌ',
-          'المَدْرَسَةُ كَبِيْرَةٌ',
-        ],
-        ['الطَّالِبُ مَاهِرٌ', 'مَاهِرٌ', 'الطَّالِبُ', 'الطَّالِبُ مَاهِرٌ'],
-        ['هُوَ مُدَرِّسٌ', 'هُوَ', 'مُدَرِّسٌ', 'هُوَ مُدَرِّسٌ'],
-        ['هِيَ طَالِبَةٌ', 'هِيَ', 'طَالِبَةٌ', 'هِيَ طَالِبَةٌ'],
-        ['تِلْكَ مُدَرِّسَةٌ', 'مُدَرِّسَةٌ', 'تِلْكَ', 'تِلْكَ مُدَرِّسَةٌ'],
+    TitleSection('A. Tentukan khabar pada kalimat berikut!'),
+    MultipleChoiceSection(
+      sectionId: 'bab1_qowaid_khabar_mc',
+      questions: [
+        MultipleChoiceQuestion(
+          question: 'المَدْرَسَةُ كَبِيْرَةٌ',
+          options: ['المَدْرَسَةُ', 'كَبِيْرَةٌ', 'المَدْرَسَةُ كَبِيْرَةٌ'],
+          correctAnswerIndex: 1,
+        ),
+        MultipleChoiceQuestion(
+          question: 'الطَّالِبُ مَاهِرٌ',
+          options: ['مَاهِرٌ', 'الطَّالِبُ', 'الطَّالِبُ مَاهِرٌ'],
+          correctAnswerIndex: 0,
+        ),
+        MultipleChoiceQuestion(
+          question: 'هُوَ مُدَرِّسٌ',
+          options: ['هُوَ', 'مُدَرِّسٌ', 'هُوَ مُدَرِّسٌ'],
+          correctAnswerIndex: 1,
+        ),
+        MultipleChoiceQuestion(
+          question: 'هِيَ طَالِبَةٌ',
+          options: ['هِيَ', 'طَالِبَةٌ', 'هِيَ طَالِبَةٌ'],
+          correctAnswerIndex: 1,
+        ),
+        MultipleChoiceQuestion(
+          question: 'تِلْكَ مُدَرِّسَةٌ',
+          options: ['مُدَرِّسَةٌ', 'تِلْكَ', 'تِلْكَ مُدَرِّسَةٌ'],
+          correctAnswerIndex: 0,
+        ),
       ],
     ),
     TitleSection(
-      '2. Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
+      'B. Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
     ),
     MultipleChoiceSection(
-      title: 'Latihan Pilihan Ganda',
-      subtitle: 'Pilihlah jawaban yang benar!',
       sectionId: 'bab1_qowaid_mc_1',
       questions: [
         MultipleChoiceQuestion(

@@ -10,7 +10,7 @@ import '../../../models/simple_material_content.dart';
 
 class Bab3QowaidData {
   static final List<MaterialSection> sections = [
-    TitleSection('1. Kata Ganti Bersambung (ضَمِيْر مُتَّصِل)'),
+    TitleSection('A. Kata Ganti Bersambung (ضَمِيْر مُتَّصِل)'),
     ParagraphSection([
       'Dlamir Muttashil adalah kata ganti yang bersambung dengan kata sebelumnya. Setiap kali kita ingin menggunakannya, maka kita cukup menambahkan imbuhan tertentu di akhirnya dengan disesuaikan pelakunya. Adapun rinciannya adalah sebagai berikut:',
     ]),
@@ -154,7 +154,7 @@ class Bab3QowaidData {
       url: 'https://youtu.be/WET7GpEzepQ?si=H9WKBUCti3gbgLiy',
       icon: Icons.ondemand_video,
     ),
-    TitleSection('2. WARNA'),
+    TitleSection('B. Warna'),
     TableSection(
       headers: ['الرَّقْمُ', 'لِلمُذَكَّر', 'لِلمُؤَنَّث', 'المَعْنَى'],
       rows: [
@@ -172,48 +172,48 @@ class Bab3QowaidData {
         ['12', 'بَنَفْسَجِيٌّ', 'بَنَفْسَجِيَّةٌ', 'Ungu'],
       ],
     ),
-    TitleSection('Contoh Penggunaan Warna'),
     ParagraphSection(['Perhatikan contoh-contoh berikut ini!']),
     TableSection(
       headers: ['Pertanyaan', '', 'Alternatif jawaban', ''],
       rows: [
         ['', '', '1', '2'],
         [
-          'مَا لَوْنُ الكِتَاب',
-          '',
+          'مَا لَوْنُ',
+          'الكِتَاب',
           'لَوْنُ الْكِتَابِ أَصْفَر',
           'الْكِتَابِ لَوْنُهُ أَصْفَر',
         ],
         ['', '', 'Warna buku itu kuning', 'Buku itu warnanya kuning'],
         [
-          'السَّاعَة',
           '',
+          'السَّاعَة',
           'لَوْنُ السَّاعَةِ أَسْوَد',
           'السَّاعَةِ لَوْنُهَا أَسْوَد',
         ],
         ['', '', 'Warna jam itu hitam', 'Jam itu warnanya hitam'],
         [
-          'المِرْسَم',
           '',
+          'المِرْسَم',
           'لَوْنُ الْمُرْسَمِ بُنِي',
           'الْمِرْسَم لَوْنُهُ بُنِي',
         ],
         ['', '', 'Warna pensil itu coklat', 'Pensil itu warnanya coklat'],
         [
-          'الوَرْدَة',
           '',
+          'الوَرْدَة',
           'لَوْنُ الوَرْدَة أَحْمَر',
           'الوَرْدَة لَوْنُهَا أَحْمَرٍ',
         ],
         ['', '', 'Warna mawar itu merah', 'Mawar itu warnanya merah'],
+        [
+          '',
+          '',
+          'Kata benda terletak setelah kata لَوْنُ (lihat kata berwarna hitam)',
+          'Kata benda didahulukan dan kata لَوْنُ disambungkan dengan dlamir muttasil yang kembali kepada kata bendanya (lihat kata berwarna merah)',
+        ],
       ],
     ),
-    TitleSection('Keterangan Struktur Kalimat Warna'),
-    ParagraphSection([
-      'Struktur susunan diatas adalah Mubtada\' Khabar',
-      '• Alternatif 1: Kata benda terletak setelah kata لَوْنُ (lihat kata berwarna hitam)',
-      '• Alternatif 2: Kata benda didahulukan dan kata لَوْنُ disambungkan dengan dlamir muttasil yang kembali kepada kata bendanya (lihat kata berwarna merah)',
-    ]),
+    ParagraphSection(['Perhatikan contoh-contoh berikut ini!']),
     TableSection(
       headers: ['Jika bentuk kalimat', 'مُذَكَّرْ', '', 'مُؤَنَّث', ''],
       rows: [
@@ -265,11 +265,9 @@ class Bab3QowaidData {
     ),
     TitleSection('Latihan Soal'),
     TitleSection(
-      '1. Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
+      'A. Pilihlah jawaban yang benar dari beberapa pilihan jawaban!',
     ),
     MultipleChoiceSection(
-      title: 'Latihan Warna dan Dhamir Muttashil',
-      subtitle: 'Pilihlah jawaban yang paling tepat!',
       sectionId: 'bab3_qowaid_mc_1',
       questions: [
         MultipleChoiceQuestion(
@@ -329,7 +327,7 @@ class Bab3QowaidData {
         ),
       ],
     ),
-    TitleSection('2. Isilah kotak kosong dengan dhamir muttashil!'),
+    TitleSection('B. Isilah kotak kosong dengan dhamir muttashil!'),
     ParagraphSection(['Kerjakan di buku tugas Anda!']),
     TableSection(
       headers: [
@@ -350,7 +348,7 @@ class Bab3QowaidData {
         ['5', 'حَقِيْبَةٌ', '', '', '', '', 'حَقِيْبَتِيْ', ''],
       ],
     ),
-    TitleSection('3. Tugas Kelompok'),
+    TitleSection('C. Tugas Kelompok'),
     ParagraphSection([
       'Carilah lima kosakata tentang peralatan sekolah! Buatlah kalimat sederhana berbahasa arab menggunakan peralatan sekolah tersebut! Sertakan dhamir muttashil dan macam-macam warna! Kerjakan di buku tulis Bersama temanmu! Kumpulkan pada guru untuk dinilai!',
     ]),
