@@ -150,6 +150,9 @@ class AppConstants {
   static const String resetBab2KitabahTitle = 'Reset Bab 2 - Kitabah';
   static const String resetBab2KitabahDescription =
       'Hapus semua kemajuan soal pada Bab 2 Kitabah';
+  static const String resetAllKitabahTitle = 'Reset Semua Kitabah';
+  static const String resetAllKitabahDescription =
+      'Hapus semua kemajuan latihan Kitabah dari semua bab';
   static const String resetBab1IstimaTitle = 'Reset Bab 1 - Istima';
   static const String resetBab1IstimaDescription =
       'Hapus semua kemajuan latihan mendengar pada Bab 1';

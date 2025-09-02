@@ -420,4 +420,24 @@ class SharedPreferencesService {
       }
     }
   }
+
+  // New methods for clearing Kitabah progress specifically
+  static Future<void> clearChapterKitabahProgress(Chapter chapter) async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.startsWith('section_answers_${chapter.name}_kitabah_') ||
+          key.startsWith('scramble_${chapter.name}_kitabah_')) {
+        await _prefs?.remove(key);
+      }
+    }
+  }
+
+  static Future<void> clearAllKitabahProgress() async {
+    final keys = _prefs?.getKeys() ?? <String>{};
+    for (String key in keys) {
+      if (key.contains('_kitabah_') || key.contains('kitabah')) {
+        await _prefs?.remove(key);
+      }
+    }
+  }
 }

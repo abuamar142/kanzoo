@@ -91,6 +91,21 @@ class ResetDataPage extends StatelessWidget {
                 iconColor: AppColors.warning,
               ),
             ),
+            
+            // Reset All Kitabah
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.quiz_outlined,
+                title: AppConstants.resetAllKitabahTitle,
+                description: AppConstants.resetAllKitabahDescription,
+                onTap: controller.resetAllKitabah,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.warning,
+                enableMargin: false,
+              ),
+            ),
+
+            SizedBox(height: AppDimensions.spaceXL),
 
             // Exercise reset section
             Text(

@@ -14,10 +14,8 @@ class ResetDataController extends GetxController {
     await _showConfirmationDialog(() async {
       isLoading.value = true;
       try {
-        // Clear all scramble progress for Bab 1 Kitabah using enum-based approach
-        await SharedPreferencesService.clearChapterKindProgress(
+        await SharedPreferencesService.clearChapterKitabahProgress(
           Chapter.bab1,
-          Kind.kitabah,
         );
 
         AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
@@ -33,12 +31,24 @@ class ResetDataController extends GetxController {
     await _showConfirmationDialog(() async {
       isLoading.value = true;
       try {
-        // Clear all scramble progress for Bab 2 Kitabah using enum-based approach
-        await SharedPreferencesService.clearChapterKindProgress(
+        await SharedPreferencesService.clearChapterKitabahProgress(
           Chapter.bab2,
-          Kind.kitabah,
         );
 
+        AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
+      } catch (e) {
+        AppSnackbar.showError(message: '${AppConstants.generalError}: $e');
+      } finally {
+        isLoading.value = false;
+      }
+    });
+  }
+
+  Future<void> resetAllKitabah() async {
+    await _showConfirmationDialog(() async {
+      isLoading.value = true;
+      try {
+        await SharedPreferencesService.clearAllKitabahProgress();
         AppSnackbar.showSuccess(message: AppConstants.resetSuccessMessage);
       } catch (e) {
         AppSnackbar.showError(message: '${AppConstants.generalError}: $e');
