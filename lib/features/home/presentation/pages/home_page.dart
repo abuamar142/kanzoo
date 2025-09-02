@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/constants/app_constants.dart';
+import '../../../../core/services/chapter_progress_service.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/theme/app_text_styles.dart';
@@ -176,18 +177,33 @@ class HomePage extends StatelessWidget {
 
     return Column(
       children: chapters.map((chapter) {
+        final isUnlocked = ChapterProgressService.isChapterUnlocked(chapter);
+        final completionPercentage =
+            ChapterProgressService.getChapterCompletionPercentage(chapter);
+
         return MaterialCard(
           title: chapter.title,
-          subtitle: 'Materi pembelajaran bahasa Arab',
-          icon: Icons.menu_book,
-          colors: chapter.gradientColors,
-          onTap: () => Get.toNamed(
-            AppRoutes.materialKind,
-            arguments: {'chapter': chapter},
-          ),
+          subtitle: isUnlocked
+              ? 'Materi pembelajaran bahasa Arab${completionPercentage > 0 ? ' (${completionPercentage.toStringAsFixed(0)}% selesai)' : ''}'
+              : 'Bab terkunci - Selesaikan bab sebelumnya terlebih dahulu',
+          icon: isUnlocked ? Icons.menu_book : Icons.lock,
+          colors: isUnlocked
+              ? chapter.gradientColors
+              : [AppColors.borderLight, AppColors.textHint],
+          onTap: () => _handleChapterTap(chapter),
+          isEnabled: isUnlocked,
         );
       }).toList(),
     );
+  }
+
+  void _handleChapterTap(Chapter chapter) {
+    final isUnlocked = ChapterProgressService.isChapterUnlocked(chapter);
+
+    if (isUnlocked) {
+      Get.toNamed(AppRoutes.materialKind, arguments: {'chapter': chapter});
+    }
+    // For locked chapters, do nothing - the description is already shown in the card
   }
 
   Widget _buildSchoolInfoCard() {

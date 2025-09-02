@@ -68,46 +68,7 @@ class ResetDataPage extends StatelessWidget {
             ),
             SizedBox(height: AppDimensions.spaceL),
 
-            // Reset Bab 1 Kitabah
-            Obx(
-              () => ResetDataItem(
-                icon: Icons.quiz,
-                title: AppConstants.resetBab1KitabahTitle,
-                description: AppConstants.resetBab1KitabahDescription,
-                onTap: controller.resetBab1Kitabah,
-                isLoading: controller.isLoading.value,
-                iconColor: AppColors.warning,
-              ),
-            ),
-
-            // Reset Bab 2 Kitabah
-            Obx(
-              () => ResetDataItem(
-                icon: Icons.quiz,
-                title: AppConstants.resetBab2KitabahTitle,
-                description: AppConstants.resetBab2KitabahDescription,
-                onTap: controller.resetBab2Kitabah,
-                isLoading: controller.isLoading.value,
-                iconColor: AppColors.warning,
-              ),
-            ),
-            
-            // Reset All Kitabah
-            Obx(
-              () => ResetDataItem(
-                icon: Icons.quiz_outlined,
-                title: AppConstants.resetAllKitabahTitle,
-                description: AppConstants.resetAllKitabahDescription,
-                onTap: controller.resetAllKitabah,
-                isLoading: controller.isLoading.value,
-                iconColor: AppColors.warning,
-                enableMargin: false,
-              ),
-            ),
-
-            SizedBox(height: AppDimensions.spaceXL),
-
-            // Exercise reset section
+            // Exercise reset section (Istima)
             Text(
               'Reset Latihan Audio (Istima)',
               style: AppTextStyles.h3.copyWith(color: AppColors.textPrimary),
@@ -157,64 +118,6 @@ class ResetDataPage extends StatelessWidget {
                 title: AppConstants.resetAllIstimaTitle,
                 description: AppConstants.resetAllIstimaDescription,
                 onTap: controller.resetAllIstima,
-                isLoading: controller.isLoading.value,
-                iconColor: AppColors.warning,
-                enableMargin: false,
-              ),
-            ),
-
-            SizedBox(height: AppDimensions.spaceXL),
-
-            // Sumatif reset section
-            Text(
-              'Reset Ujian Sumatif',
-              style: AppTextStyles.h3.copyWith(color: AppColors.textPrimary),
-            ),
-            SizedBox(height: AppDimensions.spaceL),
-
-            // Reset Bab 1 Sumatif
-            Obx(
-              () => ResetDataItem(
-                icon: Icons.assignment,
-                title: AppConstants.resetBab1SumatifTitle,
-                description: AppConstants.resetBab1SumatifDescription,
-                onTap: controller.resetBab1Sumatif,
-                isLoading: controller.isLoading.value,
-                iconColor: AppColors.error,
-              ),
-            ),
-
-            // Reset Bab 2 Sumatif
-            Obx(
-              () => ResetDataItem(
-                icon: Icons.assignment,
-                title: AppConstants.resetBab2SumatifTitle,
-                description: AppConstants.resetBab2SumatifDescription,
-                onTap: controller.resetBab2Sumatif,
-                isLoading: controller.isLoading.value,
-                iconColor: AppColors.error,
-              ),
-            ),
-
-            // Reset Bab 3 Sumatif
-            Obx(
-              () => ResetDataItem(
-                icon: Icons.assignment,
-                title: AppConstants.resetBab3SumatifTitle,
-                description: AppConstants.resetBab3SumatifDescription,
-                onTap: controller.resetBab3Sumatif,
-                isLoading: controller.isLoading.value,
-                iconColor: AppColors.error,
-              ),
-            ),
-
-            // Reset All Sumatif
-            Obx(
-              () => ResetDataItem(
-                icon: Icons.assignment_outlined,
-                title: AppConstants.resetAllSumatifTitle,
-                description: AppConstants.resetAllSumatifDescription,
-                onTap: controller.resetAllSumatif,
                 isLoading: controller.isLoading.value,
                 iconColor: AppColors.warning,
                 enableMargin: false,
@@ -273,6 +176,110 @@ class ResetDataPage extends StatelessWidget {
                 title: AppConstants.resetAllQowaidTitle,
                 description: AppConstants.resetAllQowaidDescription,
                 onTap: controller.resetAllQowaid,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.warning,
+                enableMargin: false,
+              ),
+            ),
+
+            SizedBox(height: AppDimensions.spaceXL),
+
+            // Kitabah reset section
+            Text(
+              'Reset Latihan Kitabah',
+              style: AppTextStyles.h3.copyWith(color: AppColors.textPrimary),
+            ),
+            SizedBox(height: AppDimensions.spaceL),
+
+            // Reset Bab 1 Kitabah
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.quiz,
+                title: AppConstants.resetBab1KitabahTitle,
+                description: AppConstants.resetBab1KitabahDescription,
+                onTap: controller.resetBab1Kitabah,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.warning,
+              ),
+            ),
+
+            // Reset Bab 2 Kitabah
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.quiz,
+                title: AppConstants.resetBab2KitabahTitle,
+                description: AppConstants.resetBab2KitabahDescription,
+                onTap: controller.resetBab2Kitabah,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.warning,
+              ),
+            ),
+
+            // Reset All Kitabah
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.quiz_outlined,
+                title: AppConstants.resetAllKitabahTitle,
+                description: AppConstants.resetAllKitabahDescription,
+                onTap: controller.resetAllKitabah,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.warning,
+                enableMargin: false,
+              ),
+            ),
+
+            SizedBox(height: AppDimensions.spaceXL),
+
+            // Sumatif reset section
+            Text(
+              'Reset Ujian Sumatif',
+              style: AppTextStyles.h3.copyWith(color: AppColors.textPrimary),
+            ),
+            SizedBox(height: AppDimensions.spaceL),
+
+            // Reset Bab 1 Sumatif
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.assignment,
+                title: AppConstants.resetBab1SumatifTitle,
+                description: AppConstants.resetBab1SumatifDescription,
+                onTap: controller.resetBab1Sumatif,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.error,
+              ),
+            ),
+
+            // Reset Bab 2 Sumatif
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.assignment,
+                title: AppConstants.resetBab2SumatifTitle,
+                description: AppConstants.resetBab2SumatifDescription,
+                onTap: controller.resetBab2Sumatif,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.error,
+              ),
+            ),
+
+            // Reset Bab 3 Sumatif
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.assignment,
+                title: AppConstants.resetBab3SumatifTitle,
+                description: AppConstants.resetBab3SumatifDescription,
+                onTap: controller.resetBab3Sumatif,
+                isLoading: controller.isLoading.value,
+                iconColor: AppColors.error,
+              ),
+            ),
+
+            // Reset All Sumatif
+            Obx(
+              () => ResetDataItem(
+                icon: Icons.assignment_outlined,
+                title: AppConstants.resetAllSumatifTitle,
+                description: AppConstants.resetAllSumatifDescription,
+                onTap: controller.resetAllSumatif,
                 isLoading: controller.isLoading.value,
                 iconColor: AppColors.warning,
                 enableMargin: false,
