@@ -3,7 +3,7 @@
 ## Release Title:
 
 ```
-🏫 Kanzoo v1.1.0 - Arabic Learning App with Interactive Features
+🏫 Kanzoo v1.2.0 - Arabic Learning App with Chapter Progression System
 ```
 
 ## Release Description:
@@ -25,7 +25,21 @@ materi digital dan latihan soal interaktif.
 - **Guru Pembimbing**: Moch. Fikri Jauhar Maulana S. Pd.
 - **Target**: Siswa SMP
 
-## ✨ Fitur Utama v1.1.0
+## ✨ Fitur Utama v1.2.0
+
+### 🔒 Chapter Progression System (NEW!)
+
+- **📈 Progressive Learning** - Bab terbuka bertahap berdasarkan penyelesaian
+- **🎯 80% Requirement** - Minimal 80% akurasi untuk membuka bab selanjutnya
+- **🔓 Visual Indicators** - Indikator visual untuk bab terkunci/terbuka
+- **📊 Real-time Tracking** - Pelacakan progress real-time di semua latihan
+
+### 💾 Enhanced Exercise System (NEW!)
+
+- **📱 Smart Persistence** - Tracking lengkap dengan SharedPreferences
+- **✅ Consistent Results** - Tampilan hasil seragam di semua jenis latihan
+- **💾 Save Confirmation** - Konfirmasi "Jawaban telah disimpan" untuk semua latihan
+- **🔄 Reset Functionality** - Fitur reset data untuk mengulang latihan
 
 ### 🎓 Learning Materials
 
@@ -58,9 +72,9 @@ materi digital dan latihan soal interaktif.
 
 | ABI Type      | Device Compatibility                    | File Size  | Download                         |
 | ------------- | --------------------------------------- | ---------- | -------------------------------- |
-| **arm64-v8a** | **Modern Android phones** (Recommended) | **13.9MB** | [⬇️ Download](link-to-arm64-apk) |
-| armeabi-v7a   | Older Android devices                   | 13.4MB     | [⬇️ Download](link-to-arm-apk)   |
-| x86_64        | Android emulators & Intel tablets       | 14.0MB     | [⬇️ Download](link-to-x86-apk)   |
+| **arm64-v8a** | **Modern Android phones** (Recommended) | **15.5MB** | [⬇️ Download](link-to-arm64-apk) |
+| armeabi-v7a   | Older Android devices                   | 15.0MB     | [⬇️ Download](link-to-arm-apk)   |
+| x86_64        | Android emulators & Intel tablets       | 15.6MB     | [⬇️ Download](link-to-x86-apk)   |
 
 ### 📋 System Requirements
 
@@ -90,14 +104,18 @@ _Coming soon - Screenshots will be added in future releases_
 
 ### 📊 Size Comparison
 
-- **Tanpa optimasi**: ~35MB+ universal APK
-- **Dengan split APK**: 13.4-14.0MB per device type
-- **Pengurangan ukuran**: ~60% lebih kecil!
+- **Tanpa optimasi**: ~46MB+ universal APK
+- **Dengan split APK**: 15.0-15.6MB per device type
+- **Pengurangan ukuran**: ~67% lebih kecil!
 
 ## 🛣️ Roadmap
 
-### ✅ Completed Features (v1.1.0)
+### ✅ Completed Features (v1.2.0)
 
+- [x] **Chapter progression system** dengan unlock berdasarkan 80% completion
+- [x] **Enhanced exercise tracking** dengan SharedPreferences
+- [x] **Unified exercise behavior** di semua jenis latihan
+- [x] **Codebase optimization** dengan penghapusan file unused
 - [x] Materi pembelajaran bahasa Arab lengkap (5 jenis materi)
 - [x] Sistem latihan soal interaktif dengan feedback
 - [x] Audio player untuk materi istima'
@@ -106,16 +124,18 @@ _Coming soon - Screenshots will be added in future releases_
 
 ### 🔄 Future Features (Coming Soon)
 
-- [ ] Sistem progress tracking untuk siswa
-- [ ] Export hasil belajar ke PDF
-- [ ] Mode gelap (dark theme)
-- [ ] Fitur bookmark materi favorit
-- [ ] Sharing hasil quiz ke guru
+- [ ] Advanced analytics untuk progress siswa
+- [ ] Export detailed learning reports ke PDF
+- [ ] Mode gelap (dark theme) dengan auto-switching
+- [ ] Fitur bookmark materi dan quiz favorit
+- [ ] Teacher dashboard untuk monitoring progress siswa
+- [ ] Gamification dengan badges dan achievements
 
 ## 🐛 Known Issues
 
+- Chapter progression reset requires app restart pada beberapa device Android lama
 - Audio player memerlukan izin storage pada beberapa device Android lama
-- Font scaling reset setelah restart app (akan diperbaiki di v1.2.0)
+- Loading time sedikit lebih lama pada first launch setelah install
 
 ## 🤝 Feedback & Support
 
@@ -130,10 +150,11 @@ Aplikasi ini dikembangkan khusus untuk MTsN 14 Jombang.
 
 ---
 
-**Build Date**: August 19, 2025  
+**Build Date**: September 2, 2025  
 **Build Status**: ✅ Production Ready  
 **Target Audience**: Siswa SMP pembelajaran bahasa Arab  
-**Latest Features**: Interactive Quiz, Audio Player, Font Scaling, Complete Dictionary
+**Latest Features**: Chapter Progression System, Enhanced Exercise Tracking, Unified Behavior,
+Codebase Optimization
 
 🌟 **Terima kasih telah menggunakan Kanzoo!** 🌟
 ```
@@ -145,6 +166,6 @@ Aplikasi ini dikembangkan khusus untuk MTsN 14 Jombang.
    - app-arm64-v8a-release.apk (Recommended)
    - app-armeabi-v7a-release.apk
    - app-x86_64-release.apk
-3. Set release tag: v1.0.0
+3. Set release tag: v1.2.0
 4. Mark as "Latest release"
 5. Centang "Set as pre-release" jika masih testing

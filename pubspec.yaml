@@ -1,7 +1,7 @@
 name: kanzoo
 description: "Aplikasi pembelajaran bahasa Arab untuk siswa MTs. Menggantikan LKS tradisional dengan materi digital dan latihan soal interaktif."
 publish_to: 'none'
-version: 1.1.0+2
+version: 1.2.0+3
 
 environment:
   sdk: ^3.8.1
